@@ -1,12 +1,13 @@
 import { Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-import MainLayout from './pages/MainLayout';
-import HomePage from './pages/HomePage';
-import HelpPage from './pages/HelpPage';
-import ListPage from './pages/ListPage';
+
 import CheckListPage from './pages/CheckListPage';
 import ErrorPage from './pages/ErrorPage';
+import HelpPage from './pages/HelpPage';
+import HomePage from './pages/HomePage';
+import ListPage from './pages/ListPage';
+import MainLayout from './pages/MainLayout';
 
 const Router = () => {
   return (

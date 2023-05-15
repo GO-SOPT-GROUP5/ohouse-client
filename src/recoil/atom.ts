@@ -1,5 +1,6 @@
 import { atom } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
+
 import { productInfo } from '../types/product';
 
 //페이지가 변경되더라도 상태관리를 유지

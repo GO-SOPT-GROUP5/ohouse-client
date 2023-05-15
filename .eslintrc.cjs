@@ -10,8 +10,6 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:jsx-a11y/recommended',
-    'plugin:import/recommended',
-    'plugin:import/typescript',
     'plugin:prettier/recommended',
   ],
   overrides: [],
@@ -27,8 +25,6 @@ module.exports = {
     '@typescript-eslint/eslint-plugin',
     'react-hooks',
     'jsx-a11y',
-    'eslint-plugin-import',
-    'eslint-plugin-import-typescript',
     'simple-import-sort',
     'prettier',
   ],
@@ -47,7 +43,7 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
     'react-hooks/exhaustive-deps': 'off', // Checks effect dependencies
     'react/react-in-jsx-scope': 'off', // import React from "react"가 필수였던 시기에 필요한 규칙
-    // 'simple-import-sort/imports': 'error', // import 정렬
+    'simple-import-sort/imports': 'error', // import 정렬
     'simple-import-sort/exports': 'error', // export 정렬
     'import/no-unresolved': 'off',
     'arrow-body-style': ['error', 'as-needed'], // 한 줄일 때는 {} 없이, 두 줄 이상이면 {} 포함
@@ -56,26 +52,8 @@ module.exports = {
     'object-shorthand': ['error', 'always'], // const obj = {a, b} 가능
     'arrow-parens': ['error', 'always'], // arrow-function 인자가 2개 이상이면 괄호 필수
     'no-multi-spaces': 'error', // 스페이스 여러개 금지
-    'simple-import-sort/imports': [
-      'error',
-      {
-        groups: [['^\\u0000'], ['^@?\\w'], ['^~/', '^\\.']],
-      },
-    ],
-    'sort-imports': [
-      'error',
-      {
-        ignoreCase: true,
-        ignoreDeclarationSort: true,
-        ignoreMemberSort: false,
-        memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
-      },
-    ],
   },
   settings: {
-    'editor.codeActionsOnSave': {
-      'source.fixAll.eslint': true,
-    },
     'import/resolver': {
       node: {
         moduleDirectory: ['src/'],
@@ -93,6 +71,4 @@ module.exports = {
     { language: 'typescript', autoFix: true },
     { language: 'typescriptreact', autoFix: true },
   ],
-  'javascript.format.enable': false,
-  'typescript.format.enable': false,
 };

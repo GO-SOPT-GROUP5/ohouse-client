@@ -1,7 +1,8 @@
 import { ThemeProvider } from 'styled-components';
+
+import Router from './Router.tsx';
 import GlobalStyle from './styles/GlobalStyle';
 import theme from './styles/theme';
-import Router from './Router.tsx';
 
 const App = () => {
   return (

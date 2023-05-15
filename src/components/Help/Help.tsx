@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { IcLeftSmall } from '../../assets/icon';
 
 const Help = () => {
