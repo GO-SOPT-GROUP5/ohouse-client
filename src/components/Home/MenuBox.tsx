@@ -8,6 +8,10 @@ export default MenuBox;
 
 const St = {
   MenuBoxWrapper: styled.article`
-    color: blue;
+    width: 39.2rem;
+
+    background-color: ${({ theme }) => theme.colors.White};
+    color: ${({ theme }) => theme.colors.Grey500};
+    ${({ theme }) => theme.fonts.Title3};
   `,
 };

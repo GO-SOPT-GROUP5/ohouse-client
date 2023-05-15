@@ -8,6 +8,6 @@ export default Error;
 
 const St = {
   Error: styled.div`
-    color: red;
+    color: ${({ theme }) => theme.colors.Blue};
   `,
 };

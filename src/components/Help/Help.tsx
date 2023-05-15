@@ -5,7 +5,7 @@ const Help = () => {
   return (
     <St.HelpWrapper>
       <IcLeftSmall />
-      MenuBox 컴포넌트입니다!
+      Help 컴포넌트입니다!
     </St.HelpWrapper>
   );
 };
@@ -14,6 +14,10 @@ export default Help;
 
 const St = {
   HelpWrapper: styled.section`
-    color: green;
+    width: 63rem;
+
+    background-color: ${({ theme }) => theme.colors.White};
+    color: ${({ theme }) => theme.colors.Grey600};
+    ${({ theme }) => theme.fonts.Title1};
   `,
 };

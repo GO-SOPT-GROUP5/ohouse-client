@@ -8,6 +8,6 @@ export default Footer;
 
 const St = {
   Footer: styled.footer`
-    color: blue;
+    color: ${({ theme }) => theme.colors.Blue};
   `,
 };

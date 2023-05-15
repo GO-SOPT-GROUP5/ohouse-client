@@ -8,6 +8,7 @@ export default Category;
 
 const St = {
   Li: styled.li`
-    color: blue;
+    color: ${({ theme }) => theme.colors.Grey600};
+    ${({ theme }) => theme.fonts.Title5};
   `,
 };

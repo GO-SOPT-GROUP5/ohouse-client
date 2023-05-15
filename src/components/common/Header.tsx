@@ -14,6 +14,6 @@ export default Header;
 
 const St = {
   Header: styled.header`
-    color: blue;
+    color: ${({ theme }) => theme.colors.Blue};
   `,
 };
