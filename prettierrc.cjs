@@ -8,19 +8,4 @@ module.exports = {
   useTabs: false,
   arrowParens: 'avoid',
   endOfLine: 'lf',
-
-  importOrder: [
-    '^@utils/(.*)$',
-    '^@apis/(.*)$',
-    '^@hooks/(.*)$',
-    '^@recoils/(.*)$',
-    '^@pages/(.*)$',
-    '^@base/(.*)$',
-    '^@common/(.*)$',
-    '^@components/(.*)$',
-    '^@styles/(.*)$',
-    '^[./]',
-  ],
-  importOrderSeparation: true,
-  importOrderSortSpecifiers: true,
 };

@@ -67,8 +67,4 @@ module.exports = {
       '@typescript-eslint/parser': ['.ts', '.tsx', '.js'],
     },
   },
-  'eslint.validate': [
-    { language: 'typescript', autoFix: true },
-    { language: 'typescriptreact', autoFix: true },
-  ],
 };
