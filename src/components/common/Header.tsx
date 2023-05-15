@@ -1,7 +1,13 @@
 import styled from 'styled-components';
+import { IcLogo } from '../../assets/icon';
 
 const Header = () => {
-  return <St.Header>Header 컴포넌트입니다!</St.Header>;
+  return (
+    <St.Header>
+      <IcLogo />
+      Header 컴포넌트입니다!
+    </St.Header>
+  );
 };
 
 export default Header;

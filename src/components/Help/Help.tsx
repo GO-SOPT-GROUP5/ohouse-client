@@ -1,7 +1,13 @@
 import styled from 'styled-components';
+import { IcLeftSmall } from '../../assets/icon';
 
 const Help = () => {
-  return <St.HelpWrapper>MenuBox 컴포넌트입니다!</St.HelpWrapper>;
+  return (
+    <St.HelpWrapper>
+      <IcLeftSmall />
+      MenuBox 컴포넌트입니다!
+    </St.HelpWrapper>
+  );
 };
 
 export default Help;
