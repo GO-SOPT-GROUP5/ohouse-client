@@ -15,5 +15,10 @@ export default Header;
 const St = {
   Header: styled.header`
     color: ${({ theme }) => theme.colors.Blue};
+
+    & > svg {
+      width: 8.9rem;
+      height: 4.3rem;
+    }
   `,
 };

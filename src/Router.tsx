@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import MainLayout from './pages/MainLayout';
 import HomePage from './pages/HomePage';
 import HelpPage from './pages/HelpPage';
 import ListPage from './pages/ListPage';
@@ -11,10 +12,12 @@ const Router = () => {
     <BrowserRouter>
       <Suspense>
         <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/help' element={<HelpPage />} />
-          <Route path='/list' element={<ListPage />} />
-          <Route path='/checklist' element={<CheckListPage />} />
+          <Route element={<MainLayout />}>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/help' element={<HelpPage />} />
+            <Route path='/list' element={<ListPage />} />
+            <Route path='/checklist' element={<CheckListPage />} />
+          </Route>
           <Route path='*' element={<ErrorPage />} />
         </Routes>
       </Suspense>
