@@ -62,8 +62,20 @@ module.exports = {
         groups: [['^\\u0000'], ['^@?\\w'], ['^~/', '^\\.']],
       },
     ],
+    'sort-imports': [
+      'error',
+      {
+        ignoreCase: true,
+        ignoreDeclarationSort: true,
+        ignoreMemberSort: false,
+        memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+      },
+    ],
   },
   settings: {
+    'editor.codeActionsOnSave': {
+      'source.fixAll.eslint': true,
+    },
     'import/resolver': {
       node: {
         moduleDirectory: ['src/'],
@@ -81,4 +93,6 @@ module.exports = {
     { language: 'typescript', autoFix: true },
     { language: 'typescriptreact', autoFix: true },
   ],
+  'javascript.format.enable': false,
+  'typescript.format.enable': false,
 };

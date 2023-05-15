@@ -1,0 +1,26 @@
+module.exports = {
+  printWidth: 100,
+  tabWidth: 2,
+  singleQuote: true,
+  trailingComma: 'all',
+  bracketSpacing: true,
+  semi: true,
+  useTabs: false,
+  arrowParens: 'avoid',
+  endOfLine: 'lf',
+
+  importOrder: [
+    '^@utils/(.*)$',
+    '^@apis/(.*)$',
+    '^@hooks/(.*)$',
+    '^@recoils/(.*)$',
+    '^@pages/(.*)$',
+    '^@base/(.*)$',
+    '^@common/(.*)$',
+    '^@components/(.*)$',
+    '^@styles/(.*)$',
+    '^[./]',
+  ],
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true,
+};
