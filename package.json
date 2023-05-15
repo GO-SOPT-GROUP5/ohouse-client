@@ -10,8 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tanstack/react-query": "^4.29.7",
-    "@tanstack/react-query-devtools": "^4.29.7",
     "@types/axios": "^0.14.0",
     "@types/react-router-dom": "^5.3.3",
     "@types/recoil": "^0.0.9",
@@ -26,7 +24,6 @@
     "styled-components": "^6.0.0-rc.1"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/node": "^20.1.4",
     "@types/prettier": "^2",
     "@types/react": "^18.0.28",
