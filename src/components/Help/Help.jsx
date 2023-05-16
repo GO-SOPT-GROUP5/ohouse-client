@@ -5,9 +5,11 @@ import { IcLeft, IcRight } from '../../assets/icon';
 const Help = () => {
   return (
     <St.HelpWrapper>
-      <IcLeft />
-      <IcRight />
       <St.HelpCard>
+        <St.HelpIcon>
+          <IcLeft />
+          <IcRight />
+        </St.HelpIcon>
         <St.HelpContent>
           <h1>집보며 하나하나 적기 힘드셨죠?<br/>이젠 쉽게 체크 하세요</h1>
           <p>집 볼때 꼭 체크해야하는 핵심만 모아놨어요</p>
@@ -37,9 +39,20 @@ const St = {
     width: 63rem;
     height: 70rem;
 
+    position: relative;
+
     background-color:${({ theme }) => theme.colors.White};
     border-radius: 1rem;
     box-shadow: 0 0.3rem 0.9rem rgba(0, 0, 0, 0.1);
+  `,
+  HelpIcon: styled.div`
+    display: flex;
+    gap: 56rem;
+
+    position: absolute;
+    left: -3.5rem;
+
+    margin-top: 32.5rem;
   `,
   HelpContent: styled.article`
     display: flex;
