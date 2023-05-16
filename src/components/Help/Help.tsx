@@ -11,10 +11,10 @@ const Help = () => {
           <IcLeft />
           <IcRight />
         </St.HelpIcon>
+        <ImgExplanation1/>
         <St.HelpContent>
           <h1>집보며 하나하나 적기 힘드셨죠?<br/>이젠 쉽게 체크 하세요</h1>
           <p>집 볼때 꼭 체크해야하는 핵심만 모아놨어요</p>
-          <ImgExplanation1/>
           <button type='button'>새로운 매물 등록하기</button>
         </St.HelpContent>
       </St.HelpCard>
@@ -46,6 +46,13 @@ const St = {
     background-color:${({ theme }) => theme.colors.White};
     border-radius: 1rem;
     box-shadow: 0 0.3rem 0.9rem rgba(0, 0, 0, 0.1);
+
+    & > svg {
+      position: absolute;
+      
+      margin-top: 20rem;
+      margin-left: 12rem;
+    }
   `,
   HelpIcon: styled.div`
     display: flex;
@@ -55,6 +62,9 @@ const St = {
     left: -3.5rem;
 
     margin-top: 32.5rem;
+  `,
+  HelpImgContainer: styled.p`
+    background-color: black;
   `,
   HelpContent: styled.article`
     display: flex;
@@ -80,7 +90,6 @@ const St = {
     }
 
     & > button {
-
       position: absolute;
       bottom: 0;
       left: 0;
