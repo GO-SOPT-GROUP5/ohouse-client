@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
-import { IcLeftSmall } from '../../assets/icon';
+import { IcLeft, IcRight } from '../../assets/icon';
 
 const Help = () => {
   return (
     <St.HelpWrapper>
-      <IcLeftSmall />
+      <IcLeft />
+      <IcRight />
       <St.HelpCard>
         <St.HelpContent>
           <h1>집보며 하나하나 적기 힘드셨죠?<br/>이젠 쉽게 체크 하세요</h1>
