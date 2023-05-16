@@ -1,6 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { IcLeft, IcRight } from '../../assets/icon';
+import { IcLeft, IcRight } from "../../assets/icon";
+import { ImgExplanation1 } from "../../assets/image/index";
 
 const Help = () => {
   return (
@@ -13,6 +14,7 @@ const Help = () => {
         <St.HelpContent>
           <h1>집보며 하나하나 적기 힘드셨죠?<br/>이젠 쉽게 체크 하세요</h1>
           <p>집 볼때 꼭 체크해야하는 핵심만 모아놨어요</p>
+          <ImgExplanation1/>
           <button type='button'>새로운 매물 등록하기</button>
         </St.HelpContent>
       </St.HelpCard>
