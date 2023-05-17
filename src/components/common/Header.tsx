@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import {
@@ -11,6 +12,16 @@ import {
 } from '../../assets/icon';
 
 const Header = () => {
+  const [activeNav, setActiveNav] = useState('home');
+
+  const handleClick = (e: Event) => {
+    const target = (e.target as HTMLElement).id;
+    if (target) {
+      setActiveNav(target);
+      //여기서 페이지 url 정해지면 라우팅 시켜주면 될 듯 ..!
+    }
+  };
+
   return (
     <St.HeaderWrapper>
       <St.GnbWrapper>
@@ -40,9 +51,9 @@ const Header = () => {
           </St.GnbWriteBtn>
         </St.GnbRight>
       </St.GnbWrapper>
-      <St.LnbWapper>
-        <St.LnbList className="isClicked">
-          <span>홈</span>
+      <St.LnbWapper onClick={handleClick}>
+        <St.LnbList className={activeNav === 'home' ? 'isClicked' : ''}>
+          <span id="home">홈</span>
         </St.LnbList>
         <St.LnbList>
           <span>인테리어시공</span>
@@ -56,8 +67,8 @@ const Header = () => {
         <St.LnbList>
           <span>우리동네아파트</span>
         </St.LnbList>
-        <St.LnbList className="isClicked">
-          <span>등록매물확인하기</span>
+        <St.LnbList className={activeNav === 'productPage' ? 'isClicked' : ''}>
+          <span id="productPage">등록매물확인하기</span>
         </St.LnbList>
       </St.LnbWapper>
     </St.HeaderWrapper>
