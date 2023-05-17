@@ -87,7 +87,7 @@ export const reset = css`
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 62.5%;
+    font-size: 10px;
     vertical-align: baseline;
   }
 
@@ -144,6 +144,7 @@ ${reset}
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css");
 
 #root, body, html {
+    width: 192rem;
     height: 100vh;
     margin: 0 auto;
     overflow-y: auto;
