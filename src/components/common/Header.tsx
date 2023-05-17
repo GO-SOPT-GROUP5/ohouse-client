@@ -13,31 +13,53 @@ import {
 const Header = () => {
   return (
     <St.HeaderWrapper>
-      <St.LogoContainer>
-        <IcLogo />
-      </St.LogoContainer>
-      <St.HeaderLeft>
-        <span>커뮤니티</span>
-        <span>쇼핑</span>
-        <span>이사/시공/수리</span>
-      </St.HeaderLeft>
-      <St.HeaderSearch>
-        <input type="text" placeholder="시공업체 검색" />
-        <IcSearch />
-      </St.HeaderSearch>
-      <St.HeaderRgiht>
-        <St.HeaderIcons>
-          <IcBookMark />
-          <IcAlarm />
-          <IcCart />
-        </St.HeaderIcons>
-        <St.HeaderProfile>
-          <IcProfile />
-        </St.HeaderProfile>
-        <St.HeaderWriteBtn>
-          <BtnWrite />
-        </St.HeaderWriteBtn>
-      </St.HeaderRgiht>
+      <St.GnbWrapper>
+        <St.LogoContainer>
+          <IcLogo />
+        </St.LogoContainer>
+        <St.GnbLeft>
+          <span>커뮤니티</span>
+          <span>쇼핑</span>
+          <span>이사/시공/수리</span>
+        </St.GnbLeft>
+        <St.GnbSearch>
+          <input type="text" placeholder="시공업체 검색" />
+          <IcSearch />
+        </St.GnbSearch>
+        <St.GnbRight>
+          <St.GnbIcons>
+            <IcBookMark />
+            <IcAlarm />
+            <IcCart />
+          </St.GnbIcons>
+          <St.GnbProfile>
+            <IcProfile />
+          </St.GnbProfile>
+          <St.GnbWriteBtn>
+            <BtnWrite />
+          </St.GnbWriteBtn>
+        </St.GnbRight>
+      </St.GnbWrapper>
+      <St.LnbWapper>
+        <St.LnbList className="isClicked">
+          <span>홈</span>
+        </St.LnbList>
+        <St.LnbList>
+          <span>인테리어시공</span>
+        </St.LnbList>
+        <St.LnbList>
+          <span>이사</span>
+        </St.LnbList>
+        <St.LnbList>
+          <span>설치수리</span>
+        </St.LnbList>
+        <St.LnbList>
+          <span>우리동네아파트</span>
+        </St.LnbList>
+        <St.LnbList className="isClicked">
+          <span>등록매물확인하기</span>
+        </St.LnbList>
+      </St.LnbWapper>
     </St.HeaderWrapper>
   );
 };
@@ -46,6 +68,12 @@ export default Header;
 
 const St = {
   HeaderWrapper: styled.header`
+    /* position: fixed;
+    top: 0;
+    left: 0;
+    right: 0; */
+  `,
+  GnbWrapper: styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,7 +93,7 @@ const St = {
     }
   `,
 
-  HeaderLeft: styled.div`
+  GnbLeft: styled.div`
     display: flex;
     margin-right: 10rem;
     gap: 3rem;
@@ -76,7 +104,7 @@ const St = {
     }
   `,
 
-  HeaderSearch: styled.div`
+  GnbSearch: styled.div`
     position: relative;
     margin-right: 2.6rem;
 
@@ -106,12 +134,12 @@ const St = {
     }
   `,
 
-  HeaderRgiht: styled.div`
+  GnbRight: styled.div`
     display: flex;
     align-items: center;
   `,
 
-  HeaderIcons: styled.div`
+  GnbIcons: styled.div`
     display: flex;
     margin-right: 2rem;
     gap: 1.7rem;
@@ -120,17 +148,44 @@ const St = {
       height: 3.2rem;
     }
   `,
-  HeaderProfile: styled.div`
+  GnbProfile: styled.div`
     margin-right: 1.8rem;
     & > svg {
       width: 4.9rem;
       height: 4.9rem;
     }
   `,
-  HeaderWriteBtn: styled.div`
+  GnbWriteBtn: styled.div`
     & > svg {
       width: 10.1rem;
       height: 4.1rem;
+    }
+  `,
+  LnbWapper: styled.nav`
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 5.4rem;
+    padding: 1.6rem 0;
+    gap: 2.2rem;
+
+    ${({ theme }) => theme.fonts.Title5};
+  `,
+  LnbList: styled.div`
+    position: relative;
+    height: 3rem;
+    &.isClicked {
+      color: ${({ theme }) => theme.colors.Blue};
+    }
+    &.isClicked::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 0.2rem;
+      width: 100%;
+      background-color: ${({ theme }) => theme.colors.Blue};
     }
   `,
 };
