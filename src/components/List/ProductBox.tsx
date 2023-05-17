@@ -18,8 +18,6 @@ const ProductBox = () => {
       <button type="button">체크리스트 내역 보기</button>
       <button type="button">...</button>
     </St.ProductButtons>
-
-    
   </St.ProductBoxWrapper>
   );
 };
@@ -61,8 +59,8 @@ const St = {
   ProductButtons : styled.section`
       display:grid;
       grid-template-columns: 28.7rem 4.2rem;
-      grid-gap: 0.7rem;
-
+      justify-content: space-between;
+      
       height: 4.2rem;
       margin-top: 3rem;
 
