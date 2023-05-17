@@ -7,26 +7,30 @@ import ProductBox from "../components/List/ProductBox";
 const ListPage = () => {
   return (
     <St.ListWrapper>
-      <St.ListSetting>
-        <St.ListCategory>
-          <span>전체</span>
-          <IcSmallLine/>
-          <span>월세</span>
-          <IcSmallLine/>
-          <span>전세</span>
-          <IcSmallLine/>
-          <span>매매</span>
-        </St.ListCategory>
-        <St.ListCombobox>
-          <option>필터</option>
-          <option>별점순</option>
-          <option>좋아요순</option>
-        </St.ListCombobox>
-      </St.ListSetting>
-      <St.ListBoxes>
-        <AddBox />
-        <ProductBox />
-      </St.ListBoxes>
+      <section>
+        <St.ListSetting>
+          <St.ListCategory>
+            <span>전체</span>
+            <IcSmallLine/>
+            <span>월세</span>
+            <IcSmallLine/>
+            <span>전세</span>
+            <IcSmallLine/>
+            <span>매매</span>
+          </St.ListCategory>
+          <St.ListCombobox>
+            <option>필터</option>
+            <option>별점순</option>
+            <option>좋아요순</option>
+          </St.ListCombobox>
+        </St.ListSetting>
+        <St.ListBoxes>
+          <AddBox />
+          <ProductBox />
+          <ProductBox />
+          <ProductBox />
+        </St.ListBoxes>
+      </section>
     </St.ListWrapper>
   );
 };
@@ -49,11 +53,9 @@ const St = {
     display: flex;
     justify-content: space-between;
 
-    padding: 0rem 35rem;
     margin-top: 8.8rem;
     
     width: 100%;
-    
   `,
   ListCategory : styled.article`
     display: flex;
@@ -78,10 +80,12 @@ const St = {
 
   `,
   ListBoxes : styled.section`
+    display:grid;
+    grid-template-columns: repeat(3, 39.3rem);
+    grid-gap: 2rem;
+    justify-content: center;
 
     width: 100%;
-
-    background-color: red;
-    
+    margin-top: 2.2rem;
   `
 }
