@@ -1,15 +1,20 @@
 import styled from 'styled-components';
 
 import { IcCamera, IcEdit, IcStar } from '../../assets/icon';
+import useModal from '../../hooks/useModal';
+import ProductEditModal from './ProductEditModal';
 
 const ProductUpload = () => {
+  const { isShowing, toggle } = useModal();
+  const handleConfirm = () => {};
   return (
     <St.ProductUploadWrapper>
       <St.ProductName>2023.01.10 12:11 등록매물</St.ProductName>
       <St.Address>주소를 등록해주세요</St.Address>
-      <St.EditBtn type="button">
+      <St.EditBtn type="button" onClick={toggle}>
         <IcEdit />
       </St.EditBtn>
+      <ProductEditModal isShowing={isShowing} handleHide={toggle} handleConfirm={handleConfirm} />
       <St.ProductInfo>
         <St.UploadPicture type="button">
           <IcCamera />
