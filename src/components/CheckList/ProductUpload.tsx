@@ -29,7 +29,10 @@ const ProductUpload = () => {
             <IcStar />
           </St.Grade>
           <St.Description>
-            좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은
+            <span>집의 상태, 주변환경, 가격 등을 고려해서 전반적인 평가를 입력해주세요.</span>
+            {/* <p>
+              좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은
+            </p> */}
           </St.Description>
         </St.ProductDetail>
       </St.ProductInfo>
@@ -125,10 +128,22 @@ const St = {
     margin-bottom: 2.7rem;
   `,
 
-  Description: styled.p`
+  Description: styled.div`
     width: 55.4rem;
+    height: 10rem;
+    padding: 1.5rem 2.5rem;
 
-    color: ${({ theme }) => theme.colors.Grey600};
-    ${({ theme }) => theme.fonts.Body2};
+    border: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
+    border-radius: 0.4rem;
+
+    & > span {
+      color: ${({ theme }) => theme.colors.Grey300};
+      ${({ theme }) => theme.fonts.Body2};
+    }
+
+    & > p {
+      color: ${({ theme }) => theme.colors.Grey600};
+      ${({ theme }) => theme.fonts.Body2};
+    }
   `,
 };
