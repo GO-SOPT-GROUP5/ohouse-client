@@ -93,7 +93,7 @@ const St = {
     //1440px 100% 기준 양 옆 padding 7rem
     width: 100%;
     height: 8.6rem;
-    padding: 2.3rem 7rem 2rem 7rem;
+    padding: 2.3rem 10rem 2rem 10rem;
 
     background-color: ${({ theme }) => theme.colors.White};
     border-bottom: 0.2rem solid ${({ theme }) => theme.colors.Grey200};
@@ -197,7 +197,7 @@ const St = {
 
     width: 100%;
     height: 5.4rem;
-    padding: 1.6rem 7rem;
+    padding: 1.6rem 10rem;
     gap: 2.2rem;
   `,
   LnbList: styled.div`
