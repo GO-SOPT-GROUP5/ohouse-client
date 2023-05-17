@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import { IcSmallLine } from "../assets/icon/index";
 import AddBox from "../components/List/AddBox";
 import ProductBox from "../components/List/ProductBox";
 
@@ -8,10 +9,16 @@ const ListPage = () => {
     <St.ListWrapper>
       <St.ListSetting>
         <St.ListCategory>
-          전체 | 월세
+          <span>전체</span>
+          <IcSmallLine/>
+          <span>월세</span>
+          <IcSmallLine/>
+          <span>전세</span>
+          <IcSmallLine/>
+          <span>매매</span>
         </St.ListCategory>
         <St.ListCombobox>
-          전체
+          정렬
         </St.ListCombobox>
       </St.ListSetting>
       <St.ListBoxes>
@@ -37,15 +44,26 @@ const St = {
 
   `,
   ListSetting : styled.section`
+    display: flex;
+    justify-content: space-between;
 
+    padding: 0rem 35rem;
+    margin-top: 8.8rem;
+    
     width: 100%;
     height: 3.4rem;
-
-    background-color: black;
     
   `,
   ListCategory : styled.article`
-    
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    color: ${({ theme }) => theme.colors.Grey400};
+
+    & > span {
+      ${({ theme }) => theme.fonts.Body4};
+    }
   `,
   ListCombobox : styled.select`
     
