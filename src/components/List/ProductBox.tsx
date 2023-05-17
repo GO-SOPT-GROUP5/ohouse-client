@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import { IcStar } from "../../assets/icon";
 import { ImgRoom1 } from "../../assets/image";
 
 const ProductBox = () => {
@@ -11,7 +12,7 @@ const ProductBox = () => {
       좋음 9 · 보통 3 · 나쁨 1
     </St.ProductScore>
     <St.ProductStar>
-
+      <IcStar/>
     </St.ProductStar>
     <St.ProductButtons>
       <button type="button">체크리스트 내역 보기</button>
