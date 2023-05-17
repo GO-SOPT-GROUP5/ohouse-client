@@ -78,6 +78,7 @@ const Header = () => {
 export default Header;
 
 const St = {
+  // header 포지션은 나중에 mainLayout 만들 때 적용시킬게용!
   HeaderWrapper: styled.header`
     /* position: fixed;
     top: 0;
@@ -87,12 +88,12 @@ const St = {
   //gnb 부분
   GnbWrapper: styled.section`
     display: flex;
-    justify-content: center;
     align-items: center;
 
+    //1440px 100% 기준 양 옆 padding 7rem
     width: 100%;
     height: 8.6rem;
-    padding: 2.3rem 0 2rem 0;
+    padding: 2.3rem 7rem 2rem 7rem;
 
     background-color: ${({ theme }) => theme.colors.White};
     border-bottom: 0.2rem solid ${({ theme }) => theme.colors.Grey200};
@@ -111,8 +112,9 @@ const St = {
     margin-right: 10rem;
     gap: 3rem;
 
-    ${({ theme }) => theme.fonts.Title4};
-
+    & > span {
+      ${({ theme }) => theme.fonts.Title4};
+    }
     & > span:last-child {
       color: ${({ theme }) => theme.colors.Blue};
     }
@@ -136,12 +138,16 @@ const St = {
       border-radius: 0.4rem;
     }
     & > input::placeholder {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
       color: ${({ theme }) => theme.colors.Grey300};
+
       font-family: 'Pretendard';
       font-style: normal;
       font-weight: 400;
       font-size: 1.8rem;
-      line-height: 2.1rem;
     }
 
     & > svg {
@@ -163,7 +169,7 @@ const St = {
     display: flex;
 
     margin-right: 2rem;
-    gap: 1.7rem;
+    gap: 1rem;
 
     & > svg {
       width: 3.2rem;
@@ -184,21 +190,24 @@ const St = {
       height: 4.1rem;
     }
   `,
+  //Lnb 부분
   LnbWapper: styled.nav`
     display: flex;
     align-items: center;
 
     width: 100%;
     height: 5.4rem;
-    padding: 1.6rem 0;
+    padding: 1.6rem 7rem;
     gap: 2.2rem;
-
-    ${({ theme }) => theme.fonts.Title5};
   `,
   LnbList: styled.div`
     position: relative;
 
     height: 3rem;
+
+    & > * {
+      ${({ theme }) => theme.fonts.Title5};
+    }
 
     & > span:hover {
       color: ${({ theme }) => theme.colors.Blue};
