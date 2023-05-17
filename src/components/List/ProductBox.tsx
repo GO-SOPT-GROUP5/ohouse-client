@@ -12,7 +12,7 @@ const ProductBox = () => {
       좋음 9 · 보통 3 · 나쁨 1
     </St.ProductScore>
     <St.ProductStar>
-      <IcStar/>
+      <IcStar/><span>4</span>
     </St.ProductStar>
     <St.ProductButtons>
       <button type="button">체크리스트 내역 보기</button>
@@ -44,8 +44,25 @@ const St = {
   `,
   ProductStar : styled.span`
     
+    & > span {
+      ${({ theme }) => theme.fonts.Body2};
+    }
   `,
   ProductButtons : styled.section`
+      display:grid;
+      grid-template-columns: 28.7rem 4.2rem;
+      grid-gap: 0.7rem;
+
+      height: 4.2rem;
+
+    & > button {
+      
+      background-color: ${({ theme }) => theme.colors.White};
+      border: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
+      border-radius: 0.4rem;
+
+      ${({ theme }) => theme.fonts.Body5};
+    }
     
   `
 }
