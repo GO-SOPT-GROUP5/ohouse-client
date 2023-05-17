@@ -18,7 +18,9 @@ const ListPage = () => {
           <span>매매</span>
         </St.ListCategory>
         <St.ListCombobox>
-          정렬
+          <option>필터</option>
+          <option>별점순</option>
+          <option>좋아요순</option>
         </St.ListCombobox>
       </St.ListSetting>
       <St.ListBoxes>
@@ -51,7 +53,6 @@ const St = {
     margin-top: 8.8rem;
     
     width: 100%;
-    height: 3.4rem;
     
   `,
   ListCategory : styled.article`
@@ -67,6 +68,14 @@ const St = {
   `,
   ListCombobox : styled.select`
     
+    width: 11.7rem;
+    height: 3.4rem;
+
+    border: 0rem;
+
+    text-align: center;
+    color: ${({ theme }) => theme.colors.Grey400};
+
   `,
   ListBoxes : styled.section`
 
