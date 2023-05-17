@@ -73,17 +73,19 @@ const St = {
     left: 0;
     right: 0; */
   `,
+  //gnb 부분
   GnbWrapper: styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
+
     width: 100%;
     height: 8.6rem;
     padding: 2.3rem 0 2rem 0;
+
     background-color: ${({ theme }) => theme.colors.White};
     border-bottom: 0.2rem solid ${({ theme }) => theme.colors.Grey200};
   `,
-
   LogoContainer: styled.div`
     margin-right: 5rem;
 
@@ -92,26 +94,28 @@ const St = {
       height: 4.3rem;
     }
   `,
-
-  GnbLeft: styled.div`
+  GnbLeft: styled.article`
     display: flex;
+
     margin-right: 10rem;
     gap: 3rem;
+
     ${({ theme }) => theme.fonts.Title4};
 
     & > span:last-child {
       color: ${({ theme }) => theme.colors.Blue};
     }
   `,
-
-  GnbSearch: styled.div`
+  GnbSearch: styled.article`
     position: relative;
+
     margin-right: 2.6rem;
 
     & > input {
       width: 38rem;
       height: 4.2rem;
       padding-left: 5rem;
+
       border: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
       border-radius: 0.4rem;
     }
@@ -126,23 +130,25 @@ const St = {
 
     & > svg {
       position: absolute;
-      width: 1.8rem;
-      height: 1.8rem;
       top: 50%;
       left: 1.9rem;
       transform: translateY(-50%);
+
+      width: 1.8rem;
+      height: 1.8rem;
     }
   `,
-
-  GnbRight: styled.div`
+  GnbRight: styled.article`
     display: flex;
     align-items: center;
   `,
 
   GnbIcons: styled.div`
     display: flex;
+
     margin-right: 2rem;
     gap: 1.7rem;
+
     & > svg {
       width: 3.2rem;
       height: 3.2rem;
@@ -150,6 +156,7 @@ const St = {
   `,
   GnbProfile: styled.div`
     margin-right: 1.8rem;
+
     & > svg {
       width: 4.9rem;
       height: 4.9rem;
@@ -164,6 +171,7 @@ const St = {
   LnbWapper: styled.nav`
     display: flex;
     align-items: center;
+
     width: 100%;
     height: 5.4rem;
     padding: 1.6rem 0;
@@ -173,19 +181,25 @@ const St = {
   `,
   LnbList: styled.div`
     position: relative;
+
     height: 3rem;
+
     &.isClicked {
       color: ${({ theme }) => theme.colors.Blue};
     }
     &.isClicked::after {
-      content: '';
       display: block;
+
       position: absolute;
       left: 0;
       bottom: 0;
+
       height: 0.2rem;
       width: 100%;
+
       background-color: ${({ theme }) => theme.colors.Blue};
+
+      content: '';
     }
   `,
 };
