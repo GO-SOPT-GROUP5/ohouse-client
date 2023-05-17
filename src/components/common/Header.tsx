@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
-import { IcLogo } from '../../assets/icon';
+import { BtnWrite, IcBookMark, IcCart, IcLogo, IcProfile } from '../../assets/icon';
 
 const Header = () => {
   return (
     <St.Header>
       <IcLogo />
+      <IcBookMark />
+      <IcCart />
+      <IcProfile />
+      <BtnWrite />
       Header 컴포넌트입니다!
     </St.Header>
   );
