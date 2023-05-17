@@ -105,6 +105,11 @@ const St = {
     & > span:last-child {
       color: ${({ theme }) => theme.colors.Blue};
     }
+    & > span:hover {
+      color: ${({ theme }) => theme.colors.Blue};
+
+      cursor: pointer;
+    }
   `,
   GnbSearch: styled.article`
     position: relative;
@@ -183,6 +188,12 @@ const St = {
     position: relative;
 
     height: 3rem;
+
+    & > span:hover {
+      color: ${({ theme }) => theme.colors.Blue};
+
+      cursor: pointer;
+    }
 
     &.isClicked {
       color: ${({ theme }) => theme.colors.Blue};
