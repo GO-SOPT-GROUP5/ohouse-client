@@ -7,5 +7,10 @@ const ProductUpload = () => {
 export default ProductUpload;
 
 const St = {
-  ProductUploadWrapper: styled.section``,
+  ProductUploadWrapper: styled.section`
+    width: 99.8rem;
+    height: 35.3rem;
+
+    background-color: ${({ theme }) => theme.colors.White};
+  `,
 };

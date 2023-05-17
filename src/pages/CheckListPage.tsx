@@ -19,6 +19,7 @@ const St = {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 
     padding-top: 9.2rem;
     padding-bottom: 18.3rem;
