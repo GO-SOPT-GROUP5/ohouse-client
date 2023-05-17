@@ -63,9 +63,6 @@ const St = {
 
     margin-top: 32.5rem;
   `,
-  HelpImgContainer: styled.p`
-    background-color: black;
-  `,
   HelpContent: styled.article`
     display: flex;
     flex-direction: column;
