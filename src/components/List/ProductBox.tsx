@@ -28,21 +28,31 @@ export default ProductBox;
 
 const St = {
   ProductBoxWrapper : styled.article`
-      height: 42.3rem;
+    height: 42.3rem;
+    padding: 2.9rem 2.5rem;
 
-      background-color: ${({ theme }) => theme.colors.White};
-      border-radius: 0.9rem;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    position: relative;
+
+    background-color: ${({ theme }) => theme.colors.White};
+    border-radius: 0.9rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   `,
   ProductTitle : styled.header`
+    margin-top: 4.4rem;
+
     ${({ theme }) => theme.fonts.Body1};
   `,
   ProductScore : styled.p`
+    margin-top: 0.6rem;
+
     /* 폰트 임의 지정 */
     color: ${({ theme }) => theme.colors.Grey400};
     ${({ theme }) => theme.fonts.Body6}; 
   `,
   ProductStar : styled.span`
+    position: absolute;
+    right: 2.9rem;
+    bottom: 9.4rem;
     
     & > span {
       ${({ theme }) => theme.fonts.Body2};
@@ -54,6 +64,7 @@ const St = {
       grid-gap: 0.7rem;
 
       height: 4.2rem;
+      margin-top: 3rem;
 
     & > button {
       
