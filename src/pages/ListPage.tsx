@@ -1,12 +1,26 @@
-import ProductBox from '../components/List/ProductBox';
+import styled from "styled-components";
+
+import AddBox from "../components/List/AddBox";
+import ProductBox from "../components/List/ProductBox";
 
 const ListPage = () => {
   return (
-    <>
-      매물 목록 조회 페이지입니다!
+    <St.ListWrapper>
+      <AddBox />
       <ProductBox />
-    </>
+    </St.ListWrapper>
   );
 };
 
 export default ListPage;
+
+const St = {
+  ListWrapper : styled.section`
+    
+    width: 100%;
+    height: 100%;
+
+    background-color: ${({ theme }) => theme.colors.Grey200};
+
+  `
+}
