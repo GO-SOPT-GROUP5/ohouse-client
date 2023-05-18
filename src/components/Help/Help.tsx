@@ -1,6 +1,7 @@
 import "swiper/css";
 import "swiper/css/pagination";
 
+import { useRef } from "react";
 import styled from "styled-components";
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,18 +16,20 @@ import {
 } from "../../assets/image/index";
 
 const Help = () => {
+  const swiperRef = useRef();
   return (
     <St.HelpWrapper>
       <St.HelpCard>
         <St.HelpIcon>
-          <IcLeft/>
-          <IcRight/>
+          <IcLeft onClick={() => swiperRef.current.slidePrev()}/>
+          <IcRight onClick={() => swiperRef.current.slideNext()}/>
         </St.HelpIcon>
         <St.HelpContent>
           <Swiper
             modules={[Pagination]}
             pagination={true}
             speed={500} slidesPerView={1} spaceBetween={20}
+            onSwiper={(swiper) => {swiperRef.current = swiper;}}
           >
           <SwiperSlide>
             <h1>집보며 하나하나 적기 힘드셨죠?<br/>이젠 쉽게 체크 하세요</h1>
