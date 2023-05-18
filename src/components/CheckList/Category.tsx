@@ -1,7 +1,15 @@
 import styled from 'styled-components';
 
+import { CATEGORY_LIST } from '../../constants/category';
+import CategoryItem from './CategoryItem';
+
 const Category = () => {
-  return <St.CategoryList>카테고리 컴포넌트입니다!</St.CategoryList>;
+  return (
+    <St.CategoryList>
+      {/* <CategoryItem />
+      <CategoryItem /> */}
+    </St.CategoryList>
+  );
 };
 
 export default Category;
