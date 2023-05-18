@@ -7,7 +7,6 @@ import ProductBox from "../components/List/ProductBox";
 const ListPage = () => {
   return (
     <St.ListWrapper>
-      <section>
         <St.ListSetting>
           <St.ListCategory>
             <span>전체</span>
@@ -30,7 +29,6 @@ const ListPage = () => {
           <ProductBox />
           <ProductBox />
         </St.ListBoxes>
-      </section>
     </St.ListWrapper>
   );
 };
@@ -46,15 +44,13 @@ const St = {
     width: 100%;
 
     background-color: ${({ theme }) => theme.colors.Grey200};
-
   `,
   ListSetting : styled.section`
     display: flex;
     justify-content: space-between;
 
-    margin-top: 8.8rem;
-    
     width: 100%;
+    margin-top: 8.8rem;
   `,
   ListCategory : styled.article`
     display: flex;
@@ -68,15 +64,13 @@ const St = {
     }
   `,
   ListCombobox : styled.select`
-    
     width: 11.7rem;
     height: 3.4rem;
 
     border: 0rem;
-
-    text-align: center;
     color: ${({ theme }) => theme.colors.Grey400};
 
+    text-align: center;
   `,
   ListBoxes : styled.section`
     display:grid;

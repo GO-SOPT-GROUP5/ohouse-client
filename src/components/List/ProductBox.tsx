@@ -34,13 +34,12 @@ export default ProductBox;
 
 const St = {
   ProductBoxWrapper : styled.article`
+    position: relative;
+
     height: 42.3rem;
     padding: 2.9rem 2.5rem;
 
-    position: relative;
-
     border-radius: 0.9rem;
-
     background-color: ${({ theme }) => theme.colors.White};
     box-shadow: 0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.15);
   `,
@@ -53,9 +52,11 @@ const St = {
     margin-top: 0.6rem;
 
     color: ${({ theme }) => theme.colors.Grey400};
+    
     & span {
       ${({ theme }) => theme.fonts.Body6}; 
     }
+    
     & > span > span {
       margin: 0rem 0.4rem;
     }
@@ -80,9 +81,7 @@ const St = {
     & > button {
       border: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
       border-radius: 0.4rem;
-      
       background-color: ${({ theme }) => theme.colors.White};
-
       ${({ theme }) => theme.fonts.Body5};
     }
     
