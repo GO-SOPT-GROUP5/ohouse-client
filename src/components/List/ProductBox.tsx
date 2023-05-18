@@ -33,7 +33,7 @@ const St = {
 
     background-color: ${({ theme }) => theme.colors.White};
     border-radius: 0.9rem;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    box-shadow: 0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.15);
   `,
   ProductTitle : styled.header`
     margin-top: 4.4rem;
