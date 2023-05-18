@@ -8,7 +8,7 @@ export { ReactComponent as IcDrill } from './ic_drill.svg';
 export { ReactComponent as IcCheckList } from './ic_checklist.svg';
 export { ReactComponent as IcApartment } from './ic_apartment.svg';
 export { ReactComponent as IcWashingMachine } from './ic_washingmachine.svg';
-export { ReactComponent as IcAricon } from './ic_aircon.svg';
-export { ReactComponent as IcClaning } from './ic_cleaning.svg';
+export { ReactComponent as IcAircon } from './ic_aircon.svg';
+export { ReactComponent as IcCleaning } from './ic_cleaning.svg';
 //메뉴박스 청소서비스 아이콘
 export { ReactComponent as IcCleanService } from './ic_clean_service.svg';

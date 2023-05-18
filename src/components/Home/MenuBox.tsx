@@ -1,22 +1,21 @@
+import { Component } from 'react';
 import styled from 'styled-components';
 
-import { IcHuman } from '../../assets/icon';
+interface MenuBoxContent {
+  title: string;
+  content: string;
+  icon: Component;
+}
 
-const MenuBox = () => {
+const MenuBox = ({ title, content, icon }: MenuBoxContent) => {
   return (
     <St.MenuBoxWrapper>
       <St.MenuBoxHeader>
-        <St.MenuBoxTitle>인테리어시공</St.MenuBoxTitle>
-        <St.MenuBoxContent>
-          종합리모델링, <br />
-          부분시공,카페공간 등 <br />
-          분야별 업체찾기
-        </St.MenuBoxContent>
+        <St.MenuBoxTitle>{title}</St.MenuBoxTitle>
+        <St.MenuBoxContent>{content}</St.MenuBoxContent>
       </St.MenuBoxHeader>
       <St.MenuBoxBottom>
-        <St.MenuBoxIcon>
-          <IcHuman />
-        </St.MenuBoxIcon>
+        <St.MenuBoxIcon>{icon}</St.MenuBoxIcon>
       </St.MenuBoxBottom>
     </St.MenuBoxWrapper>
   );
