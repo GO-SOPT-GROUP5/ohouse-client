@@ -7,6 +7,7 @@ import ProductBox from "../components/List/ProductBox";
 const ListPage = () => {
   return (
     <St.ListWrapper>
+      <section>
         <St.ListSetting>
           <St.ListCategory>
             <span>전체</span>
@@ -29,6 +30,7 @@ const ListPage = () => {
           <ProductBox />
           <ProductBox />
         </St.ListBoxes>
+      </section>
     </St.ListWrapper>
   );
 };
