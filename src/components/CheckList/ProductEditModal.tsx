@@ -1,7 +1,7 @@
-import { IcAddress, IcCancel } from '../../assets/icon';
 import React, { useState } from 'react';
-
 import styled from 'styled-components';
+
+import { IcAddress, IcCancel } from '../../assets/icon';
 
 export interface ModalProps {
   isShowing: boolean;
@@ -47,7 +47,7 @@ const ProductEditModal = (props: ModalProps) => {
       {isShowing && (
         <St.ModalWrapper>
           <St.Modal>
-            <St.CancelBtn>
+            <St.CancelBtn onClick={handleHide}>
               <IcCancel />
             </St.CancelBtn>
             <St.ModalTitle>
@@ -96,7 +96,9 @@ const ProductEditModal = (props: ModalProps) => {
                   </St.ContractBtn>
                 ))}
               </St.ContranctWrapper>
-              <button type="submit">완료</button>
+              <button type="submit" onClick={handleConfirm}>
+                완료
+              </button>
             </St.ProductForm>
           </St.Modal>
         </St.ModalWrapper>

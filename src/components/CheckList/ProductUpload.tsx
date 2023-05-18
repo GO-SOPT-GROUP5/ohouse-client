@@ -6,7 +6,11 @@ import ProductEditModal from './ProductEditModal';
 
 const ProductUpload = () => {
   const { isShowing, toggle } = useModal();
-  const handleConfirm = () => {};
+
+  const handleConfirm = () => {
+    // 완료 버튼 클릭 시 실행되는 함수
+  };
+
   return (
     <St.ProductUploadWrapper>
       <St.ProductName>2023.01.10 12:11 등록매물</St.ProductName>
