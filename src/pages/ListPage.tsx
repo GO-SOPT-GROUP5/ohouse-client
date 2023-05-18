@@ -5,23 +5,18 @@ import AddBox from "../components/List/AddBox";
 import ProductBox from "../components/List/ProductBox";
 
 const ListPage = () => {
+  const category = ['전체', '월세', '전세', '매매'];
+  const filter = ['필터', '별점순', '좋아요순'];
+
   return (
     <St.ListWrapper>
       <section>
         <St.ListSetting>
           <St.ListCategory>
-            <span>전체</span>
-            <IcSmallLine/>
-            <span>월세</span>
-            <IcSmallLine/>
-            <span>전세</span>
-            <IcSmallLine/>
-            <span>매매</span>
+            {category.map((el)=><><span>{el}</span><IcSmallLine/></>)}
           </St.ListCategory>
           <St.ListCombobox>
-            <option>필터</option>
-            <option>별점순</option>
-            <option>좋아요순</option>
+            {filter.map((el)=><option>{el}</option>)}
           </St.ListCombobox>
         </St.ListSetting>
         <St.ListBoxes>
@@ -63,6 +58,10 @@ const St = {
 
     & > span {
       ${({ theme }) => theme.fonts.Body4};
+    }
+
+    & > svg:last-child {
+      display: none;
     }
   `,
   ListCombobox : styled.select`
