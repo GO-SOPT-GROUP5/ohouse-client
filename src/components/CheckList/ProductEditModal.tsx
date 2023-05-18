@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-
-import App from '../../App';
 import { IcAddress, IcCancel } from '../../assets/icon';
+import React, { useState } from 'react';
+
+import styled from 'styled-components';
 
 export interface ModalProps {
   isShowing: boolean;
@@ -15,10 +14,10 @@ const CONTRACT_OPTIONS = ['전세', '월세', '매매'];
 const ProductEditModal = (props: ModalProps) => {
   const { isShowing, handleHide, handleConfirm } = props;
 
-  const [productName, setProductName] = useState<string>('');
+  const [productName, setProductName] = useState<string>();
   const [dong, setDong] = useState<number>();
   const [hosu, setHosu] = useState<number>();
-  const [contract, setContract] = useState<string>('');
+  const [contract, setContract] = useState<string>();
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProductName(e.target.value);
@@ -38,8 +37,8 @@ const ProductEditModal = (props: ModalProps) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setProductName('');
-    setDong(0);
-    setHosu(0);
+    // setDong(0);
+    // setHosu(0);
     setContract('');
   };
 
@@ -113,6 +112,7 @@ const St = {
     display: flex;
     justify-content: center;
     align-items: center;
+
     position: fixed;
     top: 0;
     left: 0;
@@ -131,8 +131,8 @@ const St = {
     height: fit-content;
     padding: 2.5rem 2.2rem 1.6rem 2.2rem;
 
-    background-color: ${({ theme }) => theme.colors.White};
     border-radius: 0.6rem;
+    background-color: ${({ theme }) => theme.colors.White};
   `,
 
   CancelBtn: styled.button`
@@ -196,8 +196,8 @@ const St = {
       flex-direction: column;
       position: relative;
 
-      margin-bottom: 2.1rem;
       width: 20.3rem;
+      margin-bottom: 2.1rem;
 
       color: ${({ theme }) => theme.colors.Grey400};
       // 수정필요
@@ -212,9 +212,9 @@ const St = {
         padding-left: 1.7rem;
         height: 4.5rem;
 
-        ${({ theme }) => theme.fonts.Body5};
         border: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
         border-radius: 0.5rem;
+        ${({ theme }) => theme.fonts.Body5};
       }
 
       input[type='number']::-webkit-inner-spin-button,
@@ -246,10 +246,10 @@ const St = {
       width: 100%;
       height: 4.5rem;
 
-      color: ${({ theme }) => theme.colors.White};
-      background-color: ${({ theme }) => theme.colors.Blue};
-      ${({ theme }) => theme.fonts.Body4};
       border-radius: 0.4rem;
+      background-color: ${({ theme }) => theme.colors.Blue};
+      color: ${({ theme }) => theme.colors.White};
+      ${({ theme }) => theme.fonts.Body4};
     }
   `,
 
@@ -268,11 +268,10 @@ const St = {
   `,
 
   ContractBtn: styled.button<{ active: boolean }>`
-    margin-right: 0.4rem;
-    margin-bottom: 3.9rem;
-
     width: 13.3rem;
     height: 4.5rem;
+    margin-right: 0.4rem;
+    margin-bottom: 3.9rem;
 
     border: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
     border-radius: 0.5rem;
@@ -280,13 +279,13 @@ const St = {
     ${({ active, theme }) =>
       active
         ? `
+        border: 0.1rem solid ${theme.colors.Blue};
+        background-color: ${theme.colors.White};
       color: ${theme.colors.Blue};
-      border: 0.1rem solid ${theme.colors.Blue};
-      background-color: ${theme.colors.White};
     `
         : `
+        background-color: ${theme.colors.White};
       color: ${theme.colors.Grey600};
-      background-color: ${theme.colors.White};
     `}
   `,
 };
