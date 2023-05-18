@@ -39,8 +39,9 @@ const St = {
 
     position: relative;
 
-    background-color: ${({ theme }) => theme.colors.White};
     border-radius: 0.9rem;
+
+    background-color: ${({ theme }) => theme.colors.White};
     box-shadow: 0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.15);
   `,
   ProductTitle : styled.header`
@@ -77,10 +78,10 @@ const St = {
       margin-top: 3rem;
 
     & > button {
-      
-      background-color: ${({ theme }) => theme.colors.White};
       border: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
       border-radius: 0.4rem;
+      
+      background-color: ${({ theme }) => theme.colors.White};
 
       ${({ theme }) => theme.fonts.Body5};
     }
