@@ -3,15 +3,19 @@ import styled from 'styled-components';
 
 interface MenuBoxContent {
   title: string;
+  isNew: Component;
   content: string;
   icon: Component;
 }
 
-const MenuBox = ({ title, content, icon }: MenuBoxContent) => {
+const MenuBox = ({ title, isNew, content, icon }: MenuBoxContent) => {
   return (
     <St.MenuBoxWrapper>
       <St.MenuBoxHeader>
-        <St.MenuBoxTitle>{title}</St.MenuBoxTitle>
+        <St.MenuBoxTitle>
+          <h3>{title}</h3>
+          {isNew}
+        </St.MenuBoxTitle>
         <St.MenuBoxContent>{content}</St.MenuBoxContent>
       </St.MenuBoxHeader>
       <St.MenuBoxBottom>
@@ -40,11 +44,16 @@ const St = {
     display: flex;
     flex-direction: column;
   `,
-  MenuBoxTitle: styled.h3`
+  MenuBoxTitle: styled.div`
+    display: flex;
+    align-items: center;
     padding: 0.1rem 0 0.6rem 0;
 
-    ${({ theme }) => theme.fonts.Title3};
-    color: ${({ theme }) => theme.colors.Grey500};
+    & > h3 {
+      ${({ theme }) => theme.fonts.Title3};
+      color: ${({ theme }) => theme.colors.Grey500};
+      padding-right: 0.4rem;
+    }
   `,
   MenuBoxContent: styled.p`
     ${({ theme }) => theme.fonts.Body6};
@@ -62,8 +71,6 @@ const St = {
       right: 0;
       bottom: 0;
 
-      width: 4.2rem;
-      height: 4.2rem;
       margin: 0 1.8rem 1.8rem 0;
     }
   `,

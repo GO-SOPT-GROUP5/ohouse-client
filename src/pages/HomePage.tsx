@@ -9,6 +9,7 @@ import {
   IcCleanService,
   IcDrill,
   IcHuman,
+  IcNew,
   IcWashingMachine,
 } from '../assets/icon';
 import MenuBox from '../components/Home/MenuBox';
@@ -18,30 +19,35 @@ const HomePage = () => {
     {
       id: 1,
       title: '인테리어 시공',
+      isNew: false,
       content: '종합리모델링,\n부분시공,카페공간 등\n분야별 업체찾기',
       icon: <IcHuman />,
     },
     {
       id: 2,
       title: '이사',
+      isNew: false,
       content: '투명한 업체\n정보 제공 및 빠른 견적',
       icon: <IcBox />,
     },
     {
       id: 3,
       title: '설치/수리',
+      isNew: false,
       content: '커튼, 조명 등 설치\n전문기사 바로예약',
       icon: <IcDrill />,
     },
     {
       id: 4,
       title: '등록매물 확인하기',
+      isNew: true,
       content: '집보며 하나하나 적기 힘드셨죠?\n이젠 쉽게 체크 하세요',
       icon: <IcCheckList />,
     },
     {
       id: 5,
       title: '우리동네 아파트',
+      isNew: true,
       content: '종합리모델링,\n카페공간 등\n분야별 업체찾기',
       icon: <IcCheckList />,
     },
@@ -51,18 +57,21 @@ const HomePage = () => {
     {
       id: 1,
       title: '세탁기청소',
+      isNew: false,
       content: '새것처럼\n완벽 클리닝',
       icon: <IcWashingMachine />,
     },
     {
       id: 2,
       title: '에어컨청소',
+      isNew: false,
       content: '분해부터 뒷정리까지\n꼼꼼한 전문가에게',
       icon: <IcAircon />,
     },
     {
       id: 3,
       title: '입주청소',
+      isNew: true,
       content: '새집에서\n깨끗하게 시작하기',
       icon: <IcCleaning />,
     },
@@ -72,7 +81,13 @@ const HomePage = () => {
       <St.MenuWrapper>
         <St.TopSection>
           {MENU_CONTENT.map(item => (
-            <MenuBox key={item.id} title={item.title} content={item.content} icon={item.icon} />
+            <MenuBox
+              key={item.id}
+              title={item.title}
+              isNew={item.isNew ? <IcNew /> : <></>}
+              content={item.content}
+              icon={item.icon}
+            />
           ))}
         </St.TopSection>
         <St.BottomSection>
@@ -82,7 +97,13 @@ const HomePage = () => {
           </St.BottomTitle>
           <St.Bottomcontent>
             {CLEANING_MENU_CONTENT.map(item => (
-              <MenuBox key={item.id} title={item.title} content={item.content} icon={item.icon} />
+              <MenuBox
+                key={item.id}
+                title={item.title}
+                isNew={item.isNew ? <IcNew /> : <></>}
+                content={item.content}
+                icon={item.icon}
+              />
             ))}
           </St.Bottomcontent>
         </St.BottomSection>
