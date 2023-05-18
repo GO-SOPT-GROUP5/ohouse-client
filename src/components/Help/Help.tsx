@@ -56,7 +56,6 @@ const Help = () => {
         </Swiper>
         <button type='button'>새로운 매물 등록하기</button>
         </St.HelpContent>
-      
       </St.HelpCard>
     </St.HelpWrapper>
   );
