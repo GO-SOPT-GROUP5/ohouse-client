@@ -1,7 +1,8 @@
 import "swiper/css/bundle";
 
+import { useRef } from "react";
 import styled from "styled-components";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import { IcLeft, IcRight } from "../../assets/icon";
 import {
@@ -13,21 +14,21 @@ import {
 } from "../../assets/image/index";
 
 const Help = () => {
-  const swiper = useSwiper();
-  
+  const swiperRef = useRef();
+
   return (
     <St.HelpWrapper>
       <St.HelpCard>
         <St.HelpIcon>
-          <IcLeft />
-          <IcRight />
+          <IcLeft onClick={() => swiperRef.current.slideNext()}/>
+          <IcRight onClick={() => swiperRef.current.slideNext()}/>
         </St.HelpIcon>
         <St.HelpContent>
           <Swiper
+          onSwiper={(swiper) => {swiperRef.current = swiper}}
           spaceBetween={50}
           slidesPerView={3}
           onSlideChange={() => console.log('slide change')}
-          onSwiper={(swiper) => console.log(swiper)}
         >
           <SwiperSlide>
             <h1>집보며 하나하나 적기 힘드셨죠?<br/>이젠 쉽게 체크 하세요</h1>
@@ -52,7 +53,7 @@ const Help = () => {
             <ImgExplanation5/>
           </SwiperSlide>
         </Swiper>
-          <button type='button' onClick={() => swiper.slideNext()}>새로운 매물 등록하기</button>
+          <button type='button'>새로운 매물 등록하기</button>
         </St.HelpContent>
       </St.HelpCard>
     </St.HelpWrapper>
@@ -92,6 +93,8 @@ const St = {
     left: -3.5rem;
 
     margin-top: 32.5rem;
+
+    z-index: 2;
   `,
   HelpContent: styled.article`
     display: flex;
