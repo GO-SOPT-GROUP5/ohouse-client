@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import App from '../../App';
 import { IcAddress, IcCancel } from '../../assets/icon';
 
 export interface ModalProps {
@@ -89,7 +90,8 @@ const ProductEditModal = (props: ModalProps) => {
                   <St.ContractBtn
                     key={option}
                     onClick={() => handleContractSelect(option)}
-                    disabled={contract === option}
+                    disabled={option === contract}
+                    active={option === contract}
                   >
                     {option}
                   </St.ContractBtn>
@@ -265,7 +267,7 @@ const St = {
     }
   `,
 
-  ContractBtn: styled.button`
+  ContractBtn: styled.button<{ active: boolean }>`
     margin-right: 0.4rem;
     margin-bottom: 3.9rem;
 
@@ -274,5 +276,17 @@ const St = {
 
     border: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
     border-radius: 0.5rem;
+
+    ${({ active, theme }) =>
+      active
+        ? `
+      color: ${theme.colors.Blue};
+      border: 0.1rem solid ${theme.colors.Blue};
+      background-color: ${theme.colors.White};
+    `
+        : `
+      color: ${theme.colors.Grey600};
+      background-color: ${theme.colors.White};
+    `}
   `,
 };
