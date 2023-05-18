@@ -1,13 +1,11 @@
 import styled from 'styled-components';
 
-import { CATEGORY_LIST } from '../../constants/category';
 import CategoryItem from './CategoryItem';
 
 const Category = () => {
   return (
     <St.CategoryList>
-      {/* <CategoryItem />
-      <CategoryItem /> */}
+      <CategoryItem />
     </St.CategoryList>
   );
 };

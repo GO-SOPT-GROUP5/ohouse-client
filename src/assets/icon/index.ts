@@ -5,3 +5,4 @@ export { ReactComponent as IcCamera } from './ic_camera.svg';
 export { ReactComponent as IcStar } from './ic_star.svg';
 export { ReactComponent as IcCancel } from './ic_cancel.svg';
 export { ReactComponent as IcAddress } from './ic_address.svg';
+export { ReactComponent as IcToggle } from './ic_toggle.svg';

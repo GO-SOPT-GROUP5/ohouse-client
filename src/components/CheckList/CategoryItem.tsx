@@ -1,60 +1,54 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-interface CategoryItemProps {
-  categoryName: string;
-  subCategoryNum: number;
-}
+import { IcToggle } from '../../assets/icon';
+import { CATEGORY_LIST } from '../../constants/category';
 
-const CategoryItem = (props: CategoryItemProps) => {
-  const [expanded, setExpanded] = useState(false);
+const CategoryItem = () => {
+  const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
 
-  const toggleExpand = () => {
-    setExpanded(!expanded);
+  const toggleExpand = (category: string) => {
+    if (expandedCategories.includes(category)) {
+      setExpandedCategories(expandedCategories.filter(c => c !== category));
+    } else {
+      setExpandedCategories([...expandedCategories, category]);
+    }
   };
 
   return (
-    <Wrapper>
-      <Title>Categories</Title>
-      <ExpandButton onClick={toggleExpand}>{expanded ? 'Collapse' : 'Expand'}</ExpandButton>
-      {expanded && (
-        <CategoryContainer>
-          <Category>Category 1</Category>
-          <Category>Category 2</Category>
-          <Category>Category 3</Category>
-          <Category>Category 4</Category>
-        </CategoryContainer>
-      )}
-    </Wrapper>
+    <CategoryItemWrapper>
+      {CATEGORY_LIST.map(category => (
+        <Category key={category.category}>
+          <CategoryName onClick={() => toggleExpand(category.category)}>
+            {category.category}
+            <IcToggle />
+          </CategoryName>
+          {expandedCategories.includes(category.category) &&
+            category.subcategories.map(subcategory => (
+              <Subcategory key={subcategory}>{subcategory}</Subcategory>
+            ))}
+        </Category>
+      ))}
+    </CategoryItemWrapper>
   );
 };
 
-const Wrapper = styled.div`
-  background-color: #f8f8f8;
-  padding: 16px;
-`;
+const CategoryItemWrapper = styled.div``;
 
-const Title = styled.h2`
-  margin-bottom: 8px;
-`;
+const CategoryName = styled.p`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-const ExpandButton = styled.button`
-  background-color: #589bff;
-  color: #fff;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-`;
-
-const CategoryContainer = styled.div`
-  margin-top: 16px;
+  ${({ theme }) => theme.fonts.Title5};
 `;
 
 const Category = styled.div`
-  background-color: #fff;
-  padding: 8px;
-  margin-bottom: 8px;
+  padding: 1.7rem 3.8rem 1.5rem 2.8rem;
+`;
+
+const Subcategory = styled.p`
+  margin-bottom: 4px;
 `;
 
 export default CategoryItem;
