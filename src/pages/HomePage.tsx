@@ -69,22 +69,24 @@ const HomePage = () => {
   ];
   return (
     <St.HomeWrapper>
-      <St.TopSection>
-        {MENU_CONTENT.map(item => (
-          <MenuBox key={item.id} title={item.title} content={item.content} icon={item.icon} />
-        ))}
-      </St.TopSection>
-      <St.BottomSection>
-        <St.BottomTitle>
-          <h4>청소서비스</h4>
-          <IcCleanService />
-        </St.BottomTitle>
-        <St.Bottomcontent>
-          {CLEANING_MENU_CONTENT.map(item => (
+      <St.MenuWrapper>
+        <St.TopSection>
+          {MENU_CONTENT.map(item => (
             <MenuBox key={item.id} title={item.title} content={item.content} icon={item.icon} />
           ))}
-        </St.Bottomcontent>
-      </St.BottomSection>
+        </St.TopSection>
+        <St.BottomSection>
+          <St.BottomTitle>
+            <h4>청소서비스</h4>
+            <IcCleanService />
+          </St.BottomTitle>
+          <St.Bottomcontent>
+            {CLEANING_MENU_CONTENT.map(item => (
+              <MenuBox key={item.id} title={item.title} content={item.content} icon={item.icon} />
+            ))}
+          </St.Bottomcontent>
+        </St.BottomSection>
+      </St.MenuWrapper>
     </St.HomeWrapper>
   );
 };
@@ -99,6 +101,11 @@ const St = {
     padding: 0 10rem;
 
     background-color: ${({ theme }) => theme.colors.Grey100};
+  `,
+  MenuWrapper: styled.div`
+    display: flex;
+    flex-direction: column;
+    margin: auto;
   `,
   TopSection: styled.section`
     display: grid;
@@ -115,7 +122,6 @@ const St = {
   `,
   BottomTitle: styled.div`
     display: flex;
-    margin-left: 10rem;
 
     & > h4 {
       padding-right: 0.4rem;
