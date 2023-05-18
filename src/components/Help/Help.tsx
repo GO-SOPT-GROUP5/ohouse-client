@@ -1,4 +1,11 @@
+
+import "swiper/swiper-bundle.min.css";
+import "swiper/swiper.scss";
+import "swiper/components/navigation/navigation.scss";
+import "swiper/components/pagination/pagination.scss";
+
 import styled from "styled-components";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import { IcLeft, IcRight } from "../../assets/icon";
 import { ImgExplanation1 } from "../../assets/image/index";
@@ -11,8 +18,18 @@ const Help = () => {
           <IcLeft />
           <IcRight />
         </St.HelpIcon>
-        <ImgExplanation1/>
         <St.HelpContent>
+          <Swiper
+            spaceBetween={50}
+            slidesPerView={3}
+            onSlideChange={() => console.log('slide change')}
+            onSwiper={(swiper) => console.log(swiper)}
+          >
+            <SwiperSlide>Slide 1</SwiperSlide>
+            <SwiperSlide>Slide 2</SwiperSlide>
+            <SwiperSlide>Slide 3</SwiperSlide>
+            <SwiperSlide>Slide 4</SwiperSlide>
+          </Swiper>
           <h1>집보며 하나하나 적기 힘드셨죠?<br/>이젠 쉽게 체크 하세요</h1>
           <p>집 볼때 꼭 체크해야하는 핵심만 모아놨어요</p>
           <button type='button'>새로운 매물 등록하기</button>
