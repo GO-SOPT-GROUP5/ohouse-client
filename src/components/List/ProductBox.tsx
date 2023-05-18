@@ -9,7 +9,15 @@ const ProductBox = () => {
     <ImgRoom1/>
     <St.ProductTitle>2023.05.10 12:11 등록매물</St.ProductTitle>
     <St.ProductScore>
-      좋음 9 · 보통 3 · 나쁨 1
+      <span>
+        좋음<span>9</span>
+      </span>
+      <span>
+        · 보통<span>3</span>
+      </span>
+      <span>
+        · 나쁨<span>1</span>
+      </span>
     </St.ProductScore>
     <St.ProductStar>
       <IcStar/><span>4</span>
@@ -43,9 +51,13 @@ const St = {
   ProductScore : styled.p`
     margin-top: 0.6rem;
 
-    /* 폰트 임의 지정 */
     color: ${({ theme }) => theme.colors.Grey400};
-    ${({ theme }) => theme.fonts.Body6}; 
+    & span {
+      ${({ theme }) => theme.fonts.Body6}; 
+    }
+    & > span > span {
+      margin: 0rem 0.4rem;
+    }
   `,
   ProductStar : styled.span`
     position: absolute;
