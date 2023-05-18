@@ -15,6 +15,14 @@ const AdBanner = () => {
   SwiperCore.use([Autoplay, Pagination]);
   const swiperRef = useRef();
 
+  const BANNER_LIST = [
+    <ImgBanner1 />,
+    <ImgBanner2 />,
+    <ImgBanner3 />,
+    <ImgBanner4 />,
+    <ImgBanner5 />,
+  ];
+
   return (
     <St.BannerWrapper>
       <St.Swiper
@@ -28,21 +36,9 @@ const AdBanner = () => {
           swiperRef.current = swiper;
         }}
       >
-        <SwiperSlide>
-          <ImgBanner1 />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ImgBanner2 />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ImgBanner3 />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ImgBanner4 />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ImgBanner5 />
-        </SwiperSlide>
+        {BANNER_LIST.map((banner, index) => (
+          <SwiperSlide key={index}>{banner}</SwiperSlide>
+        ))}
       </St.Swiper>
       <St.BtnWrapper>
         <St.SwiperBtn type="button" onClick={() => swiperRef.current.slidePrev()}>
