@@ -2,7 +2,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import styled from "styled-components";
-import { Pagination } from "swiper";
+import { Autoplay, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { IcLeft, IcRight } from "../../assets/icon";
@@ -24,9 +24,12 @@ const Help = () => {
         </St.HelpIcon>
         <St.HelpContent>
           <Swiper
-            modules={[Pagination]}
+            modules={[Autoplay, Pagination]}
+            autoplay={{
+              delay: 500,
+            }}
             pagination={true}
-            speed={500} slidesPerView={1} spaceBetween={20}
+            navigation speed={500} slidesPerView={1} spaceBetween={20}
           >
           <SwiperSlide>
             <h1>집보며 하나하나 적기 힘드셨죠?<br/>이젠 쉽게 체크 하세요</h1>
@@ -51,9 +54,8 @@ const Help = () => {
             <ImgExplanation5/>
           </SwiperSlide>
         </Swiper>
-        <button type='button'>새로운 매물 등록하기</button>
+          <button type='button'>새로운 매물 등록하기</button>
         </St.HelpContent>
-      
       </St.HelpCard>
     </St.HelpWrapper>
   );
@@ -96,24 +98,13 @@ const St = {
     z-index: 2;
   `,
   HelpContent: styled.article`
+    display: flex;
+    flex-direction: column;
 
     position: relative;
 
     height: 100%;
     margin: 0rem 10.1rem;
-
-    .swiper-pagination-bullet {
-      --swiper-theme-color: ${({ theme }) => theme.colors.Blue};;
-    }
-
-    & > div {
-      height: 60rem;
-      
-      & > div:nth-child(2) > span {
-        width: 1.2rem;
-        height: 1.2rem;
-      }
-    }
 
     & h1 {
       margin-top: 4.3rem;
@@ -130,7 +121,6 @@ const St = {
     }
 
     & svg {
-      width: 100%;
       margin-top: 5rem;
     }
 
