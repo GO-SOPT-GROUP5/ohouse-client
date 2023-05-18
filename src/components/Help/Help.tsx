@@ -1,7 +1,7 @@
-import "swiper/css";
+import "swiper/css/bundle";
 
 import styled from "styled-components";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 
 import { IcLeft, IcRight } from "../../assets/icon";
 import {
@@ -13,6 +13,8 @@ import {
 } from "../../assets/image/index";
 
 const Help = () => {
+  const swiper = useSwiper();
+  
   return (
     <St.HelpWrapper>
       <St.HelpCard>
@@ -50,7 +52,7 @@ const Help = () => {
             <ImgExplanation5/>
           </SwiperSlide>
         </Swiper>
-          <button type='button'>새로운 매물 등록하기</button>
+          <button type='button' onClick={() => swiper.slideNext()}>새로운 매물 등록하기</button>
         </St.HelpContent>
       </St.HelpCard>
     </St.HelpWrapper>
