@@ -47,9 +47,13 @@ const ProductEditModal = (props: ModalProps) => {
       {isShowing && (
         <St.ModalWrapper>
           <St.Modal>
-            <IcCancel />
-            <p>정보수정</p>
-            <button type="button">주소변경</button>
+            <St.CancelBtn>
+              <IcCancel />
+            </St.CancelBtn>
+            <St.ModalTitle>
+              <p>정보수정</p>
+              <button type="button">주소변경</button>
+            </St.ModalTitle>
             <div>
               <IcAddress />
               <p>주소를 등록해주세요</p>
@@ -110,9 +114,31 @@ const St = {
 
     width: 45.5rem;
     height: fit-content;
+    padding: 2.5rem 2.2rem 1.6rem 2.2rem;
 
     background-color: ${({ theme }) => theme.colors.White};
     border-radius: 0.6rem;
+  `,
+
+  ModalTitle: styled.div`
+    & > p {
+      color: ${({ theme }) => theme.colors.Grey600};
+      /* ${({ theme }) => theme.fonts}; */
+      font-family: 'Pretendard';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 19px;
+    }
+  `,
+
+  CancelBtn: styled.button`
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    background: transparent;
+    border: none;
   `,
 
   ContractBtn: styled.button`
