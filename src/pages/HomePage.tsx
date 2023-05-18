@@ -49,7 +49,7 @@ const HomePage = () => {
       title: '우리동네 아파트',
       isNew: true,
       content: '종합리모델링,\n카페공간 등\n분야별 업체찾기',
-      icon: <IcCheckList />,
+      icon: <IcApartment />,
     },
   ];
 
@@ -76,6 +76,7 @@ const HomePage = () => {
       icon: <IcCleaning />,
     },
   ];
+
   return (
     <St.HomeWrapper>
       <St.MenuWrapper>
