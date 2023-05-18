@@ -1,8 +1,5 @@
-
 import "swiper/swiper-bundle.min.css";
-import "swiper/swiper.scss";
-import "swiper/components/navigation/navigation.scss";
-import "swiper/components/pagination/pagination.scss";
+import "swiper/swiper.min.css";
 
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -22,8 +19,9 @@ const Help = () => {
           <Swiper
             spaceBetween={50}
             slidesPerView={3}
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
+            centeredSlides
+            onSlideChange={() => console.log("slide change")}
+            onSwiper={swiper => console.log(swiper)}
           >
             <SwiperSlide>Slide 1</SwiperSlide>
             <SwiperSlide>Slide 2</SwiperSlide>
