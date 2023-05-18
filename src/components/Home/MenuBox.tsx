@@ -47,9 +47,6 @@ const St = {
     color: ${({ theme }) => theme.colors.Grey500};
   `,
   MenuBoxContent: styled.p`
-    min-width: 10.8rem;
-    max-width: 18.8rem;
-
     ${({ theme }) => theme.fonts.Body6};
     color: ${({ theme }) => theme.colors.Grey400};
 
