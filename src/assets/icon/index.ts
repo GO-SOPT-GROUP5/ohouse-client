@@ -6,3 +6,6 @@ export { ReactComponent as IcStar } from './ic_star.svg';
 export { ReactComponent as IcCancel } from './ic_cancel.svg';
 export { ReactComponent as IcAddress } from './ic_address.svg';
 export { ReactComponent as IcToggle } from './ic_toggle.svg';
+export { ReactComponent as IcToggleExpanded } from './ic_toggle_expanded.svg';
+export { ReactComponent as IcCheckboxBefore } from './ic_checkbox_before.svg';
+export { ReactComponent as IcCheckboxAfter } from './ic_checkbox_after.svg';
