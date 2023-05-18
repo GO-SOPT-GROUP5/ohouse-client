@@ -1,8 +1,4 @@
-import "swiper/swiper-bundle.min.css";
-import "swiper/swiper.min.css";
-
 import styled from "styled-components";
-import { Swiper, SwiperSlide } from "swiper/react";
 
 import { IcLeft, IcRight } from "../../assets/icon";
 import { ImgExplanation1 } from "../../assets/image/index";
@@ -16,20 +12,9 @@ const Help = () => {
           <IcRight />
         </St.HelpIcon>
         <St.HelpContent>
-          <Swiper
-            spaceBetween={50}
-            slidesPerView={3}
-            centeredSlides
-            onSlideChange={() => console.log("slide change")}
-            onSwiper={swiper => console.log(swiper)}
-          >
-            <SwiperSlide>Slide 1</SwiperSlide>
-            <SwiperSlide>Slide 2</SwiperSlide>
-            <SwiperSlide>Slide 3</SwiperSlide>
-            <SwiperSlide>Slide 4</SwiperSlide>
-          </Swiper>
           <h1>집보며 하나하나 적기 힘드셨죠?<br/>이젠 쉽게 체크 하세요</h1>
           <p>집 볼때 꼭 체크해야하는 핵심만 모아놨어요</p>
+          <ImgExplanation1/>
           <button type='button'>새로운 매물 등록하기</button>
         </St.HelpContent>
       </St.HelpCard>
@@ -61,13 +46,6 @@ const St = {
     background-color:${({ theme }) => theme.colors.White};
     border-radius: 1rem;
     box-shadow: 0 0.3rem 0.9rem rgba(0, 0, 0, 0.1);
-
-    & > svg {
-      position: absolute;
-      
-      margin-top: 20rem;
-      margin-left: 12rem;
-    }
   `,
   HelpIcon: styled.div`
     display: flex;
@@ -99,6 +77,11 @@ const St = {
 
       ${({ theme }) => theme.fonts.Body3};
       color: ${({ theme }) => theme.colors.Grey400};
+    }
+
+    & > svg {
+      width: 100%;
+      margin-top: 5rem;
     }
 
     & > button {
