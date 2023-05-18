@@ -210,9 +210,9 @@ const St = {
       line-height: 22px;
 
       & > input {
+        height: 4.5rem;
         margin-top: 0.4rem;
         padding-left: 1.7rem;
-        height: 4.5rem;
 
         border: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
         border-radius: 0.5rem;

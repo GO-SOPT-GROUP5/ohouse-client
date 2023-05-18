@@ -80,8 +80,8 @@ const St = {
     top: 3.5rem;
     right: 3.3rem;
 
-    background: transparent;
     border: none;
+    background: transparent;
   `,
 
   ProductInfo: styled.article`
@@ -125,11 +125,10 @@ const St = {
       padding: 0.7rem 2.3rem;
       height: 3.9rem;
 
-      color: ${({ theme }) => theme.colors.Blue};
-      ${({ theme }) => theme.fonts.Body2};
-
       border: 0.2rem solid ${({ theme }) => theme.colors.Blue};
       border-radius: 3.9rem;
+      color: ${({ theme }) => theme.colors.Blue};
+      ${({ theme }) => theme.fonts.Body2};
     }
   `,
 
