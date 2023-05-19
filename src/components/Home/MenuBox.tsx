@@ -2,25 +2,28 @@ import { Component } from 'react';
 import styled from 'styled-components';
 
 interface MenuBoxContent {
+  id: number;
   title: string;
   isNew: Component;
   content: string;
   icon: Component;
 }
 
-const MenuBox = ({ title, isNew, content, icon }: MenuBoxContent) => {
+const MenuBox = ({ id, title, isNew, content, icon }: MenuBoxContent) => {
   return (
     <St.MenuBoxWrapper>
-      <St.MenuBoxHeader>
-        <St.MenuBoxTitle>
-          <h3>{title}</h3>
-          {isNew}
-        </St.MenuBoxTitle>
-        <St.MenuBoxContent>{content}</St.MenuBoxContent>
-      </St.MenuBoxHeader>
-      <St.MenuBoxBottom>
-        <St.MenuBoxIcon>{icon}</St.MenuBoxIcon>
-      </St.MenuBoxBottom>
+      <St.MenuBoxContainer id={id}>
+        <St.MenuBoxHeader>
+          <St.MenuBoxTitle>
+            <h3>{title}</h3>
+            {isNew}
+          </St.MenuBoxTitle>
+          <St.MenuBoxContent>{content}</St.MenuBoxContent>
+        </St.MenuBoxHeader>
+        <St.MenuBoxBottom>
+          <St.MenuBoxIcon>{icon}</St.MenuBoxIcon>
+        </St.MenuBoxBottom>
+      </St.MenuBoxContainer>
     </St.MenuBoxWrapper>
   );
 };
@@ -29,8 +32,6 @@ export default MenuBox;
 
 const St = {
   MenuBoxWrapper: styled.article`
-    position: relative;
-
     width: 39.2rem;
     height: 18rem;
     padding: 1.8rem;
@@ -40,9 +41,23 @@ const St = {
     box-shadow: 0 0.25rem 0.94rem rgba(0, 0, 0, 0.1);
     border-radius: 1.2rem;
   `,
+  MenuBoxContainer: styled.div`
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+
+    cursor: pointer;
+  `,
+
   MenuBoxHeader: styled.header`
     display: flex;
     flex-direction: column;
+
+    width: fit-content;
   `,
   MenuBoxTitle: styled.div`
     display: flex;
@@ -59,6 +74,8 @@ const St = {
     ${({ theme }) => theme.fonts.Body6};
     color: ${({ theme }) => theme.colors.Grey400};
 
+    width: fit-content;
+
     white-space: pre-line;
     word-break: keep-all;
   `,
@@ -70,6 +87,7 @@ const St = {
       position: absolute;
       right: 0;
       bottom: 0;
+      transform: translate(-50%, -50%)
 
       margin: 0 1.8rem 1.8rem 0;
     }

@@ -77,13 +77,18 @@ const HomePage = () => {
     },
   ];
 
+  const handleNavigate = (e: React.MouseEvent<HTMLElement>) => {
+    console.log(e.target.id);
+  };
+
   return (
     <St.HomeWrapper>
       <St.MenuWrapper>
-        <St.TopSection>
+        <St.TopSection onClick={handleNavigate}>
           {MENU_CONTENT.map(item => (
             <MenuBox
               key={item.id}
+              id={item.id}
               title={item.title}
               isNew={item.isNew ? <IcNew /> : <></>}
               content={item.content}
