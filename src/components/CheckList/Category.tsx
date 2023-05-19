@@ -15,7 +15,7 @@ export default Category;
 const St = {
   CategoryList: styled.ul`
     width: 34.8rem;
-    height: 81.2rem;
+    /* height: 81.2rem; */
 
     background-color: ${({ theme }) => theme.colors.White};
     color: ${({ theme }) => theme.colors.Grey600};

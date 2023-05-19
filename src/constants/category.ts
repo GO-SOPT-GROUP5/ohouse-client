@@ -1,9 +1,5 @@
 export const CATEGORY_LIST = [
   {
-    category: '전체',
-    subcategories: [],
-  },
-  {
     category: '실내',
     subcategories: ['채광량', '누수 상태', '층간 소음', '기본 옵션', '난방 방식', '반려동물 입주'],
   },
