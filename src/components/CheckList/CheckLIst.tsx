@@ -1,11 +1,41 @@
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
+import { CATEGORY_LIST } from '../../constants/category';
+import { selectedSubcategoriesState } from '../../recoil/atom';
 import CheckListItem from './CheckListItem';
 
 const CheckLIst = () => {
+  const [selectedSubcategories, setSelectedSubcategories] = useRecoilState(
+    selectedSubcategoriesState,
+  );
+  console.log(selectedSubcategories);
+
+  const getCategoryInfo = (id: number) => {
+    for (const category of CATEGORY_LIST) {
+      const subcategory = category.subcategories.find(subcategory => subcategory.id === id);
+      if (subcategory) {
+        const { subcategory: subcategoryName, checklist, options } = subcategory;
+        return { subcategory: subcategoryName, checklist, options };
+      }
+    }
+
+    return null;
+  };
+
   return (
     <St.CheckList>
-      <CheckListItem />
+      {selectedSubcategories.map(id => {
+        const { subcategory, checklist, options } = getCategoryInfo(id) || {};
+        return subcategory && checklist && options ? (
+          <CheckListItem
+            key={id}
+            subcategory={subcategory}
+            checklist={checklist}
+            options={options}
+          />
+        ) : null;
+      })}
     </St.CheckList>
   );
 };

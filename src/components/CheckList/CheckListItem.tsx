@@ -1,28 +1,26 @@
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
-import { selectedSubcategoriesState } from '../../recoil/atom';
+interface CheckListItemProms {
+  subcategory: string;
+  checklist: string;
+  options: string[];
+}
 
-const CheckListItem = () => {
-  const OPTIONS = ['나빠요', '보통이에요', '좋아요'];
+const CheckListItem = ({ subcategory, checklist, options }: CheckListItemProms) => {
   const [selectedOption, setSelectedOption] = useState<string>();
-
-  const [selectedSubcategories, setSelectedSubcategories] = useRecoilState(
-    selectedSubcategoriesState,
-  );
-  console.log(selectedSubcategories);
 
   const handleSelectedOption = (select: string) => {
     if (select !== selectedOption) {
       setSelectedOption(select);
     }
   };
+
   return (
     <St.CheckListItemWrapper>
       <p>집의 전반적인 채광량은 어떤가요?</p>
       <St.OptionWrapper>
-        {OPTIONS.map(option => (
+        {options.map(option => (
           <St.OptionBtn
             key={option}
             onClick={() => handleSelectedOption(option)}
