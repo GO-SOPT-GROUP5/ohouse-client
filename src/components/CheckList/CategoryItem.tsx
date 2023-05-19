@@ -44,8 +44,15 @@ const CategoryItem = () => {
   };
 
   const handleActiveAndExpand = (category: string) => {
-    handleActive(category);
-    handleExpand(category);
+    if (activeCategories.includes(category)) {
+      setActiveCategories([]);
+      handleExpand(category);
+    } else {
+      setActiveCategories([category]);
+      if (!expandedCategories.includes(category)) {
+        handleExpand(category);
+      }
+    }
   };
 
   return (
