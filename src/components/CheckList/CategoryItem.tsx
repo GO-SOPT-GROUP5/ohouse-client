@@ -2,14 +2,18 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import { IcCheckboxAfter, IcCheckboxBefore, IcToggle, IcToggleExpanded } from '../../assets/icon';
-import { CATEGORY_LIST } from '../../constants/category';
+import { CATEGORY_LIST, DISABLED_SUBCATEGORY_LIST } from '../../constants/category';
 
 const CategoryItem = () => {
   const [activeCategories, setActiveCategories] = useState<string[]>([]);
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
   const [selectedSubcategories, setSelectedSubcategories] = useState<string[]>([]);
 
-  const toggleActive = (category: string) => {
+  const isDisabled = (subcategory: string) => {
+    return DISABLED_SUBCATEGORY_LIST.includes(subcategory);
+  };
+
+  const handleActive = (category: string) => {
     if (activeCategories.includes(category)) {
       setActiveCategories([]);
     } else {
@@ -17,7 +21,7 @@ const CategoryItem = () => {
     }
   };
 
-  const toggleExpand = (category: string) => {
+  const handleExpand = (category: string) => {
     if (expandedCategories.includes(category)) {
       setExpandedCategories(expandedCategories.filter(c => c !== category));
     } else {
@@ -25,7 +29,12 @@ const CategoryItem = () => {
     }
   };
 
-  const toggleSubcategory = (e: React.MouseEvent, subcategory: string) => {
+  const handleClickSubcategory = (e: React.MouseEvent, subcategory: string) => {
+    if (isDisabled(subcategory)) {
+      e.stopPropagation();
+      return;
+    }
+
     if (selectedSubcategories.includes(subcategory)) {
       setSelectedSubcategories(selectedSubcategories.filter(s => s !== subcategory));
     } else {
@@ -34,26 +43,36 @@ const CategoryItem = () => {
     e.stopPropagation();
   };
 
+  const handleActiveAndExpand = (category: string) => {
+    handleActive(category);
+    handleExpand(category);
+  };
+
   return (
     <CategoryItemWrapper>
       <SelectAllBtn type="button">
         <p>전체</p>
       </SelectAllBtn>
-      {CATEGORY_LIST.map(category => (
+      {CATEGORY_LIST.map(({ category, subcategories }) => (
         <Category
-          key={category.category}
-          onClick={() => toggleActive(category.category)}
-          active={activeCategories.includes(category.category)}
+          key={category}
+          onClick={() => handleActiveAndExpand(category)}
+          active={activeCategories.includes(category)}
+          expanded={expandedCategories.includes(category)}
         >
           <CategoryName>
-            {category.category}
-            <StExpandBtn onClick={() => toggleExpand(category.category)}>
-              {expandedCategories.includes(category.category) ? <IcToggleExpanded /> : <IcToggle />}
+            {category}
+            <StExpandBtn>
+              {expandedCategories.includes(category) ? <IcToggleExpanded /> : <IcToggle />}
             </StExpandBtn>
           </CategoryName>
-          {expandedCategories.includes(category.category) &&
-            category.subcategories.map(subcategory => (
-              <Subcategory key={subcategory} onClick={e => toggleSubcategory(e, subcategory)}>
+          {expandedCategories.includes(category) &&
+            subcategories.map(subcategory => (
+              <Subcategory
+                key={subcategory}
+                onClick={e => handleClickSubcategory(e, subcategory)}
+                disabled={isDisabled(subcategory)}
+              >
                 {selectedSubcategories.includes(subcategory) ? (
                   <IcCheckboxAfter />
                 ) : (
@@ -96,15 +115,20 @@ const CategoryName = styled.p`
   ${({ theme }) => theme.fonts.Title5};
 `;
 
-const Category = styled.div<{ active: boolean }>`
+const Category = styled.div<{ active: boolean; expanded: boolean }>`
   padding: 0rem 2.8rem 0rem 3.8rem;
 
   border-bottom: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
-  color: ${({ active, theme }) => (active ? theme.colors.White : theme.colors.Grey600)};
-  background-color: ${({ active, theme }) => (active ? theme.colors.Blue : theme.colors.White)};
+  color: ${({ active, expanded, theme }) =>
+    expanded ? theme.colors.White : active ? theme.colors.White : theme.colors.Grey600};
+  background-color: ${({ active, expanded, theme }) =>
+    expanded ? theme.colors.Blue : active ? theme.colors.Blue : theme.colors.White};
+
+  ${({ active, theme }) =>
+    !active && `background-color: ${theme.colors.White}; color: ${theme.colors.Grey600}`}
 `;
 
-const Subcategory = styled.p`
+const Subcategory = styled.p<{ disabled: boolean }>`
   display: flex;
   align-items: center;
 
@@ -118,7 +142,8 @@ const Subcategory = styled.p`
   color: ${({ theme }) => theme.colors.Grey600};
   ${({ theme }) => theme.fonts.Body6};
 
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  /* cursor: pointer; */
 
   & > svg {
     width: 1.3rem;
