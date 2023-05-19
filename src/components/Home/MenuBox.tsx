@@ -6,7 +6,7 @@ interface MenuBoxContent {
   title: string;
   isNew: Component;
   content: string;
-  icon: Component;
+  icon: string;
 }
 
 const MenuBox = ({ id, title, isNew, content, icon }: MenuBoxContent) => {
@@ -21,7 +21,9 @@ const MenuBox = ({ id, title, isNew, content, icon }: MenuBoxContent) => {
           <St.MenuBoxContent>{content}</St.MenuBoxContent>
         </St.MenuBoxHeader>
         <St.MenuBoxBottom>
-          <St.MenuBoxIcon>{icon}</St.MenuBoxIcon>
+          <St.MenuBoxIcon>
+            <object type="image/svg+xml" data={icon} aria-label="icon"></object>
+          </St.MenuBoxIcon>
         </St.MenuBoxBottom>
       </St.MenuBoxContainer>
     </St.MenuBoxWrapper>
@@ -82,14 +84,11 @@ const St = {
   MenuBoxBottom: styled.div`
     padding-top: 0.3rem;
   `,
-  MenuBoxIcon: styled.div`
-    & > svg {
+  MenuBoxIcon: styled.i`
+    & object {
       position: absolute;
       right: 0;
       bottom: 0;
-      transform: translate(-50%, -50%)
-
-      margin: 0 1.8rem 1.8rem 0;
     }
   `,
 };
