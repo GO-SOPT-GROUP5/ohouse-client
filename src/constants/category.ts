@@ -3,36 +3,42 @@ export const CATEGORY_LIST = [
     category: '실내',
     subcategories: [
       {
+        id: 1,
         subcategory: '채광량',
         checklist: '집의 전반적인 채광량은 어떤가요?',
         options: ['나빠요', '보통이에요', '좋아요'],
         isDisable: false,
       },
       {
+        id: 2,
         subcategory: '누수 상태',
         checklist: '벽과 천장에 물이 샌 흔적이 있나요?',
         options: ['많이 있어요', '조금 있어요', '좋아요'],
         isDisable: false,
       },
       {
+        id: 3,
         subcategory: '층간 소음',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 4,
         subcategory: '기본 옵션',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 5,
         subcategory: '난방 방식',
         checklist: '어떤 난방 방식을 사용하나요?',
         options: ['개별난방', '중앙난방', '지역난방'],
         isDisable: false,
       },
       {
+        id: 6,
         subcategory: '반려동물 입주',
         checklist: '',
         options: [],
@@ -44,12 +50,14 @@ export const CATEGORY_LIST = [
     category: '현관',
     subcategories: [
       {
+        id: 7,
         subcategory: '도어락 유무',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 8,
         subcategory: '신발장 크기',
         checklist: '',
         options: [],
@@ -57,6 +65,7 @@ export const CATEGORY_LIST = [
       },
 
       {
+        id: 9,
         subcategory: '중문 유무',
         checklist: '',
         options: [],
@@ -68,30 +77,35 @@ export const CATEGORY_LIST = [
     category: '주방',
     subcategories: [
       {
+        id: 10,
         subcategory: '싱크대 배수',
         checklist: '싱크대 배수 상태는 어떤가요?',
         options: ['나빠요', '보통이에요', '좋아요'],
         isDisable: false,
       },
       {
+        id: 11,
         subcategory: '싱크대 수압',
         checklist: '싱크대 수압 상태는 어떤가요?',
         options: ['나빠요', '보통이에요', '좋아요'],
         isDisable: false,
       },
       {
+        id: 12,
         subcategory: '싱크대 상태',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 13,
         subcategory: '화구 상태',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 14,
         subcategory: '환풍기 상태',
         checklist: '',
         options: [],
@@ -103,18 +117,21 @@ export const CATEGORY_LIST = [
     category: '거실',
     subcategories: [
       {
+        id: 15,
         subcategory: '도배 상태',
         checklist: '집 안 벽지 상태는 어떤가요?',
         options: ['나빠요', '보통이에요', '좋아요'],
         isDisable: false,
       },
       {
+        id: 16,
         subcategory: '장판/바닥 상태',
         checklist: '집의 장판 혹은 바닥 상태는 어떤가요?',
         options: ['나빠요', '보통이에요', '좋아요'],
         isDisable: false,
       },
       {
+        id: 17,
         subcategory: '발코니 상태',
         checklist: '발코니 상태는 어떤가요?',
         options: ['나빠요', '보통이에요', '좋아요'],
@@ -126,18 +143,21 @@ export const CATEGORY_LIST = [
     category: '침실',
     subcategories: [
       {
+        id: 18,
         subcategory: '층간 소음',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 19,
         subcategory: '곰팡이 유무',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 20,
         subcategory: '채광량',
         checklist: '',
         options: [],
@@ -147,45 +167,51 @@ export const CATEGORY_LIST = [
   },
   {
     category: '화장실',
-
     subcategories: [
       {
+        id: 21,
         subcategory: '세면대 상태',
         checklist: '세면대의 전반적인 상태는 어떤가요?',
         options: ['나빠요', '보통이에요', '좋아요'],
         isDisable: false,
       },
       {
+        id: 21,
         subcategory: '세면대 배수',
         checklist: '화장실 배수 상태는 어떤가요?',
         options: ['나빠요', '보통이에요', '좋아요'],
         isDisable: false,
       },
       {
+        id: 22,
         subcategory: '세면대 수압',
         checklist: '화장실 수압은 어떤가요?',
         options: ['나빠요', '보통이에요', '좋아요'],
         isDisable: false,
       },
       {
+        id: 23,
         subcategory: '곰팡이 유무',
         checklist: '화장실 안에 곰팡이 흔적이 있나요?',
         options: ['많이 있어요', '조금 있어요', '없어요'],
         isDisable: false,
       },
       {
+        id: 24,
         subcategory: '변기 상태',
         checklist: '화장실 변기 상태는 어떤가요?',
         options: ['나빠요', '보통이에요', '좋아요'],
         isDisable: false,
       },
       {
+        id: 25,
         subcategory: '수건장 활용성',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 26,
         subcategory: '환풍기 상태',
         checklist: '',
         options: [],
@@ -197,12 +223,14 @@ export const CATEGORY_LIST = [
     category: '보안',
     subcategories: [
       {
+        id: 27,
         subcategory: 'CCTV 유무',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 28,
         subcategory: '공동현관 유무',
         checklist: '',
         options: [],
@@ -214,6 +242,7 @@ export const CATEGORY_LIST = [
     category: '건물상태',
     subcategories: [
       {
+        id: 29,
         subcategory: '건물 균열/노후 상태',
         checklist: '',
         options: [],
@@ -225,24 +254,28 @@ export const CATEGORY_LIST = [
     category: '단지시설',
     subcategories: [
       {
+        id: 30,
         subcategory: '주차 가능 여부',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 31,
         subcategory: '주차장 형태',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 32,
         subcategory: '놀이터 상태',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 33,
         subcategory: '승강기 형태',
         checklist: '',
         options: [],
@@ -254,18 +287,21 @@ export const CATEGORY_LIST = [
     category: '교통',
     subcategories: [
       {
+        id: 34,
         subcategory: '기차역/공항',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 35,
         subcategory: '버스정류장',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 36,
         subcategory: '지하철역',
         checklist: '',
         options: [],
@@ -278,30 +314,35 @@ export const CATEGORY_LIST = [
 
     subcategories: [
       {
+        id: 37,
         subcategory: '공공시설',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 38,
         subcategory: '대형마트',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 39,
         subcategory: '먹자골목',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 40,
         subcategory: '병원/약국',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 41,
         subcategory: '편의점',
         checklist: '',
         options: [],
@@ -313,18 +354,21 @@ export const CATEGORY_LIST = [
     category: '주변시설',
     subcategories: [
       {
+        id: 42,
         subcategory: '공원/호수',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 43,
         subcategory: '방법시설',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 44,
         subcategory: '유해/혐오시설',
         checklist: '',
         options: [],
@@ -336,18 +380,21 @@ export const CATEGORY_LIST = [
     category: '교육시설',
     subcategories: [
       {
+        id: 45,
         subcategory: '학원가',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 46,
         subcategory: '초등학교',
         checklist: '',
         options: [],
         isDisable: true,
       },
       {
+        id: 47,
         subcategory: '중/고등학교',
         checklist: '',
         options: [],

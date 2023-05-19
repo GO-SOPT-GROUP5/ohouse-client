@@ -8,15 +8,7 @@ import { subCategoryInfo } from '../../types/category';
 const CategoryItem = () => {
   const [activeCategories, setActiveCategories] = useState<string[]>([]);
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
-  const [selectedSubcategories, setSelectedSubcategories] = useState<string[]>([]);
-
-  const handleActive = (category: string) => {
-    if (activeCategories.includes(category)) {
-      setActiveCategories([]);
-    } else {
-      setActiveCategories([category]);
-    }
-  };
+  const [selectedSubcategories, setSelectedSubcategories] = useState<number[]>([]);
 
   const handleExpand = (category: string) => {
     if (expandedCategories.includes(category)) {
@@ -32,11 +24,12 @@ const CategoryItem = () => {
       return;
     }
 
-    if (selectedSubcategories.includes(subcategory.subcategory)) {
-      setSelectedSubcategories(selectedSubcategories.filter(s => s !== subcategory.subcategory));
+    if (selectedSubcategories.includes(subcategory.id)) {
+      setSelectedSubcategories(selectedSubcategories.filter(s => s !== subcategory.id));
     } else {
-      setSelectedSubcategories([...selectedSubcategories, subcategory.subcategory]);
+      setSelectedSubcategories([...selectedSubcategories, subcategory.id]);
     }
+
     e.stopPropagation();
   };
 
@@ -53,7 +46,7 @@ const CategoryItem = () => {
   };
 
   return (
-    <CategoryItemWrapper>
+    <>
       <SelectAllBtn type="button">
         <p>전체</p>
       </SelectAllBtn>
@@ -66,18 +59,18 @@ const CategoryItem = () => {
         >
           <CategoryName>
             {category}
-            <StExpandBtn>
+            <button type="button" className="expandBtn">
               <IcToggle />
-            </StExpandBtn>
+            </button>
           </CategoryName>
           {expandedCategories.includes(category) &&
             subcategories.map(subcategory => (
               <Subcategory
-                key={subcategory.subcategory}
+                key={subcategory.id}
                 onClick={e => handleClickSubcategory(e, subcategory)}
                 disabled={subcategory.isDisable}
               >
-                {selectedSubcategories.includes(subcategory.subcategory) ? (
+                {selectedSubcategories.includes(subcategory.id) ? (
                   <IcCheckboxAfter />
                 ) : (
                   <IcCheckboxBefore />
@@ -87,13 +80,9 @@ const CategoryItem = () => {
             ))}
         </Category>
       ))}
-    </CategoryItemWrapper>
+    </>
   );
 };
-
-const CategoryItemWrapper = styled.div``;
-
-const StExpandBtn = styled.button``;
 
 const SelectAllBtn = styled.button`
   width: 100%;
@@ -141,7 +130,7 @@ const Category = styled.div<{ active: boolean; expanded: boolean }>`
   ${({ active, expanded, theme }) =>
     active &&
     `
-    ${StExpandBtn} {
+    .expandBtn {
       svg {
         transform: ${expanded ? 'rotate(180deg)' : 'none'};
         & > path {

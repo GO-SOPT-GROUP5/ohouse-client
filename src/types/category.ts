@@ -4,6 +4,7 @@ export interface categoryInfo {
 }
 
 export interface subCategoryInfo {
+  id: number;
   subcategory: string;
   checklist: string;
   options: string[];
