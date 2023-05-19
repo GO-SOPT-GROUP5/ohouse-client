@@ -35,6 +35,7 @@ const Category = () => {
   };
 
   const handleActiveAndExpand = (category: string) => {
+    setIsSelectAll(false);
     if (activeCategories.includes(category)) {
       setActiveCategories([]);
       handleExpand(category);
