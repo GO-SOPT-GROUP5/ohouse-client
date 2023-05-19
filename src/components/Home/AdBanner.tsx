@@ -55,7 +55,7 @@ const AdBanner = () => {
 export default AdBanner;
 
 const St = {
-  BannerWrapper: styled.div`
+  BannerWrapper: styled.section`
     display: flex;
     align-items: center;
 
