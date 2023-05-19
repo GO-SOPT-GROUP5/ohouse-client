@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router';
 import { styled } from 'styled-components';
 
 import {
@@ -15,6 +16,8 @@ import {
 import MenuBox from '../components/Home/MenuBox';
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
   const MENU_CONTENT = [
     {
       id: 1,
@@ -78,7 +81,10 @@ const HomePage = () => {
   ];
 
   const handleNavigate = (e: React.MouseEvent<HTMLElement>) => {
-    console.log(e.target.id);
+    const target = (e.target as HTMLElement).id;
+    if (target === '4') {
+      navigate('/list');
+    }
   };
 
   return (
