@@ -73,7 +73,7 @@ const St = {
     }
     //오늘의 집 보고 임의로 하얀색. indicator 넣으실건지 답변 오시면 수정 필요 ~
     & .swiper-pagination-bullet {
-      background: white !important;
+      background: transparent !important;
     }
   `,
   BtnWrapper: styled.div`
