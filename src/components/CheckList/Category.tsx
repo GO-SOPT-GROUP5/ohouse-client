@@ -1,14 +1,19 @@
 import { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 
 import { IcCheckboxAfter, IcCheckboxBefore, IcToggle } from '../../assets/icon';
 import { CATEGORY_LIST } from '../../constants/category';
+import { selectedSubcategoriesState } from '../../recoil/atom';
 import { subCategoryInfo } from '../../types/category';
 
 const Category = () => {
   const [activeCategories, setActiveCategories] = useState<string[]>([]);
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
-  const [selectedSubcategories, setSelectedSubcategories] = useState<number[]>([]);
+  // const [selectedSubcategories, setSelectedSubcategories] = useState<number[]>([]);
+  const [selectedSubcategories, setSelectedSubcategories] = useRecoilState(
+    selectedSubcategoriesState,
+  );
   const [isSelectAll, setIsSelectAll] = useState(false);
 
   const handleExpand = (category: string) => {

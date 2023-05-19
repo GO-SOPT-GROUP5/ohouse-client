@@ -1,13 +1,21 @@
 import { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
+
+import { selectedSubcategoriesState } from '../../recoil/atom';
 
 const CheckListItem = () => {
   const OPTIONS = ['나빠요', '보통이에요', '좋아요'];
-  const [contract, setContract] = useState<string>();
+  const [selectedOption, setSelectedOption] = useState<string>();
 
-  const handleContractSelect = (contractType: string) => {
-    if (contractType !== contract) {
-      setContract(contractType);
+  const [selectedSubcategories, setSelectedSubcategories] = useRecoilState(
+    selectedSubcategoriesState,
+  );
+  console.log(selectedSubcategories);
+
+  const handleSelectedOption = (select: string) => {
+    if (select !== selectedOption) {
+      setSelectedOption(select);
     }
   };
   return (
@@ -15,14 +23,14 @@ const CheckListItem = () => {
       <p>집의 전반적인 채광량은 어떤가요?</p>
       <St.OptionWrapper>
         {OPTIONS.map(option => (
-          <St.ContractBtn
+          <St.OptionBtn
             key={option}
-            onClick={() => handleContractSelect(option)}
-            disabled={option === contract}
-            active={option === contract}
+            onClick={() => handleSelectedOption(option)}
+            disabled={option == selectedOption}
+            active={option === selectedOption}
           >
             {option}
-          </St.ContractBtn>
+          </St.OptionBtn>
         ))}
       </St.OptionWrapper>
     </St.CheckListItemWrapper>
@@ -57,7 +65,7 @@ const St = {
     justify-content: space-between;
   `,
 
-  ContractBtn: styled.button<{ active: boolean }>`
+  OptionBtn: styled.button<{ active: boolean }>`
     width: 17.863rem;
     height: 4.2rem;
 

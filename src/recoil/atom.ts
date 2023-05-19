@@ -24,3 +24,8 @@ export const productInfoState = atom<productInfo>({
   },
   effects_UNSTABLE: [persistAtom],
 });
+
+export const selectedSubcategoriesState = atom<number[]>({
+  key: 'selectedSubcategories',
+  default: [],
+});
