@@ -107,10 +107,10 @@ const St = {
   `,
 
   //왼쪽 영역
-  //스타일 가이드 받아서 padding-right 값 추가 필요!!
   FooterLeft: styled.article`
     display: flex;
     flex-direction: column;
+    padding-right: 2.5rem;
 
     & * {
       color: ${({ theme }) => theme.colors.Grey600};
@@ -214,8 +214,7 @@ const St = {
 
     //social icon
     & > svg {
-      //위 마진 값 더 정확히 알아와서 수정 필요
-      margin: 1rem 0;
+      margin: 0.9rem 0;
     }
   `,
   AboutContent: styled.div`
@@ -226,9 +225,11 @@ const St = {
       font-size: 1.3rem;
       line-height: 1.6rem;
     }
+
     & > div {
       padding-bottom: 0.5rem;
     }
+
     & span {
       padding-right: 0.3rem;
     }
@@ -248,8 +249,9 @@ const St = {
     & > div {
       display: flex;
       flex-direction: column;
+      padding-right: 1.5rem;
     }
-    // 첫번째 로고 텍스트-두전째로고 사이 간격 조정 필요
+
     & > p {
       width: 29.3rem;
     }
