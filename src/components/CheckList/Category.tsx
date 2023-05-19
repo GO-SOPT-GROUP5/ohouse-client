@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { IcCheckboxAfter, IcCheckboxBefore, IcToggle } from '../../assets/icon';
 import { CATEGORY_LIST } from '../../constants/category';
@@ -9,6 +9,7 @@ const Category = () => {
   const [activeCategories, setActiveCategories] = useState<string[]>([]);
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
   const [selectedSubcategories, setSelectedSubcategories] = useState<number[]>([]);
+  const [isSelectAll, setIsSelectAll] = useState(false);
 
   const handleExpand = (category: string) => {
     if (expandedCategories.includes(category)) {
@@ -45,9 +46,14 @@ const Category = () => {
     }
   };
 
+  const handleSelectAll = () => {
+    setActiveCategories(isSelectAll ? [] : ['전체']);
+    setIsSelectAll(prev => !prev);
+  };
+
   return (
     <St.CategoryList>
-      <St.SelectAllBtn type="button">
+      <St.SelectAllBtn type="button" onClick={handleSelectAll} isSelectAll={isSelectAll}>
         <p>전체</p>
       </St.SelectAllBtn>
       {CATEGORY_LIST.map(({ category, subcategories }) => (
@@ -95,18 +101,27 @@ const St = {
     ${({ theme }) => theme.fonts.Title5};
   `,
 
-  SelectAllBtn: styled.button`
+  SelectAllBtn: styled.button<{ isSelectAll: boolean }>`
     width: 100%;
     height: 5.8rem;
     padding: 0;
 
     border-bottom: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
+    background-color: ${({ theme }) => theme.colors.White};
+    color: ${({ theme }) => theme.colors.Grey600};
 
     & > p {
       margin-left: 3.8rem;
       ${({ theme }) => theme.fonts.Title5};
       float: left;
     }
+
+    ${({ isSelectAll }) =>
+      isSelectAll &&
+      css`
+        background-color: ${({ theme }) => theme.colors.Blue};
+        color: ${({ theme }) => theme.colors.White};
+      `};
   `,
 
   CategoryName: styled.p`
@@ -130,27 +145,27 @@ const St = {
 
     ${({ active, theme }) =>
       !active &&
-      `
-    background-color: ${theme.colors.White};
-    color: ${theme.colors.Grey600};
+      css`
+        background-color: ${theme.colors.White};
+        color: ${theme.colors.Grey600};
 
-    & ${St.CategoryName} {
-      color: ${theme.colors.Grey600};
-    }
-  `}
-
-    ${({ active, expanded, theme }) =>
-      active &&
-      `
-    .expandBtn {
-      svg {
-        transform: ${expanded ? 'rotate(180deg)' : 'none'};
-        & > path {
-          fill: ${theme.colors.White};
+        & > ${St.CategoryName} {
+          color: ${theme.colors.Grey600};
         }
-      }
-    }
-  `}
+      `};
+
+    ${({ active, expanded }) =>
+      active &&
+      css`
+        .expandBtn {
+          svg {
+            transform: ${expanded ? 'rotate(180deg)' : 'none'};
+            & > path {
+              fill: ${({ theme }) => theme.colors.White};
+            }
+          }
+        }
+      `};
   `,
 
   Subcategory: styled.p<{ disabled: boolean }>`
