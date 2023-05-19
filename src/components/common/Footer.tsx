@@ -163,12 +163,10 @@ const St = {
 
     border: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
     border-radius: 0.4rem;
-
+    background: transparent;
     font-weight: 400;
     font-size: 1.6rem;
     line-height: 1.9rem;
-
-    background: transparent;
   `,
   CsEmail: styled.button`
     width: 9rem;
