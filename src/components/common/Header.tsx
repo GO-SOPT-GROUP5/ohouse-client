@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import styled from 'styled-components';
 
 import {
@@ -13,22 +13,24 @@ import {
 } from '../../assets/icon';
 
 const Header = () => {
-  const [activeNav, setActiveNav] = useState(0);
+  const location = useLocation();
+  const [activeNav, setActiveNav] = useState(location.pathname);
   const navigate = useNavigate();
 
-  const LNB_LIST = ['홈', '인테리어시공', '이사', '설치수리', '우리동네아파트', '등록매물확인하기'];
+  const LNB_LIST = [
+    { pathName: '/', title: '홈' },
+    { pathName: '', title: '인테리어시공' },
+    { pathName: '', title: '이사' },
+    { pathName: '', title: '우리동네아파트' },
+    { pathName: '/list', title: '등록매물확인하기' },
+  ];
 
   const handleClick = (e: Event) => {
     const target = (e.target as HTMLElement).id;
-    switch (target) {
-      case '0':
-        setActiveNav(+target);
-        navigate('/');
-        break;
-      case '5':
-        setActiveNav(+target);
-        navigate('/list');
-        break;
+    //홈 & 등록매물확인하기일 때만 이동!
+    if (target !== '') {
+      setActiveNav(target);
+      navigate(target);
     }
   };
 
@@ -63,9 +65,9 @@ const Header = () => {
       </St.GnbWrapper>
       <St.LnbWapper>
         <St.LnbContainer onClick={handleClick}>
-          {LNB_LIST.map((item, index) => (
-            <St.LnbList key={index} className={activeNav === index ? 'isClicked' : ''}>
-              <span id={index}>{item}</span>
+          {LNB_LIST.map(({ pathName, title }) => (
+            <St.LnbList key={title} className={activeNav === pathName ? 'isClicked' : ''}>
+              <span id={pathName}>{title}</span>
             </St.LnbList>
           ))}
         </St.LnbContainer>
