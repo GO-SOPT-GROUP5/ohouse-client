@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
 import {
@@ -13,13 +14,21 @@ import {
 
 const Header = () => {
   const [activeNav, setActiveNav] = useState(0);
+  const navigate = useNavigate();
 
   const LNB_LIST = ['홈', '인테리어시공', '이사', '설치수리', '우리동네아파트', '등록매물확인하기'];
 
   const handleClick = (e: Event) => {
     const target = (e.target as HTMLElement).id;
-    if (target === '0' || target === '5') {
-      setActiveNav(+target);
+    switch (target) {
+      case '0':
+        setActiveNav(+target);
+        navigate('/');
+        break;
+      case '5':
+        setActiveNav(+target);
+        navigate('/list');
+        break;
     }
   };
 
