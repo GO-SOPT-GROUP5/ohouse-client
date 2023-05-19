@@ -1,0 +1,87 @@
+import { useState } from 'react';
+import styled from 'styled-components';
+
+const CheckListItem = () => {
+  const OPTIONS = ['나빠요', '보통이에요', '좋아요'];
+  const [contract, setContract] = useState<string>();
+
+  const handleContractSelect = (contractType: string) => {
+    if (contractType !== contract) {
+      setContract(contractType);
+    }
+  };
+  return (
+    <St.CheckListItemWrapper>
+      <p>집의 전반적인 채광량은 어떤가요?</p>
+      <St.OptionWrapper>
+        {OPTIONS.map(option => (
+          <St.ContractBtn
+            key={option}
+            onClick={() => handleContractSelect(option)}
+            disabled={option === contract}
+            active={option === contract}
+          >
+            {option}
+          </St.ContractBtn>
+        ))}
+      </St.OptionWrapper>
+    </St.CheckListItemWrapper>
+  );
+};
+
+export default CheckListItem;
+
+const St = {
+  CheckListItemWrapper: styled.article`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 8.7rem;
+
+    background-color: ${({ theme }) => theme.colors.White};
+
+    & > p {
+      color: ${({ theme }) => theme.colors.Grey600};
+      // 수정 필요
+      font-family: 'Pretendard';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 21px;
+    }
+  `,
+  OptionWrapper: styled.div`
+    display: flex;
+    justify-content: space-between;
+  `,
+
+  ContractBtn: styled.button<{ active: boolean }>`
+    width: 17.863rem;
+    height: 4.2rem;
+
+    border: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
+    border-radius: 0.5rem;
+    color: ${({ theme }) => theme.colors.Grey400};
+    ${({ theme }) => theme.fonts.Body4};
+
+    ${({ active, theme }) =>
+      active
+        ? `
+    border: 0.1rem solid ${theme.colors.Blue};
+    background-color: ${theme.colors.White};
+  color: ${theme.colors.Blue};
+`
+        : `
+    background-color: ${theme.colors.White};
+  color: ${theme.colors.Grey600};
+`}
+
+    &:hover {
+      border: 0.1rem solid ${({ theme }) => theme.colors.Blue};
+      background: rgba(51, 197, 239, 0.1);
+      color: ${({ theme }) => theme.colors.Blue};
+    }
+  `,
+};

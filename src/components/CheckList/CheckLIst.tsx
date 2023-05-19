@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 
+import CheckListItem from './CheckListItem';
+
 const CheckLIst = () => {
-  return <St.CheckList>체크리스트</St.CheckList>;
+  return (
+    <St.CheckList>
+      <CheckListItem />
+    </St.CheckList>
+  );
 };
 
 export default CheckLIst;
@@ -9,10 +15,9 @@ export default CheckLIst;
 const St = {
   CheckList: styled.section`
     width: 63.2rem;
-    height: 81.2rem;
+    height: fit-content;
+    padding: 3.9rem;
 
     background-color: ${({ theme }) => theme.colors.White};
-    /* color: ${({ theme }) => theme.colors.Grey600};
-    ${({ theme }) => theme.fonts.Title5}; */
   `,
 };
