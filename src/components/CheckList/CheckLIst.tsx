@@ -44,6 +44,10 @@ export default CheckLIst;
 
 const St = {
   CheckList: styled.section`
+    display: flex;
+    flex-direction: column;
+    gap: 3.6rem;
+
     width: 63.2rem;
     height: fit-content;
     padding: 3.9rem;

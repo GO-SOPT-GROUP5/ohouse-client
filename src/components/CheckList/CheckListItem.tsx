@@ -18,7 +18,7 @@ const CheckListItem = ({ subcategory, checklist, options }: CheckListItemProms) 
 
   return (
     <St.CheckListItemWrapper>
-      <p>집의 전반적인 채광량은 어떤가요?</p>
+      <p>{checklist}</p>
       <St.OptionWrapper>
         {options.map(option => (
           <St.OptionBtn

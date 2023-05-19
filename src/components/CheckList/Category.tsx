@@ -10,7 +10,6 @@ import { subCategoryInfo } from '../../types/category';
 const Category = () => {
   const [activeCategories, setActiveCategories] = useState<string[]>([]);
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
-  // const [selectedSubcategories, setSelectedSubcategories] = useState<number[]>([]);
   const [selectedSubcategories, setSelectedSubcategories] = useRecoilState(
     selectedSubcategoriesState,
   );
@@ -25,16 +24,20 @@ const Category = () => {
   };
 
   const handleClickSubcategory = (e: React.MouseEvent, subcategory: subCategoryInfo) => {
+    let copiedSubcategories: number[];
+
     if (subcategory.isDisable) {
       e.stopPropagation();
       return;
     }
 
     if (selectedSubcategories.includes(subcategory.id)) {
-      setSelectedSubcategories(selectedSubcategories.filter(s => s !== subcategory.id));
+      copiedSubcategories = selectedSubcategories.filter(s => s !== subcategory.id);
     } else {
-      setSelectedSubcategories([...selectedSubcategories, subcategory.id]);
+      copiedSubcategories = [...selectedSubcategories, subcategory.id];
     }
+    copiedSubcategories.sort((a, b) => a - b); // Sort the IDs in ascending order
+    setSelectedSubcategories(copiedSubcategories);
 
     e.stopPropagation();
   };
