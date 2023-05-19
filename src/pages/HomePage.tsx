@@ -48,7 +48,7 @@ const HomePage = () => {
       id: 5,
       title: '우리동네 아파트',
       isNew: true,
-      content: '종합리모델링,\n카페공간 등\n분야별 업체찾기',
+      content: '살고있는, 살고싶은 아파트\n라이프스타일 살펴보기',
       icon: <IcApartment />,
     },
   ];
