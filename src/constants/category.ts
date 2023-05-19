@@ -311,7 +311,6 @@ export const CATEGORY_LIST = [
   },
   {
     category: '편의시설',
-
     subcategories: [
       {
         id: 38,

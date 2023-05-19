@@ -2,14 +2,14 @@ import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import { CATEGORY_LIST } from '../../constants/category';
-import { selectedSubcategoriesState } from '../../recoil/atom';
+import { selectedSubcategoriesState, showIndexState } from '../../recoil/atom';
 import CheckListItem from './CheckListItem';
 
-const CheckLIst = () => {
+const CheckListIndex = () => {
   const [selectedSubcategories, setSelectedSubcategories] = useRecoilState(
     selectedSubcategoriesState,
   );
-  console.log(selectedSubcategories);
+  const [showIndex] = useRecoilState(showIndexState);
 
   const getCategoryInfo = (id: number) => {
     for (const category of CATEGORY_LIST) {
@@ -23,9 +23,17 @@ const CheckLIst = () => {
     return null;
   };
 
+  const showSubcategories = selectedSubcategories.filter(
+    subcategory => subcategory >= showIndex[0] && subcategory <= showIndex[1],
+  );
+
+  console.log('selectedSubcategories', selectedSubcategories);
+  console.log('showSubcategories', showSubcategories);
+  console.log('showIndex', showIndex);
+
   return (
     <St.CheckList>
-      {selectedSubcategories.map(id => {
+      {showSubcategories.map(id => {
         const { subcategory, checklist, options } = getCategoryInfo(id) || {};
         return subcategory && checklist && options ? (
           <CheckListItem
@@ -40,7 +48,7 @@ const CheckLIst = () => {
   );
 };
 
-export default CheckLIst;
+export default CheckListIndex;
 
 const St = {
   CheckList: styled.section`

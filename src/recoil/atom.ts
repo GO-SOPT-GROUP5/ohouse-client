@@ -29,3 +29,8 @@ export const selectedSubcategoriesState = atom<number[]>({
   key: 'selectedSubcategories',
   default: [],
 });
+
+export const showIndexState = atom<number[]>({
+  key: 'showIndex',
+  default: [1, 48],
+});

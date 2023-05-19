@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import Category from '../components/CheckList/Category';
-import CheckLIst from '../components/CheckList/CheckLIst';
+import CheckListIndex from '../components/CheckList/CheckListIndex';
 import ProductUpload from '../components/CheckList/ProductUpload';
 
 const CheckListPage = () => {
@@ -10,7 +10,7 @@ const CheckListPage = () => {
       <ProductUpload />
       <St.CheckListWarpper>
         <Category />
-        <CheckLIst />
+        <CheckListIndex />
       </St.CheckListWarpper>
     </St.CheckListPageWrapper>
   );

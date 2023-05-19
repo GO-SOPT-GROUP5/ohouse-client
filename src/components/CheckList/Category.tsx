@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 
 import { IcCheckboxAfter, IcCheckboxBefore, IcToggle } from '../../assets/icon';
 import { CATEGORY_LIST } from '../../constants/category';
-import { selectedSubcategoriesState } from '../../recoil/atom';
+import { selectedSubcategoriesState, showIndexState } from '../../recoil/atom';
 import { subCategoryInfo } from '../../types/category';
 
 const Category = () => {
@@ -14,6 +14,7 @@ const Category = () => {
     selectedSubcategoriesState,
   );
   const [isSelectAll, setIsSelectAll] = useState(false);
+  const [showIndex, setShowIndex] = useRecoilState(showIndexState);
 
   const handleExpand = (category: string) => {
     if (expandedCategories.includes(category)) {
@@ -44,6 +45,7 @@ const Category = () => {
 
   const handleActiveAndExpand = (category: string) => {
     setIsSelectAll(false);
+    handleShowId(category);
     if (activeCategory === category) {
       setActiveCategory('');
       handleExpand(category);
@@ -52,6 +54,55 @@ const Category = () => {
       if (!expandedCategories.includes(category)) {
         handleExpand(category);
       }
+    }
+  };
+
+  const handleShowId = (activeCategory: string) => {
+    switch (activeCategory) {
+      case '전체':
+        setShowIndex([1, 48]);
+        break;
+      case '실내':
+        setShowIndex([1, 6]);
+        break;
+      case '현관':
+        setShowIndex([7, 9]);
+        break;
+      case '주방':
+        setShowIndex([10, 14]);
+        break;
+      case '거실':
+        setShowIndex([15, 17]);
+        break;
+      case '침실':
+        setShowIndex([18, 20]);
+        break;
+      case '화장실':
+        setShowIndex([21, 27]);
+        break;
+      case '보안':
+        setShowIndex([28, 29]);
+        break;
+      case '건물상태':
+        setShowIndex([30, 30]);
+        break;
+      case '단지시설':
+        setShowIndex([31, 34]);
+        break;
+      case '교통':
+        setShowIndex([35, 37]);
+        break;
+      case '편의시설':
+        setShowIndex([38, 42]);
+        break;
+      case '주변시설':
+        setShowIndex([43, 45]);
+        break;
+      case '교육시설':
+        setShowIndex([46, 48]);
+        break;
+      default:
+        break;
     }
   };
 
