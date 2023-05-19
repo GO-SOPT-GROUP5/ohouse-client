@@ -11,19 +11,12 @@ import {
   IcProfile,
   IcSearch,
 } from '../../assets/icon';
+import { HEADER_LNB_LIST } from '../../constants/headerLnbList';
 
 const Header = () => {
   const location = useLocation();
   const [activeNav, setActiveNav] = useState(location.pathname);
   const navigate = useNavigate();
-
-  const LNB_LIST = [
-    { pathName: '/', title: '홈' },
-    { pathName: '', title: '인테리어시공' },
-    { pathName: '', title: '이사' },
-    { pathName: '', title: '우리동네아파트' },
-    { pathName: '/list', title: '등록매물확인하기' },
-  ];
 
   const handleClick = (e: Event) => {
     const target = (e.target as HTMLElement).id;
@@ -65,7 +58,7 @@ const Header = () => {
       </St.GnbWrapper>
       <St.LnbWapper>
         <St.LnbContainer onClick={handleClick}>
-          {LNB_LIST.map(({ pathName, title }) => (
+          {HEADER_LNB_LIST.map(({ pathName, title }) => (
             <St.LnbList key={title} className={activeNav === pathName ? 'isClicked' : ''}>
               <span id={pathName}>{title}</span>
             </St.LnbList>
