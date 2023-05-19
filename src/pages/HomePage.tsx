@@ -36,13 +36,14 @@ const HomePage = () => {
             <IcCleanService />
           </St.BottomTitle>
           <St.Bottomcontent>
-            {HOME_CLEANING_MENU.map(({ id, title, isNew, content, icon }) => (
+            {HOME_CLEANING_MENU.map(({ id, title, isNew, content, icon, alt }) => (
               <MenuBox
                 key={id}
                 title={title}
                 isNew={isNew ? <IcNew /> : <></>}
                 content={content}
                 icon={icon}
+                alt={alt}
               />
             ))}
           </St.Bottomcontent>
