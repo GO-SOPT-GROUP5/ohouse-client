@@ -9,19 +9,12 @@ import SwiperCore, { Autoplay, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { IcLeftSmall, IcRightSmall } from '../../assets/icon';
-import { ImgBanner1, ImgBanner2, ImgBanner3, ImgBanner4, ImgBanner5 } from '../../assets/image';
+// import { ImgBanner1, ImgBanner2, ImgBanner3, ImgBanner4, ImgBanner5 } from '../../assets/image';
+import { HOME_BANNER_LIST } from '../../constants/homeBanner';
 
 const AdBanner = () => {
   SwiperCore.use([Autoplay, Pagination]);
   const swiperRef = useRef();
-
-  const BANNER_LIST = [
-    <ImgBanner1 />,
-    <ImgBanner2 />,
-    <ImgBanner3 />,
-    <ImgBanner4 />,
-    <ImgBanner5 />,
-  ];
 
   return (
     <St.BannerWrapper>
@@ -36,8 +29,10 @@ const AdBanner = () => {
           swiperRef.current = swiper;
         }}
       >
-        {BANNER_LIST.map((banner, index) => (
-          <SwiperSlide key={index}>{banner}</SwiperSlide>
+        {HOME_BANNER_LIST.map(({ id, src, alt }) => (
+          <SwiperSlide key={id}>
+            <img src={src} alt={alt} />
+          </SwiperSlide>
         ))}
       </St.Swiper>
       <St.BtnWrapper>
@@ -95,7 +90,6 @@ const St = {
 
     border: none;
     background: transparent;
-    font-size: 0;
     line-height: 0;
   `,
 };
