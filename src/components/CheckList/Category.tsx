@@ -8,7 +8,7 @@ import { selectedSubcategoriesState } from '../../recoil/atom';
 import { subCategoryInfo } from '../../types/category';
 
 const Category = () => {
-  const [activeCategories, setActiveCategories] = useState<string[]>([]);
+  const [activeCategory, setActiveCategory] = useState<string>('');
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
   const [selectedSubcategories, setSelectedSubcategories] = useRecoilState(
     selectedSubcategoriesState,
@@ -44,11 +44,11 @@ const Category = () => {
 
   const handleActiveAndExpand = (category: string) => {
     setIsSelectAll(false);
-    if (activeCategories.includes(category)) {
-      setActiveCategories([]);
+    if (activeCategory === category) {
+      setActiveCategory('');
       handleExpand(category);
     } else {
-      setActiveCategories([category]);
+      setActiveCategory(category);
       if (!expandedCategories.includes(category)) {
         handleExpand(category);
       }
@@ -56,7 +56,7 @@ const Category = () => {
   };
 
   const handleSelectAll = () => {
-    setActiveCategories(isSelectAll ? [] : ['전체']);
+    setActiveCategory(isSelectAll ? '' : '전체');
     setIsSelectAll(prev => !prev);
   };
 
@@ -69,7 +69,7 @@ const Category = () => {
         <St.CategoryItem
           key={category}
           onClick={() => handleActiveAndExpand(category)}
-          active={activeCategories.includes(category)}
+          active={activeCategory === category}
           expanded={expandedCategories.includes(category)}
         >
           <St.CategoryName>

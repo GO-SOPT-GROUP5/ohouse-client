@@ -15,6 +15,7 @@ const CheckListItem = ({ subcategory, checklist, options }: CheckListItemProms) 
       setSelectedOption(select);
     }
   };
+  console.log(subcategory);
 
   return (
     <St.CheckListItemWrapper>
