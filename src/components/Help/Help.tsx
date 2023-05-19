@@ -105,7 +105,7 @@ const St = {
     margin: 0rem 10.1rem;
 
     .swiper-pagination-bullet {
-      --swiper-theme-color: ${({ theme }) => theme.colors.Blue};;
+      --swiper-theme-color: ${({ theme }) => theme.colors.Blue};
     }
 
     & > div {
