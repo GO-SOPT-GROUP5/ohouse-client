@@ -1,8 +1,8 @@
-
-import AdBanner from '../components/Home/AdBanner';
 import { useNavigate } from 'react-router';
 import { styled } from 'styled-components';
+
 import { IcCleanService, IcNew } from '../assets/icon';
+import AdBanner from '../components/Home/AdBanner';
 import MenuBox from '../components/Home/MenuBox';
 import { HOME_CLEANING_MENU, HOME_MAIN_MENU } from '../constants/homMenuContents';
 
@@ -50,6 +50,7 @@ const HomePage = () => {
           </St.Bottomcontent>
         </St.BottomSection>
       </St.MenuWrapper>
+      <AdBanner />
     </St.HomeWrapper>
   );
 };
