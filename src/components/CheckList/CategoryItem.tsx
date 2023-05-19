@@ -63,7 +63,8 @@ const CategoryItem = () => {
           <CategoryName>
             {category}
             <StExpandBtn>
-              {expandedCategories.includes(category) ? <IcToggleExpanded /> : <IcToggle />}
+              <IcToggle />
+              {/* {activeCategories.includes(category) ? <IcToggleExpanded /> : <IcToggle />} */}
             </StExpandBtn>
           </CategoryName>
           {expandedCategories.includes(category) &&
@@ -114,18 +115,38 @@ const CategoryName = styled.p`
 
   ${({ theme }) => theme.fonts.Title5};
 `;
-
 const Category = styled.div<{ active: boolean; expanded: boolean }>`
   padding: 0rem 2.8rem 0rem 3.8rem;
 
   border-bottom: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
-  color: ${({ active, expanded, theme }) =>
-    expanded ? theme.colors.White : active ? theme.colors.White : theme.colors.Grey600};
   background-color: ${({ active, expanded, theme }) =>
-    expanded ? theme.colors.Blue : active ? theme.colors.Blue : theme.colors.White};
+    expanded || active ? theme.colors.Blue : theme.colors.White};
+  color: ${({ active, expanded, theme }) =>
+    expanded || active ? theme.colors.White : theme.colors.Grey600};
 
   ${({ active, theme }) =>
-    !active && `background-color: ${theme.colors.White}; color: ${theme.colors.Grey600}`}
+    !active &&
+    `
+    background-color: ${theme.colors.White};
+    color: ${theme.colors.Grey600};
+
+    & ${CategoryName} {
+      color: ${theme.colors.Grey600};
+    }
+  `}
+
+  ${({ active, expanded, theme }) =>
+    active &&
+    `
+    ${StExpandBtn} {
+      svg {
+        transform: ${expanded ? 'rotate(180deg)' : 'none'};
+        & > path {
+          fill: ${theme.colors.White};
+        }
+      }
+    }
+  `}
 `;
 
 const Subcategory = styled.p<{ disabled: boolean }>`
@@ -143,7 +164,6 @@ const Subcategory = styled.p<{ disabled: boolean }>`
   ${({ theme }) => theme.fonts.Body6};
 
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-  /* cursor: pointer; */
 
   & > svg {
     width: 1.3rem;
