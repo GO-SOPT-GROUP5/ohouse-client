@@ -1,17 +1,14 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import { IcCheckboxAfter, IcCheckboxBefore, IcToggle, IcToggleExpanded } from '../../assets/icon';
-import { CATEGORY_LIST, DISABLED_SUBCATEGORY_LIST } from '../../constants/category';
+import { IcCheckboxAfter, IcCheckboxBefore, IcToggle } from '../../assets/icon';
+import { CATEGORY_LIST } from '../../constants/category';
+import { subCategoryInfo } from '../../types/category';
 
 const CategoryItem = () => {
   const [activeCategories, setActiveCategories] = useState<string[]>([]);
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
   const [selectedSubcategories, setSelectedSubcategories] = useState<string[]>([]);
-
-  const isDisabled = (subcategory: string) => {
-    return DISABLED_SUBCATEGORY_LIST.includes(subcategory);
-  };
 
   const handleActive = (category: string) => {
     if (activeCategories.includes(category)) {
@@ -29,16 +26,16 @@ const CategoryItem = () => {
     }
   };
 
-  const handleClickSubcategory = (e: React.MouseEvent, subcategory: string) => {
-    if (isDisabled(subcategory)) {
+  const handleClickSubcategory = (e: React.MouseEvent, subcategory: subCategoryInfo) => {
+    if (subcategory.isDisable) {
       e.stopPropagation();
       return;
     }
 
-    if (selectedSubcategories.includes(subcategory)) {
-      setSelectedSubcategories(selectedSubcategories.filter(s => s !== subcategory));
+    if (selectedSubcategories.includes(subcategory.subcategory)) {
+      setSelectedSubcategories(selectedSubcategories.filter(s => s !== subcategory.subcategory));
     } else {
-      setSelectedSubcategories([...selectedSubcategories, subcategory]);
+      setSelectedSubcategories([...selectedSubcategories, subcategory.subcategory]);
     }
     e.stopPropagation();
   };
@@ -71,22 +68,21 @@ const CategoryItem = () => {
             {category}
             <StExpandBtn>
               <IcToggle />
-              {/* {activeCategories.includes(category) ? <IcToggleExpanded /> : <IcToggle />} */}
             </StExpandBtn>
           </CategoryName>
           {expandedCategories.includes(category) &&
             subcategories.map(subcategory => (
               <Subcategory
-                key={subcategory}
+                key={subcategory.subcategory}
                 onClick={e => handleClickSubcategory(e, subcategory)}
-                disabled={isDisabled(subcategory)}
+                disabled={subcategory.isDisable}
               >
-                {selectedSubcategories.includes(subcategory) ? (
+                {selectedSubcategories.includes(subcategory.subcategory) ? (
                   <IcCheckboxAfter />
                 ) : (
                   <IcCheckboxBefore />
                 )}
-                {subcategory}
+                {subcategory.subcategory}
               </Subcategory>
             ))}
         </Category>
