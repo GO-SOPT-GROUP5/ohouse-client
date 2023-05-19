@@ -59,9 +59,6 @@ const Category = () => {
 
   const handleShowId = (activeCategory: string) => {
     switch (activeCategory) {
-      case '전체':
-        setShowIndex([1, 48]);
-        break;
       case '실내':
         setShowIndex([1, 6]);
         break;
@@ -109,6 +106,7 @@ const Category = () => {
   const handleSelectAll = () => {
     setActiveCategory(isSelectAll ? '' : '전체');
     setIsSelectAll(prev => !prev);
+    setShowIndex([1, 48]);
   };
 
   return (
