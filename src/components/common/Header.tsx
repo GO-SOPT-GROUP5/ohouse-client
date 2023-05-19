@@ -2,9 +2,9 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import {
-  BtnWrite,
   IcAlarm,
   IcBookMark,
+  IcBtnWrite,
   IcCart,
   IcLogo,
   IcProfile,
@@ -12,13 +12,14 @@ import {
 } from '../../assets/icon';
 
 const Header = () => {
-  const [activeNav, setActiveNav] = useState('home');
+  const [activeNav, setActiveNav] = useState(0);
+
+  const LNB_LIST = ['홈', '인테리어시공', '이사', '설치수리', '우리동네아파트', '등록매물확인하기'];
 
   const handleClick = (e: Event) => {
     const target = (e.target as HTMLElement).id;
-    if (target) {
-      setActiveNav(target);
-      //여기서 페이지 url 정해지면 라우팅 시켜주면 될 듯 ..!
+    if (target === '0' || target === '5') {
+      setActiveNav(+target);
     }
   };
 
@@ -47,29 +48,18 @@ const Header = () => {
             <IcProfile />
           </St.GnbProfile>
           <St.GnbWriteBtn>
-            <BtnWrite />
+            <IcBtnWrite />
           </St.GnbWriteBtn>
         </St.GnbRight>
       </St.GnbWrapper>
-      <St.LnbWapper onClick={handleClick}>
-        <St.LnbList className={activeNav === 'home' ? 'isClicked' : ''}>
-          <span id="home">홈</span>
-        </St.LnbList>
-        <St.LnbList>
-          <span>인테리어시공</span>
-        </St.LnbList>
-        <St.LnbList>
-          <span>이사</span>
-        </St.LnbList>
-        <St.LnbList>
-          <span>설치수리</span>
-        </St.LnbList>
-        <St.LnbList>
-          <span>우리동네아파트</span>
-        </St.LnbList>
-        <St.LnbList className={activeNav === 'productPage' ? 'isClicked' : ''}>
-          <span id="productPage">등록매물확인하기</span>
-        </St.LnbList>
+      <St.LnbWapper>
+        <St.LnbContainer onClick={handleClick}>
+          {LNB_LIST.map((item, index) => (
+            <St.LnbList key={index} className={activeNav === index ? 'isClicked' : ''}>
+              <span id={index}>{item}</span>
+            </St.LnbList>
+          ))}
+        </St.LnbContainer>
       </St.LnbWapper>
     </St.HeaderWrapper>
   );
@@ -106,7 +96,7 @@ const St = {
       height: 4.3rem;
     }
   `,
-  GnbLeft: styled.article`
+  GnbLeft: styled.div`
     display: flex;
 
     margin-right: 10rem;
@@ -124,7 +114,7 @@ const St = {
       cursor: pointer;
     }
   `,
-  GnbSearch: styled.article`
+  GnbSearch: styled.div`
     position: relative;
 
     margin-right: 2.6rem;
@@ -160,7 +150,7 @@ const St = {
       height: 1.8rem;
     }
   `,
-  GnbRight: styled.article`
+  GnbRight: styled.div`
     display: flex;
     align-items: center;
   `,
@@ -198,9 +188,13 @@ const St = {
     width: 100%;
     height: 5.4rem;
     padding: 1.6rem 10rem;
+  `,
+  LnbContainer: styled.ul`
+    display: flex;
     gap: 2.2rem;
   `,
-  LnbList: styled.div`
+  LnbList: styled.li`
+    list-style: none;
     position: relative;
 
     height: 3rem;
