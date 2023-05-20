@@ -51,7 +51,9 @@ const CheckListIndex = () => {
           );
         })
       ) : (
-        <ImgEmpty />
+        <St.Empty>
+          <ImgEmpty />
+        </St.Empty>
       )}
     </St.CheckList>
   );
@@ -66,10 +68,17 @@ const St = {
     gap: 3.6rem;
 
     width: 63.2rem;
-    /* width: 63.2rem; */
-    /* height: fit-content; */
+    height: fit-content;
     padding: 3.9rem;
 
     background-color: ${({ theme }) => theme.colors.White};
+  `,
+
+  Empty: styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 81.2rem;
   `,
 };
