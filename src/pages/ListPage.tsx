@@ -32,6 +32,7 @@ const ListPage = () => {
 
 export default ListPage;
 
+
 const St = {
   ListWrapper : styled.section`
     display: flex;
