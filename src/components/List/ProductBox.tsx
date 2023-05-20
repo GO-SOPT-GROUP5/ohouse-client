@@ -3,7 +3,12 @@ import styled from "styled-components";
 import { IcStar } from "../../assets/icon";
 import { ImgRoom1 } from "../../assets/image";
 
-const ProductBox = () => {
+interface ProductBoxContent {
+  
+}
+
+const ProductBox = (props : ProductBoxContent) => {
+  
   return (
   <St.ProductBoxWrapper>
     <ImgRoom1/>
