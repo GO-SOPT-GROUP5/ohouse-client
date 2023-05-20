@@ -1,6 +1,7 @@
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
+import { ImgEmpty } from '../../assets/image';
 import { CATEGORY_LIST } from '../../constants/category';
 import { selectedSubcategoriesState, showIndexState } from '../../recoil/atom';
 import CheckListItem from './CheckListItem';
@@ -33,17 +34,25 @@ const CheckListIndex = () => {
 
   return (
     <St.CheckList>
-      {showSubcategories.map(id => {
-        const { subcategory, checklist, options } = getCategoryInfo(id) || {};
-        return subcategory && checklist && options ? (
-          <CheckListItem
-            key={id}
-            subcategory={subcategory}
-            checklist={checklist}
-            options={options}
-          />
-        ) : null;
-      })}
+      {showSubcategories.length ? (
+        showSubcategories.map(id => {
+          const { subcategory, checklist, options } = getCategoryInfo(id) || {};
+          return (
+            subcategory &&
+            checklist &&
+            options && (
+              <CheckListItem
+                key={id}
+                subcategory={subcategory}
+                checklist={checklist}
+                options={options}
+              />
+            )
+          );
+        })
+      ) : (
+        <ImgEmpty />
+      )}
     </St.CheckList>
   );
 };
@@ -57,7 +66,8 @@ const St = {
     gap: 3.6rem;
 
     width: 63.2rem;
-    height: fit-content;
+    /* width: 63.2rem; */
+    /* height: fit-content; */
     padding: 3.9rem;
 
     background-color: ${({ theme }) => theme.colors.White};
