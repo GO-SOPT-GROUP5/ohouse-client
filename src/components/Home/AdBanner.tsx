@@ -58,6 +58,7 @@ const St = {
 
     width: fit-content;
     margin: auto;
+    padding-bottom: 5.8rem;
   `,
   Swiper: styled(Swiper)`
     width: 121.6rem;
@@ -76,9 +77,9 @@ const St = {
     justify-content: space-between;
 
     position: absolute;
-    top: 50%;
-    left: -3rem;
-    transform: translate(0, -50%);
+    top: 50.5%;
+    left: -2.9rem;
+    transform: translate(-0.2%, -95%);
 
     width: 128rem;
 
