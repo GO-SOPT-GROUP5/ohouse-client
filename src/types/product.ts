@@ -1,3 +1,10 @@
+export interface productRequest {
+  flag: string;
+  order: string;
+  page: number;
+  size: number;
+}
+
 export interface productResponse {
   id: number;
   grade: number;
