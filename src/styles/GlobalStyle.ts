@@ -135,6 +135,8 @@ export const reset = css`
   }
   button {
     cursor: pointer;
+    background: transparent;
+    border: none;
   }
 `;
 
@@ -144,6 +146,7 @@ ${reset}
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css");
 
 #root, body, html {
+    max-width: 192rem;
     height: 100vh;
     margin: 0 auto;
     overflow-y: auto;
