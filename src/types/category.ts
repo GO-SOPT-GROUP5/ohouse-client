@@ -12,18 +12,24 @@ export interface subCategoryInfo {
 }
 
 //매물 정보 수정 API type
-export interface productData {
+//request Data type
+export interface reqProductData {
   id: number;
   title: string;
   address: string;
   dong: number;
   ho: number;
-  createAt: string;
   image: string;
   description: string;
   grade: number;
   tags: tagObject;
 }
+
+//Response Data type
+export interface resProductData extends reqProductData {
+  createAt: string;
+}
+
 // 매물 정보 태그 내용 object
 export interface tagObject {
   state: string;
