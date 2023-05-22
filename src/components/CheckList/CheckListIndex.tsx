@@ -28,10 +28,6 @@ const CheckListIndex = () => {
     subcategory => subcategory >= showIndex[0] && subcategory <= showIndex[1],
   );
 
-  console.log('selectedSubcategories', selectedSubcategories);
-  console.log('showSubcategories', showSubcategories);
-  console.log('showIndex', showIndex);
-
   return (
     <St.CheckList>
       {showSubcategories.length ? (
