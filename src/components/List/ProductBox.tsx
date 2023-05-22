@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { IcStar } from "../../assets/icon";
+import { IcListStar } from "../../assets/icon";
 import { ImgRoom1 } from "../../assets/image";
 
 const ProductBox = () => {
@@ -21,7 +21,7 @@ const ProductBox = () => {
       </span>
     </St.ProductScore>
     <St.ProductStar>
-      <IcStar/><span>4</span>
+      <IcListStar/><span>4</span>
     </St.ProductStar>
     <St.ProductButtons>
       <button type="button">체크리스트 내역 보기</button>
