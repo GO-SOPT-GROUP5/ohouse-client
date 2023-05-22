@@ -74,7 +74,7 @@ const fonts = {
       'Segoe UI Symbol', sans-serif;
     font-style: normal;
     font-weight: 600;
-    font-size: 18rem;
+    font-size: 1.8rem;
     line-height: 2.1rem;
     letter-spacing: -0.01rem;
   `,
