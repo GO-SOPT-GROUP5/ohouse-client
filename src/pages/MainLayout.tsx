@@ -6,26 +6,26 @@ import Header from '../components/common/Header';
 
 const MainLayout = () => {
   return (
-    <St.mainLayoutWrapper>
+    <St.MainLayoutWrapper>
       <Header />
-      <St.mainWrapper>
+      <St.MainWrapper>
         <Outlet />
-      </St.mainWrapper>
+      </St.MainWrapper>
       <Footer />
-    </St.mainLayoutWrapper>
+    </St.MainLayoutWrapper>
   );
 };
 
 export default MainLayout;
 
 const St = {
-  mainLayoutWrapper: styled.div`
+  MainLayoutWrapper: styled.div`
     display: flex;
     flex-direction: column;
     min-height: 100vh;
   `,
   //fixe된 header 높이 만큼 컨텐츠 영역의 위쪽 padding 값 주기
-  mainWrapper: styled.main`
+  MainWrapper: styled.main`
     padding-top: 14rem;
   `,
 };
