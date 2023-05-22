@@ -89,8 +89,8 @@ const St = {
     height: 8.6rem;
     padding: 2.3rem 10rem 2rem 10rem;
 
-    background-color: ${({ theme }) => theme.colors.White};
     border-bottom: 0.2rem solid ${({ theme }) => theme.colors.Grey200};
+    background-color: ${({ theme }) => theme.colors.White};
   `,
   LogoContainer: styled.div`
     margin-right: 5rem;
