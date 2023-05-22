@@ -90,12 +90,10 @@ const St = {
     display: flex;
     justify-content: center;
 
-    position: fixed;
-    bottom: 0;
-
     width: 100%;
     height: 32.2rem;
     padding: 3.9rem 10rem 4.3rem 10rem;
+    margin-top: auto;
 
     background-color: ${({ theme }) => theme.colors.Grey100};
     & * {

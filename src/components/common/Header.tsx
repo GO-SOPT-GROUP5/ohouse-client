@@ -72,20 +72,17 @@ const Header = () => {
 export default Header;
 
 const St = {
-  // header 포지션은 나중에 mainLayout 만들 때 적용시킬게용!
   HeaderWrapper: styled.header`
-    /* position: fixed;
+    position: fixed;
     top: 0;
-    left: 0;
-    right: 0; */
+
+    width: 100%;
   `,
   //gnb 부분
   GnbWrapper: styled.section`
     display: flex;
     align-items: center;
 
-    //1440px 100% 기준 양 옆 padding 7rem
-    width: 100%;
     height: 8.6rem;
     padding: 2.3rem 10rem 2rem 10rem;
 
@@ -192,6 +189,8 @@ const St = {
     width: 100%;
     height: 5.4rem;
     padding: 1.6rem 10rem;
+
+    background-color: ${({ theme }) => theme.colors.White};
   `,
   LnbContainer: styled.ul`
     display: flex;
