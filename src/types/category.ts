@@ -43,33 +43,17 @@ export interface checkListData {
   price: string;
   size: number;
   grade: number;
-  checkListData: subCheckListData;
+  checkListData: checkListDataInfo;
 }
 
 //체크리스트 안 체크리스트데이터 object
-export interface subCheckListData {
-  indoor: [
-    {
-      name: string;
-      status: number;
-    },
-  ];
-  kitchen: [
-    {
-      name: string;
-      status: number;
-    },
-  ];
-  livingroom: [
-    {
-      name: string;
-      status: number;
-    },
-  ];
-  bathroom: [
-    {
-      name: string;
-      status: number;
-    },
-  ];
+export interface checkListDataInfo {
+  indoor: subCheckListInfo[];
+  kitchen: subCheckListInfo[];
+  livingroom: subCheckListInfo[];
+  bathroom: subCheckListInfo[];
+}
+export interface subCheckListInfo {
+  name: string;
+  status: number;
 }
