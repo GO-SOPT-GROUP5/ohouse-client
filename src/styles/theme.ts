@@ -1,4 +1,4 @@
-import { css, DefaultTheme } from 'styled-components';
+import { css, DefaultTheme } from "styled-components";
 
 const colors = {
   Blue: '#33C5EF',
