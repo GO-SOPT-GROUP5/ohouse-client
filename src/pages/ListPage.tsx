@@ -5,6 +5,7 @@ import { IcSmallLine } from "../assets/icon/index";
 import AddBox from "../components/List/AddBox";
 import ProductBox from "../components/List/ProductBox";
 import { getProductData } from "../lib/product";
+import { productResponse } from "../types/product";
 
 const ListPage = () => {
   const category = ['전체', '월세', '전세', '매매'];
@@ -33,9 +34,15 @@ const ListPage = () => {
         </St.ListSetting>
         <St.ListBoxes>
           <AddBox />
-          {productInfo.map((info)=>
+          {productInfo.map((info : productResponse)=>
             <ProductBox
-            
+              id={info.id}
+              grade={info.grade}
+              good={info.good}
+              average={info.average}
+              bad={info.bad}
+              title={info.title}
+              image={info.image}
             />
           
           )}
