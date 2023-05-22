@@ -12,7 +12,8 @@ export const productInfoState = atom<productInfo>({
   default: {
     id: '',
     title: '',
-    createAt: new Date(),
+    address: '',
+    createAt: '',
     image: '',
     description: '',
     tags: {
@@ -22,7 +23,6 @@ export const productInfoState = atom<productInfo>({
     },
     grade: 0,
   },
-  effects_UNSTABLE: [persistAtom],
 });
 
 export const selectedSubcategoriesState = atom<number[]>({
