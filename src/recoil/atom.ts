@@ -24,3 +24,13 @@ export const productInfoState = atom<productInfo>({
   },
   effects_UNSTABLE: [persistAtom],
 });
+
+export const selectedSubcategoriesState = atom<number[]>({
+  key: 'selectedSubcategories',
+  default: [],
+});
+
+export const showIndexState = atom<number[]>({
+  key: 'showIndex',
+  default: [1, 48],
+});
