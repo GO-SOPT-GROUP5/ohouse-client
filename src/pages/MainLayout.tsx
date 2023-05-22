@@ -8,7 +8,9 @@ const MainLayout = () => {
   return (
     <St.mainLayoutWrapper>
       <Header />
-      <Outlet />
+      <St.mainWrapper>
+        <Outlet />
+      </St.mainWrapper>
       <Footer />
     </St.mainLayoutWrapper>
   );
@@ -21,5 +23,9 @@ const St = {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+  `,
+  //fixe된 header 높이 만큼 컨텐츠 영역의 위쪽 padding 값 주기
+  mainWrapper: styled.main`
+    padding-top: 14rem;
   `,
 };
