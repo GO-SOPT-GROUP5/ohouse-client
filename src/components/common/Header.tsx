@@ -77,6 +77,8 @@ const St = {
     top: 0;
 
     width: 100%;
+
+    z-index: 100;
   `,
   //gnb 부분
   GnbWrapper: styled.section`
