@@ -22,7 +22,6 @@ const Router = () => {
               <Route path="/checklist" element={<CheckListPage />} />
             </Route>
             <Route path="*" element={<ErrorPage />} />
-            <Route path="/error" element={<ErrorPage />} />
           </Routes>
         </Suspense>
       </RecoilRoot>
