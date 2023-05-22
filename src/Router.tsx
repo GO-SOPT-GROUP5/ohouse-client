@@ -16,12 +16,13 @@ const Router = () => {
         <Suspense>
           <Routes>
             <Route element={<MainLayout />}>
-              <Route path='/' element={<HomePage />} />
-              <Route path='/help' element={<HelpPage />} />
-              <Route path='/list' element={<ListPage />} />
-              <Route path='/checklist' element={<CheckListPage />} />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/help" element={<HelpPage />} />
+              <Route path="/list" element={<ListPage />} />
+              <Route path="/checklist" element={<CheckListPage />} />
             </Route>
-            <Route path='*' element={<ErrorPage />} />
+            <Route path="*" element={<ErrorPage />} />
+            <Route path="/error" element={<ErrorPage />} />
           </Routes>
         </Suspense>
       </RecoilRoot>
