@@ -6,12 +6,18 @@ export interface OHouseResponse<T> {
   data?: T;
 }
 
+export interface productListInfo {
+  productList: productResponse[];
+}
+
+
 export interface productRequest {
   flag: string;
   order: string;
   page: number;
   size: number;
 }
+
 
 export interface productResponse {
   id: number;

@@ -1,12 +1,24 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { IcSmallLine } from "../assets/icon/index";
 import AddBox from "../components/List/AddBox";
 import ProductBox from "../components/List/ProductBox";
+import { getProductData } from "../lib/product";
 
 const ListPage = () => {
   const category = ['전체', '월세', '전세', '매매'];
   const filter = ['필터', '별점순', '좋아요순'];
+  const [productInfo, setProductInfo] = useState([]);
+
+  useEffect(() => {
+    handleGetInfo();
+  }, [])
+
+  async function handleGetInfo() {
+    const productList = await getProductData({flag:'전체',order:'별점순',page: 0,size: 5});
+    setProductInfo(productList);
+  }
 
   return (
     <St.ListWrapper>
@@ -21,9 +33,12 @@ const ListPage = () => {
         </St.ListSetting>
         <St.ListBoxes>
           <AddBox />
-          <ProductBox />
-          <ProductBox />
-          <ProductBox />
+          {productInfo.map((info)=>
+            <ProductBox
+            
+            />
+          
+          )}
         </St.ListBoxes>
       </section>
     </St.ListWrapper>
