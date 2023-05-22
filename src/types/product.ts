@@ -1,3 +1,11 @@
+// 나중에 
+export interface OHouseResponse<T> {
+  status: number;
+  success: boolean;
+  message: string;
+  data?: T;
+}
+
 export interface productRequest {
   flag: string;
   order: string;
