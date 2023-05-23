@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { IcAddress, IcCancel, IcTranslate } from '../../assets/icon';
+import { IcAddress, IcCancel } from '../../assets/icon';
+import ProductContract from './ProductContract';
 
 export interface ModalProps {
   isShowing: boolean;
@@ -9,37 +10,21 @@ export interface ModalProps {
   handleConfirm: React.MouseEventHandler;
 }
 
-const CONTRACT_OPTIONS = ['전세', '월세', '매매'];
-
 const ProductEditModal = (props: ModalProps) => {
   const { isShowing, handleHide, handleConfirm } = props;
 
   const [productName, setProductName] = useState<string>(''); // 체크리스트 생성 시 response의 title로 초기화
-  const [dong, setDong] = useState<number>();
-  const [hosu, setHosu] = useState<number>();
-  const [contract, setContract] = useState<string>('');
-  const [price, setPrice] = useState<number>();
-  const [size, setSize] = useState<number>();
+  const [dong, setDong] = useState<string>();
+  const [hosu, setHosu] = useState<string>();
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProductName(e.target.value);
   };
   const handleDongChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDong(Number(e.target.value));
+    setDong(e.target.value);
   };
   const handleHosuChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setHosu(Number(e.target.value));
-  };
-  const handleContractSelect = (contractType: string) => {
-    if (contractType !== contract) {
-      setContract(contractType);
-    }
-  };
-  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPrice(Number(e.target.value));
-  };
-  const handleSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSize(Number(e.target.value));
+    setHosu(e.target.value);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -47,7 +32,7 @@ const ProductEditModal = (props: ModalProps) => {
     setProductName('');
     // setDong(0);
     // setHosu(0);
-    setContract('');
+    // setContract('');
   };
 
   return (
@@ -91,53 +76,7 @@ const ProductEditModal = (props: ModalProps) => {
                 />
                 <span>호</span>
               </St.Hosu>
-              <St.ContractWrapper>
-                <p>계약형태</p>
-                {CONTRACT_OPTIONS.map(option => (
-                  <St.ContractBtn
-                    key={option}
-                    onClick={() => handleContractSelect(option)}
-                    disabled={option === contract}
-                    active={option === contract}
-                  >
-                    {option}
-                  </St.ContractBtn>
-                ))}
-              </St.ContractWrapper>
-              {contract === '전세' && (
-                <>
-                  <St.PriceWrapper>
-                    전세금 (선택)
-                    <input
-                      type="number"
-                      value={price}
-                      placeholder="전세금 입력"
-                      onChange={handlePriceChange}
-                    />
-                    <span>만원</span>
-                  </St.PriceWrapper>
-                  <St.AreaWrapper>
-                    면적 (선택)
-                    <St.Area>
-                      <input
-                        type="number"
-                        value={size}
-                        placeholder="면적 입력"
-                        onChange={handleSizeChange}
-                      />
-                      <span>㎡</span>
-                      <IcTranslate />
-                      <input
-                        type="number"
-                        value={size}
-                        placeholder="면적 입력"
-                        onChange={handleSizeChange}
-                      />
-                      <span>평</span>
-                    </St.Area>
-                  </St.AreaWrapper>
-                </>
-              )}
+              <ProductContract />
               <button type="submit" onClick={handleConfirm}>
                 완료
               </button>
@@ -300,82 +239,5 @@ const St = {
 
   Hosu: styled.label`
     width: 20.3rem;
-  `,
-
-  ContractWrapper: styled.div`
-    & > p {
-      margin-bottom: 1.6rem;
-
-      ${({ theme }) => theme.colors.Grey600};
-      // 수정필요
-      font-family: 'Pretendard';
-      font-style: normal;
-      font-weight: 700;
-      font-size: 16px;
-      line-height: 19px;
-    }
-  `,
-
-  ContractBtn: styled.button<{ active: boolean }>`
-    width: 13.3rem;
-    height: 4.5rem;
-    margin-right: 0.4rem;
-    margin-bottom: 3.9rem;
-
-    border: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
-    border-radius: 0.5rem;
-
-    ${({ active, theme }) =>
-      active
-        ? `
-        border: 0.1rem solid ${theme.colors.Blue};
-        background-color: ${theme.colors.White};
-      color: ${theme.colors.Blue};
-    `
-        : `
-        background-color: ${theme.colors.White};
-      color: ${theme.colors.Grey600};
-    `}
-  `,
-
-  PriceWrapper: styled.label`
-    width: 100%;
-  `,
-
-  AreaWrapper: styled.label`
-    /* padding-bottom: 0.4rem; */
-    width: 100%;
-  `,
-
-  Area: styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    width: 100%;
-    margin-top: 0.4rem;
-
-    & > input {
-      width: 18.7rem;
-      position: relative;
-    }
-
-    & > span:nth-child(2) {
-      position: absolute;
-      left: 15.3rem;
-      bottom: 1.1rem;
-
-      ${({ theme }) => theme.colors.Grey500};
-      ${({ theme }) => theme.fonts.Body5};
-    }
-
-    & > span:last-child {
-      position: absolute;
-      right: 1.3rem;
-      bottom: 1.1rem;
-
-      ${({ theme }) => theme.colors.Grey500};
-      ${({ theme }) => theme.fonts.Body5};
-    }
   `,
 };
