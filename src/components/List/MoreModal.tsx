@@ -24,9 +24,21 @@ export default MoreModal
 
 const St = {
     ListModalWrapper : styled.section`
-    
+        display: flex;
+        justify-content: center;
+
+        width: 100%;
+        height: 100%;
+
+        background-color: ${({ theme }) => theme.colors.Grey600};
     `,
     ListModal : styled.article`
+        width: 42.8rem;
+        height: 20.2rem;
+        margin-top: 43.9rem;
+
+        border-radius: 0.9rem;
+        background-color: ${({ theme }) => theme.colors.White};
         
     `,
 
