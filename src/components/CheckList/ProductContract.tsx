@@ -61,7 +61,7 @@ const ProductContract = () => {
             {contract === '월세' ? '보증금' : contract === '매매' ? '매매가' : '전세금'} (선택)
             <input
               type="number"
-              value={contract === '월세' ? monthlyRent : price}
+              value={price}
               placeholder={
                 contract === '월세'
                   ? '보증금 입력'

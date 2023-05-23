@@ -166,6 +166,8 @@ const St = {
 
     border: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
     border-radius: 0.4rem;
+    color: ${({ theme }) => theme.colors.Grey600};
+    ${({ theme }) => theme.fonts.Body2};
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.Grey300};
