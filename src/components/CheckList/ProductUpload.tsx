@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import { IcCamera, IcEdit, IcStar } from '../../assets/icon';
+import { IcCamera, IcEdit, IcStar, IcStarFilled } from '../../assets/icon';
 import useModal from '../../hooks/useModal';
 import ProductEditModal from './ProductEditModal';
 
 const ProductUpload = () => {
   const { isShowing, toggle } = useModal();
+  const [grade, setGrade] = useState(0);
   const [comment, setComment] = useState('');
+
+  const [starClicked, setStarClicked] = useState([false, false, false, false, false]);
+  const array = [0, 1, 2, 3, 4];
 
   const handleConfirm = () => {
     toggle();
@@ -15,6 +19,15 @@ const ProductUpload = () => {
 
   const handleCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setComment(e.target.value);
+  };
+
+  const handleStarClick = (index: number) => {
+    let clickStates = [...starClicked];
+    for (let i = 0; i < 5; i++) {
+      clickStates[i] = i <= index ? true : false;
+    }
+    setStarClicked(clickStates);
+    setGrade(starClicked.filter(Boolean).length); // 서버에게 보낼 별 갯수
   };
 
   return (
@@ -37,11 +50,11 @@ const ProductUpload = () => {
             <li>30평</li>
           </St.ProductTag>
           <St.Grade>
-            <IcStar />
-            <IcStar />
-            <IcStar />
-            <IcStar />
-            <IcStar />
+            {array.map(el => (
+              <button key={el} onClick={() => handleStarClick(el)}>
+                {starClicked[el] ? <IcStarFilled /> : <IcStar />}
+              </button>
+            ))}
           </St.Grade>
           <St.Description
             type="string"
@@ -140,6 +153,10 @@ const St = {
 
   Grade: styled.div`
     margin-bottom: 2.7rem;
+
+    & > button {
+      padding: 0;
+    }
   `,
 
   Description: styled.input`
