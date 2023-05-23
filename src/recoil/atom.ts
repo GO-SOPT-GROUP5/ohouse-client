@@ -1,14 +1,14 @@
 import { atom } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
 
-import { resProductData } from '../types/category';
+import { productData } from '../types/category';
 import { productInfo } from '../types/product';
 
 //페이지가 변경되더라도 상태관리를 유지
 const { persistAtom } = recoilPersist();
 
 // unique ID 를 가지고 초기 값을 지정해주어야 합니다! (예시)
-export const productDataState = atom<resProductData>({
+export const productDataState = atom<productData>({
   key: 'productInfo',
   default: {
     id: 0,
@@ -16,7 +16,6 @@ export const productDataState = atom<resProductData>({
     address: '',
     dong: 0,
     ho: 0,
-    createAt: '',
     image: '',
     description: '',
     tags: {
