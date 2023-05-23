@@ -12,16 +12,17 @@ interface AddressData {
 interface ModalProps {
   isShowing: boolean;
   handleHide: React.MouseEventHandler;
-  handleConfirm: React.MouseEventHandler;
 }
 
 const ProductEditModal = (props: ModalProps) => {
-  const { isShowing, handleHide, handleConfirm } = props;
+  const { isShowing, handleHide } = props;
 
   const [productName, setProductName] = useState<string>(''); // 체크리스트 생성 시 response의 title로 초기화
   const [address, setAddress] = useState<string>('');
   const [dong, setDong] = useState<string>();
   const [hosu, setHosu] = useState<string>();
+  const [comment, setComment] = useState('외부에서 입력한 한줄평가'); // 외부에서 입력한 한줄평가 있을 시 받아오기
+  const [modalComment, setModalComment] = useState(comment);
 
   const [isPostOpen, setIsPostOpen] = useState(false);
 
@@ -43,13 +44,13 @@ const ProductEditModal = (props: ModalProps) => {
   const handleHosuChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHosu(e.target.value);
   };
+  const handleModalCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setModalComment(e.target.value);
+  };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setProductName('');
-    // setDong(0);
-    // setHosu(0);
-    // setContract('');
+  const handleConfirm = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setComment(modalComment);
+    handleHide(e);
   };
 
   return (
@@ -70,7 +71,7 @@ const ProductEditModal = (props: ModalProps) => {
               <IcAddress />
               <p>{address ? address : '주소를 등록해주세요'}</p>
             </St.AddressWrapper>
-            <St.ProductForm onSubmit={handleSubmit}>
+            <St.ProductForm>
               <St.ProductName>
                 매물이름 (선택)
                 <input type="text" value={productName} onChange={handleNameChange} />
@@ -96,6 +97,12 @@ const ProductEditModal = (props: ModalProps) => {
                 <span>호</span>
               </St.Hosu>
               <ProductContract />
+              {comment && (
+                <St.CommentWrapper>
+                  평가 (선택)
+                  <input type="string" value={modalComment} onChange={handleModalCommentChange} />
+                </St.CommentWrapper>
+              )}
               <button type="submit" onClick={handleConfirm}>
                 완료
               </button>
@@ -269,6 +276,14 @@ const St = {
 
   Hosu: styled.label`
     width: 20.3rem;
+  `,
+
+  CommentWrapper: styled.label`
+    width: 100%;
+
+    & > input {
+      height: 7.4rem;
+    }
   `,
 
   PostModal: styled.div`

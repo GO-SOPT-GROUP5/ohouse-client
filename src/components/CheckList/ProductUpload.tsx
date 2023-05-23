@@ -9,16 +9,23 @@ const ProductUpload = () => {
   const { isShowing, toggle } = useModal();
   const [grade, setGrade] = useState(0);
   const [comment, setComment] = useState('');
+  const [showCommentInput, setShowCommentInput] = useState(true);
 
   const [starClicked, setStarClicked] = useState([false, false, false, false, false]);
   const array = [0, 1, 2, 3, 4];
 
-  const handleConfirm = () => {
-    toggle();
-  };
+  // const handleConfirm = () => {
+  //   toggle();
+  // };
 
   const handleCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setComment(e.target.value);
+  };
+
+  const handleSave = () => {
+    if (comment) {
+      setShowCommentInput(false);
+    }
   };
 
   const handleStarClick = (index: number) => {
@@ -30,8 +37,6 @@ const ProductUpload = () => {
     setGrade(starClicked.filter(Boolean).length); // 서버에게 보낼 별 갯수
   };
 
-  const handleSave = () => {};
-
   return (
     <St.ProductUploadWrapper>
       <St.ProductName>2023.01.10 12:11 등록매물</St.ProductName>
@@ -39,7 +44,7 @@ const ProductUpload = () => {
       <St.EditBtn type="button" onClick={toggle}>
         <IcEdit />
       </St.EditBtn>
-      <ProductEditModal isShowing={isShowing} handleHide={toggle} handleConfirm={handleConfirm} />
+      <ProductEditModal isShowing={isShowing} handleHide={toggle} />
       <St.ProductInfo>
         <St.UploadPicture type="button">
           <IcCamera />
@@ -58,12 +63,18 @@ const ProductUpload = () => {
               </button>
             ))}
           </St.Grade>
-          <St.Description
-            type="string"
-            value={comment}
-            placeholder="집의 상태, 주변환경, 가격 등을 고려해서 한 줄 평가를 입력해주세요."
-            onChange={handleCommentChange}
-          ></St.Description>
+          <St.DescriptionWrapper showCommentInput={showCommentInput}>
+            {showCommentInput ? (
+              <St.Description
+                type="string"
+                value={comment}
+                placeholder="집의 상태, 주변환경, 가격 등을 고려해서 한 줄 평가를 입력해주세요."
+                onChange={handleCommentChange}
+              ></St.Description>
+            ) : (
+              <St.CommentText>{comment}</St.CommentText>
+            )}
+          </St.DescriptionWrapper>
           <St.SaveBtnWrapper>
             <button type="button" onClick={handleSave}>
               저장
@@ -166,6 +177,10 @@ const St = {
     }
   `,
 
+  DescriptionWrapper: styled.div<{ showCommentInput: boolean }>`
+    ${({ showCommentInput }) => !showCommentInput && `min-width: 56rem; min-height: 5.6rem;`}
+  `,
+
   Description: styled.input`
     width: 55.4rem;
     height: 5.6rem;
@@ -185,6 +200,11 @@ const St = {
       color: ${({ theme }) => theme.colors.Grey600};
       ${({ theme }) => theme.fonts.Body2};
     }
+  `,
+
+  CommentText: styled.p`
+    color: ${({ theme }) => theme.colors.Grey600};
+    ${({ theme }) => theme.fonts.Body2};
   `,
 
   SaveBtnWrapper: styled.div`
