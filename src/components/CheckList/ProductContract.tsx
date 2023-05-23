@@ -7,10 +7,10 @@ const CONTRACT_OPTIONS = ['전세', '월세', '매매'];
 
 const ProductContract = () => {
   const [contract, setContract] = useState<string>('');
-  const [price, setPrice] = useState<string>(); // 전세금 or 보증금 or 매매가
-  const [monthlyRent, setMonthlyRent] = useState<string>(); // 월세
-  const [area, setArea] = useState<string>(); // 제곱미터
-  const [size, setSize] = useState<string>(); // 평수
+  const [price, setPrice] = useState<string>(''); // 전세금 or 보증금 or 매매가
+  const [monthlyRent, setMonthlyRent] = useState<string>(''); // 월세
+  const [area, setArea] = useState<string>(''); // 제곱미터
+  const [size, setSize] = useState<string>(''); // 평수
 
   const handleContractSelect = (contractType: string) => {
     if (contractType !== contract) {
@@ -39,6 +39,7 @@ const ProductContract = () => {
     const convertedArea = Math.floor(Number(inputArea) * 3.3).toString();
     setArea(convertedArea);
   };
+
   return (
     <>
       <St.ContractWrapper>
@@ -54,98 +55,36 @@ const ProductContract = () => {
           </St.ContractBtn>
         ))}
       </St.ContractWrapper>
-      {contract === '전세' && (
+      {(contract === '전세' || contract === '월세' || contract === '매매') && (
         <>
           <St.PriceWrapper>
-            전세금 (선택)
+            {contract === '월세' ? '보증금' : contract === '매매' ? '매매가' : '전세금'} (선택)
             <input
               type="number"
-              value={price}
-              placeholder="전세금 입력"
-              onChange={handlePriceChange}
+              value={contract === '월세' ? monthlyRent : price}
+              placeholder={
+                contract === '월세'
+                  ? '보증금 입력'
+                  : contract === '매매'
+                  ? '매매가 입력'
+                  : '전세금 입력'
+              }
+              onChange={e => handlePriceChange(e)}
             />
             <span>만원</span>
           </St.PriceWrapper>
-          <St.AreaWrapper>
-            면적 (선택)
-            <St.Area>
+          {contract === '월세' && (
+            <St.MonthlyRentWrapper>
+              월세 (선택)
               <input
                 type="number"
-                value={area}
-                placeholder="면적 입력"
-                onChange={handleAreaChange}
+                value={monthlyRent}
+                placeholder="월세 입력"
+                onChange={e => handleMonthlyRentChange(e)}
               />
-              <span>㎡</span>
-              <IcTranslate />
-              <input
-                type="number"
-                value={size}
-                placeholder="면적 입력"
-                onChange={handleSizeChange}
-              />
-              <span>평</span>
-            </St.Area>
-          </St.AreaWrapper>
-        </>
-      )}
-
-      {contract === '월세' && (
-        <>
-          <St.PriceWrapper>
-            보증금 (선택)
-            <input
-              type="number"
-              value={price}
-              placeholder="보증금 입력"
-              onChange={handlePriceChange}
-            />
-            <span>만원</span>
-          </St.PriceWrapper>
-          <St.MonthlyRentWrapper>
-            월세 (선택)
-            <input
-              type="number"
-              value={monthlyRent}
-              placeholder="월세 입력"
-              onChange={handleMonthlyRentChange}
-            />
-            <span>만원</span>
-          </St.MonthlyRentWrapper>
-
-          <St.AreaWrapper>
-            면적 (선택)
-            <St.Area>
-              <input
-                type="number"
-                value={area}
-                placeholder="면적 입력"
-                onChange={handleAreaChange}
-              />
-              <span>㎡</span>
-              <IcTranslate />
-              <input
-                type="number"
-                value={size}
-                placeholder="면적 입력"
-                onChange={handleSizeChange}
-              />
-              <span>평</span>
-            </St.Area>
-          </St.AreaWrapper>
-        </>
-      )}
-      {contract === '매매' && (
-        <>
-          <St.PriceWrapper>
-            매매가 (선택)
-            <input
-              type="number"
-              value={price}
-              placeholder="전세금 입력"
-              onChange={handlePriceChange}
-            />
-            <span>만원</span>
-          </St.PriceWrapper>
+              <span>만원</span>
+            </St.MonthlyRentWrapper>
+          )}
           <St.AreaWrapper>
             면적 (선택)
             <St.Area>
