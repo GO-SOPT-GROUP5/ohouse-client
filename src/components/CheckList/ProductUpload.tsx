@@ -30,6 +30,8 @@ const ProductUpload = () => {
     setGrade(starClicked.filter(Boolean).length); // 서버에게 보낼 별 갯수
   };
 
+  const handleSave = () => {};
+
   return (
     <St.ProductUploadWrapper>
       <St.ProductName>2023.01.10 12:11 등록매물</St.ProductName>
@@ -62,6 +64,11 @@ const ProductUpload = () => {
             placeholder="집의 상태, 주변환경, 가격 등을 고려해서 한 줄 평가를 입력해주세요."
             onChange={handleCommentChange}
           ></St.Description>
+          <St.SaveBtnWrapper>
+            <button type="button" onClick={handleSave}>
+              저장
+            </button>
+          </St.SaveBtnWrapper>
         </St.ProductDetail>
       </St.ProductInfo>
     </St.ProductUploadWrapper>
@@ -177,6 +184,22 @@ const St = {
     & > p {
       color: ${({ theme }) => theme.colors.Grey600};
       ${({ theme }) => theme.fonts.Body2};
+    }
+  `,
+
+  SaveBtnWrapper: styled.div`
+    display: flex;
+    justify-content: flex-end;
+
+    & > button {
+      width: 8rem;
+      height: 3rem;
+      margin-top: 1.6rem;
+
+      border-radius: 0.4rem;
+      background-color: ${({ theme }) => theme.colors.Blue};
+      color: ${({ theme }) => theme.colors.White};
+      ${({ theme }) => theme.fonts.Body4};
     }
   `,
 };
