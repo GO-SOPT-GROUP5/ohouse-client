@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { IcListStar } from "../../assets/icon";
 import { ImgRoom1 } from "../../assets/image";
 
-const ProductBox = () => {
+const ProductBox = ({toggle}) => {
   
   return (
   <St.ProductBoxWrapper>
@@ -25,7 +25,7 @@ const ProductBox = () => {
     </St.ProductStar>
     <St.ProductButtons>
       <button type="button">체크리스트 내역 보기</button>
-      <button type="button">...</button>
+      <button type="button" onClick={toggle}>...</button>
     </St.ProductButtons>
   </St.ProductBoxWrapper>
   );
