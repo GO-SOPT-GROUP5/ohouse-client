@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { IcAddress, IcCancel } from '../../assets/icon';
+import { IcAddress, IcCancel, IcTranslate } from '../../assets/icon';
 
 export interface ModalProps {
   isShowing: boolean;
@@ -14,10 +14,12 @@ const CONTRACT_OPTIONS = ['전세', '월세', '매매'];
 const ProductEditModal = (props: ModalProps) => {
   const { isShowing, handleHide, handleConfirm } = props;
 
-  const [productName, setProductName] = useState<string>();
+  const [productName, setProductName] = useState<string>(''); // 체크리스트 생성 시 response의 title로 초기화
   const [dong, setDong] = useState<number>();
   const [hosu, setHosu] = useState<number>();
-  const [contract, setContract] = useState<string>();
+  const [contract, setContract] = useState<string>('');
+  const [price, setPrice] = useState<number>();
+  const [size, setSize] = useState<number>();
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProductName(e.target.value);
@@ -32,6 +34,12 @@ const ProductEditModal = (props: ModalProps) => {
     if (contractType !== contract) {
       setContract(contractType);
     }
+  };
+  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPrice(Number(e.target.value));
+  };
+  const handleSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSize(Number(e.target.value));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -59,11 +67,11 @@ const ProductEditModal = (props: ModalProps) => {
               <p>주소를 등록해주세요</p>
             </St.AddressWrapper>
             <St.ProductForm onSubmit={handleSubmit}>
-              <label>
+              <St.ProductName>
                 매물이름 (선택)
                 <input type="text" value={productName} onChange={handleNameChange} />
-              </label>
-              <label>
+              </St.ProductName>
+              <St.Dong>
                 동 (선택)
                 <input
                   type="number"
@@ -72,8 +80,8 @@ const ProductEditModal = (props: ModalProps) => {
                   onChange={handleDongChange}
                 />
                 <span>동</span>
-              </label>
-              <label>
+              </St.Dong>
+              <St.Hosu>
                 호수 (선택)
                 <input
                   type="number"
@@ -82,8 +90,8 @@ const ProductEditModal = (props: ModalProps) => {
                   onChange={handleHosuChange}
                 />
                 <span>호</span>
-              </label>
-              <St.ContranctWrapper>
+              </St.Hosu>
+              <St.ContractWrapper>
                 <p>계약형태</p>
                 {CONTRACT_OPTIONS.map(option => (
                   <St.ContractBtn
@@ -95,7 +103,41 @@ const ProductEditModal = (props: ModalProps) => {
                     {option}
                   </St.ContractBtn>
                 ))}
-              </St.ContranctWrapper>
+              </St.ContractWrapper>
+              {contract === '전세' && (
+                <>
+                  <St.PriceWrapper>
+                    전세금 (선택)
+                    <input
+                      type="number"
+                      value={price}
+                      placeholder="전세금 입력"
+                      onChange={handlePriceChange}
+                    />
+                    <span>만원</span>
+                  </St.PriceWrapper>
+                  <St.AreaWrapper>
+                    면적 (선택)
+                    <St.Area>
+                      <input
+                        type="number"
+                        value={size}
+                        placeholder="면적 입력"
+                        onChange={handleSizeChange}
+                      />
+                      <span>㎡</span>
+                      <IcTranslate />
+                      <input
+                        type="number"
+                        value={size}
+                        placeholder="면적 입력"
+                        onChange={handleSizeChange}
+                      />
+                      <span>평</span>
+                    </St.Area>
+                  </St.AreaWrapper>
+                </>
+              )}
               <button type="submit" onClick={handleConfirm}>
                 완료
               </button>
@@ -198,7 +240,6 @@ const St = {
       flex-direction: column;
       position: relative;
 
-      width: 20.3rem;
       margin-bottom: 2.1rem;
 
       color: ${({ theme }) => theme.colors.Grey400};
@@ -209,7 +250,8 @@ const St = {
       font-size: 13px;
       line-height: 22px;
 
-      & > input {
+      & > input,
+      & > div > input {
         height: 4.5rem;
         margin-top: 0.4rem;
         padding-left: 1.7rem;
@@ -235,15 +277,6 @@ const St = {
       }
     }
 
-    & > :first-child {
-      width: 100%;
-      margin-bottom: 1.3rem;
-    }
-
-    & > :nth-child(2) {
-      margin-right: 0.5rem;
-    }
-
     & > button {
       width: 100%;
       height: 4.5rem;
@@ -255,7 +288,21 @@ const St = {
     }
   `,
 
-  ContranctWrapper: styled.div`
+  ProductName: styled.label`
+    width: 100%;
+    margin-bottom: 1.3rem;
+  `,
+
+  Dong: styled.label`
+    width: 20.3rem;
+    margin-right: 0.5rem;
+  `,
+
+  Hosu: styled.label`
+    width: 20.3rem;
+  `,
+
+  ContractWrapper: styled.div`
     & > p {
       margin-bottom: 1.6rem;
 
@@ -289,5 +336,46 @@ const St = {
         background-color: ${theme.colors.White};
       color: ${theme.colors.Grey600};
     `}
+  `,
+
+  PriceWrapper: styled.label`
+    width: 100%;
+  `,
+
+  AreaWrapper: styled.label`
+    /* padding-bottom: 0.4rem; */
+    width: 100%;
+  `,
+
+  Area: styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    margin-top: 0.4rem;
+
+    & > input {
+      width: 18.7rem;
+      position: relative;
+    }
+
+    & > span:nth-child(2) {
+      position: absolute;
+      left: 15.3rem;
+      bottom: 1.1rem;
+
+      ${({ theme }) => theme.colors.Grey500};
+      ${({ theme }) => theme.fonts.Body5};
+    }
+
+    & > span:last-child {
+      position: absolute;
+      right: 1.3rem;
+      bottom: 1.1rem;
+
+      ${({ theme }) => theme.colors.Grey500};
+      ${({ theme }) => theme.fonts.Body5};
+    }
   `,
 };
