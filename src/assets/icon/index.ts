@@ -32,3 +32,5 @@ export { ReactComponent as IcRight } from './ic_right.svg';
 export { ReactComponent as IcLeft } from './ic_left.svg';
 //ProductList에서 Modal에 close 버튼
 export { ReactComponent as IcBack} from './ic_back.svg';
+//ProductBox에서 더보기 버튼
+export { ReactComponent as IcMore} from './ic_more.svg';
