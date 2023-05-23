@@ -23,15 +23,15 @@ const ProductEditModal = (props: ModalProps) => {
   const [dong, setDong] = useState<string>();
   const [hosu, setHosu] = useState<string>();
 
-  const [isOpenPost, setIsOpenPost] = useState(false);
+  const [isPostOpen, setIsPostOpen] = useState(false);
 
   const handleSearchAddress = () => {
-    setIsOpenPost(prev => !prev);
+    setIsPostOpen(prev => !prev);
   };
 
   const handleAddress = (data: AddressData) => {
     setAddress(data.address);
-    setIsOpenPost(false);
+    setIsPostOpen(false);
   };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -104,8 +104,8 @@ const ProductEditModal = (props: ModalProps) => {
         </St.ModalWrapper>
       )}
 
-      {isOpenPost && (
-        <St.PostModal>
+      {isPostOpen && (
+        <St.PostModal onClick={handleSearchAddress}>
           <Postcode onComplete={handleAddress} autoClose={false} />
         </St.PostModal>
       )}
@@ -223,6 +223,11 @@ const St = {
         border: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
         border-radius: 0.5rem;
         ${({ theme }) => theme.fonts.Body5};
+
+        &::placeholder {
+          color: ${({ theme }) => theme.colors.Grey300};
+          ${({ theme }) => theme.fonts.Body6};
+        }
       }
 
       input[type='number']::-webkit-inner-spin-button,

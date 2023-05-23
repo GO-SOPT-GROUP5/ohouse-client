@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import { IcCamera, IcEdit, IcStar } from '../../assets/icon';
@@ -6,9 +7,14 @@ import ProductEditModal from './ProductEditModal';
 
 const ProductUpload = () => {
   const { isShowing, toggle } = useModal();
+  const [comment, setComment] = useState('');
 
   const handleConfirm = () => {
-    // 완료 버튼 클릭 시 실행되는 함수
+    toggle();
+  };
+
+  const handleCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setComment(e.target.value);
   };
 
   return (
@@ -37,12 +43,12 @@ const ProductUpload = () => {
             <IcStar />
             <IcStar />
           </St.Grade>
-          <St.Description>
-            <span>집의 상태, 주변환경, 가격 등을 고려해서 전반적인 평가를 입력해주세요.</span>
-            {/* <p>
-              좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은
-            </p> */}
-          </St.Description>
+          <St.Description
+            type="string"
+            value={comment}
+            placeholder="집의 상태, 주변환경, 가격 등을 고려해서 한 줄 평가를 입력해주세요."
+            onChange={handleCommentChange}
+          ></St.Description>
         </St.ProductDetail>
       </St.ProductInfo>
     </St.ProductUploadWrapper>
@@ -136,15 +142,15 @@ const St = {
     margin-bottom: 2.7rem;
   `,
 
-  Description: styled.div`
+  Description: styled.input`
     width: 55.4rem;
-    height: 10rem;
+    height: 5.6rem;
     padding: 1.5rem 2.5rem;
 
     border: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
     border-radius: 0.4rem;
 
-    & > span {
+    &::placeholder {
       color: ${({ theme }) => theme.colors.Grey300};
       ${({ theme }) => theme.fonts.Body2};
     }
