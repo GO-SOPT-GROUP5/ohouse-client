@@ -26,7 +26,7 @@ const ListPage = () => {
         </St.ListSetting>
         <St.ListBoxes>
           <AddBox />
-          <ProductBox toggle={toggle}/>
+          <ProductBox handleModal={toggle}/>
           <ProductBox />
           <ProductBox />
         </St.ListBoxes>

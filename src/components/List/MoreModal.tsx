@@ -5,20 +5,25 @@ import { IcBack } from "../../assets/icon";
 
 export interface ModalProps {
     isShowing : boolean;
+    handleClose : React.MouseEventHandler;
 }
 
-const MoreModal = ({ isShowing }: ModalProps) => {
+const MoreModal = ({ isShowing, handleClose }: ModalProps) => {
     
 
   return (
-    <St.ListModalWrapper>
-        <St.ListModal>
-            <St.Header>더보기</St.Header>
-            <St.CloseBtn><IcBack/></St.CloseBtn>
-            <St.ModalBtn type="button">수정하기</St.ModalBtn>
-            <St.ModalBtn type="button">삭제하기</St.ModalBtn>
-        </St.ListModal>
-    </St.ListModalWrapper>
+    <>
+    {isShowing && (
+        <St.ListModalWrapper>
+            <St.ListModal>
+                <St.Header>더보기</St.Header>
+                <St.CloseBtn onClick={handleClose}><IcBack/></St.CloseBtn>
+                <St.ModalBtn type="button">수정하기</St.ModalBtn>
+                <St.ModalBtn type="button">삭제하기</St.ModalBtn>
+            </St.ListModal>
+        </St.ListModalWrapper>
+    )}
+    </>
   )
 }
 
@@ -68,6 +73,8 @@ const St = {
         right: 0;
     
         margin: 2.4rem 2.7rem;
+
+        cursor: pointer;
     `,
     ModalBtn : styled.button`
 

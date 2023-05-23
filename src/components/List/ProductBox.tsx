@@ -1,9 +1,13 @@
+import React from "react";
 import styled from "styled-components";
 
 import { IcListStar } from "../../assets/icon";
 import { ImgRoom1 } from "../../assets/image";
 
-const ProductBox = ({toggle}) => {
+export interface ProductBoxProps {
+  handleModal : React.MouseEventHandler;
+}
+const ProductBox = ({handleModal} : ProductBoxProps) => {
   
   return (
   <St.ProductBoxWrapper>
@@ -25,7 +29,7 @@ const ProductBox = ({toggle}) => {
     </St.ProductStar>
     <St.ProductButtons>
       <button type="button">체크리스트 내역 보기</button>
-      <button type="button" onClick={toggle}>...</button>
+      <button type="button" onClick={handleModal}>...</button>
     </St.ProductButtons>
   </St.ProductBoxWrapper>
   );
