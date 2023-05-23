@@ -30,3 +30,5 @@ export { ReactComponent as IcCleanService } from './ic_clean_service.svg';
 export { ReactComponent as IcNew } from './ic_new.svg';
 export { ReactComponent as IcRight } from './ic_right.svg';
 export { ReactComponent as IcLeft } from './ic_left.svg';
+//ProductList에서 Modal에 close 버튼
+export { ReactComponent as IcBack} from './ic_back.svg';
