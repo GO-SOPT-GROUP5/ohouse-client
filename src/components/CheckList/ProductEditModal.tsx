@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
+import Postcode from 'react-daum-postcode';
 import styled from 'styled-components';
 
 import { IcAddress, IcCancel } from '../../assets/icon';
 import ProductContract from './ProductContract';
 
-export interface ModalProps {
+interface AddressData {
+  address: string;
+}
+
+interface ModalProps {
   isShowing: boolean;
   handleHide: React.MouseEventHandler;
   handleConfirm: React.MouseEventHandler;
@@ -14,8 +19,20 @@ const ProductEditModal = (props: ModalProps) => {
   const { isShowing, handleHide, handleConfirm } = props;
 
   const [productName, setProductName] = useState<string>(''); // 체크리스트 생성 시 response의 title로 초기화
+  const [address, setAddress] = useState<string>('');
   const [dong, setDong] = useState<string>();
   const [hosu, setHosu] = useState<string>();
+
+  const [isOpenPost, setIsOpenPost] = useState(false);
+
+  const handleSearchAddress = () => {
+    setIsOpenPost(prev => !prev);
+  };
+
+  const handleAddress = (data: AddressData) => {
+    setAddress(data.address);
+    setIsOpenPost(false);
+  };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProductName(e.target.value);
@@ -45,11 +62,13 @@ const ProductEditModal = (props: ModalProps) => {
             </St.CancelBtn>
             <St.ModalTitle>
               <p>정보수정</p>
-              <button type="button">주소변경</button>
+              <button type="button" onClick={handleSearchAddress}>
+                주소변경
+              </button>
             </St.ModalTitle>
             <St.AddressWrapper>
               <IcAddress />
-              <p>주소를 등록해주세요</p>
+              <p>{address ? address : '주소를 등록해주세요'}</p>
             </St.AddressWrapper>
             <St.ProductForm onSubmit={handleSubmit}>
               <St.ProductName>
@@ -83,6 +102,12 @@ const ProductEditModal = (props: ModalProps) => {
             </St.ProductForm>
           </St.Modal>
         </St.ModalWrapper>
+      )}
+
+      {isOpenPost && (
+        <St.PostModal>
+          <Postcode onComplete={handleAddress} autoClose={false} />
+        </St.PostModal>
       )}
     </>
   );
@@ -239,5 +264,22 @@ const St = {
 
   Hosu: styled.label`
     width: 20.3rem;
+  `,
+
+  PostModal: styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+    padding: 30%;
+
+    background-color: rgba(0, 0, 0, 0.5);
   `,
 };
