@@ -15,16 +15,64 @@ const ListPage = () => {
   const FILTER = ['필터', '별점순', '좋아요순'];
   
   const {isShowing, toggle, isDeleteShowing, deleteToggle} = useModal();
-  const [productInfo, setProductInfo] = useState([]);
+  // const [productInfo, setProductInfo] = useState([]);
 
-  useEffect(() => {
-    handleGetInfo();
-  }, [])
+  // useEffect(() => {
+  //   handleGetInfo();
+  // }, [])
 
-  async function handleGetInfo() {
-    const productList = await getProductData({flag:'전체',order:'별점순',page: 0,size: 5});
-    setProductInfo(productList);
-  }
+  // async function handleGetInfo() {
+  //   const productList = await getProductData({flag:'전체',order:'별점순',page: 0,size: 5});
+  //   setProductInfo(productList);
+  // }
+
+  const productInfo = [
+    {
+      "id": 1,
+      "grade": 5,
+      "good": 12,
+      "average": 3,
+      "bad": 0, 
+      "title": "서울대 입구 메가커피 앞",
+      "image": "aws.s3.com~"
+    },
+    {
+      "id": 2,
+      "grade": 5,
+      "good": 12,
+      "average": 3,
+      "bad": 0, 
+      "title": "서울대 입구 메가커피 앞",
+      "image": "aws.s3.com~"
+    },
+    {
+      "id": 3,
+      "grade": 5,
+      "good": 12,
+      "average": 3,
+      "bad": 0, 
+      "title": "서울대 입구 메가커피 앞",
+      "image": "aws.s3.com~"
+    },
+    {
+      "id": 4,
+      "grade": 5,
+      "good": 12,
+      "average": 3,
+      "bad": 0, 
+      "title": "서울대 입구 메가커피 앞",
+      "image": "aws.s3.com~"
+    },
+    {
+      "id": 5,
+      "grade": 5,
+      "good": 12,
+      "average": 3,
+      "bad": 0, 
+      "title": "서울대 입구 메가커피 앞",
+      "image": "aws.s3.com~"
+    }
+  ]
 
   return (
     <St.ListWrapper>
