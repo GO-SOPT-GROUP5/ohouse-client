@@ -188,7 +188,6 @@ const St = {
   `,
 
   AreaWrapper: styled.label`
-    /* padding-bottom: 0.4rem; */
     width: 100%;
   `,
 

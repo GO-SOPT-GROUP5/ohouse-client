@@ -193,7 +193,7 @@ const St = {
     align-items: center;
     gap: 1.2rem;
 
-    width: 31rem;
+    min-width: 31rem;
     height: 18.6rem;
     margin-top: 1.2rem;
     padding: 0;
