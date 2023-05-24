@@ -24,8 +24,7 @@ const Help = () => {
   const swiperRef = useRef();
   const navigate = useNavigate();
 
-  // const setProduct = useSetRecoilState(productDataState);
-  const [product, setProduct] = useRecoilState(productDataState);
+  const setProduct = useSetRecoilState(productDataState);
 
   const handleClickProductBtn = () => {
     navigate('/checklist');
