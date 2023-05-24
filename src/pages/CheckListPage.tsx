@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Category from '../components/CheckList/Category';
 import CheckListIndex from '../components/CheckList/CheckListIndex';
 import ProductUpload from '../components/CheckList/ProductUpload';
-import { getChecklistData } from '../lib/product';
+import { getChecklistData } from '../lib/checklist';
 
 const CheckListPage = () => {
   const { checklistId } = useParams();
@@ -23,6 +23,7 @@ const CheckListPage = () => {
 
   useEffect(() => {
     getChecklist();
+    // getChecklist에서 받아온 데이터 리코일에 저장
   }, [checklistId]);
 
   return (
