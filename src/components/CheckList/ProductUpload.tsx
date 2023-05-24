@@ -7,6 +7,11 @@ import ProductEditModal from './ProductEditModal';
 
 const ProductUpload = () => {
   const { isShowing, toggle } = useModal();
+  const [title, setTitle] = useState<string>('2023.01.10 12:11 등록매물');
+  // 주소
+  const [address, setAddress] = useState<string>('');
+  const [dong, setDong] = useState<string>();
+  const [ho, setHo] = useState<string>();
   // 별점
   const [grade, setGrade] = useState(0);
   const [starClicked, setStarClicked] = useState([false, false, false, false, false]);
@@ -21,9 +26,7 @@ const ProductUpload = () => {
 
   const createImageURL = (fileBlob: Blob | MediaSource) => {
     if (URLThumbnail) URL.revokeObjectURL(URLThumbnail);
-
     const url = URL.createObjectURL(fileBlob); // Blob -> url로 변환
-
     setURLThumbnail(url);
   };
 
@@ -60,8 +63,17 @@ const ProductUpload = () => {
 
   return (
     <St.ProductUploadWrapper>
-      <St.ProductName>2023.01.10 12:11 등록매물</St.ProductName>
-      <St.Address>주소를 등록해주세요</St.Address>
+      <St.ProductName>{title}</St.ProductName>
+      <St.Address>
+        {address ? (
+          <>
+            {address}
+            {dong && ho ? `${dong}동 ${ho}호` : ''}
+          </>
+        ) : (
+          <St.DefaultAddress>주소를 등록해주세요</St.DefaultAddress>
+        )}
+      </St.Address>
       <St.EditBtn type="button" onClick={toggle}>
         <IcEdit />
       </St.EditBtn>
@@ -140,6 +152,13 @@ const St = {
   `,
 
   Address: styled.p`
+    margin-bottom: 2.9rem;
+
+    color: ${({ theme }) => theme.colors.Grey600};
+    ${({ theme }) => theme.fonts.Body4};
+  `,
+
+  DefaultAddress: styled.p`
     margin-bottom: 2.9rem;
 
     color: ${({ theme }) => theme.colors.Grey300};

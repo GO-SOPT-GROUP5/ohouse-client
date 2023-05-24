@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { IcTranslate } from '../../assets/icon';
@@ -6,38 +6,56 @@ import { IcTranslate } from '../../assets/icon';
 const CONTRACT_OPTIONS = ['전세', '월세', '매매'];
 
 const ProductContract = () => {
-  const [contract, setContract] = useState<string>('');
+  const [contract, setContract] = useState<string>(''); // 계약형태
   const [price, setPrice] = useState<string>(''); // 전세금 or 보증금 or 매매가
   const [monthlyRent, setMonthlyRent] = useState<string>(''); // 월세
   const [area, setArea] = useState<string>(''); // 제곱미터
   const [size, setSize] = useState<string>(''); // 평수
+  const [tags, setTags] = useState<string[]>([]); // 태그
 
   const handleContractSelect = (contractType: string) => {
     if (contractType !== contract) {
       setContract(contractType);
     }
   };
-
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrice(e.target.value);
   };
-
   const handleMonthlyRentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMonthlyRent(e.target.value);
   };
-
   const handleAreaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputArea = e.target.value;
     setArea(inputArea);
     const convertedArea = Math.floor(Number(inputArea) / 3.3).toString();
     setSize(convertedArea);
   };
-
   const handleSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputArea = e.target.value;
     setSize(inputArea);
     const convertedArea = Math.floor(Number(inputArea) * 3.3).toString();
     setArea(convertedArea);
+  };
+
+  const makeTags = () => {
+    // 계약형태, 가격, 평수 태그 만들기
+    let priceTag;
+    if (contract === CONTRACT_OPTIONS[1]) {
+      priceTag = `${price}/${monthlyRent}`;
+    } else {
+      const billion = Math.floor(Number(price) / 10000);
+      const million = Math.floor(Number(price) % 10000);
+
+      let result = '';
+      if (billion > 0) {
+        result += `${billion}억`;
+      }
+      if (million > 0) {
+        result += ` ${million}만원`;
+      }
+      priceTag = result.trim();
+    }
+    setTags([contract, priceTag, size]);
   };
 
   return (
@@ -55,17 +73,24 @@ const ProductContract = () => {
           </St.ContractBtn>
         ))}
       </St.ContractWrapper>
-      {(contract === '전세' || contract === '월세' || contract === '매매') && (
+      {(contract === CONTRACT_OPTIONS[0] ||
+        contract === CONTRACT_OPTIONS[1] ||
+        contract === CONTRACT_OPTIONS[2]) && (
         <>
           <St.PriceWrapper>
-            {contract === '월세' ? '보증금' : contract === '매매' ? '매매가' : '전세금'} (선택)
+            {contract === CONTRACT_OPTIONS[1]
+              ? '보증금'
+              : contract === CONTRACT_OPTIONS[2]
+              ? '매매가'
+              : '전세금'}{' '}
+            (선택)
             <input
               type="number"
               value={price}
               placeholder={
-                contract === '월세'
+                contract === CONTRACT_OPTIONS[1]
                   ? '보증금 입력'
-                  : contract === '매매'
+                  : contract === CONTRACT_OPTIONS[2]
                   ? '매매가 입력'
                   : '전세금 입력'
               }
@@ -73,7 +98,7 @@ const ProductContract = () => {
             />
             <span>만원</span>
           </St.PriceWrapper>
-          {contract === '월세' && (
+          {contract === CONTRACT_OPTIONS[1] && (
             <St.MonthlyRentWrapper>
               월세 (선택)
               <input

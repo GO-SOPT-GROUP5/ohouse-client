@@ -17,37 +17,34 @@ interface ModalProps {
 const ProductEditModal = (props: ModalProps) => {
   const { isShowing, handleHide } = props;
 
-  const [productName, setProductName] = useState<string>(''); // 체크리스트 생성 시 response의 title로 초기화
+  const [title, setTitle] = useState<string>(''); // 체크리스트 생성 시 response의 title
   const [address, setAddress] = useState<string>('');
   const [dong, setDong] = useState<string>();
-  const [hosu, setHosu] = useState<string>();
-  const [comment, setComment] = useState('외부에서 입력한 한줄평가'); // 외부에서 입력한 한줄평가 있을 시 받아오기
-  const [modalComment, setModalComment] = useState(comment);
+  const [ho, setHo] = useState<string>();
+  const [comment, setComment] = useState<string>('외부에서 입력한 한줄평가'); // 외부에서 입력한 한줄평가 있을 시 받아오기
+  const [modalComment, setModalComment] = useState<string>(comment);
 
-  const [isPostOpen, setIsPostOpen] = useState(false);
+  const [isPostOpen, setIsPostOpen] = useState(false); // 주소 입력창
 
   const handleSearchAddress = () => {
     setIsPostOpen(prev => !prev);
   };
-
   const handleAddress = (data: AddressData) => {
     setAddress(data.address);
     setIsPostOpen(false);
   };
-
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setProductName(e.target.value);
+    setTitle(e.target.value);
   };
   const handleDongChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDong(e.target.value);
   };
   const handleHosuChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setHosu(e.target.value);
+    setHo(e.target.value);
   };
   const handleModalCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setModalComment(e.target.value);
   };
-
   const handleConfirm = (e: React.MouseEvent<HTMLButtonElement>) => {
     setComment(modalComment);
     handleHide(e);
@@ -74,7 +71,7 @@ const ProductEditModal = (props: ModalProps) => {
             <St.ProductForm>
               <St.ProductName>
                 매물이름 (선택)
-                <input type="text" value={productName} onChange={handleNameChange} />
+                <input type="text" value={title} onChange={handleNameChange} />
               </St.ProductName>
               <St.Dong>
                 동 (선택)
@@ -90,7 +87,7 @@ const ProductEditModal = (props: ModalProps) => {
                 호수 (선택)
                 <input
                   type="number"
-                  value={hosu}
+                  value={ho}
                   placeholder="호수 입력"
                   onChange={handleHosuChange}
                 />
