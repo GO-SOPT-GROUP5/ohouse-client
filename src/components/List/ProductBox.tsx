@@ -16,7 +16,7 @@ const ProductBox = ({handleModal, productResponse} : ProductBoxProps) => {
   
   return (
   <St.ProductBoxWrapper>
-    <ImgRoom1/>
+    <img src={image} alt="매물 이미지"/>
     <St.ProductTitle>{title}</St.ProductTitle>
     <St.ProductScore>
       <span>
@@ -52,6 +52,13 @@ const St = {
     border-radius: 0.9rem;
     background-color: ${({ theme }) => theme.colors.White};
     box-shadow: 0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.15);
+
+    & > img {
+      width: 34.4rem;
+      height: 20.4rem;
+      
+      border-radius: 1rem;
+    }
   `,
   ProductTitle : styled.header`
     margin-top: 4.4rem;
