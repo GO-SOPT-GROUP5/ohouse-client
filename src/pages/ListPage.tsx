@@ -33,6 +33,7 @@ const ListPage = () => {
   // 이친구들은 나중에 무한 스크롤 구현 시 만져줄 예정!
 
   const [selectedId, setSelectedId] = useState(); // 사용자가 '더보기'버튼을 클릭한 매물의 id -> 이건 나중에 recoil로 관리...
+  const [update, setUpdate] = useState(false);  // DeleteModal에서 매물 삭제 시, 재정렬(리렌더링)되는 플로우 구현하기 위해 사용 
 
   // 최초 렌더링
   useEffect(() => {
@@ -42,7 +43,7 @@ const ListPage = () => {
   // 카테고리나 정렬 기준 바뀔 때마다 업데이트 
   useEffect(() => {
     handleGetInfo();
-  }, [flag,sort])
+  }, [flag,sort, update])
 
   async function handleGetInfo() {
     const productList = await getProductData({flag:flag,sort:sort,page:page,size:size});
@@ -60,7 +61,7 @@ const ListPage = () => {
 
   return (
     <St.ListWrapper>
-      <DeleteModal selectedId={selectedId} isDeleteShowing={isDeleteShowing} handleToggle={deleteToggle}/>
+      <DeleteModal selectedId={selectedId} setUpdate={setUpdate} isDeleteShowing={isDeleteShowing} handleToggle={deleteToggle}/>
       <MoreModal isShowing={isShowing} handleClose={toggle} handleDelete={deleteToggle}/>
       <section>
         <St.ListSetting>

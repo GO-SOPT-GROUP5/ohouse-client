@@ -5,14 +5,16 @@ import { deleteProduct } from "../../lib/product";
 
 export interface DeleteModalProps {
     selectedId : number;
+    setUpdate : any;
     isDeleteShowing : boolean;
     handleToggle : React.MouseEventHandler;
 }
 
-const DeleteModal = ({ selectedId, isDeleteShowing, handleToggle }: DeleteModalProps) => {
+const DeleteModal = ({ selectedId, setUpdate, isDeleteShowing, handleToggle }: DeleteModalProps) => {
     
     const handleDelete = async () => {
         await deleteProduct(selectedId);
+        setUpdate((prev) => !prev); // DeleteModal에서 매물 삭제 시, 재정렬(리렌더링)되는 플로우 구현하기 위해 사용 
         console.log('삭제 완료');
     }
 
