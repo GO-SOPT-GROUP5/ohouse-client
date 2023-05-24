@@ -1,4 +1,4 @@
-import { reqCheckListData } from '../types/category';
+import { productData, reqCheckListData } from '../types/category';
 import { client } from './axios';
 
 export interface OHouseResponse<T> {
@@ -15,5 +15,15 @@ export const postCheckListData = async (reqData: reqCheckListData) => {
     return data.data;
   } catch (err) {
     return err;
+  }
+};
+
+//매물 정보 patch
+export const patchProductData = async (reqData: productData) => {
+  try {
+    const { data } = await client.patch<OHouseResponse<productData>>(`/checklist`, reqData);
+    return data.data;
+  } catch (err) {
+    console.log(err);
   }
 };

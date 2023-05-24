@@ -1,7 +1,7 @@
 export interface productInfo {
   id: string;
   title: string;
-  createAt: Date;
+  createAt: string;
   image: string;
   description: string;
   tags: {
