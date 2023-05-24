@@ -30,9 +30,25 @@ export interface tagObject {
   price: string;
   size: number;
 }
+//체크리스트 POST Requset API Type
+export interface reqCheckListData {
+  address: string;
+  average: number;
+  bad: number;
+  checkListData: checkListDataInfo;
+  description: string;
+  dong: number;
+  good: number;
+  grade: number;
+  ho: number;
+  image: string;
+  price: string;
+  size: number;
+  state: string;
+}
 
-//체크리스트 생성 API Type
-export interface checkListData {
+//체크리스트 POST Response API Type
+export interface resCheckListData {
   title: string;
   address: string;
   dong: number;
@@ -54,6 +70,6 @@ export interface checkListDataInfo {
   bathroom: subCheckListInfo[];
 }
 export interface subCheckListInfo {
-  name: string;
-  status: number;
+  subCategoryStatus: string;
+  state: number;
 }
