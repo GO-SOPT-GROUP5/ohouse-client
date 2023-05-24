@@ -83,16 +83,7 @@ const ListPage = () => {
         <St.ListBoxes>
           <AddBox />
           {productInfo.map((info : productResponse)=>
-            <ProductBox
-              id={info.id}
-              grade={info.grade}
-              good={info.good}
-              average={info.average}
-              bad={info.bad}
-              title={info.title}
-              image={info.image}
-            />
-          
+            <ProductBox info={info}/>
           )}
         </St.ListBoxes>
       </section>
