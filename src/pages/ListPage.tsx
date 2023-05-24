@@ -83,6 +83,8 @@ const St = {
 
     & > span {
       ${({ theme }) => theme.fonts.Body4};
+
+      cursor: pointer;
     }
 
     & > svg:last-child {
