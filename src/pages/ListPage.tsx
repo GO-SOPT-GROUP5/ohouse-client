@@ -31,6 +31,10 @@ const ListPage = () => {
     handleGetInfo();
   }, [])
 
+  useEffect(() => {
+    handleGetInfo();
+  }, [flag,sort])
+
   async function handleGetInfo() {
     const productList = await getProductData({flag:flag,sort:sort,page:page,size:size});
     setProductInfo(productList);
@@ -39,7 +43,7 @@ const ListPage = () => {
 
   // 여기 타입스크립트로 다 하고 싶은데 대체 이런 e 요런애들 정확한 타입 어케 아나요....... 마우스 올려도 any만 떠요... 
   const handleCategory = (e) => {
-    console.log(e.currentTarget.id);
+    setFlag(e.currentTarget.id);
   }
 
   return (
