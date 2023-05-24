@@ -9,7 +9,7 @@ import ProductEditModal from './ProductEditModal';
 const ProductUpload = () => {
   const { isShowing, toggle } = useModal();
 
-  const { id, title } = useRecoilValue(productDataState);
+  const { title } = useRecoilValue(productDataState);
 
   const handleConfirm = () => {
     // 완료 버튼 클릭 시 실행되는 함수
@@ -17,9 +17,7 @@ const ProductUpload = () => {
 
   return (
     <St.ProductUploadWrapper>
-      <St.ProductName>
-        id 값 확인용 : {id} {title}
-      </St.ProductName>
+      <St.ProductName>{title}</St.ProductName>
       <St.Address>주소를 등록해주세요</St.Address>
       <St.EditBtn type="button" onClick={toggle}>
         <IcEdit />
