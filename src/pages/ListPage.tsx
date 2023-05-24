@@ -49,7 +49,7 @@ const ListPage = () => {
       <section>
         <St.ListSetting>
           <St.ListCategory>
-            {Object.keys(CATEGORY).map((el)=><><span id={el} onClick={handleCategory}>{el}</span><IcSmallLine/></>)}
+            {Object.keys(CATEGORY).map((el)=><><span id={CATEGORY[el]} onClick={handleCategory}>{el}</span><IcSmallLine/></>)}
           </St.ListCategory>
           <St.ListCombobox>
             {FILTER.map((el)=><option>{el}</option>)}
