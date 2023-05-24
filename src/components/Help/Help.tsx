@@ -31,13 +31,11 @@ const Help = () => {
     navigate('/checklist');
     const postCheckList = async () => {
       const data = await postCheckListData(SKELETON_CHECKLIST);
-      console.log('post data', data);
       setProduct(prevValue => ({
         ...prevValue,
         id: data.id,
         title: data.title,
       }));
-      console.log('recoil value', product);
     };
     postCheckList();
   };
