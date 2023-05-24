@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-export interface ModalProps {
+export interface DeleteModalProps {
     isDeleteShowing : boolean;
     handleToggle : React.MouseEventHandler;
 }
 
-const DeleteModal = ({ isDeleteShowing, handleToggle }: ModalProps) => {
+const DeleteModal = ({ isDeleteShowing, handleToggle }: DeleteModalProps) => {
   return (
     <>
     {isDeleteShowing && (
