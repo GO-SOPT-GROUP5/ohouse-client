@@ -4,7 +4,9 @@ import { IcListStar } from "../../assets/icon";
 import { ImgRoom1 } from "../../assets/image";
 import { productResponse } from "../../types/product";
 
-const ProductBox = ({id,grade,good,average,bad,title,image} : productResponse) => {
+const ProductBox = ({info} : productResponse) => {
+
+  const {id,grade,good,average,bad,title,image} = info;
   
   return (
   <St.ProductBoxWrapper>
