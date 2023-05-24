@@ -67,16 +67,16 @@ const St = {
     }
   `,
   Empty : styled.div`
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      
-      width: 34.4rem;
-      height: 20.4rem;
-
-      background-color: ${({ theme }) => theme.colors.Grey200};
-      ${({ theme }) => theme.fonts.Body3};
-      color: ${({ theme }) => theme.colors.Grey400};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 34.4rem;
+    height: 20.4rem;
+å
+    background-color: ${({ theme }) => theme.colors.Grey200};
+    ${({ theme }) => theme.fonts.Body3};
+    color: ${({ theme }) => theme.colors.Grey400};
   `,
   ProductTitle : styled.header`
     margin-top: 4.4rem;
