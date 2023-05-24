@@ -23,6 +23,8 @@ const ProductUpload = () => {
   const ref = useRef<HTMLInputElement>(null);
   const [URLThumbnail, setURLThumbnail] = useState<string>('');
   const [imageUrl, setImageUrl] = useState<string>(''); // 서버한테 보내줄때는 빈값으로
+  // 태그
+  const [tags, setTags] = useState<string[]>(['월세', '1000/60', '30평']);
 
   const createImageURL = (fileBlob: Blob | MediaSource) => {
     if (URLThumbnail) URL.revokeObjectURL(URLThumbnail);
@@ -98,9 +100,9 @@ const ProductUpload = () => {
         </St.UploadPicture>
         <St.ProductDetail>
           <St.ProductTag>
-            <li>월세</li>
-            <li>1000/50</li>
-            <li>30평</li>
+            {tags.map((tag, index) => (
+              <li key={index}>{tag}</li>
+            ))}
           </St.ProductTag>
           <St.Grade>
             {array.map(el => (
@@ -217,6 +219,7 @@ const St = {
     display: flex;
     gap: 1rem;
 
+    min-height: 3.9rem;
     margin-bottom: 1.2rem;
 
     & > li {

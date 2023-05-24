@@ -55,8 +55,12 @@ const ProductContract = () => {
       }
       priceTag = result.trim();
     }
-    setTags([contract, priceTag, size]);
+    setTags([contract, priceTag, `${size}평`]);
   };
+
+  useEffect(() => {
+    makeTags();
+  }, [contract, price, monthlyRent, size]);
 
   return (
     <>
