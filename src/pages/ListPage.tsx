@@ -50,6 +50,11 @@ const ListPage = () => {
     setFlag(e.currentTarget.id);
   }
 
+  const handleFilter = (e) => {
+    setSort(e.currentTarget.value);
+    console.log(e.currentTarget.value);
+  }
+
   return (
     <St.ListWrapper>
       <DeleteModal isDeleteShowing={isDeleteShowing} handleToggle={deleteToggle}/>
@@ -59,8 +64,8 @@ const ListPage = () => {
           <St.ListCategory>
             {Object.keys(CATEGORY).map((el)=><><span id={CATEGORY[el]} onClick={handleCategory}>{el}</span><IcSmallLine/></>)}
           </St.ListCategory>
-          <St.ListCombobox>
-            {FILTER.map((el)=><option>{el}</option>)}
+          <St.ListCombobox onChange={handleFilter}>
+            {Object.keys(FILTER).map((el)=><option value={FILTER[el]}>{el}</option>)}
           </St.ListCombobox>
         </St.ListSetting>
         <St.ListBoxes>
