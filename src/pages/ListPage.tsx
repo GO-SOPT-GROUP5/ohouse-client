@@ -7,8 +7,8 @@ import ProductBox from "../components/List/ProductBox";
 import useModal from "../hooks/useModal";
 
 const ListPage = () => {
-  const category = ['전체', '월세', '전세', '매매'];
-  const filter = ['필터', '별점순', '좋아요순'];
+  const CATEGORY = ['전체', '월세', '전세', '매매'];
+  const FILTER = ['필터', '별점순', '좋아요순'];
   
   const {isShowing, toggle} = useModal();
 
@@ -18,10 +18,10 @@ const ListPage = () => {
       <section>
         <St.ListSetting>
           <St.ListCategory>
-            {category.map((el)=><><span>{el}</span><IcSmallLine/></>)}
+            {CATEGORY.map((el)=><><span>{el}</span><IcSmallLine/></>)}
           </St.ListCategory>
           <St.ListCombobox>
-            {filter.map((el)=><option>{el}</option>)}
+            {FILTER.map((el)=><option>{el}</option>)}
           </St.ListCombobox>
         </St.ListSetting>
         <St.ListBoxes>
