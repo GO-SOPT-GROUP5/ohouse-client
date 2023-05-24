@@ -30,6 +30,7 @@ const ListPage = () => {
   const [sort, setSort] = useState('NEWEST');
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(5);
+  // 이친구들은 나중에 무한 스크롤 구현 시 만져줄 예정!
 
   useEffect(() => {
     handleGetInfo();
@@ -42,7 +43,6 @@ const ListPage = () => {
   async function handleGetInfo() {
     const productList = await getProductData({flag:flag,sort:sort,page:page,size:size});
     setProductInfo(productList);
-    console.log(productList);
   }
 
   // 여기 타입스크립트로 다 하고 싶은데 대체 이런 e 요런애들 정확한 타입 어케 아나요....... 마우스 올려도 any만 떠요... 
@@ -52,7 +52,6 @@ const ListPage = () => {
 
   const handleFilter = (e) => {
     setSort(e.currentTarget.value);
-    console.log(e.currentTarget.value);
   }
 
   return (
