@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { ImgEmpty } from '../../assets/image';
 import { CATEGORY_LIST } from '../../constants/category';
 import { selectedSubcategoriesState, showIndexState } from '../../recoil/atom';
+import theme from '../../styles/theme';
 import CheckListItem from './CheckListItem';
 
 const CheckListIndex = () => {
@@ -28,29 +29,32 @@ const CheckListIndex = () => {
     subcategory => subcategory >= showIndex[0] && subcategory <= showIndex[1],
   );
 
+  const handleCompleteEdit = () => {};
+
   return (
     <St.CheckList>
       {showSubcategories.length ? (
         showSubcategories.map(id => {
           const { subcategory, checklist, options } = getCategoryInfo(id) || {};
-          return (
-            subcategory &&
-            checklist &&
-            options && (
+          if (subcategory && checklist && options) {
+            return (
               <CheckListItem
                 key={id}
                 subcategory={subcategory}
                 checklist={checklist}
                 options={options}
               />
-            )
-          );
+            );
+          }
         })
       ) : (
         <St.Empty>
           <ImgEmpty />
         </St.Empty>
       )}
+      <St.CompleteEditBtn type="button" onClick={handleCompleteEdit}>
+        수정하기
+      </St.CompleteEditBtn>
     </St.CheckList>
   );
 };
@@ -68,6 +72,16 @@ const St = {
     padding: 3.9rem;
 
     background-color: ${({ theme }) => theme.colors.White};
+  `,
+
+  CompleteEditBtn: styled.button`
+    width: 100%;
+    height: 6.9rem;
+
+    border-radius: 0.4rem;
+    background-color: ${({ theme }) => theme.colors.Blue};
+    color: ${({ theme }) => theme.colors.White};
+    ${({ theme }) => theme.fonts.Title3};
   `,
 
   Empty: styled.div`
