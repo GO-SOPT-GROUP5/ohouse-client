@@ -17,18 +17,17 @@ const ListPage = () => {
   const {isShowing, toggle, isDeleteShowing, deleteToggle} = useModal();
   const [productInfo, setProductInfo] = useState([]);
 
-  const [flag, setFlag] = useState<string>('전체');
-  const [sort, setSort] = useState<string>();
-  const [page, setPage] = useState();
-  const [size, setSize] = useState();
+  const [flag, setFlag] = useState('');
+  const [sort, setSort] = useState('NEWEST');
+  const [page, setPage] = useState(0);
+  const [size, setSize] = useState(5);
 
   useEffect(() => {
     handleGetInfo();
   }, [])
 
   async function handleGetInfo() {
-    // 여기 카테고리 설정이랑 정렬 설정 전까지 임의로 
-    const productList = await getProductData({flag:'전체',sort:'GRADE',page: 0,size: 5});
+    const productList = await getProductData({flag:flag,sort:sort,page:page,size:size});
     setProductInfo(productList);
     console.log(productList);
   }

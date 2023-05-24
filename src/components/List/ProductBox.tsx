@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { IcListStar, IcMore } from "../../assets/icon";
+import { ImgEmpty } from "../../assets/image";
 import { productResponse } from "../../types/product";
 
 export interface ProductBoxProps {
@@ -15,7 +16,10 @@ const ProductBox = ({handleModal, productResponse} : ProductBoxProps) => {
   
   return (
   <St.ProductBoxWrapper>
-    <img src={image} alt="매물 이미지"/>
+    { image==='' || image===null || image==="string" ? // 이미지 값 너무 다채로워엽.. 
+      <St.Empty/> :
+      <img src={image} alt="매물 이미지"/>
+    }
     <St.ProductTitle>{title}</St.ProductTitle>
     <St.ProductScore>
       <span>
@@ -58,6 +62,12 @@ const St = {
 
       border-radius: 1rem;
     }
+  `,
+  Empty : styled.div`
+      width: 34.4rem;
+      height: 20.4rem;
+
+      background-color: ${({ theme }) => theme.colors.White};
   `,
   ProductTitle : styled.header`
     margin-top: 4.4rem;
