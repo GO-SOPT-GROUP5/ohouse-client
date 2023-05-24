@@ -28,3 +28,10 @@ export interface productResponse {
   title: string;
   image: string;
 }
+
+
+export interface deleteResponse {
+  code: number;
+  message: string;
+  data: null;
+}

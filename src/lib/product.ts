@@ -1,4 +1,5 @@
 import {
+  deleteResponse,
   OHouseResponse,
   productListInfo,
   productRequest
@@ -17,3 +18,13 @@ export const getProductData = async ({flag, sort, page, size} : productRequest) 
     console.error(err);
   }
 };
+
+export const deleteProduct = async (id:number) => {
+  try {
+    const {data} = await client.delete<deleteResponse>(`/checklist/${id}`);
+    console.log(data);
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+}

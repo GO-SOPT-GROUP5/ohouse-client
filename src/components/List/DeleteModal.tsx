@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { deleteProduct } from "../../lib/product";
+
 export interface DeleteModalProps {
     selectedId : number;
     isDeleteShowing : boolean;
@@ -8,6 +10,13 @@ export interface DeleteModalProps {
 }
 
 const DeleteModal = ({ selectedId, isDeleteShowing, handleToggle }: DeleteModalProps) => {
+    
+    const handleDelete = async () => {
+        await deleteProduct(selectedId);
+        console.log('삭제 완료');
+    }
+
+
   return (
     <>
     {isDeleteShowing && (
@@ -20,7 +29,7 @@ const DeleteModal = ({ selectedId, isDeleteShowing, handleToggle }: DeleteModalP
                     <St.RevokeBtn type="button" onClick={handleToggle}>취소</St.RevokeBtn>
                     <St.ConfirmBtn type="button" onClick={() => {
                         handleToggle();
-                        // 여기서 delete 통신 
+                        handleDelete();
                     }}>확인</St.ConfirmBtn>
                 </St.Buttons>
             </St.DeleteModal>
