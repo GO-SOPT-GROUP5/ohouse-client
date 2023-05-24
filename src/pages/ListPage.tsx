@@ -8,6 +8,7 @@ import MoreModal from "../components/List/MoreModal";
 import ProductBox from "../components/List/ProductBox";
 import useModal from "../hooks/useModal";
 import { getProductData } from "../lib/product";
+import { productResponse } from "../types/product";
 
 const ListPage = () => {
   const CATEGORY = ['전체', '월세', '전세', '매매'];
@@ -40,9 +41,10 @@ const ListPage = () => {
         </St.ListSetting>
         <St.ListBoxes>
           <AddBox />
-          {productInfo.map((info)=>
+          {productInfo.map((info : productResponse)=>
             <ProductBox
               handleModal={toggle}
+              productResponse={info}
             />
           )}
         </St.ListBoxes>
