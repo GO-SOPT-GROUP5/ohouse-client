@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { IcCamera, IcEdit, IcStar, IcStarFilled } from '../../assets/icon';
@@ -7,25 +7,37 @@ import ProductEditModal from './ProductEditModal';
 
 const ProductUpload = () => {
   const { isShowing, toggle } = useModal();
-  const [grade, setGrade] = useState(0);
   const [comment, setComment] = useState('');
   const [showCommentInput, setShowCommentInput] = useState(true);
-
+  const [grade, setGrade] = useState(0);
   const [starClicked, setStarClicked] = useState([false, false, false, false, false]);
   const array = [0, 1, 2, 3, 4];
 
-  // const handleConfirm = () => {
-  //   toggle();
-  // };
+  // 파일 업로드
+  const ref = useRef<HTMLInputElement>(null);
+  const [URLThumbnail, setURLThumbnail] = useState<string>('');
+  const [imageUrl, setImageUrl] = useState<string>('');
 
-  const handleCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setComment(e.target.value);
+  const createImageURL = (fileBlob: Blob | MediaSource) => {
+    if (URLThumbnail) URL.revokeObjectURL(URLThumbnail);
+
+    const url = URL.createObjectURL(fileBlob); // Blob -> url로 변환
+
+    setURLThumbnail(url);
   };
 
-  const handleSave = () => {
-    if (comment) {
-      setShowCommentInput(false);
-    }
+  const onImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+
+    if (!files || !files[0]) return;
+    const uploadImage = files[0];
+    createImageURL(uploadImage);
+
+    console.log(uploadImage);
+  };
+
+  const onClickRef = () => {
+    ref.current?.click();
   };
 
   const handleStarClick = (index: number) => {
@@ -37,6 +49,16 @@ const ProductUpload = () => {
     setGrade(starClicked.filter(Boolean).length); // 서버에게 보낼 별 갯수
   };
 
+  const handleCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setComment(e.target.value);
+  };
+
+  const handleSave = () => {
+    if (comment) {
+      setShowCommentInput(false);
+    }
+  };
+
   return (
     <St.ProductUploadWrapper>
       <St.ProductName>2023.01.10 12:11 등록매물</St.ProductName>
@@ -46,9 +68,22 @@ const ProductUpload = () => {
       </St.EditBtn>
       <ProductEditModal isShowing={isShowing} handleHide={toggle} />
       <St.ProductInfo>
-        <St.UploadPicture type="button">
-          <IcCamera />
-          <p>사진 올리기</p>
+        <St.UploadPicture type="button" onClick={onClickRef}>
+          {URLThumbnail ? (
+            <St.ThumbnailImg src={URLThumbnail} alt="thumbnail" />
+          ) : (
+            <>
+              <IcCamera />
+              <p>사진 올리기</p>
+              <input
+                hidden
+                type="file"
+                accept="image/jpg,image/png,image/jpeg"
+                onChange={onImageChange}
+                ref={ref}
+              />
+            </>
+          )}
         </St.UploadPicture>
         <St.ProductDetail>
           <St.ProductTag>
@@ -141,6 +176,7 @@ const St = {
     width: 31rem;
     height: 18.6rem;
     margin-top: 1.2rem;
+    padding: 0;
 
     border: none;
     border-radius: 1.1rem;
@@ -150,6 +186,13 @@ const St = {
       color: ${({ theme }) => theme.colors.Grey500};
       ${({ theme }) => theme.fonts.Body4};
     }
+  `,
+
+  ThumbnailImg: styled.img`
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
   `,
 
   ProductTag: styled.ul`
