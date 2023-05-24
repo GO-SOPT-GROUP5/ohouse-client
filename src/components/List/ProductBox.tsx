@@ -2,26 +2,29 @@ import styled from "styled-components";
 
 import { IcListStar } from "../../assets/icon";
 import { ImgRoom1 } from "../../assets/image";
+import { productResponse } from "../../types/product";
 
-const ProductBox = () => {
+const ProductBox = ({info} : productResponse) => {
+
+  const {id,grade,good,average,bad,title,image} = info;
   
   return (
   <St.ProductBoxWrapper>
     <ImgRoom1/>
-    <St.ProductTitle>2023.05.10 12:11 등록매물</St.ProductTitle>
+    <St.ProductTitle>{title}</St.ProductTitle>
     <St.ProductScore>
       <span>
-        좋음<span>9</span>
+        좋음<span>{good}</span>
       </span>
       <span>
-        · 보통<span>3</span>
+        · 보통<span>{average}</span>
       </span>
       <span>
-        · 나쁨<span>1</span>
+        · 나쁨<span>{bad}</span>
       </span>
     </St.ProductScore>
     <St.ProductStar>
-      <IcListStar/><span>4</span>
+      <IcListStar/><span>{grade}</span>
     </St.ProductStar>
     <St.ProductButtons>
       <button type="button">체크리스트 내역 보기</button>

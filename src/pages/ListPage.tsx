@@ -1,12 +1,73 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { IcSmallLine } from "../assets/icon/index";
 import AddBox from "../components/List/AddBox";
 import ProductBox from "../components/List/ProductBox";
+import { getProductData } from "../lib/product";
+import { productResponse } from "../types/product";
 
 const ListPage = () => {
   const category = ['전체', '월세', '전세', '매매'];
   const filter = ['필터', '별점순', '좋아요순'];
+  // const [productInfo, setProductInfo] = useState([]);
+
+  // useEffect(() => {
+  //   handleGetInfo();
+  // }, [])
+
+  // async function handleGetInfo() {
+  //   const productList = await getProductData({flag:'전체',order:'별점순',page: 0,size: 5});
+  //   setProductInfo(productList);
+  // }
+
+  const productInfo = [
+    {
+      "id": 1,
+      "grade": 5,
+      "good": 12,
+      "average": 3,
+      "bad": 0, 
+      "title": "서울대 입구 메가커피 앞",
+      "image": "aws.s3.com~"
+    },
+    {
+      "id": 2,
+      "grade": 5,
+      "good": 12,
+      "average": 3,
+      "bad": 0, 
+      "title": "서울대 입구 메가커피 앞",
+      "image": "aws.s3.com~"
+    },
+    {
+      "id": 3,
+      "grade": 5,
+      "good": 12,
+      "average": 3,
+      "bad": 0, 
+      "title": "서울대 입구 메가커피 앞",
+      "image": "aws.s3.com~"
+    },
+    {
+      "id": 4,
+      "grade": 5,
+      "good": 12,
+      "average": 3,
+      "bad": 0, 
+      "title": "서울대 입구 메가커피 앞",
+      "image": "aws.s3.com~"
+    },
+    {
+      "id": 5,
+      "grade": 5,
+      "good": 12,
+      "average": 3,
+      "bad": 0, 
+      "title": "서울대 입구 메가커피 앞",
+      "image": "aws.s3.com~"
+    }
+  ]
 
   return (
     <St.ListWrapper>
@@ -21,9 +82,9 @@ const ListPage = () => {
         </St.ListSetting>
         <St.ListBoxes>
           <AddBox />
-          <ProductBox />
-          <ProductBox />
-          <ProductBox />
+          {productInfo.map((info : productResponse)=>
+            <ProductBox info={info}/>
+          )}
         </St.ListBoxes>
       </section>
     </St.ListWrapper>
