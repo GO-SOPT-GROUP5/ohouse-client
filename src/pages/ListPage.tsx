@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { IcSmallLine } from "../assets/icon/index";
@@ -6,12 +7,23 @@ import DeleteModal from "../components/List/DeleteModal";
 import MoreModal from "../components/List/MoreModal";
 import ProductBox from "../components/List/ProductBox";
 import useModal from "../hooks/useModal";
+import { getProductData } from "../lib/product";
 
 const ListPage = () => {
   const CATEGORY = ['전체', '월세', '전세', '매매'];
   const FILTER = ['필터', '별점순', '좋아요순'];
   
   const {isShowing, toggle, isDeleteShowing, deleteToggle} = useModal();
+  const [productInfo, setProductInfo] = useState([]);
+
+  useEffect(() => {
+    handleGetInfo();
+  }, [])
+
+  async function handleGetInfo() {
+    const productList = await getProductData({flag:'전체',order:'별점순',page: 0,size: 5});
+    setProductInfo(productList);
+  }
 
   return (
     <St.ListWrapper>
@@ -28,9 +40,11 @@ const ListPage = () => {
         </St.ListSetting>
         <St.ListBoxes>
           <AddBox />
-          <ProductBox handleModal={toggle}/>
-          <ProductBox />
-          <ProductBox />
+          {productInfo.map((info)=>
+            <ProductBox
+              handleModal={toggle}
+            />
+          )}
         </St.ListBoxes>
       </section>
     </St.ListWrapper>
