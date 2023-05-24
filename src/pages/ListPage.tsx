@@ -16,7 +16,7 @@ const ListPage = () => {
   return (
     <St.ListWrapper>
       <DeleteModal isDeleteShowing={isDeleteShowing} handleToggle={deleteToggle}/>
-      <MoreModal isShowing={isShowing} handleClose={toggle}/>
+      <MoreModal isShowing={isShowing} handleClose={toggle} handleDelete={deleteToggle}/>
       <section>
         <St.ListSetting>
           <St.ListCategory>
