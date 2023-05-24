@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import { IcSmallLine } from "../assets/icon/index";
 import AddBox from "../components/List/AddBox";
+import DeleteModal from "../components/List/DeleteModal";
 import MoreModal from "../components/List/MoreModal";
 import ProductBox from "../components/List/ProductBox";
 import useModal from "../hooks/useModal";
@@ -14,6 +15,7 @@ const ListPage = () => {
 
   return (
     <St.ListWrapper>
+      <DeleteModal/>
       <MoreModal isShowing={isShowing} handleClose={toggle}/>
       <section>
         <St.ListSetting>
