@@ -73,7 +73,7 @@ const St = {
     
     width: 34.4rem;
     height: 20.4rem;
-å
+    
     background-color: ${({ theme }) => theme.colors.Grey200};
     ${({ theme }) => theme.fonts.Body3};
     color: ${({ theme }) => theme.colors.Grey400};
