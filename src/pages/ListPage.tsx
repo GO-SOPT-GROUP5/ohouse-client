@@ -17,7 +17,11 @@ const ListPage = () => {
     '전세':'JEONSE', 
     '매매':'SALE'
   };
-  const FILTER = ['필터', '별점순', '좋아요순'];
+  const FILTER = {
+    '필터':'NEWEST', 
+    '별점순':'GRADE', 
+    '좋아요순':'LIKE'
+  };
   
   const {isShowing, toggle, isDeleteShowing, deleteToggle} = useModal();
   const [productInfo, setProductInfo] = useState([]);
