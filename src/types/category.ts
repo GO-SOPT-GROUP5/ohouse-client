@@ -67,3 +67,13 @@ export interface checkListState {
   livingRoom: subCategoryData[];
   bathroom: subCategoryData[];
 }
+
+export interface editCategoryRequest {
+  checkListId: number;
+  categoryList: categoryListInfo[];
+}
+
+export interface categoryListInfo {
+  id: number;
+  state: number;
+}
