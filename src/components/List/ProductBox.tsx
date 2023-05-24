@@ -17,7 +17,7 @@ const ProductBox = ({setSelectedId, handleModal, productResponse} : ProductBoxPr
   return (
   <St.ProductBoxWrapper>
     { image==='' || image===null || image==="string" ? // 이미지 값 너무 다채로워엽.. 
-      <St.Empty/> :
+      <St.Empty>No Image</St.Empty> :
       <img src={image} alt="매물 이미지"/>
     }
     <St.ProductTitle>{title}</St.ProductTitle>
@@ -67,10 +67,16 @@ const St = {
     }
   `,
   Empty : styled.div`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
       width: 34.4rem;
       height: 20.4rem;
 
-      background-color: ${({ theme }) => theme.colors.White};
+      background-color: ${({ theme }) => theme.colors.Grey200};
+      ${({ theme }) => theme.fonts.Body3};
+      color: ${({ theme }) => theme.colors.Grey400};
   `,
   ProductTitle : styled.header`
     margin-top: 4.4rem;
