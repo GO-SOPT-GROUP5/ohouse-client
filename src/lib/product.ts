@@ -22,7 +22,6 @@ export const getProductData = async ({flag, sort, page, size} : productRequest) 
 export const deleteProduct = async (id:number) => {
   try {
     const {data} = await client.delete<deleteResponse>(`/checklist/${id}`);
-    console.log(data);
     return data;
   } catch (err) {
     console.log(err);
