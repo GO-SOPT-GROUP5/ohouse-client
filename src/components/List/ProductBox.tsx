@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 import { IcListStar, IcMore } from "../../assets/icon";
-import { ImgEmpty } from "../../assets/image";
 import { productResponse } from "../../types/product";
 
 export interface ProductBoxProps {
