@@ -2,26 +2,33 @@ import styled from "styled-components";
 
 import { IcSmallLine } from "../assets/icon/index";
 import AddBox from "../components/List/AddBox";
+import DeleteModal from "../components/List/DeleteModal";
+import MoreModal from "../components/List/MoreModal";
 import ProductBox from "../components/List/ProductBox";
+import useModal from "../hooks/useModal";
 
 const ListPage = () => {
-  const category = ['전체', '월세', '전세', '매매'];
-  const filter = ['필터', '별점순', '좋아요순'];
+  const CATEGORY = ['전체', '월세', '전세', '매매'];
+  const FILTER = ['필터', '별점순', '좋아요순'];
+  
+  const {isShowing, toggle, isDeleteShowing, deleteToggle} = useModal();
 
   return (
     <St.ListWrapper>
+      <DeleteModal isDeleteShowing={isDeleteShowing} handleToggle={deleteToggle}/>
+      <MoreModal isShowing={isShowing} handleClose={toggle} handleDelete={deleteToggle}/>
       <section>
         <St.ListSetting>
           <St.ListCategory>
-            {category.map((el)=><><span>{el}</span><IcSmallLine/></>)}
+            {CATEGORY.map((el)=><><span>{el}</span><IcSmallLine/></>)}
           </St.ListCategory>
           <St.ListCombobox>
-            {filter.map((el)=><option>{el}</option>)}
+            {FILTER.map((el)=><option>{el}</option>)}
           </St.ListCombobox>
         </St.ListSetting>
         <St.ListBoxes>
           <AddBox />
-          <ProductBox />
+          <ProductBox handleModal={toggle}/>
           <ProductBox />
           <ProductBox />
         </St.ListBoxes>
