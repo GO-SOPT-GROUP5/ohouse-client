@@ -11,11 +11,11 @@ const ListPage = () => {
   const CATEGORY = ['전체', '월세', '전세', '매매'];
   const FILTER = ['필터', '별점순', '좋아요순'];
   
-  const {isShowing, toggle} = useModal();
+  const {isShowing, toggle, isDeleteShowing, deleteToggle} = useModal();
 
   return (
     <St.ListWrapper>
-      <DeleteModal isDeleteShowing={isShowing} handleToggle={toggle}/>
+      <DeleteModal isDeleteShowing={isDeleteShowing} handleToggle={deleteToggle}/>
       <MoreModal isShowing={isShowing} handleClose={toggle}/>
       <section>
         <St.ListSetting>
