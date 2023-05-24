@@ -7,16 +7,17 @@ import ProductEditModal from './ProductEditModal';
 
 const ProductUpload = () => {
   const { isShowing, toggle } = useModal();
-  const [comment, setComment] = useState('');
-  const [showCommentInput, setShowCommentInput] = useState(true);
+  // 별점
   const [grade, setGrade] = useState(0);
   const [starClicked, setStarClicked] = useState([false, false, false, false, false]);
   const array = [0, 1, 2, 3, 4];
-
+  // 한줄평가
+  const [comment, setComment] = useState('');
+  const [showCommentInput, setShowCommentInput] = useState(true);
   // 파일 업로드
   const ref = useRef<HTMLInputElement>(null);
   const [URLThumbnail, setURLThumbnail] = useState<string>('');
-  const [imageUrl, setImageUrl] = useState<string>('');
+  const [imageUrl, setImageUrl] = useState<string>(''); // 서버한테 보내줄때는 빈값으로
 
   const createImageURL = (fileBlob: Blob | MediaSource) => {
     if (URLThumbnail) URL.revokeObjectURL(URLThumbnail);
@@ -32,8 +33,6 @@ const ProductUpload = () => {
     if (!files || !files[0]) return;
     const uploadImage = files[0];
     createImageURL(uploadImage);
-
-    console.log(uploadImage);
   };
 
   const onClickRef = () => {
