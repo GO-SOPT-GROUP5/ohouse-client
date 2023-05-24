@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import { IcSmallLine } from "../assets/icon/index";
 import AddBox from "../components/List/AddBox";
+import DeleteModal from "../components/List/DeleteModal";
 import MoreModal from "../components/List/MoreModal";
 import ProductBox from "../components/List/ProductBox";
 import useModal from "../hooks/useModal";
@@ -10,11 +11,12 @@ const ListPage = () => {
   const CATEGORY = ['전체', '월세', '전세', '매매'];
   const FILTER = ['필터', '별점순', '좋아요순'];
   
-  const {isShowing, toggle} = useModal();
+  const {isShowing, toggle, isDeleteShowing, deleteToggle} = useModal();
 
   return (
     <St.ListWrapper>
-      <MoreModal isShowing={isShowing} handleClose={toggle}/>
+      <DeleteModal isDeleteShowing={isDeleteShowing} handleToggle={deleteToggle}/>
+      <MoreModal isShowing={isShowing} handleClose={toggle} handleDelete={deleteToggle}/>
       <section>
         <St.ListSetting>
           <St.ListCategory>
