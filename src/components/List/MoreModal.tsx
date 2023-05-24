@@ -20,7 +20,10 @@ const MoreModal = ({ isShowing, handleClose, handleDelete }: ModalProps) => {
                 <St.Header>더보기</St.Header>
                 <St.CloseBtn onClick={handleClose}><IcBack/></St.CloseBtn>
                 <St.ModalBtn type="button">수정하기</St.ModalBtn>
-                <St.ModalBtn type="button" onClick={handleDelete}>삭제하기</St.ModalBtn>
+                <St.ModalBtn type="button" 
+                    onClick={()=>{handleDelete(); handleClose();}}>
+                    삭제하기
+                </St.ModalBtn>
             </St.ListModal>
         </St.ListModalWrapper>
     )}
