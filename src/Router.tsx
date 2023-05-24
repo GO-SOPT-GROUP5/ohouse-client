@@ -20,6 +20,7 @@ const Router = () => {
               <Route path="/help" element={<HelpPage />} />
               <Route path="/list" element={<ListPage />} />
               <Route path="/checklist" element={<CheckListPage />} />
+              <Route path="/checklist/:id" element={<CheckListPage />} />
             </Route>
             <Route path="*" element={<ErrorPage />} />
           </Routes>

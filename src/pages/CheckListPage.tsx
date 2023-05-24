@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Category from '../components/CheckList/Category';
@@ -5,6 +6,8 @@ import CheckListIndex from '../components/CheckList/CheckListIndex';
 import ProductUpload from '../components/CheckList/ProductUpload';
 
 const CheckListPage = () => {
+  const { id } = useParams();
+
   return (
     <St.CheckListPageWrapper>
       <ProductUpload />
