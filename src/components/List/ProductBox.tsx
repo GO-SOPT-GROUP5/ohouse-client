@@ -5,11 +5,12 @@ import { IcListStar, IcMore } from "../../assets/icon";
 import { productResponse } from "../../types/product";
 
 export interface ProductBoxProps {
+  setSelectedId : any;  // 뭐로 해야할지모르겠어요.. 수정하겠습니다..
   handleModal : React.MouseEventHandler;
   productResponse : productResponse;
 }
 
-const ProductBox = ({handleModal, productResponse} : ProductBoxProps) => {
+const ProductBox = ({setSelectedId, handleModal, productResponse} : ProductBoxProps) => {
   
   const {id,grade,good,average,bad,title,image} = productResponse;
   
@@ -36,7 +37,10 @@ const ProductBox = ({handleModal, productResponse} : ProductBoxProps) => {
     </St.ProductStar>
     <St.ProductButtons>
       <button type="button">체크리스트 내역 보기</button>
-      <button type="button" onClick={handleModal}><IcMore/></button>
+      <button type="button" onClick={() => {
+        handleModal();
+        setSelectedId(id);  // 더보기 버튼 클릭 시 현재 매물 id로 상태 업데이트
+      }}><IcMore/></button>
     </St.ProductButtons>
   </St.ProductBoxWrapper>
   );

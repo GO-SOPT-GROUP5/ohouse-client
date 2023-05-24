@@ -7,7 +7,6 @@ import DeleteModal from "../components/List/DeleteModal";
 import MoreModal from "../components/List/MoreModal";
 import ProductBox from "../components/List/ProductBox";
 import useModal from "../hooks/useModal";
-
 import { getProductData } from "../lib/product";
 import { productResponse } from "../types/product";
 
@@ -33,10 +32,14 @@ const ListPage = () => {
   const [size, setSize] = useState(5);
   // 이친구들은 나중에 무한 스크롤 구현 시 만져줄 예정!
 
+  const [selectedId, setSelectedId] = useState(); // 사용자가 '더보기'버튼을 클릭한 매물의 id -> 이건 나중에 recoil로 관리...
+
+  // 최초 렌더링
   useEffect(() => {
     handleGetInfo();
   }, [])
-
+  
+  // 카테고리나 정렬 기준 바뀔 때마다 업데이트 
   useEffect(() => {
     handleGetInfo();
   }, [flag,sort])
@@ -57,7 +60,7 @@ const ListPage = () => {
 
   return (
     <St.ListWrapper>
-      <DeleteModal isDeleteShowing={isDeleteShowing} handleToggle={deleteToggle}/>
+      <DeleteModal selectedId={selectedId} isDeleteShowing={isDeleteShowing} handleToggle={deleteToggle}/>
       <MoreModal isShowing={isShowing} handleClose={toggle} handleDelete={deleteToggle}/>
       <section>
         <St.ListSetting>
@@ -72,6 +75,7 @@ const ListPage = () => {
           <AddBox />
           {productInfo.map((info : productResponse)=>
             <ProductBox
+              setSelectedId={setSelectedId}
               handleModal={toggle}
               productResponse={info}
             />

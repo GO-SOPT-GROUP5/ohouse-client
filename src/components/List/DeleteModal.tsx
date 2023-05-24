@@ -2,11 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 export interface DeleteModalProps {
+    selectedId : number;
     isDeleteShowing : boolean;
     handleToggle : React.MouseEventHandler;
 }
 
-const DeleteModal = ({ isDeleteShowing, handleToggle }: DeleteModalProps) => {
+const DeleteModal = ({ selectedId, isDeleteShowing, handleToggle }: DeleteModalProps) => {
   return (
     <>
     {isDeleteShowing && (
@@ -17,7 +18,10 @@ const DeleteModal = ({ isDeleteShowing, handleToggle }: DeleteModalProps) => {
                 </St.Text>
                 <St.Buttons>
                     <St.RevokeBtn type="button" onClick={handleToggle}>취소</St.RevokeBtn>
-                    <St.ConfirmBtn type="button" onClick={handleToggle}>확인</St.ConfirmBtn>
+                    <St.ConfirmBtn type="button" onClick={() => {
+                        handleToggle();
+                        // 여기서 delete 통신 
+                    }}>확인</St.ConfirmBtn>
                 </St.Buttons>
             </St.DeleteModal>
         </St.DeleteModalWrapper>
