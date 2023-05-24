@@ -11,7 +11,12 @@ import { getProductData } from "../lib/product";
 import { productResponse } from "../types/product";
 
 const ListPage = () => {
-  const CATEGORY = ['전체', '월세', '전세', '매매'];
+  const CATEGORY = {
+    '전체':'',
+    '월세':'MONTHLY', 
+    '전세':'JEONSE', 
+    '매매':'SALE'
+  };
   const FILTER = ['필터', '별점순', '좋아요순'];
   
   const {isShowing, toggle, isDeleteShowing, deleteToggle} = useModal();
@@ -32,8 +37,9 @@ const ListPage = () => {
     console.log(productList);
   }
 
-  const handleCategory = () => {
-
+  // 여기 타입스크립트로 다 하고 싶은데 대체 이런 e 요런애들 정확한 타입 어케 아나요....... 마우스 올려도 any만 떠요... 
+  const handleCategory = (e) => {
+    console.log(e.currentTarget.id);
   }
 
   return (
@@ -43,7 +49,7 @@ const ListPage = () => {
       <section>
         <St.ListSetting>
           <St.ListCategory>
-            {CATEGORY.map((el)=><><span>{el}</span><IcSmallLine/></>)}
+            {Object.keys(CATEGORY).map((el)=><><span id={el} onClick={handleCategory}>{el}</span><IcSmallLine/></>)}
           </St.ListCategory>
           <St.ListCombobox>
             {FILTER.map((el)=><option>{el}</option>)}
