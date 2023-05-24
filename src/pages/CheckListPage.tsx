@@ -1,21 +1,10 @@
-import { useEffect } from 'react';
 import styled from 'styled-components';
 
 import Category from '../components/CheckList/Category';
 import CheckListIndex from '../components/CheckList/CheckListIndex';
 import ProductUpload from '../components/CheckList/ProductUpload';
-import { SKELETON_CHECKLIST } from '../constants/skeletonCheckList';
-import { postCheckListData } from '../lib/category';
 
 const CheckListPage = () => {
-  useEffect(() => {
-    const postCheckList = async () => {
-      const data = await postCheckListData(SKELETON_CHECKLIST);
-      console.log(data.id);
-    };
-    postCheckList();
-  }, []);
-
   return (
     <St.CheckListPageWrapper>
       <ProductUpload />
