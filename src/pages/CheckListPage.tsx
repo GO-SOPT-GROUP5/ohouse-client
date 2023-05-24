@@ -1,12 +1,29 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Category from '../components/CheckList/Category';
 import CheckListIndex from '../components/CheckList/CheckListIndex';
 import ProductUpload from '../components/CheckList/ProductUpload';
+import { getChecklistData } from '../lib/product';
 
 const CheckListPage = () => {
-  const { id } = useParams();
+  const { checklistId } = useParams();
+
+  const getChecklist = async () => {
+    try {
+      if (checklistId) {
+        const result = await getChecklistData(Number(checklistId));
+        console.log(result);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getChecklist();
+  }, [checklistId]);
 
   return (
     <St.CheckListPageWrapper>

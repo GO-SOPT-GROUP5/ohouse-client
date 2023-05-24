@@ -12,9 +12,9 @@ export const getProductData = async (productid: number) => {
 };
 
 // 체크리스트 조회
-export const getChecklistData = async (id: number) => {
+export const getChecklistData = async (checklistId: number) => {
   try {
-    const { data } = await client.get<categoryResponse>(`/checklist/${id}`);
+    const { data } = await client.get<categoryResponse>(`/checklist/${checklistId}`);
     return data.data;
   } catch (err) {
     console.error(err);
