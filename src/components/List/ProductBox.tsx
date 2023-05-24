@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 import { IcListStar, IcMore } from "../../assets/icon";
-import { ImgRoom1 } from "../../assets/image";
 import { productResponse } from "../../types/product";
 
 export interface ProductBoxProps {
@@ -56,7 +55,7 @@ const St = {
     & > img {
       width: 34.4rem;
       height: 20.4rem;
-      
+
       border-radius: 1rem;
     }
   `,

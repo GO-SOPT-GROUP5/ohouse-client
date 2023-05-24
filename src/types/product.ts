@@ -13,7 +13,7 @@ export interface productListInfo {
 
 export interface productRequest {
   flag: string;
-  order: string;
+  sort: string;
   page: number;
   size: number;
 }
