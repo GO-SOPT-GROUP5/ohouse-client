@@ -12,6 +12,7 @@ export const getProductData = async ({flag, sort, page, size} : productRequest) 
       await client.get<OHouseResponse<productListInfo>>(`/checklist/list?flag=${flag}&sort=${sort}&page=${page}&size=${size}`);
   
       return data.data;
+
   } catch (err) {
     console.error(err);
   }

@@ -7,6 +7,7 @@ import DeleteModal from "../components/List/DeleteModal";
 import MoreModal from "../components/List/MoreModal";
 import ProductBox from "../components/List/ProductBox";
 import useModal from "../hooks/useModal";
+
 import { getProductData } from "../lib/product";
 import { productResponse } from "../types/product";
 
