@@ -11,6 +11,26 @@ export interface subCategoryInfo {
   isDisable: boolean;
 }
 
+//매물 정보 수정 API type
+export interface productData {
+  id: number;
+  title: string;
+  address: string;
+  dong: number;
+  ho: number;
+  image: string;
+  description: string;
+  grade: number;
+  tags: tagObject;
+}
+
+// 매물 정보 태그 내용 object
+export interface tagObject {
+  state: string;
+  price: string;
+  size: number;
+}
+
 export interface categoryResponse {
   code: number;
   message: string;

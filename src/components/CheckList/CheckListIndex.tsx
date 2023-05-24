@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 import { ImgEmpty } from '../../assets/image';
 import { CATEGORY_LIST } from '../../constants/category';
-import { selectedSubcategoriesState, showIndexState } from '../../recoil/atom';
-import theme from '../../styles/theme';
+import { editChecklistData } from '../../lib/checklist';
+import { productDataState, selectedSubcategoriesState, showIndexState } from '../../recoil/atom';
 import CheckListItem from './CheckListItem';
 
 const CheckListIndex = () => {
@@ -12,6 +12,8 @@ const CheckListIndex = () => {
     selectedSubcategoriesState,
   );
   const [showIndex] = useRecoilState(showIndexState);
+
+  const [productData, setProductData] = useRecoilState(productDataState);
 
   const getCategoryInfo = (id: number) => {
     for (const category of CATEGORY_LIST) {
@@ -30,6 +32,17 @@ const CheckListIndex = () => {
   );
 
   const handleCompleteEdit = () => {};
+
+  const editChecklist = async (id: number, status: string) => {
+    // id, state 저장된 categoryList 객체 배열 만들기
+
+    try {
+      const result = await editChecklistData(id, status);
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <St.CheckList>
