@@ -3,11 +3,10 @@ import styled from "styled-components";
 
 export interface ModalProps {
     isDeleteShowing : boolean;
-    handleRevoke : React.MouseEventHandler;
-    handleConfirm : React.MouseEventHandler;
+    handleToggle : React.MouseEventHandler;
 }
 
-const DeleteModal = ({ isDeleteShowing, handleRevoke, handleConfirm }: ModalProps) => {
+const DeleteModal = ({ isDeleteShowing, handleToggle }: ModalProps) => {
   return (
     <>
     {isDeleteShowing && (
@@ -17,8 +16,8 @@ const DeleteModal = ({ isDeleteShowing, handleRevoke, handleConfirm }: ModalProp
                 작성하신 내역을 삭제하시겠습니까?<br/>삭제 후에는 복구할 수 없습니다.
                 </St.Text>
                 <St.Buttons>
-                    <St.RevokeBtn type="button" onClick={handleRevoke}>취소</St.RevokeBtn>
-                    <St.ConfirmBtn type="button" onClick={handleConfirm}>확인</St.ConfirmBtn>
+                    <St.RevokeBtn type="button" onClick={handleToggle}>취소</St.RevokeBtn>
+                    <St.ConfirmBtn type="button" onClick={handleToggle}>확인</St.ConfirmBtn>
                 </St.Buttons>
             </St.DeleteModal>
         </St.DeleteModalWrapper>
