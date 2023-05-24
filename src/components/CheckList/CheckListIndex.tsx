@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
@@ -5,6 +6,7 @@ import { ImgEmpty } from '../../assets/image';
 import { CATEGORY_LIST } from '../../constants/category';
 import { editChecklistData } from '../../lib/checklist';
 import { productDataState, selectedSubcategoriesState, showIndexState } from '../../recoil/atom';
+import { categoryListInfo, editCategoryRequest } from '../../types/category';
 import CheckListItem from './CheckListItem';
 
 const CheckListIndex = () => {
@@ -14,6 +16,7 @@ const CheckListIndex = () => {
   const [showIndex] = useRecoilState(showIndexState);
 
   const [productData, setProductData] = useRecoilState(productDataState);
+  const [categoryList, setCategoryList] = useState<categoryListInfo[]>([]);
 
   const getCategoryInfo = (id: number) => {
     for (const category of CATEGORY_LIST) {
@@ -33,11 +36,14 @@ const CheckListIndex = () => {
 
   const handleCompleteEdit = () => {};
 
-  const editChecklist = async (id: number, status: string) => {
+  const editChecklist = async ({ checkListId, categoryList }: editCategoryRequest) => {
     // id, state 저장된 categoryList 객체 배열 만들기
 
     try {
-      const result = await editChecklistData(id, status);
+      const result = await editChecklistData({
+        checkListId: checkListId,
+        categoryList: categoryList,
+      });
       console.log(result);
     } catch (error) {
       console.error(error);

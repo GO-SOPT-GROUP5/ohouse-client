@@ -77,3 +77,19 @@ export interface categoryListInfo {
   id: number;
   state: number;
 }
+
+export interface SubCategoryIdInfo {
+  SUNLIGHT: number;
+  LEAK: number;
+  HEATING: number;
+  SINK_DRAIN: number;
+  SINK_PRESSURE: number;
+  WALLPAPER: number;
+  FLOOR: number;
+  BALCONY: number;
+  WASHSTAND_STATUS: number;
+  WASHSTAND_DRAIN: number;
+  WASHSTAND_PRESSURE: number;
+  MOLD: number;
+  TOILET: number;
+}
