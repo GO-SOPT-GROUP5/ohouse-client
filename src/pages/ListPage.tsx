@@ -22,6 +22,7 @@ const ListPage = () => {
   }, [])
 
   async function handleGetInfo() {
+    // 여기 카테고리 설정이랑 정렬 설정 전까지 임의로 
     const productList = await getProductData({flag:'전체',order:'GRADE',page: 0,size: 5});
     setProductInfo(productList);
   }
