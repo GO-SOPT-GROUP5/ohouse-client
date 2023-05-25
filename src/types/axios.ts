@@ -1,6 +1,5 @@
 export interface OHouseResponse<T> {
-  data?: T;
-  status: number;
-  success: boolean;
+  code: number;
   message: string;
+  data: T;
 }

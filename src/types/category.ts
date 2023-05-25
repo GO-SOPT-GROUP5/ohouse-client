@@ -11,36 +11,6 @@ export interface subCategoryInfo {
   isDisable: boolean;
 }
 
-export interface categoryResponse {
-  code: number;
-  message: string;
-  data: checkListData;
-}
-
-export interface checkListData {
-  id: number;
-  title: string;
-  address: string;
-  dong: number;
-  ho: number;
-  image: string;
-  grade: number;
-  tag: tagInfo;
-  checkListData: checkListState;
-}
-
-export interface subCategoryData {
-  id: number;
-  subCategoryStatus: string;
-  state: number;
-}
-
-export interface tagInfo {
-  price: string;
-  size: number;
-  state: string;
-}
-
 //매물 정보 수정 API type
 export interface productData {
   id: number;
@@ -51,29 +21,19 @@ export interface productData {
   image: string;
   description: string;
   grade: number;
-  state: string;
-  price: string;
-  size: number;
-}
-//체크리스트 POST Requset API Type
-export interface reqCheckListData {
-  address: string;
-  average: number;
-  bad: number;
+  tags: tagObject;
   checkListData: checkListDataInfo;
-  description: string;
-  dong: number;
-  good: number;
-  grade: number;
-  ho: number;
-  image: string;
-  price: string;
-  size: number;
-  state: string;
 }
 
-//체크리스트 POST Response API Type
-export interface resCheckListData {
+// 매물 정보 태그 내용 object
+export interface tagObject {
+  state: string;
+  price: string;
+  size: number;
+}
+
+//체크리스트 생성 API Type
+export interface checkListData {
   title: string;
   address: string;
   dong: number;
@@ -94,7 +54,41 @@ export interface checkListDataInfo {
   livingRoom: subCheckListInfo[];
   bathroom: subCheckListInfo[];
 }
+
 export interface subCheckListInfo {
+  id: number;
   subCategoryStatus: string;
   state: number;
+}
+
+export interface editCategoryRequest {
+  checkListId: number;
+  categoryList: categoryListInfo[];
+}
+
+export interface categoryListInfo {
+  id: number;
+  state: number;
+}
+
+export interface subCategoryIdInfo {
+  SUNLIGHT: number;
+  LEAK: number;
+  HEATING: number;
+  SINK_DRAIN: number;
+  SINK_PRESSURE: number;
+  WALLPAPER: number;
+  FLOOR: number;
+  BALCONY: number;
+  WASHSTAND_STATUS: number;
+  WASHSTAND_DRAIN: number;
+  WASHSTAND_PRESSURE: number;
+  MOLD: number;
+  TOILET: number;
+}
+
+export interface categoryIdList {
+  id: number;
+  name: string;
+  fetchedId: number;
 }
