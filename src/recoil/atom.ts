@@ -22,7 +22,6 @@ export const productDataState = atom<productData>({
     size: 0,
     grade: 0,
   },
-  effects_UNSTABLE: [persistAtom],
 });
 
 export const selectedSubcategoriesState = atom<number[]>({
