@@ -59,7 +59,7 @@ const ListPage = () => {
           </St.ListCombobox>
         </St.ListSetting>
         <St.ListBoxes>
-          <AddBox />
+          <AddBox/>
           {productInfo.map((info : productResponse)=>
             <ProductBox
               setUpdate={setUpdate}
@@ -127,5 +127,9 @@ const St = {
     width: 100%;
     margin-top: 2.2rem;
     margin-bottom: 8rem;
+
+    & > article:first-child > svg {
+      cursor: pointer;
+    }
   `
 }
