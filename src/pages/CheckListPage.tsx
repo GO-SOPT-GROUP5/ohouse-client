@@ -34,6 +34,13 @@ const CheckListPage = () => {
   };
 
   useEffect(() => {
+    if (checklistId) {
+      setSelectedCategories(prevState => ({
+        ...prevState,
+        checkListId: Number(checklistId),
+      }));
+    }
+
     const fetchChecklist = async () => {
       const checklistData = await getChecklist();
       setChecklist(checklistData);
@@ -41,6 +48,8 @@ const CheckListPage = () => {
 
     fetchChecklist();
   }, [checklistId]);
+
+  console.log(selectedCategories);
 
   useEffect(() => {
     if (checklist) {
