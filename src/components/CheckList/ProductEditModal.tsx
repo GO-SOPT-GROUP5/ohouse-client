@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Postcode from 'react-daum-postcode';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import { IcAddress, IcCancel } from '../../assets/icon';
@@ -29,7 +29,7 @@ const ProductEditModal = (props: ModalProps) => {
 
   const [isPostOpen, setIsPostOpen] = useState(false); // 주소 입력창
 
-  const [product, setProduct] = useRecoilState(productDataState);
+  const setProduct = useSetRecoilState(productDataState);
   const handleSearchAddress = () => {
     setIsPostOpen(prev => !prev);
   };

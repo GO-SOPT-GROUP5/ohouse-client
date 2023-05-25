@@ -11,11 +11,6 @@ import ProductEditModal from './ProductEditModal';
 
 const ProductUpload = () => {
   const { isShowing, toggle } = useModal();
-  // const [title, setTitle] = useState<string>('2023.01.10 12:11 등록매물');
-  // // 주소
-  // const [address, setAddress] = useState<string>('');
-  // const [dong, setDong] = useState<string>();
-  // const [ho, setHo] = useState<string>();
 
   const setProduct = useSetRecoilState(productDataState);
   const { title, address, dong, ho, state, price, size, description, id, image } =
@@ -31,18 +26,15 @@ const ProductUpload = () => {
   // 파일 업로드
   const ref = useRef<HTMLInputElement>(null);
   const [URLThumbnail, setURLThumbnail] = useState<string>('');
-  // const [imageUrl, setImageUrl] = useState<string>(''); // 서버한테 보내줄때는 빈값으로
-  // 태그
-  // const [tags, setTags] = useState<string[]>(['월세', '1000/60', '30평']);
 
   const product = useRecoilValue(productDataState);
   const [isSaved, setIsSaved] = useState(false);
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log(product);
-  });
+  // useEffect(() => {
+  //   console.log(product);
+  // });
 
   const createImageURL = (fileBlob: Blob | MediaSource) => {
     if (URLThumbnail) URL.revokeObjectURL(URLThumbnail);

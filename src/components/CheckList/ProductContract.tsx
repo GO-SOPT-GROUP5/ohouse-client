@@ -13,15 +13,8 @@ const ProductContract = () => {
   const [monthlyRent, setMonthlyRent] = useState<string>(''); // 월세
   const [area, setArea] = useState<string>(''); // 제곱미터
   const [size, setSize] = useState<string>(''); // 평수
-  const [tags, setTags] = useState<string[]>([]); // 태그
 
   const setProduct = useSetRecoilState(productDataState);
-
-  // const tagsInfo = {
-  //   state: contract,
-  //   price: price + monthlyRent,
-  //   size: +size,
-  // };
 
   const handleContractSelect = (contractType: string) => {
     if (contractType !== contract) {
@@ -66,7 +59,6 @@ const ProductContract = () => {
       }
       priceTag = result.trim();
     }
-    setTags([contract, priceTag, `${size}평`]);
     setProduct(prev => ({
       ...prev,
       state: contract,
