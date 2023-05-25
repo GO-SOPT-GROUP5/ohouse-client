@@ -8,12 +8,11 @@ import CheckListIndex from '../components/CheckList/CheckListIndex';
 import ProductUpload from '../components/CheckList/ProductUpload';
 import { getChecklistData } from '../lib/checklist';
 import { productDataState, subCategoryIdState } from '../recoil/atom';
-import { checkListDataInfo, productData, subCategoryIdInfo } from '../types/category';
+import { productData, subCategoryIdInfo } from '../types/category';
 
 const CheckListPage = () => {
   const { checklistId } = useParams();
   const [subCategoryId, setSubCategoryId] = useRecoilState<subCategoryIdInfo[]>(subCategoryIdState);
-  // const [checklist, setChecklist] = useState<checkListDataInfo | undefined>(undefined);
   const [productData, setProductData] = useRecoilState<productData>(productDataState);
 
   const getChecklist = async () => {
@@ -30,15 +29,6 @@ const CheckListPage = () => {
       console.error(error);
     }
   };
-
-  // useEffect(() => {
-  //   const fetchChecklist = async () => {
-  //     const checklistData = await getChecklist();
-  //     setChecklist(checklistData);
-  //   };
-
-  //   fetchChecklist();
-  // }, [checklistId]);
 
   useEffect(() => {
     if (productData.checkListData) {

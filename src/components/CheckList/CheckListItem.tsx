@@ -1,15 +1,10 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
-import { useRecoilState } from 'recoil';
-import styled from 'styled-components';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { useRecoilState } from "recoil";
+import styled from "styled-components";
 
-import { editCategoryState, productDataState, subCategoryIdState } from '../../recoil/atom';
-import {
-  categoryListInfo,
-  checkListDataInfo,
-  editCategoryRequest,
-  productData,
-} from '../../types/category';
+import { editCategoryState } from "../../recoil/atom";
+import { editCategoryRequest } from "../../types/category";
 
 interface CheckListItemProms {
   categoryId: number;
@@ -20,11 +15,9 @@ interface CheckListItemProms {
 
 const CheckListItem = ({ categoryId, subcategory, checklist, options }: CheckListItemProms) => {
   const { checklistId } = useParams();
-  const [subCategoryId] = useRecoilState(subCategoryIdState);
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(null);
   const [selectedCategoryOption, setSelectedCategoryOption] =
     useRecoilState<editCategoryRequest>(editCategoryState);
-  const [productData, setProductData] = useRecoilState<productData>(productDataState);
 
   const handleSelectedOption = (index: number) => {
     if (categoryId && index !== selectedOptionIndex) {

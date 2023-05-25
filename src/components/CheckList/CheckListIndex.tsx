@@ -23,11 +23,10 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
     selectedSubcategoriesState,
   );
   const [showIndex] = useRecoilState(showIndexState);
-  const [categoryList, setCategoryList] = useState<categoryListInfo[]>([]);
   const [subCategoryId] = useRecoilState(subCategoryIdState);
   const [selectedCategoryOption, setSelectedCategoryOption] =
     useRecoilState<editCategoryRequest>(editCategoryState);
-  console.log(subCategoryId);
+
   const getCategoryInfo = (id: number) => {
     for (const category of CATEGORY_LIST) {
       const subcategory = category.subcategories.find(subcategory => subcategory.id === id);
@@ -78,8 +77,6 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
           return category;
       }
     });
-
-    console.log(updatedCategoryList);
 
     const editRequest: editCategoryRequest = {
       checkListId: checklistId,
