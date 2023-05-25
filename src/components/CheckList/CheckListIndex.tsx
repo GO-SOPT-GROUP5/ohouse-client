@@ -11,7 +11,7 @@ import {
   showIndexState,
   subCategoryIdState,
 } from '../../recoil/atom';
-import { categoryListInfo, editCategoryRequest } from '../../types/category';
+import { categoryListInfo, editCategoryRequest, productData } from '../../types/category';
 import CheckListItem from './CheckListItem';
 
 interface CheckListIndexProps {
@@ -44,10 +44,8 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
 
   const handleCompleteEdit = async () => {
     const updatedCategoryList = selectedCategoryOption.categoryList.map(category => {
-      console.log('id:', category.id);
       switch (category.id) {
         case 1:
-          console.log(subCategoryId[0].SUNLIGHT);
           return { ...category, id: subCategoryId[0].SUNLIGHT };
         case 2:
           return { ...category, id: subCategoryId[0].LEAK };
@@ -91,6 +89,7 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
     } catch (error) {
       console.error(error);
     }
+    console.log(selectedCategoryOption);
   };
 
   const editChecklist = async ({ checkListId, categoryList }: editCategoryRequest) => {

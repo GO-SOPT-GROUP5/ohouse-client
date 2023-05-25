@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { useRecoilState } from "recoil";
-import styled from "styled-components";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { useRecoilState } from 'recoil';
+import styled from 'styled-components';
 
-import { editCategoryState } from "../../recoil/atom";
-import { editCategoryRequest } from "../../types/category";
+import { editCategoryState } from '../../recoil/atom';
+import { editCategoryRequest } from '../../types/category';
 
 interface CheckListItemProms {
   categoryId: number;
@@ -66,7 +66,12 @@ const CheckListItem = ({ categoryId, subcategory, checklist, options }: CheckLis
             key={option}
             onClick={() => handleSelectedOption(index)}
             disabled={index === selectedOptionIndex}
-            active={index === selectedOptionIndex}
+            active={
+              index === selectedOptionIndex ||
+              selectedCategoryOption.categoryList.some(
+                category => category.id === categoryId && category.state === index + 1,
+              )
+            }
           >
             {option}
           </St.OptionBtn>

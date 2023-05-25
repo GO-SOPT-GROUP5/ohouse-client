@@ -112,6 +112,27 @@ export const showIndexState = atom<number[]>({
   default: [1, 48],
 });
 
+export const clientSubCategoryIdState = atom<subCategoryIdInfo[]>({
+  key: 'clientSubCategoryId',
+  default: [
+    {
+      SUNLIGHT: 1,
+      LEAK: 2,
+      HEATING: 5,
+      SINK_DRAIN: 10,
+      SINK_PRESSURE: 11,
+      WALLPAPER: 15,
+      FLOOR: 16,
+      BALCONY: 17,
+      WASHSTAND_STATUS: 21,
+      WASHSTAND_DRAIN: 22,
+      WASHSTAND_PRESSURE: 23,
+      MOLD: 24,
+      TOILET: 25,
+    },
+  ],
+});
+
 export const subCategoryIdState = atom<subCategoryIdInfo[]>({
   key: 'subCategoryId',
   default: [
