@@ -1,25 +1,28 @@
 import React from "react";
+import { useNavigate } from "react-router";
 import styled from "styled-components";
 
 import { IcBack } from "../../assets/icon";
 
 export interface ModalProps {
+    selectedId : number;
     isShowing : boolean;
     handleClose : React.MouseEventHandler;
     handleDelete : React.MouseEventHandler;
 }
 
-const MoreModal = ({ isShowing, handleClose, handleDelete }: ModalProps) => {
-    
+const MoreModal = ({ selectedId, isShowing, handleClose, handleDelete }: ModalProps) => {
+    const navigate = useNavigate();
 
-  return (
+
+    return (
     <>
     {isShowing && (
         <St.ListModalWrapper>
             <St.ListModal>
                 <St.Header>더보기</St.Header>
                 <St.CloseBtn onClick={handleClose}><IcBack/></St.CloseBtn>
-                <St.ModalBtn type="button">수정하기</St.ModalBtn>
+                <St.ModalBtn type="button" onClick={()=>{navigate(`/checklist/${selectedId}/edit`);}}>수정하기</St.ModalBtn>
                 <St.ModalBtn type="button" 
                     onClick={()=>{handleDelete(); handleClose();}}>
                     삭제하기
@@ -28,7 +31,7 @@ const MoreModal = ({ isShowing, handleClose, handleDelete }: ModalProps) => {
         </St.ListModalWrapper>
     )}
     </>
-  )
+    )
 }
 
 export default MoreModal

@@ -25,7 +25,7 @@ const ProductBox = ({setUpdate, productResponse} : ProductBoxProps) => {
   return (
   <St.ProductBoxWrapper>
     <DeleteModal selectedId={id} setUpdate={setUpdate} isDeleteShowing={isDeleteShowing} handleToggle={deleteToggle}/>
-    <MoreModal isShowing={isShowing} handleClose={toggle} handleDelete={deleteToggle}/>
+    <MoreModal selectedId={id} isShowing={isShowing} handleClose={toggle} handleDelete={deleteToggle}/>
     { image==='' || image===null || image==="string" ?
       <St.Empty>No Image</St.Empty> :
       <img src={image} alt="매물 이미지"/>
