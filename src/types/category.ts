@@ -45,35 +45,22 @@ export interface checkListData {
   ho: number;
   image: string;
   grade: number;
-  tag: tagInfo;
-  checkListData: checkListState;
+  tag: tagObject;
+  checkListData: checkListDataInfo;
 }
 
-export interface subCategoryData {
-  id: number;
-  subCategoryStatus: string;
-  state: number;
-}
+// export interface subCategoryData {
+//   id: number;
+//   subCategoryStatus: string;
+//   state: number;
+// }
 
-export interface tagInfo {
-  price: string;
-  size: number;
-  state: string;
-}
+// export interface tagInfo {
+//   price: string;
+//   size: number;
+//   state: string;
+// }
 
-//매물 정보 수정 API type
-export interface productData {
-  id: number;
-  title: string;
-  address: string;
-  dong: number;
-  ho: number;
-  createAt: string;
-  image: string;
-  description: string;
-  grade: number;
-  tags: tagObject;
-}
 // 매물 정보 태그 내용 object
 export interface tagObject {
   state: string;
@@ -100,10 +87,11 @@ export interface checkListData {
 export interface checkListDataInfo {
   indoor: subCheckListInfo[];
   kitchen: subCheckListInfo[];
-  livingroom: subCheckListInfo[];
+  livingRoom: subCheckListInfo[];
   bathroom: subCheckListInfo[];
 }
 export interface subCheckListInfo {
+  id: number;
   name: string;
   status: number;
 }

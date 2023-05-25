@@ -8,12 +8,12 @@ import CheckListIndex from '../components/CheckList/CheckListIndex';
 import ProductUpload from '../components/CheckList/ProductUpload';
 import { getChecklistData } from '../lib/checklist';
 import { subCategoryIdState } from '../recoil/atom';
-import { checkListState, subCategoryIdInfo } from '../types/category';
+import { checkListDataInfo, subCategoryIdInfo } from '../types/category';
 
 const CheckListPage = () => {
   const { checklistId } = useParams();
   const [subCategoryId, setSubCategoryId] = useRecoilState<subCategoryIdInfo[]>(subCategoryIdState);
-  const [checklist, setChecklist] = useState<checkListState | undefined>(undefined);
+  const [checklist, setChecklist] = useState<checkListDataInfo | undefined>(undefined);
 
   const getChecklist = async () => {
     try {
