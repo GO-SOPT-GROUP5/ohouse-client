@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 import { ImgEmpty } from '../../assets/image';
 import { CATEGORY_LIST } from '../../constants/category';
 import { editChecklistData } from '../../lib/checklist';
-import { selectedSubcategoriesState, showIndexState, subCategoryIdState } from '../../recoil/atom';
+import {
+  editCategoryState,
+  selectedSubcategoriesState,
+  showIndexState,
+  subCategoryIdState,
+} from '../../recoil/atom';
 import { categoryListInfo, editCategoryRequest } from '../../types/category';
 import CheckListItem from './CheckListItem';
 
@@ -20,7 +25,8 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
   const [showIndex] = useRecoilState(showIndexState);
   const [categoryList, setCategoryList] = useState<categoryListInfo[]>([]);
   const [subCategoryId] = useRecoilState(subCategoryIdState);
-  console.log(categoryList);
+  const [selectedCategoryOption, setSelectedCategoryOption] =
+    useRecoilState<editCategoryRequest>(editCategoryState);
 
   const getCategoryInfo = (id: number) => {
     for (const category of CATEGORY_LIST) {
@@ -38,9 +44,8 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
     subcategory => subcategory >= showIndex[0] && subcategory <= showIndex[1],
   );
 
-  const handleCompleteEdit = () => {
-    console.log('categoryList', categoryList);
-    const updatedCategoryList = categoryList.map(category => {
+  const handleCompleteEdit = async () => {
+    const updatedCategoryList = selectedCategoryOption.categoryList.map(category => {
       switch (category.id) {
         case 1:
           return { ...category, id: subCategoryId[0].SUNLIGHT };
@@ -72,14 +77,24 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
           return category;
       }
     });
-    console.log(updatedCategoryList);
+
     const editRequest: editCategoryRequest = {
       checkListId: checklistId,
       categoryList: updatedCategoryList,
     };
 
-    editChecklist(editRequest);
+    console.log(editRequest);
+    // editChecklist(editRequest);
+
+    try {
+      const result = await editChecklistData(editRequest);
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  console.log(selectedCategoryOption);
 
   const editChecklist = async ({ checkListId, categoryList }: editCategoryRequest) => {
     // id, state 저장된 categoryList 객체 배열 만들기
@@ -88,6 +103,7 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
         checkListId: checkListId,
         categoryList: categoryList,
       });
+      console.log(result);
     } catch (error) {
       console.error(error);
     }

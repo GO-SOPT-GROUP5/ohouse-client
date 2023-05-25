@@ -15,11 +15,11 @@ export const getChecklistData = async (checklistId: number) => {
 // 체크리스트 카테고리 수정
 export const editChecklistData = async ({ checkListId, categoryList }: editCategoryRequest) => {
   try {
-    const { data } = await client.patch<OHouseResponse<null>>('/checklist', {
+    const { data } = await client.patch<OHouseResponse<null>>('/category', {
       checkListId,
       categoryList,
     });
-    return data.data;
+    return data;
   } catch (err) {
     console.error(err);
   }
