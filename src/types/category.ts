@@ -66,7 +66,7 @@ export interface resCheckListData {
 export interface checkListDataInfo {
   indoor: subCheckListInfo[];
   kitchen: subCheckListInfo[];
-  livingroom: subCheckListInfo[];
+  livingRoom: subCheckListInfo[];
   bathroom: subCheckListInfo[];
 }
 export interface subCheckListInfo {
