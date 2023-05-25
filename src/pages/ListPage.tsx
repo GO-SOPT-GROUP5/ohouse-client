@@ -133,7 +133,7 @@ const St = {
     margin-top: 2.2rem;
     margin-bottom: 8rem;
 
-    & > #:first-child {
+    & > article:first-child {
       cursor: pointer;
     }
   `
