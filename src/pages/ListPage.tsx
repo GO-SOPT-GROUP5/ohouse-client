@@ -71,6 +71,7 @@ const ListPage = () => {
           )}
         </St.ListBoxes>
       </section>
+      <div ref={ref}></div>
     </St.ListWrapper>
   );
 };
