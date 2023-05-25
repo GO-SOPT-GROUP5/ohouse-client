@@ -45,7 +45,7 @@ const CheckListItem = ({ categoryId, subcategory, checklist, options }: CheckLis
   };
 
   useEffect(() => {
-    console.log('selectedCategoryOption', selectedCategoryOption);
+    // console.log('selectedCategoryOption', selectedCategoryOption);
   }, [selectedCategoryOption]);
 
   useEffect(() => {

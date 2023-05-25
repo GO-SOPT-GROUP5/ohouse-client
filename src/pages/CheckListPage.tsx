@@ -59,8 +59,6 @@ const CheckListPage = () => {
     }
   }, [checklist, setSubCategoryId]);
 
-  console.log(subCategoryId);
-
   return (
     <St.CheckListPageWrapper>
       <ProductUpload />

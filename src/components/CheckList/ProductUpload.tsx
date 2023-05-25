@@ -1,9 +1,9 @@
-import { useRef, useState } from 'react';
-import styled from 'styled-components';
+import { useRef, useState } from "react";
+import styled from "styled-components";
 
-import { IcCamera, IcEdit, IcStar, IcStarFilled } from '../../assets/icon';
-import useModal from '../../hooks/useModal';
-import ProductEditModal from './ProductEditModal';
+import { IcCamera, IcEdit, IcStar, IcStarFilled } from "../../assets/icon";
+import useModal from "../../hooks/useModal";
+import ProductEditModal from "./ProductEditModal";
 
 const ProductUpload = () => {
   const { isShowing, toggle } = useModal();
@@ -45,12 +45,12 @@ const ProductUpload = () => {
   };
 
   const handleStarClick = (index: number) => {
-    let clickStates = [...starClicked];
-    for (let i = 0; i < 5; i++) {
-      clickStates[i] = i <= index ? true : false;
-    }
-    setStarClicked(clickStates);
-    setGrade(starClicked.filter(Boolean).length); // 서버에게 보낼 별 갯수
+    setStarClicked(prevStarClicked => {
+      const clickStates = prevStarClicked.map((_, i) => i <= index);
+      const updatedGrade = clickStates.filter(Boolean).length;
+      setGrade(updatedGrade);
+      return clickStates;
+    });
   };
 
   const handleCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -20,6 +20,7 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
   const [showIndex] = useRecoilState(showIndexState);
   const [categoryList, setCategoryList] = useState<categoryListInfo[]>([]);
   const [subCategoryId] = useRecoilState(subCategoryIdState);
+  console.log(categoryList);
 
   const getCategoryInfo = (id: number) => {
     for (const category of CATEGORY_LIST) {
@@ -38,6 +39,7 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
   );
 
   const handleCompleteEdit = () => {
+    console.log('categoryList', categoryList);
     const updatedCategoryList = categoryList.map(category => {
       switch (category.id) {
         case 1:
@@ -70,7 +72,7 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
           return category;
       }
     });
-
+    console.log(updatedCategoryList);
     const editRequest: editCategoryRequest = {
       checkListId: checklistId,
       categoryList: updatedCategoryList,
@@ -86,7 +88,6 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
         checkListId: checkListId,
         categoryList: categoryList,
       });
-      console.log(result);
     } catch (error) {
       console.error(error);
     }

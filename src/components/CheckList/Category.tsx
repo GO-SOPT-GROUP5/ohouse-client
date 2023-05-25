@@ -24,9 +24,6 @@ const Category = () => {
     }
   };
 
-  console.log(selectedSubcategories);
-  console.log(expandedCategories);
-
   const handleClickSubcategory = (e: React.MouseEvent, subcategory: subCategoryInfo) => {
     let copiedSubcategories: number[];
 
@@ -35,8 +32,6 @@ const Category = () => {
       return;
     }
 
-    console.log('클릭');
-    console.log(selectedSubcategories);
     if (selectedSubcategories.includes(subcategory.id)) {
       copiedSubcategories = selectedSubcategories.filter(s => s !== subcategory.id);
     } else {
