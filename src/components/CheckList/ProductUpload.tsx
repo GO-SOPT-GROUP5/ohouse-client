@@ -36,9 +36,8 @@ const ProductUpload = () => {
   const product = useRecoilValue(productDataState);
 
   useEffect(() => {
-    console.log('starClicked', starClicked);
-    console.log('grade', grade);
-  }, [grade]);
+    console.log(product);
+  });
 
   const createImageURL = (fileBlob: Blob | MediaSource) => {
     if (URLThumbnail) URL.revokeObjectURL(URLThumbnail);
@@ -59,16 +58,13 @@ const ProductUpload = () => {
   };
 
   const handleStarClick = (index: number) => {
-    const clickStates = [...starClicked];
-    for (let i = 0; i < 5; i++) {
-      clickStates[i] = i <= index ? true : false;
-    }
-    setStarClicked(clickStates);
-    setGrade(starClicked.filter(Boolean).length); // 서버에게 보낼 별 갯수
+    setStarClicked(prevStarClicked => {
+      const clickStates = prevStarClicked.map((_, i) => i <= index);
+      const updatedGrade = clickStates.filter(Boolean).length;
+      setGrade(updatedGrade);
+      return clickStates;
+    });
   };
-
-  // console.log('clickStates: ', starClicked);
-  // console.log('grade:', grade);
 
   const handleCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setComment(e.target.value);
