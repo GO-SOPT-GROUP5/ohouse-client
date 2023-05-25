@@ -1,20 +1,20 @@
-import 'swiper/css';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/pagination";
 
-import { useRef } from 'react';
-import { useNavigate } from 'react-router';
-import styled from 'styled-components';
-import { Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { useRef } from "react";
+import { useNavigate } from "react-router";
+import styled from "styled-components";
+import { Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import { IcLeft, IcRight } from '../../assets/icon';
+import { IcLeft, IcRight } from "../../assets/icon";
 import {
   ImgExplanation1,
   ImgExplanation2,
   ImgExplanation3,
   ImgExplanation4,
-  ImgExplanation5,
-} from '../../assets/image/index';
+  ImgExplanation5
+} from "../../assets/image/index";
 
 const Help = () => {
   const swiperRef = useRef();
@@ -101,16 +101,13 @@ const St = {
     justify-content: center;
     align-items: center;
 
-    width: 100%;
-    height: 100%;
-
-    background-color: ${({ theme }) => theme.colors.Grey200};
     color: ${({ theme }) => theme.colors.Grey600};
     ${({ theme }) => theme.fonts.Title1};
   `,
   HelpCard: styled.main`
     width: 63rem;
     height: 70rem;
+    margin: 8.5rem 0rem;
 
     position: relative;
 
