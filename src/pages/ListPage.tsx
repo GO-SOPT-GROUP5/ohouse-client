@@ -90,6 +90,7 @@ const St = {
     justify-content: space-between;
 
     width: 100%;
+    margin-top: 8.8rem;
   `,
   ListCategory : styled.article`
     display: flex;
