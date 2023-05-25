@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { IcCamera, IcEdit, IcStar, IcStarFilled } from '../../assets/icon';
 import useModal from '../../hooks/useModal';
+import { patchProductData } from '../../lib/category';
 import { productDataState } from '../../recoil/atom';
 import ProductEditModal from './ProductEditModal';
 
@@ -16,7 +17,7 @@ const ProductUpload = () => {
   // const [ho, setHo] = useState<string>();
 
   const setProduct = useSetRecoilState(productDataState);
-  const { title, address, dong, ho, state, price, size, description } =
+  const { title, address, dong, ho, state, price, size, description, id, image } =
     useRecoilValue(productDataState);
 
   // 별점
@@ -34,6 +35,7 @@ const ProductUpload = () => {
   // const [tags, setTags] = useState<string[]>(['월세', '1000/60', '30평']);
 
   const product = useRecoilValue(productDataState);
+  const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
     console.log(product);
@@ -70,17 +72,57 @@ const ProductUpload = () => {
     setComment(e.target.value);
   };
 
+  let editedState;
+  switch (state) {
+    case '전세':
+      editedState = 'JEONSE';
+      break;
+    case '월세':
+      editedState = 'MONTHLY';
+      break;
+    case '매매':
+      editedState = 'SALE';
+      break;
+    default:
+      editedState = 'EMPTY';
+      break;
+  }
+  const REQ_DATA = {
+    address: address,
+    description: description,
+    dong: dong,
+    grade: grade,
+    ho: ho,
+    id: id,
+    image: image,
+    price: price,
+    size: 0,
+    state: editedState,
+    title: title,
+  };
+
+  const patchProductInfo = async () => {
+    const data = await patchProductData(REQ_DATA);
+    console.log(data);
+    console.log('성공');
+  };
+
   const handleSave = () => {
     if (comment) {
       setShowCommentInput(false);
-      setProduct(prev => ({
-        ...prev,
-        grade: grade,
-        description: comment,
-        image: '',
-      }));
     }
+    setProduct(prev => ({
+      ...prev,
+      grade: grade,
+      description: comment,
+      image: '',
+    }));
+    setIsSaved(true);
   };
+
+  useEffect(() => {
+    patchProductInfo();
+  }, [isSaved]);
 
   return (
     <St.ProductUploadWrapper>
