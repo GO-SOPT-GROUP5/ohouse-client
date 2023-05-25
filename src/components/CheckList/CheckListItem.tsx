@@ -13,7 +13,7 @@ interface CheckListItemProms {
   options: string[];
 }
 
-const CheckListItem = ({ categoryId, subcategory, checklist, options }: CheckListItemProms) => {
+const CheckListItem = ({ categoryId, checklist, options }: CheckListItemProms) => {
   const { checklistId } = useParams();
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(null);
   const [selectedCategoryOption, setSelectedCategoryOption] =

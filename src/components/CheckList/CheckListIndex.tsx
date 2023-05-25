@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
@@ -7,12 +6,11 @@ import { CATEGORY_LIST } from '../../constants/category';
 import { editChecklistData } from '../../lib/checklist';
 import {
   editCategoryState,
-  productDataState,
   selectedSubcategoriesState,
   showIndexState,
   subCategoryIdState,
 } from '../../recoil/atom';
-import { categoryListInfo, editCategoryRequest, productData } from '../../types/category';
+import { editCategoryRequest } from '../../types/category';
 import CheckListItem from './CheckListItem';
 
 interface CheckListIndexProps {
@@ -20,14 +18,12 @@ interface CheckListIndexProps {
 }
 
 const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
-  const [selectedSubcategories, setSelectedSubcategories] = useRecoilState(
-    selectedSubcategoriesState,
-  );
+  const selectedSubcategories = useRecoilValue(selectedSubcategoriesState);
   const [showIndex] = useRecoilState(showIndexState);
-  const [subCategoryId, setSubCategoryId] = useRecoilState(subCategoryIdState);
-  const [selectedCategoryOption, setSelectedCategoryOption] =
-    useRecoilState<editCategoryRequest>(editCategoryState);
-  const [productData, setProductData] = useRecoilState<productData>(productDataState);
+
+  const subCategoryId = useRecoilValue(subCategoryIdState);
+
+  const selectedCategoryOption = useRecoilValue<editCategoryRequest>(editCategoryState);
 
   const getCategoryInfo = (id: number) => {
     for (const category of CATEGORY_LIST) {

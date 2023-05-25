@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 
 import { IcCheckboxAfter, IcCheckboxBefore, IcToggle } from '../../assets/icon';
@@ -14,7 +14,7 @@ const Category = () => {
     selectedSubcategoriesState,
   );
   const [isSelectAll, setIsSelectAll] = useState(false);
-  const [showIndex, setShowIndex] = useRecoilState(showIndexState);
+  const setShowIndex = useSetRecoilState(showIndexState);
 
   const handleExpand = (category: string) => {
     if (expandedCategories.includes(category)) {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Postcode from 'react-daum-postcode';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import { IcAddress, IcCancel } from '../../assets/icon';

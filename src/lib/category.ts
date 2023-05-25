@@ -1,4 +1,4 @@
-import { productData, reqCheckListData } from '../types/category';
+import { checkListData, productData } from '../types/category';
 import { client } from './axios';
 
 export interface OHouseResponse<T> {
@@ -9,9 +9,9 @@ export interface OHouseResponse<T> {
 }
 
 //체크리스트 post
-export const postCheckListData = async (reqData: reqCheckListData) => {
+export const postCheckListData = async (reqData: checkListData) => {
   try {
-    const { data } = await client.post<OHouseResponse<reqCheckListData>>('/checklist', reqData);
+    const { data } = await client.post<OHouseResponse<checkListData>>('/checklist', reqData);
     return { data: data.data, isError: false };
   } catch (err) {
     return { isError: true };
