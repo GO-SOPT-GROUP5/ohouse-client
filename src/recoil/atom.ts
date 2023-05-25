@@ -1,8 +1,8 @@
-import { atom } from "recoil";
-import { recoilPersist } from "recoil-persist";
+import { atom } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
 
-import { productData, SubCategoryIdInfo } from "../types/category";
-import { productInfo } from "../types/product";
+import { productData, subCategoryIdInfo } from '../types/category';
+import { productInfo } from '../types/product';
 
 //페이지가 변경되더라도 상태관리를 유지
 const { persistAtom } = recoilPersist();
@@ -38,8 +38,8 @@ export const showIndexState = atom<number[]>({
   default: [1, 48],
 });
 
-export const SubCategoryIdState = atom<SubCategoryIdInfo[]>({
-  key: 'SubCategoryId',
+export const subCategoryIdState = atom<subCategoryIdInfo[]>({
+  key: 'subCategoryId',
   default: [
     {
       SUNLIGHT: 1,

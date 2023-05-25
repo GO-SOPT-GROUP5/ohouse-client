@@ -78,7 +78,7 @@ export interface categoryListInfo {
   state: number;
 }
 
-export interface SubCategoryIdInfo {
+export interface subCategoryIdInfo {
   SUNLIGHT: number;
   LEAK: number;
   HEATING: number;

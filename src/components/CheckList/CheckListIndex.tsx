@@ -5,8 +5,13 @@ import styled from 'styled-components';
 import { ImgEmpty } from '../../assets/image';
 import { CATEGORY_LIST } from '../../constants/category';
 import { editChecklistData } from '../../lib/checklist';
-import { productDataState, selectedSubcategoriesState, showIndexState } from '../../recoil/atom';
-import { categoryListInfo, editCategoryRequest } from '../../types/category';
+import {
+  productDataState,
+  selectedSubcategoriesState,
+  showIndexState,
+  subCategoryIdState,
+} from '../../recoil/atom';
+import { categoryListInfo, editCategoryRequest, subCategoryIdInfo } from '../../types/category';
 import CheckListItem from './CheckListItem';
 
 const CheckListIndex = () => {
