@@ -11,22 +11,25 @@
   },
   "dependencies": {
     "@types/axios": "^0.14.0",
+    "@types/react-daum-postcode": "^1.6.1",
     "@types/react-router-dom": "^5.3.3",
     "@types/recoil": "^0.0.9",
     "@types/styled-components": "^5.1.26",
     "@yarnpkg/plugin-typescript": "^4.0.0-rc.43",
     "axios": "^1.4.0",
     "react": "^18.2.0",
+    "react-daum-postcode": "^3.1.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.1",
     "recoil": "^0.7.7",
     "recoil-persist": "^4.2.0",
-    "styled-components": "^6.0.0-rc.1"
+    "styled-components": "^6.0.0-rc.1",
+    "swiper": "^9.3.2"
   },
   "devDependencies": {
     "@types/node": "^20.1.4",
     "@types/prettier": "^2",
-    "@types/react": "^18.0.28",
+    "@types/react": "^18.2.6",
     "@types/react-dom": "18.2.0",
     "@types/react-router": "^5.1.20",
     "@typescript-eslint/eslint-plugin": "^5.59.5",
