@@ -1,12 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 
+import { deleteProduct } from "../../lib/product";
+
 export interface DeleteModalProps {
+    selectedId : number;
+    setUpdate : any;
     isDeleteShowing : boolean;
     handleToggle : React.MouseEventHandler;
 }
 
-const DeleteModal = ({ isDeleteShowing, handleToggle }: DeleteModalProps) => {
+const DeleteModal = ({ selectedId, setUpdate, isDeleteShowing, handleToggle }: DeleteModalProps) => {
+    
+    const handleDelete = async () => {
+        await deleteProduct(selectedId);
+        setUpdate((prev) => !prev); 
+    }
+
+
   return (
     <>
     {isDeleteShowing && (
@@ -17,7 +28,10 @@ const DeleteModal = ({ isDeleteShowing, handleToggle }: DeleteModalProps) => {
                 </St.Text>
                 <St.Buttons>
                     <St.RevokeBtn type="button" onClick={handleToggle}>취소</St.RevokeBtn>
-                    <St.ConfirmBtn type="button" onClick={handleToggle}>확인</St.ConfirmBtn>
+                    <St.ConfirmBtn type="button" onClick={() => {
+                        handleToggle();
+                        handleDelete();
+                    }}>확인</St.ConfirmBtn>
                 </St.Buttons>
             </St.DeleteModal>
         </St.DeleteModalWrapper>

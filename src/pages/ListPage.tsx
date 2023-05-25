@@ -1,36 +1,71 @@
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { IcSmallLine } from "../assets/icon/index";
 import AddBox from "../components/List/AddBox";
-import DeleteModal from "../components/List/DeleteModal";
-import MoreModal from "../components/List/MoreModal";
 import ProductBox from "../components/List/ProductBox";
-import useModal from "../hooks/useModal";
+import { getProductData } from "../lib/product";
+import { productResponse } from "../types/product";
 
 const ListPage = () => {
-  const CATEGORY = ['전체', '월세', '전세', '매매'];
-  const FILTER = ['필터', '별점순', '좋아요순'];
+  const CATEGORY = {
+    '전체':'',
+    '월세':'MONTHLY', 
+    '전세':'JEONSE', 
+    '매매':'SALE'
+  };
+  const FILTER = {
+    '필터':'NEWEST', 
+    '별점순':'GRADE', 
+    '좋아요순':'LIKE'
+  };
   
-  const {isShowing, toggle, isDeleteShowing, deleteToggle} = useModal();
+  const [productInfo, setProductInfo] = useState([]);
+
+  const [flag, setFlag] = useState('');
+  const [sort, setSort] = useState('NEWEST');
+  const [page, setPage] = useState(0);
+  const [size, setSize] = useState(5);
+  // 이친구들은 나중에 무한 스크롤 구현 시 만져줄 예정!
+
+  const [update, setUpdate] = useState(false);  
+  
+  useEffect(() => {
+    handleGetInfo();
+  }, [flag,sort, update])
+
+  const handleGetInfo = async () => {
+    const productList = await getProductData({flag:flag,sort:sort,page:page,size:size});
+    setProductInfo(productList);
+  }
+
+  const handleCategory = (e: React.MouseEvent<HTMLElement>) => {
+    setFlag(e.currentTarget.id);
+  }
+
+  const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSort(e.currentTarget.value);
+  }
 
   return (
     <St.ListWrapper>
-      <DeleteModal isDeleteShowing={isDeleteShowing} handleToggle={deleteToggle}/>
-      <MoreModal isShowing={isShowing} handleClose={toggle} handleDelete={deleteToggle}/>
       <section>
         <St.ListSetting>
           <St.ListCategory>
-            {CATEGORY.map((el)=><><span>{el}</span><IcSmallLine/></>)}
+            {Object.keys(CATEGORY).map((el)=><><span id={CATEGORY[el]} onClick={handleCategory}>{el}</span><IcSmallLine/></>)}
           </St.ListCategory>
-          <St.ListCombobox>
-            {FILTER.map((el)=><option>{el}</option>)}
+          <St.ListCombobox onChange={handleFilter}>
+            {Object.keys(FILTER).map((el)=><option value={FILTER[el]}>{el}</option>)}
           </St.ListCombobox>
         </St.ListSetting>
         <St.ListBoxes>
-          <AddBox />
-          <ProductBox handleModal={toggle}/>
-          <ProductBox />
-          <ProductBox />
+          <AddBox/>
+          {productInfo.map((info : productResponse)=>
+            <ProductBox
+              setUpdate={setUpdate}
+              productResponse={info}
+            />
+          )}
         </St.ListBoxes>
       </section>
     </St.ListWrapper>
@@ -66,6 +101,8 @@ const St = {
 
     & > span {
       ${({ theme }) => theme.fonts.Body4};
+
+      cursor: pointer;
     }
 
     & > svg:last-child {
@@ -89,5 +126,10 @@ const St = {
 
     width: 100%;
     margin-top: 2.2rem;
+    margin-bottom: 8rem;
+
+    & > article:first-child > svg {
+      cursor: pointer;
+    }
   `
 }
