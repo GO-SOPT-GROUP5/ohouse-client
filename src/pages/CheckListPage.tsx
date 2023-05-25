@@ -13,7 +13,7 @@ import { checkListDataInfo, productData, subCategoryIdInfo } from '../types/cate
 const CheckListPage = () => {
   const { checklistId } = useParams();
   const [subCategoryId, setSubCategoryId] = useRecoilState<subCategoryIdInfo[]>(subCategoryIdState);
-  const [checklist, setChecklist] = useState<checkListDataInfo | undefined>(undefined);
+  // const [checklist, setChecklist] = useState<checkListDataInfo | undefined>(undefined);
   const [productData, setProductData] = useRecoilState<productData>(productDataState);
 
   const getChecklist = async () => {
@@ -31,18 +31,18 @@ const CheckListPage = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchChecklist = async () => {
-      const checklistData = await getChecklist();
-      setChecklist(checklistData);
-    };
+  // useEffect(() => {
+  //   const fetchChecklist = async () => {
+  //     const checklistData = await getChecklist();
+  //     setChecklist(checklistData);
+  //   };
 
-    fetchChecklist();
-  }, [checklistId]);
+  //   fetchChecklist();
+  // }, [checklistId]);
 
   useEffect(() => {
-    if (checklist) {
-      const { indoor, kitchen, livingRoom, bathroom } = checklist;
+    if (productData.checkListData) {
+      const { indoor, kitchen, livingRoom, bathroom } = productData.checkListData;
 
       setSubCategoryId([
         {
@@ -62,7 +62,7 @@ const CheckListPage = () => {
         },
       ]);
     }
-  }, [checklist, setSubCategoryId]);
+  }, [checklistId, setSubCategoryId]);
 
   useEffect(() => {
     if (checklistId && productData.id !== Number(checklistId)) {
