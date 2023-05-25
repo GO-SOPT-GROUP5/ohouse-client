@@ -73,17 +73,13 @@ const ProductUpload = () => {
   const handleSave = () => {
     if (comment) {
       setShowCommentInput(false);
+      setProduct(prev => ({
+        ...prev,
+        grade: grade,
+        description: comment,
+        image: '',
+      }));
     }
-  };
-
-  const handleConfirm = () => {
-    // 완료 버튼 클릭 시 실행되는 함수
-    setProduct(prev => ({
-      ...prev,
-      grade: grade,
-      description: comment,
-      image: '',
-    }));
   };
 
   return (
