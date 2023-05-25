@@ -30,9 +30,11 @@ const CheckListPage = () => {
     }
   };
 
-  useEffect(() => {
+  const updateSubCategoryId = () => {
     if (productData.checkListData) {
       const { indoor, kitchen, livingRoom, bathroom } = productData.checkListData;
+
+      console.log(productData.checkListData);
 
       const updatedSubCategoryId = {
         SUNLIGHT: indoor[0].id,
@@ -53,7 +55,13 @@ const CheckListPage = () => {
       setSubCategoryId([updatedSubCategoryId]);
       console.log(subCategoryId);
     }
-  }, [checklistId, setSubCategoryId]);
+  };
+
+  useEffect(() => {
+    if (productData.checkListData) {
+      updateSubCategoryId();
+    }
+  }, [productData.checkListData, setSubCategoryId]);
 
   useEffect(() => {
     if (checklistId && productData.id !== Number(checklistId)) {

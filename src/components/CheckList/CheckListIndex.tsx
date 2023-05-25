@@ -7,6 +7,7 @@ import { CATEGORY_LIST } from '../../constants/category';
 import { editChecklistData } from '../../lib/checklist';
 import {
   editCategoryState,
+  productDataState,
   selectedSubcategoriesState,
   showIndexState,
   subCategoryIdState,
@@ -23,9 +24,10 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
     selectedSubcategoriesState,
   );
   const [showIndex] = useRecoilState(showIndexState);
-  const [subCategoryId] = useRecoilState(subCategoryIdState);
+  const [subCategoryId, setSubCategoryId] = useRecoilState(subCategoryIdState);
   const [selectedCategoryOption, setSelectedCategoryOption] =
     useRecoilState<editCategoryRequest>(editCategoryState);
+  const [productData, setProductData] = useRecoilState<productData>(productDataState);
 
   const getCategoryInfo = (id: number) => {
     for (const category of CATEGORY_LIST) {
@@ -42,10 +44,14 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
     subcategory => subcategory >= showIndex[0] && subcategory <= showIndex[1],
   );
 
+  console.log('subCategoryId', subCategoryId);
+
   const handleCompleteEdit = async () => {
     const updatedCategoryList = selectedCategoryOption.categoryList.map(category => {
+      console.log(category.id);
       switch (category.id) {
         case 1:
+          console.log(subCategoryId[0].SUNLIGHT);
           return { ...category, id: subCategoryId[0].SUNLIGHT };
         case 2:
           return { ...category, id: subCategoryId[0].LEAK };
@@ -89,11 +95,9 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
     } catch (error) {
       console.error(error);
     }
-    console.log(selectedCategoryOption);
   };
 
   const editChecklist = async ({ checkListId, categoryList }: editCategoryRequest) => {
-    // id, state 저장된 categoryList 객체 배열 만들기
     try {
       const result = await editChecklistData({
         checkListId: checkListId,
