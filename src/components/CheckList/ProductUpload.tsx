@@ -1,48 +1,133 @@
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import { IcCamera, IcEdit, IcStar } from '../../assets/icon';
+import { IcCamera, IcEdit, IcStar, IcStarFilled } from '../../assets/icon';
 import useModal from '../../hooks/useModal';
 import ProductEditModal from './ProductEditModal';
 
 const ProductUpload = () => {
   const { isShowing, toggle } = useModal();
+  const [title, setTitle] = useState<string>('2023.01.10 12:11 등록매물');
+  // 주소
+  const [address, setAddress] = useState<string>('');
+  const [dong, setDong] = useState<string>();
+  const [ho, setHo] = useState<string>();
+  // 별점
+  const [grade, setGrade] = useState(0);
+  const [starClicked, setStarClicked] = useState([false, false, false, false, false]);
+  const array = [0, 1, 2, 3, 4];
+  // 한줄평가
+  const [comment, setComment] = useState('');
+  const [showCommentInput, setShowCommentInput] = useState(true);
+  // 파일 업로드
+  const ref = useRef<HTMLInputElement>(null);
+  const [URLThumbnail, setURLThumbnail] = useState<string>('');
+  const [imageUrl, setImageUrl] = useState<string>(''); // 서버한테 보내줄때는 빈값으로
+  // 태그
+  const [tags, setTags] = useState<string[]>(['월세', '1000/60', '30평']);
 
-  const handleConfirm = () => {
-    // 완료 버튼 클릭 시 실행되는 함수
+  const createImageURL = (fileBlob: Blob | MediaSource) => {
+    if (URLThumbnail) URL.revokeObjectURL(URLThumbnail);
+    const url = URL.createObjectURL(fileBlob); // Blob -> url로 변환
+    setURLThumbnail(url);
+  };
+
+  const onImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+
+    if (!files || !files[0]) return;
+    const uploadImage = files[0];
+    createImageURL(uploadImage);
+  };
+
+  const onClickRef = () => {
+    ref.current?.click();
+  };
+
+  const handleStarClick = (index: number) => {
+    let clickStates = [...starClicked];
+    for (let i = 0; i < 5; i++) {
+      clickStates[i] = i <= index ? true : false;
+    }
+    setStarClicked(clickStates);
+    setGrade(starClicked.filter(Boolean).length); // 서버에게 보낼 별 갯수
+  };
+
+  const handleCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setComment(e.target.value);
+  };
+
+  const handleSave = () => {
+    if (comment) {
+      setShowCommentInput(false);
+    }
   };
 
   return (
     <St.ProductUploadWrapper>
-      <St.ProductName>2023.01.10 12:11 등록매물</St.ProductName>
-      <St.Address>주소를 등록해주세요</St.Address>
+      <St.ProductName>{title}</St.ProductName>
+      <St.Address>
+        {address ? (
+          <>
+            {address}
+            {dong && ho ? `${dong}동 ${ho}호` : ''}
+          </>
+        ) : (
+          <St.DefaultAddress>주소를 등록해주세요</St.DefaultAddress>
+        )}
+      </St.Address>
       <St.EditBtn type="button" onClick={toggle}>
         <IcEdit />
       </St.EditBtn>
-      <ProductEditModal isShowing={isShowing} handleHide={toggle} handleConfirm={handleConfirm} />
+      <ProductEditModal isShowing={isShowing} handleHide={toggle} />
       <St.ProductInfo>
-        <St.UploadPicture type="button">
-          <IcCamera />
-          <p>사진 올리기</p>
+        <St.UploadPicture type="button" onClick={onClickRef}>
+          {URLThumbnail ? (
+            <St.ThumbnailImg src={URLThumbnail} alt="thumbnail" />
+          ) : (
+            <>
+              <IcCamera />
+              <p>사진 올리기</p>
+              <input
+                hidden
+                type="file"
+                accept="image/jpg,image/png,image/jpeg"
+                onChange={onImageChange}
+                ref={ref}
+              />
+            </>
+          )}
         </St.UploadPicture>
         <St.ProductDetail>
           <St.ProductTag>
-            <li>월세</li>
-            <li>1000/50</li>
-            <li>30평</li>
+            {tags.map((tag, index) => (
+              <li key={index}>{tag}</li>
+            ))}
           </St.ProductTag>
           <St.Grade>
-            <IcStar />
-            <IcStar />
-            <IcStar />
-            <IcStar />
-            <IcStar />
+            {array.map(el => (
+              <button key={el} onClick={() => handleStarClick(el)}>
+                {starClicked[el] ? <IcStarFilled /> : <IcStar />}
+              </button>
+            ))}
           </St.Grade>
-          <St.Description>
-            <span>집의 상태, 주변환경, 가격 등을 고려해서 전반적인 평가를 입력해주세요.</span>
-            {/* <p>
-              좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은데?좋은
-            </p> */}
-          </St.Description>
+          <St.DescriptionWrapper showCommentInput={showCommentInput}>
+            {showCommentInput ? (
+              <St.Description
+                type="string"
+                value={comment}
+                placeholder="집의 상태, 주변환경, 가격 등을 고려해서 한 줄 평가를 입력해주세요."
+                onChange={handleCommentChange}
+              ></St.Description>
+            ) : (
+              <St.CommentText>{comment}</St.CommentText>
+            )}
+          </St.DescriptionWrapper>
+          <St.SaveBtnWrapper>
+            <button type="button" onClick={handleSave}>
+              저장
+            </button>
+          </St.SaveBtnWrapper>
         </St.ProductDetail>
       </St.ProductInfo>
     </St.ProductUploadWrapper>
@@ -69,6 +154,13 @@ const St = {
   `,
 
   Address: styled.p`
+    margin-bottom: 2.9rem;
+
+    color: ${({ theme }) => theme.colors.Grey600};
+    ${({ theme }) => theme.fonts.Body4};
+  `,
+
+  DefaultAddress: styled.p`
     margin-bottom: 2.9rem;
 
     color: ${({ theme }) => theme.colors.Grey300};
@@ -101,9 +193,10 @@ const St = {
     align-items: center;
     gap: 1.2rem;
 
-    width: 31rem;
+    min-width: 31rem;
     height: 18.6rem;
     margin-top: 1.2rem;
+    padding: 0;
 
     border: none;
     border-radius: 1.1rem;
@@ -115,10 +208,18 @@ const St = {
     }
   `,
 
+  ThumbnailImg: styled.img`
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+  `,
+
   ProductTag: styled.ul`
     display: flex;
     gap: 1rem;
 
+    min-height: 3.9rem;
     margin-bottom: 1.2rem;
 
     & > li {
@@ -134,17 +235,27 @@ const St = {
 
   Grade: styled.div`
     margin-bottom: 2.7rem;
+
+    & > button {
+      padding: 0;
+    }
   `,
 
-  Description: styled.div`
+  DescriptionWrapper: styled.div<{ showCommentInput: boolean }>`
+    ${({ showCommentInput }) => !showCommentInput && `min-width: 56rem; min-height: 5.6rem;`}
+  `,
+
+  Description: styled.input`
     width: 55.4rem;
-    height: 10rem;
+    height: 5.6rem;
     padding: 1.5rem 2.5rem;
 
     border: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
     border-radius: 0.4rem;
+    color: ${({ theme }) => theme.colors.Grey600};
+    ${({ theme }) => theme.fonts.Body2};
 
-    & > span {
+    &::placeholder {
       color: ${({ theme }) => theme.colors.Grey300};
       ${({ theme }) => theme.fonts.Body2};
     }
@@ -152,6 +263,27 @@ const St = {
     & > p {
       color: ${({ theme }) => theme.colors.Grey600};
       ${({ theme }) => theme.fonts.Body2};
+    }
+  `,
+
+  CommentText: styled.p`
+    color: ${({ theme }) => theme.colors.Grey600};
+    ${({ theme }) => theme.fonts.Body2};
+  `,
+
+  SaveBtnWrapper: styled.div`
+    display: flex;
+    justify-content: flex-end;
+
+    & > button {
+      width: 8rem;
+      height: 3rem;
+      margin-top: 1.6rem;
+
+      border-radius: 0.4rem;
+      background-color: ${({ theme }) => theme.colors.Blue};
+      color: ${({ theme }) => theme.colors.White};
+      ${({ theme }) => theme.fonts.Body4};
     }
   `,
 };
