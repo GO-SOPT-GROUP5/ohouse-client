@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import styled from "styled-components";
 
 import { IcSmallLine } from "../assets/icon/index";
@@ -29,6 +30,7 @@ const ListPage = () => {
   // 이친구들은 나중에 무한 스크롤 구현 시 만져줄 예정!
 
   const [update, setUpdate] = useState(false);  
+  const navigate = useNavigate();
   
   useEffect(() => {
     handleGetInfo();
@@ -59,7 +61,10 @@ const ListPage = () => {
           </St.ListCombobox>
         </St.ListSetting>
         <St.ListBoxes>
-          <AddBox />
+          <AddBox onClick={()=> {
+            navigate('/help');
+            console.log("가자");
+          }}/>
           {productInfo.map((info : productResponse)=>
             <ProductBox
               setUpdate={setUpdate}
@@ -127,5 +132,9 @@ const St = {
     width: 100%;
     margin-top: 2.2rem;
     margin-bottom: 8rem;
+
+    & > #:first-child {
+      cursor: pointer;
+    }
   `
 }
