@@ -202,7 +202,8 @@ const St = {
     list-style: none;
     position: relative;
 
-    height: 3rem;
+    height: 5.4rem;
+    padding-top: 1.8rem;
 
     & > * {
       ${({ theme }) => theme.fonts.Title5};
