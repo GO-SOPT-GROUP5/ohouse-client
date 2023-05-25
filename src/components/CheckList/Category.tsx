@@ -37,7 +37,7 @@ const Category = () => {
     } else {
       copiedSubcategories = [...selectedSubcategories, subcategory.id];
     }
-    copiedSubcategories.sort((a, b) => a - b); // Sort the IDs in ascending order
+    copiedSubcategories.sort((a, b) => a - b);
     setSelectedSubcategories(copiedSubcategories);
 
     e.stopPropagation();
