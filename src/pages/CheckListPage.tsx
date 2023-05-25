@@ -66,7 +66,7 @@ const CheckListPage = () => {
       <ProductUpload />
       <St.CheckListWarpper>
         <Category />
-        <CheckListIndex />
+        <CheckListIndex checklistId={Number(checklistId)} />
       </St.CheckListWarpper>
     </St.CheckListPageWrapper>
   );

@@ -5,22 +5,19 @@ import styled from 'styled-components';
 import { ImgEmpty } from '../../assets/image';
 import { CATEGORY_LIST } from '../../constants/category';
 import { editChecklistData } from '../../lib/checklist';
-import {
-  productDataState,
-  selectedSubcategoriesState,
-  showIndexState,
-  subCategoryIdState,
-} from '../../recoil/atom';
-import { categoryListInfo, editCategoryRequest, subCategoryIdInfo } from '../../types/category';
+import { selectedSubcategoriesState, showIndexState, subCategoryIdState } from '../../recoil/atom';
+import { categoryListInfo, editCategoryRequest } from '../../types/category';
 import CheckListItem from './CheckListItem';
 
-const CheckListIndex = () => {
+interface CheckListIndexProps {
+  checklistId: number;
+}
+
+const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
   const [selectedSubcategories, setSelectedSubcategories] = useRecoilState(
     selectedSubcategoriesState,
   );
   const [showIndex] = useRecoilState(showIndexState);
-
-  const [productData, setProductData] = useRecoilState(productDataState);
   const [categoryList, setCategoryList] = useState<categoryListInfo[]>([]);
   const [subCategoryId] = useRecoilState(subCategoryIdState);
 
@@ -47,14 +44,35 @@ const CheckListIndex = () => {
           return { ...category, id: subCategoryId[0].SUNLIGHT };
         case 2:
           return { ...category, id: subCategoryId[0].LEAK };
-
+        case 5:
+          return { ...category, id: subCategoryId[0].HEATING };
+        case 10:
+          return { ...category, id: subCategoryId[0].SINK_DRAIN };
+        case 11:
+          return { ...category, id: subCategoryId[0].SINK_PRESSURE };
+        case 15:
+          return { ...category, id: subCategoryId[0].WALLPAPER };
+        case 16:
+          return { ...category, id: subCategoryId[0].FLOOR };
+        case 17:
+          return { ...category, id: subCategoryId[0].BALCONY };
+        case 21:
+          return { ...category, id: subCategoryId[0].WASHSTAND_STATUS };
+        case 22:
+          return { ...category, id: subCategoryId[0].WASHSTAND_DRAIN };
+        case 23:
+          return { ...category, id: subCategoryId[0].WASHSTAND_PRESSURE };
+        case 24:
+          return { ...category, id: subCategoryId[0].MOLD };
+        case 25:
+          return { ...category, id: subCategoryId[0].TOILET };
         default:
           return category;
       }
     });
 
     const editRequest: editCategoryRequest = {
-      checkListId: 123,
+      checkListId: checklistId,
       categoryList: updatedCategoryList,
     };
 
@@ -63,7 +81,6 @@ const CheckListIndex = () => {
 
   const editChecklist = async ({ checkListId, categoryList }: editCategoryRequest) => {
     // id, state 저장된 categoryList 객체 배열 만들기
-
     try {
       const result = await editChecklistData({
         checkListId: checkListId,
