@@ -19,8 +19,8 @@ const CheckListPage = () => {
   const { checklistId } = useParams();
   const [subCategoryId, setSubCategoryId] = useRecoilState<subCategoryIdInfo[]>(subCategoryIdState);
   const [checklist, setChecklist] = useState<checkListDataInfo | undefined>(undefined);
-  const [selectedCategories, setSelectedCategories] =
-    useRecoilState<editCategoryRequest>(editCategoryState);
+  // const [selectedCategories, setSelectedCategories] =
+  //   useRecoilState<editCategoryRequest>(editCategoryState);
 
   const getChecklist = async () => {
     try {
@@ -35,10 +35,10 @@ const CheckListPage = () => {
 
   useEffect(() => {
     if (checklistId) {
-      setSelectedCategories(prevState => ({
-        ...prevState,
-        checkListId: Number(checklistId),
-      }));
+      // setSelectedCategories(prevState => ({
+      //   ...prevState,
+      //   checkListId: Number(checklistId),
+      // }));
     }
 
     const fetchChecklist = async () => {
@@ -49,7 +49,7 @@ const CheckListPage = () => {
     fetchChecklist();
   }, [checklistId]);
 
-  console.log(selectedCategories);
+  // console.log(selectedCategories);
 
   useEffect(() => {
     if (checklist) {
