@@ -5,7 +5,7 @@ import { IcListStar, IcMore } from "../../assets/icon";
 import { productResponse } from "../../types/product";
 
 export interface ProductBoxProps {
-  setSelectedId : any;  // 뭐로 해야할지모르겠어요.. 수정하겠습니다..
+  setSelectedId : any;
   handleModal : React.MouseEventHandler;
   productResponse : productResponse;
 }
@@ -16,7 +16,7 @@ const ProductBox = ({setSelectedId, handleModal, productResponse} : ProductBoxPr
   
   return (
   <St.ProductBoxWrapper>
-    { image==='' || image===null || image==="string" ? // 이미지 값 너무 다채로워엽.. 
+    { image==='' || image===null || image==="string" ?
       <St.Empty>No Image</St.Empty> :
       <img src={image} alt="매물 이미지"/>
     }
@@ -39,7 +39,7 @@ const ProductBox = ({setSelectedId, handleModal, productResponse} : ProductBoxPr
       <button type="button">체크리스트 내역 보기</button>
       <button type="button" onClick={() => {
         handleModal();
-        setSelectedId(id);  // 더보기 버튼 클릭 시 현재 매물 id로 상태 업데이트
+        setSelectedId(id);  
       }}><IcMore/></button>
     </St.ProductButtons>
   </St.ProductBoxWrapper>
