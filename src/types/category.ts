@@ -117,3 +117,9 @@ export interface subCategoryIdInfo {
   MOLD: number;
   TOILET: number;
 }
+
+export interface categoryIdList {
+  id: number;
+  name: string;
+  fetchedId: number;
+}

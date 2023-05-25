@@ -1,7 +1,12 @@
 import { atom } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
 
-import { editCategoryRequest, productData, subCategoryIdInfo } from '../types/category';
+import {
+  categoryIdList,
+  editCategoryRequest,
+  productData,
+  subCategoryIdInfo,
+} from '../types/category';
 
 //페이지가 변경되더라도 상태관리를 유지
 const { persistAtom } = recoilPersist();
@@ -112,23 +117,73 @@ export const showIndexState = atom<number[]>({
   default: [1, 48],
 });
 
-export const clientSubCategoryIdState = atom<subCategoryIdInfo[]>({
+export const clientSubCategoryIdState = atom<categoryIdList[]>({
   key: 'clientSubCategoryId',
   default: [
     {
-      SUNLIGHT: 1,
-      LEAK: 2,
-      HEATING: 5,
-      SINK_DRAIN: 10,
-      SINK_PRESSURE: 11,
-      WALLPAPER: 15,
-      FLOOR: 16,
-      BALCONY: 17,
-      WASHSTAND_STATUS: 21,
-      WASHSTAND_DRAIN: 22,
-      WASHSTAND_PRESSURE: 23,
-      MOLD: 24,
-      TOILET: 25,
+      id: 1,
+      name: 'SUNLIGHT',
+      fetchedId: 0,
+    },
+    {
+      id: 2,
+      name: 'LEAK',
+      fetchedId: 0,
+    },
+    {
+      id: 5,
+      name: 'HEATING',
+      fetchedId: 0,
+    },
+    {
+      id: 10,
+      name: 'SINK_DRAIN',
+      fetchedId: 0,
+    },
+    {
+      id: 11,
+      name: 'SINK_PRESSURE',
+      fetchedId: 0,
+    },
+    {
+      id: 15,
+      name: 'WALLPAPER',
+      fetchedId: 0,
+    },
+    {
+      id: 16,
+      name: 'FLOOR',
+      fetchedId: 0,
+    },
+    {
+      id: 17,
+      name: 'BALCONY',
+      fetchedId: 0,
+    },
+    {
+      id: 21,
+      name: 'WASHSTAND_STATUS',
+      fetchedId: 0,
+    },
+    {
+      id: 22,
+      name: 'WASHSTAND_DRAIN',
+      fetchedId: 0,
+    },
+    {
+      id: 23,
+      name: 'WASHSTAND_PRESSURE',
+      fetchedId: 0,
+    },
+    {
+      id: 24,
+      name: 'MOLD',
+      fetchedId: 0,
+    },
+    {
+      id: 25,
+      name: 'TOILET',
+      fetchedId: 0,
     },
   ],
 });
