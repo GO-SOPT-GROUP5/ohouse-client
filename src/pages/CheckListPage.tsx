@@ -1,10 +1,29 @@
+import { useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import Category from '../components/CheckList/Category';
 import CheckListIndex from '../components/CheckList/CheckListIndex';
 import ProductUpload from '../components/CheckList/ProductUpload';
+import { SKELETON_CHECKLIST } from '../constants/skeletonCheckList';
+import { postCheckListData } from '../lib/category';
+import { productDataState } from '../recoil/atom';
 
 const CheckListPage = () => {
+  const setProduct = useSetRecoilState(productDataState);
+
+  useEffect(() => {
+    const postCheckList = async () => {
+      const data = await postCheckListData(SKELETON_CHECKLIST);
+      setProduct(prevValue => ({
+        ...prevValue,
+        id: data.id,
+        title: data.title,
+      }));
+    };
+    postCheckList();
+  }, []);
+
   return (
     <St.CheckListPageWrapper>
       <ProductUpload />
