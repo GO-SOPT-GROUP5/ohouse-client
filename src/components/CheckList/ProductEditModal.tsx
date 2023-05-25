@@ -52,14 +52,15 @@ const ProductEditModal = (props: ModalProps) => {
   const handleConfirm = (e: React.MouseEvent<HTMLButtonElement>) => {
     setComment(modalComment);
     handleHide(e);
-    setProduct(prev => ({
-      ...prev,
-      title: title,
-      address: address,
-      dong: +dong,
-      ho: +ho,
-      description: modalComment,
-    }));
+    if (dong && ho)
+      setProduct(prev => ({
+        ...prev,
+        title: title,
+        address: address,
+        dong: +dong,
+        ho: +ho,
+        description: modalComment,
+      }));
   };
 
   return (

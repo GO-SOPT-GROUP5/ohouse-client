@@ -18,7 +18,7 @@ const Header = () => {
   const [activeNav, setActiveNav] = useState(location.pathname);
   const navigate = useNavigate();
 
-  const handleClick = (e: Event) => {
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     const target = (e.target as HTMLElement).id;
     //홈 & 등록매물확인하기일 때만 이동!
     if (target !== '') {
