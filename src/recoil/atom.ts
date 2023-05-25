@@ -22,11 +22,9 @@ export const productDataState = atom<productData>({
     ho: 0,
     image: '',
     description: '',
-    tags: {
-      state: '',
-      price: '',
-      size: 0,
-    },
+    state: '',
+    price: '',
+    size: 0,
     grade: 0,
     checkListData: {
       indoor: [

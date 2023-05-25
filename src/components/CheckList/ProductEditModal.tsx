@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import Postcode from 'react-daum-postcode';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 import { IcAddress, IcCancel } from '../../assets/icon';
+import { productDataState } from '../../recoil/atom';
 import ProductContract from './ProductContract';
 
 interface AddressData {
@@ -21,11 +23,13 @@ const ProductEditModal = (props: ModalProps) => {
   const [address, setAddress] = useState<string>('');
   const [dong, setDong] = useState<string>();
   const [ho, setHo] = useState<string>();
-  const [comment, setComment] = useState<string>('외부에서 입력한 한줄평가'); // 외부에서 입력한 한줄평가 있을 시 받아오기
+  const { description } = useRecoilValue(productDataState);
+  const [comment, setComment] = useState<string>(description); // 외부에서 입력한 한줄평가 있을 시 받아오기
   const [modalComment, setModalComment] = useState<string>(comment);
 
   const [isPostOpen, setIsPostOpen] = useState(false); // 주소 입력창
 
+  const [product, setProduct] = useRecoilState(productDataState);
   const handleSearchAddress = () => {
     setIsPostOpen(prev => !prev);
   };
@@ -48,6 +52,14 @@ const ProductEditModal = (props: ModalProps) => {
   const handleConfirm = (e: React.MouseEvent<HTMLButtonElement>) => {
     setComment(modalComment);
     handleHide(e);
+    setProduct(prev => ({
+      ...prev,
+      title: title,
+      address: address,
+      dong: +dong,
+      ho: +ho,
+      description: modalComment,
+    }));
   };
 
   return (
@@ -94,7 +106,7 @@ const ProductEditModal = (props: ModalProps) => {
                 <span>호</span>
               </St.Hosu>
               <ProductContract />
-              {comment && (
+              {description && (
                 <St.CommentWrapper>
                   평가 (선택)
                   <input type="string" value={modalComment} onChange={handleModalCommentChange} />

@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import { IcTranslate } from '../../assets/icon';
+import { productDataState } from '../../recoil/atom';
 
 const CONTRACT_OPTIONS = ['전세', '월세', '매매'];
 
@@ -13,11 +15,20 @@ const ProductContract = () => {
   const [size, setSize] = useState<string>(''); // 평수
   const [tags, setTags] = useState<string[]>([]); // 태그
 
+  const setProduct = useSetRecoilState(productDataState);
+
+  // const tagsInfo = {
+  //   state: contract,
+  //   price: price + monthlyRent,
+  //   size: +size,
+  // };
+
   const handleContractSelect = (contractType: string) => {
     if (contractType !== contract) {
       setContract(contractType);
     }
   };
+
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrice(e.target.value);
   };
@@ -56,6 +67,12 @@ const ProductContract = () => {
       priceTag = result.trim();
     }
     setTags([contract, priceTag, `${size}평`]);
+    setProduct(prev => ({
+      ...prev,
+      state: contract,
+      price: priceTag,
+      size: size,
+    }));
   };
 
   useEffect(() => {
