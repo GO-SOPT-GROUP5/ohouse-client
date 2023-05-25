@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
+import { useRef, useState } from "react";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 
 import { IcCamera, IcEdit, IcStar, IcStarFilled } from "../../assets/icon";
