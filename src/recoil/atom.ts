@@ -1,8 +1,7 @@
 import { atom } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
 
-import { productData, subCategoryIdInfo } from '../types/category';
-import { productInfo } from '../types/product';
+import { editCategoryRequest, productData, subCategoryIdInfo } from '../types/category';
 
 //페이지가 변경되더라도 상태관리를 유지
 const { persistAtom } = recoilPersist();
@@ -57,4 +56,17 @@ export const subCategoryIdState = atom<subCategoryIdInfo[]>({
       TOILET: 25,
     },
   ],
+});
+
+export const editCategoryState = atom<editCategoryRequest>({
+  key: 'editCategoryInfo',
+  default: {
+    checkListId: 0,
+    categoryList: [
+      {
+        id: 0,
+        state: 1,
+      },
+    ],
+  },
 });
