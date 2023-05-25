@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
@@ -22,6 +22,7 @@ const CheckListIndex = () => {
 
   const [productData, setProductData] = useRecoilState(productDataState);
   const [categoryList, setCategoryList] = useState<categoryListInfo[]>([]);
+  const [subCategoryId] = useRecoilState(subCategoryIdState);
 
   const getCategoryInfo = (id: number) => {
     for (const category of CATEGORY_LIST) {
@@ -39,7 +40,26 @@ const CheckListIndex = () => {
     subcategory => subcategory >= showIndex[0] && subcategory <= showIndex[1],
   );
 
-  const handleCompleteEdit = () => {};
+  const handleCompleteEdit = () => {
+    const updatedCategoryList = categoryList.map(category => {
+      switch (category.id) {
+        case 1:
+          return { ...category, id: subCategoryId[0].SUNLIGHT };
+        case 2:
+          return { ...category, id: subCategoryId[0].LEAK };
+
+        default:
+          return category;
+      }
+    });
+
+    const editRequest: editCategoryRequest = {
+      checkListId: 123,
+      categoryList: updatedCategoryList,
+    };
+
+    editChecklist(editRequest);
+  };
 
   const editChecklist = async ({ checkListId, categoryList }: editCategoryRequest) => {
     // id, state 저장된 categoryList 객체 배열 만들기

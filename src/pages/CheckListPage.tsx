@@ -7,20 +7,13 @@ import Category from '../components/CheckList/Category';
 import CheckListIndex from '../components/CheckList/CheckListIndex';
 import ProductUpload from '../components/CheckList/ProductUpload';
 import { getChecklistData } from '../lib/checklist';
-import { editCategoryState, subCategoryIdState } from '../recoil/atom';
-import {
-  categoryListInfo,
-  checkListDataInfo,
-  editCategoryRequest,
-  subCategoryIdInfo,
-} from '../types/category';
+import { subCategoryIdState } from '../recoil/atom';
+import { checkListDataInfo, subCategoryIdInfo } from '../types/category';
 
 const CheckListPage = () => {
   const { checklistId } = useParams();
   const [subCategoryId, setSubCategoryId] = useRecoilState<subCategoryIdInfo[]>(subCategoryIdState);
   const [checklist, setChecklist] = useState<checkListDataInfo | undefined>(undefined);
-  // const [selectedCategories, setSelectedCategories] =
-  //   useRecoilState<editCategoryRequest>(editCategoryState);
 
   const getChecklist = async () => {
     try {
@@ -34,13 +27,6 @@ const CheckListPage = () => {
   };
 
   useEffect(() => {
-    if (checklistId) {
-      // setSelectedCategories(prevState => ({
-      //   ...prevState,
-      //   checkListId: Number(checklistId),
-      // }));
-    }
-
     const fetchChecklist = async () => {
       const checklistData = await getChecklist();
       setChecklist(checklistData);
@@ -48,8 +34,6 @@ const CheckListPage = () => {
 
     fetchChecklist();
   }, [checklistId]);
-
-  // console.log(selectedCategories);
 
   useEffect(() => {
     if (checklist) {
@@ -110,3 +94,6 @@ const St = {
     margin-top: 1.5rem;
   `,
 };
+function setEditCategory(arg0: (prevEditCategory: any) => any) {
+  throw new Error('Function not implemented.');
+}
