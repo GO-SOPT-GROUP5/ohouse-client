@@ -39,7 +39,7 @@ const ListPage = () => {
     handleGetInfo();
   }, [flag,sort, update])
 
-  async function handleGetInfo() {
+  const handleGetInfo = async () => {
     const productList = await getProductData({flag:flag,sort:sort,page:page,size:size});
     setProductInfo(productList);
   }
