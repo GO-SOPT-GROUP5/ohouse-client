@@ -20,6 +20,8 @@ const ListPage = () => {
     '별점순':'GRADE', 
     '좋아요순':'LIKE'
   };
+
+  const [ref, inView] = useInView();
   
   const [productInfo, setProductInfo] = useState([]);
 
