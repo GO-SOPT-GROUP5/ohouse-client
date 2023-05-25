@@ -11,6 +11,36 @@ export interface subCategoryInfo {
   isDisable: boolean;
 }
 
+export interface categoryResponse {
+  code: number;
+  message: string;
+  data: checkListData;
+}
+
+export interface checkListData {
+  id: number;
+  title: string;
+  address: string;
+  dong: number;
+  ho: number;
+  image: string;
+  grade: number;
+  tag: tagInfo;
+  checkListData: checkListState;
+}
+
+export interface subCategoryData {
+  id: number;
+  subCategoryStatus: string;
+  state: number;
+}
+
+export interface tagInfo {
+  price: string;
+  size: number;
+  state: string;
+}
+
 //매물 정보 수정 API type
 export interface productData {
   id: number;
