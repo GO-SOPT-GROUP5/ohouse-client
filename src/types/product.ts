@@ -1,3 +1,15 @@
+// 나중에
+export interface OHouseResponse<T> {
+  status: number;
+  success: boolean;
+  message: string;
+  data?: T;
+}
+
+export interface productListInfo {
+  productList: productResponse[];
+}
+
 export interface productInfo {
   id: string;
   title: string;
@@ -14,7 +26,7 @@ export interface productInfo {
 
 export interface productRequest {
   flag: string;
-  order: string;
+  sort: string;
   page: number;
   size: number;
 }
@@ -27,4 +39,10 @@ export interface productResponse {
   bad: number;
   title: string;
   image: string;
+}
+
+export interface deleteResponse {
+  code: number;
+  message: string;
+  data: null;
 }
