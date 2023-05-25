@@ -6,6 +6,7 @@ export { ReactComponent as IcListStar } from './ic_list_star.svg';
 export { ReactComponent as IcEdit } from './ic_edit.svg';
 export { ReactComponent as IcCamera } from './ic_camera.svg';
 export { ReactComponent as IcStar } from './ic_star.svg';
+export { ReactComponent as IcStarFilled } from './ic_star_filled.svg';
 export { ReactComponent as IcCancel } from './ic_cancel.svg';
 export { ReactComponent as IcAddress } from './ic_address.svg';
 export { ReactComponent as IcToggle } from './ic_toggle.svg';
@@ -31,6 +32,8 @@ export { ReactComponent as IcNew } from './ic_new.svg';
 export { ReactComponent as IcRight } from './ic_right.svg';
 export { ReactComponent as IcLeft } from './ic_left.svg';
 //ProductList에서 Modal에 close 버튼
-export { ReactComponent as IcBack} from './ic_back.svg';
+export { ReactComponent as IcBack } from './ic_back.svg';
 //ProductBox에서 더보기 버튼
-export { ReactComponent as IcMore} from './ic_more.svg';
+export { ReactComponent as IcMore } from './ic_more.svg';
+
+export { ReactComponent as IcTranslate } from './ic_translate.svg';

@@ -1,4 +1,4 @@
-// 나중에 
+// 나중에
 export interface OHouseResponse<T> {
   status: number;
   success: boolean;
@@ -10,6 +10,19 @@ export interface productListInfo {
   productList: productResponse[];
 }
 
+export interface productInfo {
+  id: string;
+  title: string;
+  createAt: string;
+  image: string;
+  description: string;
+  tags: {
+    state: string;
+    price: string;
+    size: number;
+  };
+  grade: number;
+}
 
 export interface productRequest {
   flag: string;
@@ -17,7 +30,6 @@ export interface productRequest {
   page: number;
   size: number;
 }
-
 
 export interface productResponse {
   id: number;
@@ -28,7 +40,6 @@ export interface productResponse {
   title: string;
   image: string;
 }
-
 
 export interface deleteResponse {
   code: number;

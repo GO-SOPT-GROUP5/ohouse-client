@@ -1,45 +1,65 @@
 import React, { useState } from 'react';
+import Postcode from 'react-daum-postcode';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import { IcAddress, IcCancel } from '../../assets/icon';
+import { productDataState } from '../../recoil/atom';
+import ProductContract from './ProductContract';
 
-export interface ModalProps {
-  isShowing: boolean;
-  handleHide: React.MouseEventHandler;
-  handleConfirm: React.MouseEventHandler;
+interface AddressData {
+  address: string;
 }
 
-const CONTRACT_OPTIONS = ['전세', '월세', '매매'];
+interface ModalProps {
+  isShowing: boolean;
+  handleHide: React.MouseEventHandler;
+}
 
 const ProductEditModal = (props: ModalProps) => {
-  const { isShowing, handleHide, handleConfirm } = props;
+  const { isShowing, handleHide } = props;
 
-  const [productName, setProductName] = useState<string>();
-  const [dong, setDong] = useState<number>();
-  const [hosu, setHosu] = useState<number>();
-  const [contract, setContract] = useState<string>();
+  const [title, setTitle] = useState<string>(''); // 체크리스트 생성 시 response의 title
+  const [address, setAddress] = useState<string>('');
+  const [dong, setDong] = useState<string>();
+  const [ho, setHo] = useState<string>();
+  const { description } = useRecoilValue(productDataState);
+  const [comment, setComment] = useState<string>(description); // 외부에서 입력한 한줄평가 있을 시 받아오기
+  const [modalComment, setModalComment] = useState<string>(comment);
 
+  const [isPostOpen, setIsPostOpen] = useState(false); // 주소 입력창
+
+  const setProduct = useSetRecoilState(productDataState);
+  const handleSearchAddress = () => {
+    setIsPostOpen(prev => !prev);
+  };
+  const handleAddress = (data: AddressData) => {
+    setAddress(data.address);
+    setIsPostOpen(false);
+  };
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setProductName(e.target.value);
+    setTitle(e.target.value);
   };
   const handleDongChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDong(Number(e.target.value));
+    setDong(e.target.value);
   };
   const handleHosuChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setHosu(Number(e.target.value));
+    setHo(e.target.value);
   };
-  const handleContractSelect = (contractType: string) => {
-    if (contractType !== contract) {
-      setContract(contractType);
-    }
+  const handleModalCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setModalComment(e.target.value);
   };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setProductName('');
-    // setDong(0);
-    // setHosu(0);
-    setContract('');
+  const handleConfirm = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setComment(modalComment);
+    handleHide(e);
+    setProduct(prev => ({
+      ...prev,
+      title: title,
+      address: address,
+      dong: +dong,
+      ho: +ho,
+      description: modalComment,
+    }));
   };
 
   return (
@@ -52,18 +72,20 @@ const ProductEditModal = (props: ModalProps) => {
             </St.CancelBtn>
             <St.ModalTitle>
               <p>정보수정</p>
-              <button type="button">주소변경</button>
+              <button type="button" onClick={handleSearchAddress}>
+                주소변경
+              </button>
             </St.ModalTitle>
             <St.AddressWrapper>
               <IcAddress />
-              <p>주소를 등록해주세요</p>
+              <p>{address ? address : '주소를 등록해주세요'}</p>
             </St.AddressWrapper>
-            <St.ProductForm onSubmit={handleSubmit}>
-              <label>
+            <St.ProductForm>
+              <St.ProductName>
                 매물이름 (선택)
-                <input type="text" value={productName} onChange={handleNameChange} />
-              </label>
-              <label>
+                <input type="text" value={title} onChange={handleNameChange} />
+              </St.ProductName>
+              <St.Dong>
                 동 (선택)
                 <input
                   type="number"
@@ -72,36 +94,36 @@ const ProductEditModal = (props: ModalProps) => {
                   onChange={handleDongChange}
                 />
                 <span>동</span>
-              </label>
-              <label>
+              </St.Dong>
+              <St.Hosu>
                 호수 (선택)
                 <input
                   type="number"
-                  value={hosu}
+                  value={ho}
                   placeholder="호수 입력"
                   onChange={handleHosuChange}
                 />
                 <span>호</span>
-              </label>
-              <St.ContranctWrapper>
-                <p>계약형태</p>
-                {CONTRACT_OPTIONS.map(option => (
-                  <St.ContractBtn
-                    key={option}
-                    onClick={() => handleContractSelect(option)}
-                    disabled={option === contract}
-                    active={option === contract}
-                  >
-                    {option}
-                  </St.ContractBtn>
-                ))}
-              </St.ContranctWrapper>
+              </St.Hosu>
+              <ProductContract />
+              {description && (
+                <St.CommentWrapper>
+                  평가 (선택)
+                  <input type="string" value={modalComment} onChange={handleModalCommentChange} />
+                </St.CommentWrapper>
+              )}
               <button type="submit" onClick={handleConfirm}>
                 완료
               </button>
             </St.ProductForm>
           </St.Modal>
         </St.ModalWrapper>
+      )}
+
+      {isPostOpen && (
+        <St.PostModal onClick={handleSearchAddress}>
+          <Postcode onComplete={handleAddress} autoClose={false} />
+        </St.PostModal>
       )}
     </>
   );
@@ -198,7 +220,6 @@ const St = {
       flex-direction: column;
       position: relative;
 
-      width: 20.3rem;
       margin-bottom: 2.1rem;
 
       color: ${({ theme }) => theme.colors.Grey400};
@@ -209,7 +230,8 @@ const St = {
       font-size: 13px;
       line-height: 22px;
 
-      & > input {
+      & > input,
+      & > div > input {
         height: 4.5rem;
         margin-top: 0.4rem;
         padding-left: 1.7rem;
@@ -217,6 +239,11 @@ const St = {
         border: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
         border-radius: 0.5rem;
         ${({ theme }) => theme.fonts.Body5};
+
+        &::placeholder {
+          color: ${({ theme }) => theme.colors.Grey300};
+          ${({ theme }) => theme.fonts.Body6};
+        }
       }
 
       input[type='number']::-webkit-inner-spin-button,
@@ -235,15 +262,6 @@ const St = {
       }
     }
 
-    & > :first-child {
-      width: 100%;
-      margin-bottom: 1.3rem;
-    }
-
-    & > :nth-child(2) {
-      margin-right: 0.5rem;
-    }
-
     & > button {
       width: 100%;
       height: 4.5rem;
@@ -255,39 +273,42 @@ const St = {
     }
   `,
 
-  ContranctWrapper: styled.div`
-    & > p {
-      margin-bottom: 1.6rem;
+  ProductName: styled.label`
+    width: 100%;
+    margin-bottom: 1.3rem;
+  `,
 
-      ${({ theme }) => theme.colors.Grey600};
-      // 수정필요
-      font-family: 'Pretendard';
-      font-style: normal;
-      font-weight: 700;
-      font-size: 16px;
-      line-height: 19px;
+  Dong: styled.label`
+    width: 20.3rem;
+    margin-right: 0.5rem;
+  `,
+
+  Hosu: styled.label`
+    width: 20.3rem;
+  `,
+
+  CommentWrapper: styled.label`
+    width: 100%;
+
+    & > input {
+      height: 7.4rem;
     }
   `,
 
-  ContractBtn: styled.button<{ active: boolean }>`
-    width: 13.3rem;
-    height: 4.5rem;
-    margin-right: 0.4rem;
-    margin-bottom: 3.9rem;
+  PostModal: styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
 
-    border: 0.1rem solid ${({ theme }) => theme.colors.Grey300};
-    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    ${({ active, theme }) =>
-      active
-        ? `
-        border: 0.1rem solid ${theme.colors.Blue};
-        background-color: ${theme.colors.White};
-      color: ${theme.colors.Blue};
-    `
-        : `
-        background-color: ${theme.colors.White};
-      color: ${theme.colors.Grey600};
-    `}
+    width: 100%;
+    height: 100%;
+    padding: 30%;
+
+    background-color: rgba(0, 0, 0, 0.5);
   `,
 };
