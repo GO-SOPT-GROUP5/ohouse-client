@@ -23,8 +23,83 @@ export const productDataState = atom<productData>({
       size: 0,
     },
     grade: 0,
+    checkListData: {
+      indoor: [
+        {
+          id: 0,
+          subCategoryStatus: 'SUNLIGHT',
+          state: 0,
+        },
+        {
+          id: 0,
+          subCategoryStatus: 'LEAK',
+          state: 0,
+        },
+        {
+          id: 0,
+          subCategoryStatus: 'HEATING',
+          state: 0,
+        },
+      ],
+      kitchen: [
+        {
+          id: 0,
+          subCategoryStatus: 'SINK_DRAIN',
+          state: 0,
+        },
+        {
+          id: 0,
+          subCategoryStatus: 'SINK_PRESSURE',
+          state: 0,
+        },
+      ],
+      livingRoom: [
+        {
+          id: 0,
+          subCategoryStatus: 'WALLPAPER',
+          state: 0,
+        },
+        {
+          id: 0,
+          subCategoryStatus: 'FLOOR',
+          state: 0,
+        },
+        {
+          id: 0,
+          subCategoryStatus: 'BALCONY',
+          state: 0,
+        },
+      ],
+      bathroom: [
+        {
+          id: 0,
+          subCategoryStatus: 'WASHSTAND_STATUS',
+          state: 0,
+        },
+        {
+          id: 0,
+          subCategoryStatus: 'WASHSTAND_DRAIN',
+          state: 0,
+        },
+        {
+          id: 0,
+          subCategoryStatus: 'WASHSTAND_PRESSURE',
+          state: 0,
+        },
+        {
+          id: 0,
+          subCategoryStatus: 'MOLD',
+          state: 0,
+        },
+        {
+          id: 0,
+          subCategoryStatus: 'TOILET',
+          state: 0,
+        },
+      ],
+    },
   },
-  effects_UNSTABLE: [persistAtom],
+  // effects_UNSTABLE: [persistAtom],
 });
 
 export const selectedSubcategoriesState = atom<number[]>({

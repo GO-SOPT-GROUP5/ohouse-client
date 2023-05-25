@@ -7,18 +7,23 @@ import Category from '../components/CheckList/Category';
 import CheckListIndex from '../components/CheckList/CheckListIndex';
 import ProductUpload from '../components/CheckList/ProductUpload';
 import { getChecklistData } from '../lib/checklist';
-import { subCategoryIdState } from '../recoil/atom';
-import { checkListDataInfo, subCategoryIdInfo } from '../types/category';
+import { productDataState, subCategoryIdState } from '../recoil/atom';
+import { checkListDataInfo, productData, subCategoryIdInfo } from '../types/category';
 
 const CheckListPage = () => {
   const { checklistId } = useParams();
   const [subCategoryId, setSubCategoryId] = useRecoilState<subCategoryIdInfo[]>(subCategoryIdState);
   const [checklist, setChecklist] = useState<checkListDataInfo | undefined>(undefined);
+  const [productData, setProductData] = useRecoilState<productData>(productDataState);
 
   const getChecklist = async () => {
     try {
       if (checklistId) {
         const result = await getChecklistData(Number(checklistId));
+        if (result) {
+          setProductData(result);
+        }
+        console.log(result);
         return result?.checkListData;
       }
     } catch (error) {
@@ -58,6 +63,12 @@ const CheckListPage = () => {
       ]);
     }
   }, [checklist, setSubCategoryId]);
+
+  useEffect(() => {
+    if (checklistId && productData.id !== Number(checklistId)) {
+      getChecklist();
+    }
+  }, [checklistId, productData.id]);
 
   return (
     <St.CheckListPageWrapper>

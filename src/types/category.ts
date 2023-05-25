@@ -22,6 +22,7 @@ export interface productData {
   description: string;
   grade: number;
   tags: tagObject;
+  checkListData: checkListDataInfo;
 }
 
 // 매물 정보 태그 내용 object
@@ -31,23 +32,17 @@ export interface tagObject {
   size: number;
 }
 
-export interface categoryResponse {
-  code: number;
-  message: string;
-  data: checkListData;
-}
-
-export interface checkListData {
-  id: number;
-  title: string;
-  address: string;
-  dong: number;
-  ho: number;
-  image: string;
-  grade: number;
-  tag: tagObject;
-  checkListData: checkListDataInfo;
-}
+// export interface checkListData {
+//   id: number;
+//   title: string;
+//   address: string;
+//   dong: number;
+//   ho: number;
+//   image: string;
+//   grade: number;
+//   tag: tagObject;
+//   checkListData: checkListDataInfo;
+// }
 
 // export interface subCategoryData {
 //   id: number;
@@ -90,10 +85,11 @@ export interface checkListDataInfo {
   livingRoom: subCheckListInfo[];
   bathroom: subCheckListInfo[];
 }
+
 export interface subCheckListInfo {
   id: number;
-  name: string;
-  status: number;
+  subCategoryStatus: string;
+  state: number;
 }
 
 export interface editCategoryRequest {
