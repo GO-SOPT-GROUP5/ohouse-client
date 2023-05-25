@@ -62,11 +62,6 @@ export const editCategoryState = atom<editCategoryRequest>({
   key: 'editCategoryInfo',
   default: {
     checkListId: 0,
-    categoryList: [
-      {
-        id: 0,
-        state: 1,
-      },
-    ],
+    categoryList: [],
   },
 });

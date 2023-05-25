@@ -1,33 +1,61 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
+import { editCategoryState } from '../../recoil/atom';
+import { categoryListInfo, editCategoryRequest } from '../../types/category';
+
 interface CheckListItemProms {
-  checklistId: number;
+  categoryId: number;
   subcategory: string;
   checklist: string;
   options: string[];
 }
 
-const CheckListItem = ({ checklistId, subcategory, checklist, options }: CheckListItemProms) => {
-  const [selectedOption, setSelectedOption] = useState<string>();
+const CheckListItem = ({ categoryId, subcategory, checklist, options }: CheckListItemProms) => {
+  const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(null);
+  const [selectedCategoryOption, setSelectedCategoryOption] =
+    useRecoilState<editCategoryRequest>(editCategoryState);
 
-  const handleSelectedOption = (select: string) => {
-    if (select !== selectedOption) {
-      setSelectedOption(select);
+  const handleSelectedOption = (index: number) => {
+    if (categoryId && index !== selectedOptionIndex) {
+      setSelectedOptionIndex(index);
+
+      setSelectedCategoryOption(prevOptions => {
+        const categoryExists = prevOptions.categoryList.find(
+          category => category.id === categoryId,
+        );
+
+        if (categoryExists) {
+          const updatedCategoryList = prevOptions.categoryList.map(category => {
+            if (category.id === categoryId) {
+              return { ...category, state: index + 1 };
+            }
+            return category;
+          });
+          return { ...prevOptions, categoryList: updatedCategoryList };
+        } else {
+          const newCategory = { id: categoryId, state: index + 1 };
+          return { ...prevOptions, categoryList: [...prevOptions.categoryList, newCategory] };
+        }
+      });
     }
   };
-  console.log('ddd', checklistId, subcategory, checklist, options);
+
+  useEffect(() => {
+    console.log('selectedCategoryOption', selectedCategoryOption);
+  }, [selectedCategoryOption]);
 
   return (
     <St.CheckListItemWrapper>
       <p>{checklist}</p>
       <St.OptionWrapper>
-        {options.map(option => (
+        {options.map((option, index) => (
           <St.OptionBtn
             key={option}
-            onClick={() => handleSelectedOption(option)}
-            disabled={option == selectedOption}
-            active={option === selectedOption}
+            onClick={() => handleSelectedOption(index)}
+            disabled={index === selectedOptionIndex}
+            active={index === selectedOptionIndex}
           >
             {option}
           </St.OptionBtn>
