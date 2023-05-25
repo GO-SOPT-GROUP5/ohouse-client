@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import { IcCamera, IcEdit, IcStar, IcStarFilled } from '../../assets/icon';
 import useModal from '../../hooks/useModal';
 import { patchProductData } from '../../lib/category';
-import ErrorPage from '../../pages/ErrorPage';
 import { productDataState } from '../../recoil/atom';
 import ProductEditModal from './ProductEditModal';
 

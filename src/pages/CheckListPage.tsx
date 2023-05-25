@@ -9,7 +9,6 @@ import ProductUpload from '../components/CheckList/ProductUpload';
 import { SKELETON_CHECKLIST } from '../constants/skeletonCheckList';
 import { postCheckListData } from '../lib/category';
 import { productDataState } from '../recoil/atom';
-import ErrorPage from './ErrorPage';
 
 const CheckListPage = () => {
   const setProduct = useSetRecoilState(productDataState);
