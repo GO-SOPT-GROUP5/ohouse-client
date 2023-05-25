@@ -13,7 +13,7 @@ export interface productListInfo {
 
 export interface productRequest {
   flag: string;
-  order: string;
+  sort: string;
   page: number;
   size: number;
 }
@@ -27,4 +27,11 @@ export interface productResponse {
   bad: number;
   title: string;
   image: string;
+}
+
+
+export interface deleteResponse {
+  code: number;
+  message: string;
+  data: null;
 }

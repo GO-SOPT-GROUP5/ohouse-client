@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { IcSmallLine } from "../assets/icon/index";
@@ -8,82 +8,63 @@ import { getProductData } from "../lib/product";
 import { productResponse } from "../types/product";
 
 const ListPage = () => {
-  const category = ['전체', '월세', '전세', '매매'];
-  const filter = ['필터', '별점순', '좋아요순'];
-  // const [productInfo, setProductInfo] = useState([]);
+  const CATEGORY = {
+    '전체':'',
+    '월세':'MONTHLY', 
+    '전세':'JEONSE', 
+    '매매':'SALE'
+  };
+  const FILTER = {
+    '필터':'NEWEST', 
+    '별점순':'GRADE', 
+    '좋아요순':'LIKE'
+  };
+  
+  const [productInfo, setProductInfo] = useState([]);
 
-  // useEffect(() => {
-  //   handleGetInfo();
-  // }, [])
+  const [flag, setFlag] = useState('');
+  const [sort, setSort] = useState('NEWEST');
+  const [page, setPage] = useState(0);
+  const [size, setSize] = useState(5);
+  // 이친구들은 나중에 무한 스크롤 구현 시 만져줄 예정!
 
-  // async function handleGetInfo() {
-  //   const productList = await getProductData({flag:'전체',order:'별점순',page: 0,size: 5});
-  //   setProductInfo(productList);
-  // }
+  const [update, setUpdate] = useState(false);  
+  
+  useEffect(() => {
+    handleGetInfo();
+  }, [flag,sort, update])
 
-  const productInfo = [
-    {
-      "id": 1,
-      "grade": 5,
-      "good": 12,
-      "average": 3,
-      "bad": 0, 
-      "title": "서울대 입구 메가커피 앞",
-      "image": "aws.s3.com~"
-    },
-    {
-      "id": 2,
-      "grade": 5,
-      "good": 12,
-      "average": 3,
-      "bad": 0, 
-      "title": "서울대 입구 메가커피 앞",
-      "image": "aws.s3.com~"
-    },
-    {
-      "id": 3,
-      "grade": 5,
-      "good": 12,
-      "average": 3,
-      "bad": 0, 
-      "title": "서울대 입구 메가커피 앞",
-      "image": "aws.s3.com~"
-    },
-    {
-      "id": 4,
-      "grade": 5,
-      "good": 12,
-      "average": 3,
-      "bad": 0, 
-      "title": "서울대 입구 메가커피 앞",
-      "image": "aws.s3.com~"
-    },
-    {
-      "id": 5,
-      "grade": 5,
-      "good": 12,
-      "average": 3,
-      "bad": 0, 
-      "title": "서울대 입구 메가커피 앞",
-      "image": "aws.s3.com~"
-    }
-  ]
+  const handleGetInfo = async () => {
+    const productList = await getProductData({flag:flag,sort:sort,page:page,size:size});
+    setProductInfo(productList);
+  }
+
+  const handleCategory = (e: React.MouseEvent<HTMLElement>) => {
+    setFlag(e.currentTarget.id);
+  }
+
+  const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSort(e.currentTarget.value);
+  }
 
   return (
     <St.ListWrapper>
       <section>
         <St.ListSetting>
           <St.ListCategory>
-            {category.map((el)=><><span>{el}</span><IcSmallLine/></>)}
+            {Object.keys(CATEGORY).map((el)=><><span id={CATEGORY[el]} onClick={handleCategory}>{el}</span><IcSmallLine/></>)}
           </St.ListCategory>
-          <St.ListCombobox>
-            {filter.map((el)=><option>{el}</option>)}
+          <St.ListCombobox onChange={handleFilter}>
+            {Object.keys(FILTER).map((el)=><option value={FILTER[el]}>{el}</option>)}
           </St.ListCombobox>
         </St.ListSetting>
         <St.ListBoxes>
           <AddBox />
           {productInfo.map((info : productResponse)=>
-            <ProductBox info={info}/>
+            <ProductBox
+              setUpdate={setUpdate}
+              productResponse={info}
+            />
           )}
         </St.ListBoxes>
       </section>
@@ -120,6 +101,8 @@ const St = {
 
     & > span {
       ${({ theme }) => theme.fonts.Body4};
+
+      cursor: pointer;
     }
 
     & > svg:last-child {
@@ -143,5 +126,6 @@ const St = {
 
     width: 100%;
     margin-top: 2.2rem;
+    margin-bottom: 8rem;
   `
 }

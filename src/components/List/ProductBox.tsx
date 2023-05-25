@@ -1,16 +1,31 @@
+import React from "react";
 import styled from "styled-components";
 
-import { IcListStar } from "../../assets/icon";
-import { ImgRoom1 } from "../../assets/image";
+import { IcListStar, IcMore } from "../../assets/icon";
+import useModal from "../../hooks/useModal";
 import { productResponse } from "../../types/product";
+import DeleteModal from "./DeleteModal";
+import MoreModal from "./MoreModal";
 
-const ProductBox = ({info} : productResponse) => {
+export interface ProductBoxProps {
+  setUpdate : any;
+  productResponse : productResponse;
+}
 
-  const {id,grade,good,average,bad,title,image} = info;
+const ProductBox = ({setUpdate, productResponse} : ProductBoxProps) => {
+  
+  const {id,grade,good,average,bad,title,image} = productResponse;
+  const {isShowing, toggle, isDeleteShowing, deleteToggle} = useModal();
+
   
   return (
   <St.ProductBoxWrapper>
-    <ImgRoom1/>
+    <DeleteModal selectedId={id} setUpdate={setUpdate} isDeleteShowing={isDeleteShowing} handleToggle={deleteToggle}/>
+    <MoreModal isShowing={isShowing} handleClose={toggle} handleDelete={deleteToggle}/>
+    { image==='' || image===null || image==="string" ?
+      <St.Empty>No Image</St.Empty> :
+      <img src={image} alt="매물 이미지"/>
+    }
     <St.ProductTitle>{title}</St.ProductTitle>
     <St.ProductScore>
       <span>
@@ -28,7 +43,7 @@ const ProductBox = ({info} : productResponse) => {
     </St.ProductStar>
     <St.ProductButtons>
       <button type="button">체크리스트 내역 보기</button>
-      <button type="button">...</button>
+      <button type="button" onClick={toggle}><IcMore/></button>
     </St.ProductButtons>
   </St.ProductBoxWrapper>
   );
@@ -46,6 +61,25 @@ const St = {
     border-radius: 0.9rem;
     background-color: ${({ theme }) => theme.colors.White};
     box-shadow: 0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.15);
+
+    & > img {
+      width: 34.4rem;
+      height: 20.4rem;
+
+      border-radius: 1rem;
+    }
+  `,
+  Empty : styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 34.4rem;
+    height: 20.4rem;
+    
+    background-color: ${({ theme }) => theme.colors.Grey200};
+    ${({ theme }) => theme.fonts.Body3};
+    color: ${({ theme }) => theme.colors.Grey400};
   `,
   ProductTitle : styled.header`
     margin-top: 4.4rem;
@@ -87,6 +121,10 @@ const St = {
       border-radius: 0.4rem;
       background-color: ${({ theme }) => theme.colors.White};
       ${({ theme }) => theme.fonts.Body5};
+    }
+
+    & > button:nth-child(2) {
+      padding-bottom: 0.8rem;
     }
     
   `
