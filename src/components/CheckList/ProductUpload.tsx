@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import { IcCamera, IcEdit, IcStar, IcStarFilled } from '../../assets/icon';
@@ -8,15 +8,6 @@ import useModal from '../../hooks/useModal';
 import { patchProductData } from '../../lib/category';
 import { productDataState } from '../../recoil/atom';
 import ProductEditModal from './ProductEditModal';
-
-import { useEffect, useRef, useState } from "react";
-import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
-import styled from "styled-components";
-
-import { IcCamera, IcEdit, IcStar, IcStarFilled } from "../../assets/icon";
-import useModal from "../../hooks/useModal";
-import { productDataState } from "../../recoil/atom";
-import ProductEditModal from "./ProductEditModal";
 
 const ProductUpload = () => {
   const { isShowing, toggle } = useModal();
