@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { IcSmallLine } from "../assets/icon/index";
 import AddBox from "../components/List/AddBox";
 import ProductBox from "../components/List/ProductBox";
+import { client } from "../lib/axios";
 import { getProductData } from "../lib/product";
 import { productResponse } from "../types/product";
 
@@ -21,7 +22,6 @@ const ListPage = () => {
     '좋아요순':'LIKE'
   };
 
-  const [ref, inView] = useInView();
   
   const [productInfo, setProductInfo] = useState([]);
 
@@ -39,7 +39,7 @@ const ListPage = () => {
 
   const handleGetInfo = async () => {
     const productList = await getProductData({flag:flag,sort:sort,page:page,size:size});
-    setProductInfo(productList);
+    setProducts(productList);
   }
 
   const handleCategory = (e: React.MouseEvent<HTMLElement>) => {
@@ -49,6 +49,40 @@ const ListPage = () => {
   const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSort(e.currentTarget.value);
   }
+
+
+
+  const [ref, inView] = useInView();
+  const [products, setProducts] = useState([]);
+
+   // 무한 스크롤
+  // 지정한 타겟 div가 화면에 보일 때 마다 서버에 요청을 보냄
+  const productFetch = () => {
+    const query = flag === ''?
+    `/checklist/list?page=${page}&size=${size}&sort=${sort}` :
+    `/checklist/list?flag=${flag}&sort=${sort}&page=${page}&size=${size}`;
+
+    client.get(query)
+    .then((res : any) => {
+      // 리스트 뒤로 붙여주기
+      setProducts([...products, ...res.data.data])
+      // 요청 성공 시에 페이지에 1 카운트 해주기
+      setPage((page : number) => page + 1)
+    })
+    .catch((err : any) => {console.log(err)});
+  };
+
+  useEffect(() => {
+    // inView가 true 일때만 실행한다.
+    if (inView) {
+      console.log(inView, '무한 스크롤 요청 🎃')
+      console.log(page,size)
+
+	  // 실행할 함수
+      productFetch();
+    }
+    
+  }, [inView]);
 
   return (
     <St.ListWrapper>
@@ -63,7 +97,7 @@ const ListPage = () => {
         </St.ListSetting>
         <St.ListBoxes>
           <AddBox/>
-          {productInfo.map((info : productResponse)=>
+          {products.map((info : productResponse)=>
             <ProductBox
               setUpdate={setUpdate}
               productResponse={info}
@@ -71,7 +105,7 @@ const ListPage = () => {
           )}
         </St.ListBoxes>
       </section>
-      <div ref={ref}></div>
+      <div ref={ref}>안녕</div>
     </St.ListWrapper>
   );
 };
