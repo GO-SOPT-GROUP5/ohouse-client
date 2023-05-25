@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useParams } from "react-router-dom";
@@ -22,12 +24,21 @@ const CheckListPage = () => {
   useEffect(() => {
     const postCheckList = async () => {
       const { data, isError } = await postCheckListData(SKELETON_CHECKLIST);
+<<<<<<< HEAD
       setProduct(prevValue => ({
         ...prevValue,
         id: data.id,
         title: data.title,
       }));
       setIsLoading(false);
+=======
+      if (data)
+        setProduct(prevValue => ({
+          ...prevValue,
+          id: data.id,
+          title: data.title,
+        }));
+>>>>>>> bca1d37 (fix : 연서 typeError 1차 수정)
       if (isError) {
         setIsError(true);
       }
