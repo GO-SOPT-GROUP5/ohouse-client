@@ -69,16 +69,13 @@ const St = {
     justify-content: center;
     align-items: center;
 
-    width: 100%;
-    height:100%;
-
-    background-color: ${({ theme }) => theme.colors.Grey200};
     color: ${({ theme }) => theme.colors.Grey600};
     ${({ theme }) => theme.fonts.Title1};
   `,
   HelpCard: styled.main`
     width: 63rem;
     height: 70rem;
+    margin: 8.5rem 0rem;
 
     position: relative;
 
