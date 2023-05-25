@@ -209,7 +209,7 @@ const St = {
       left: 15.3rem;
       bottom: 1.1rem;
 
-      ${({ theme }) => theme.colors.Grey500};
+      color: ${({ theme }) => theme.colors.Grey500};
       ${({ theme }) => theme.fonts.Body5};
     }
 
@@ -218,7 +218,7 @@ const St = {
       right: 1.3rem;
       bottom: 1.1rem;
 
-      ${({ theme }) => theme.colors.Grey500};
+      color: {({ theme }) => theme.colors.Grey500};
       ${({ theme }) => theme.fonts.Body5};
     }
   `,
