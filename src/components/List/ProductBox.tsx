@@ -2,20 +2,26 @@ import React from "react";
 import styled from "styled-components";
 
 import { IcListStar, IcMore } from "../../assets/icon";
+import useModal from "../../hooks/useModal";
 import { productResponse } from "../../types/product";
+import DeleteModal from "./DeleteModal";
+import MoreModal from "./MoreModal";
 
 export interface ProductBoxProps {
-  setSelectedId : any;
-  handleModal : React.MouseEventHandler;
+  setUpdate : any;
   productResponse : productResponse;
 }
 
-const ProductBox = ({setSelectedId, handleModal, productResponse} : ProductBoxProps) => {
+const ProductBox = ({setUpdate, productResponse} : ProductBoxProps) => {
   
   const {id,grade,good,average,bad,title,image} = productResponse;
+  const {isShowing, toggle, isDeleteShowing, deleteToggle} = useModal();
+
   
   return (
   <St.ProductBoxWrapper>
+    <DeleteModal selectedId={id} setUpdate={setUpdate} isDeleteShowing={isDeleteShowing} handleToggle={deleteToggle}/>
+    <MoreModal isShowing={isShowing} handleClose={toggle} handleDelete={deleteToggle}/>
     { image==='' || image===null || image==="string" ?
       <St.Empty>No Image</St.Empty> :
       <img src={image} alt="매물 이미지"/>
@@ -37,10 +43,7 @@ const ProductBox = ({setSelectedId, handleModal, productResponse} : ProductBoxPr
     </St.ProductStar>
     <St.ProductButtons>
       <button type="button">체크리스트 내역 보기</button>
-      <button type="button" onClick={() => {
-        handleModal();
-        setSelectedId(id);  
-      }}><IcMore/></button>
+      <button type="button" onClick={toggle}><IcMore/></button>
     </St.ProductButtons>
   </St.ProductBoxWrapper>
   );
