@@ -20,6 +20,5 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src", "custom.d.ts"],
-  "exclude": ["**/*.style.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
