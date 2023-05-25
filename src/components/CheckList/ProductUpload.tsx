@@ -72,6 +72,7 @@ const ProductUpload = () => {
     setComment(e.target.value);
   };
 
+  // 매물 정보 PATCH 연결 시 필요한 변수들
   let editedState;
   switch (state) {
     case '전세':
@@ -87,6 +88,7 @@ const ProductUpload = () => {
       editedState = 'EMPTY';
       break;
   }
+
   const REQ_DATA = {
     address: address,
     description: description,
@@ -117,7 +119,6 @@ const ProductUpload = () => {
       description: comment,
       image: '',
     }));
-    setIsSaved(true);
   };
 
   useEffect(() => {
@@ -126,6 +127,9 @@ const ProductUpload = () => {
 
   return (
     <St.ProductUploadWrapper>
+      <button type="button" onClick={() => setIsSaved(true)}>
+        임시 수정 테스트용 버튼
+      </button>
       <St.ProductName>{title}</St.ProductName>
       <St.Address>
         {address ? (
