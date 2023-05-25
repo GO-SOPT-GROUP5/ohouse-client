@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
-import { IcSmallLine } from "../assets/icon/index";
-import AddBox from "../components/List/AddBox";
-import ProductBox from "../components/List/ProductBox";
-import { getProductData } from "../lib/product";
-import { productResponse } from "../types/product";
+import { IcSmallLine } from '../assets/icon/index';
+import AddBox from '../components/List/AddBox';
+import ProductBox from '../components/List/ProductBox';
+import { getProductData } from '../lib/product';
+import { productResponse } from '../types/product';
 
 const ListPage = () => {
   const CATEGORY = {
-    '전체':'',
-    '월세':'MONTHLY', 
-    '전세':'JEONSE', 
-    '매매':'SALE'
+    전체: '',
+    월세: 'MONTHLY',
+    전세: 'JEONSE',
+    매매: 'SALE',
   };
   const FILTER = {
-    '필터':'NEWEST', 
-    '별점순':'GRADE', 
-    '좋아요순':'LIKE'
+    필터: 'NEWEST',
+    별점순: 'GRADE',
+    좋아요순: 'LIKE',
   };
-  
+
   const [productInfo, setProductInfo] = useState([]);
 
   const [flag, setFlag] = useState('');
@@ -28,44 +28,50 @@ const ListPage = () => {
   const [size, setSize] = useState(5);
   // 이친구들은 나중에 무한 스크롤 구현 시 만져줄 예정!
 
-  const [update, setUpdate] = useState(false);  
-  
+  const [update, setUpdate] = useState(false);
+
   useEffect(() => {
     handleGetInfo();
-  }, [flag,sort, update])
+  }, [flag, sort, update]);
 
   const handleGetInfo = async () => {
-    const productList = await getProductData({flag:flag,sort:sort,page:page,size:size});
+    const productList = await getProductData({ flag: flag, sort: sort, page: page, size: size });
     setProductInfo(productList);
-  }
+  };
 
   const handleCategory = (e: React.MouseEvent<HTMLElement>) => {
     setFlag(e.currentTarget.id);
-  }
+  };
 
   const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSort(e.currentTarget.value);
-  }
+  };
 
   return (
     <St.ListWrapper>
       <section>
         <St.ListSetting>
           <St.ListCategory>
-            {Object.keys(CATEGORY).map((el)=><><span id={CATEGORY[el]} onClick={handleCategory}>{el}</span><IcSmallLine/></>)}
+            {Object.keys(CATEGORY).map(el => (
+              <>
+                <span id={CATEGORY[el]} onClick={handleCategory}>
+                  {el}
+                </span>
+                <IcSmallLine />
+              </>
+            ))}
           </St.ListCategory>
           <St.ListCombobox onChange={handleFilter}>
-            {Object.keys(FILTER).map((el)=><option value={FILTER[el]}>{el}</option>)}
+            {Object.keys(FILTER).map(el => (
+              <option value={FILTER[el]}>{el}</option>
+            ))}
           </St.ListCombobox>
         </St.ListSetting>
         <St.ListBoxes>
-          <AddBox/>
-          {productInfo.map((info : productResponse)=>
-            <ProductBox
-              setUpdate={setUpdate}
-              productResponse={info}
-            />
-          )}
+          <AddBox />
+          {productInfo.map((info: productResponse) => (
+            <ProductBox setUpdate={setUpdate} productResponse={info} />
+          ))}
         </St.ListBoxes>
       </section>
     </St.ListWrapper>
@@ -74,25 +80,24 @@ const ListPage = () => {
 
 export default ListPage;
 
-
 const St = {
-  ListWrapper : styled.section`
+  ListWrapper: styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     width: 100%;
 
     background-color: ${({ theme }) => theme.colors.Grey200};
   `,
-  ListSetting : styled.section`
+  ListSetting: styled.section`
     display: flex;
     justify-content: space-between;
 
     width: 100%;
     margin-top: 8.8rem;
   `,
-  ListCategory : styled.article`
+  ListCategory: styled.article`
     display: flex;
     align-items: center;
     gap: 2rem;
@@ -109,7 +114,7 @@ const St = {
       display: none;
     }
   `,
-  ListCombobox : styled.select`
+  ListCombobox: styled.select`
     width: 11.7rem;
     height: 3.4rem;
 
@@ -118,8 +123,8 @@ const St = {
 
     text-align: center;
   `,
-  ListBoxes : styled.section`
-    display:grid;
+  ListBoxes: styled.section`
+    display: grid;
     grid-template-columns: repeat(3, 39.3rem);
     grid-gap: 2rem;
     justify-content: center;
@@ -131,5 +136,5 @@ const St = {
     & > article:first-child > svg {
       cursor: pointer;
     }
-  `
-}
+  `,
+};
