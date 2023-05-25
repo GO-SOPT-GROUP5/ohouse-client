@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
@@ -13,6 +14,7 @@ interface CheckListItemProms {
 }
 
 const CheckListItem = ({ categoryId, subcategory, checklist, options }: CheckListItemProms) => {
+  const { checklistId } = useParams();
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(null);
   const [selectedCategoryOption, setSelectedCategoryOption] =
     useRecoilState<editCategoryRequest>(editCategoryState);
@@ -45,6 +47,15 @@ const CheckListItem = ({ categoryId, subcategory, checklist, options }: CheckLis
   useEffect(() => {
     console.log('selectedCategoryOption', selectedCategoryOption);
   }, [selectedCategoryOption]);
+
+  useEffect(() => {
+    if (checklistId) {
+      setSelectedCategoryOption(prevOptions => ({
+        ...prevOptions,
+        checkListId: Number(checklistId),
+      }));
+    }
+  }, [checklistId]);
 
   return (
     <St.CheckListItemWrapper>
