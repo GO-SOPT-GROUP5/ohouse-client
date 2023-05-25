@@ -1,13 +1,11 @@
-import { useEffect, useRef, useState } from "react";
-import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
-import { useRef, useState } from "react";
-import { useRecoilValue } from "recoil";
-import styled from "styled-components";
+import { useEffect, useRef, useState } from 'react';
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
+import styled from 'styled-components';
 
-import { IcCamera, IcEdit, IcStar, IcStarFilled } from "../../assets/icon";
-import useModal from "../../hooks/useModal";
-import { productDataState } from "../../recoil/atom";
-import ProductEditModal from "./ProductEditModal";
+import { IcCamera, IcEdit, IcStar, IcStarFilled } from '../../assets/icon';
+import useModal from '../../hooks/useModal';
+import { productDataState } from '../../recoil/atom';
+import ProductEditModal from './ProductEditModal';
 
 const ProductUpload = () => {
   const { isShowing, toggle } = useModal();
@@ -76,7 +74,7 @@ const ProductUpload = () => {
     if (comment) {
       setShowCommentInput(false);
     }
-  const { title } = useRecoilValue(productDataState);
+  };
 
   const handleConfirm = () => {
     // 완료 버튼 클릭 시 실행되는 함수
@@ -90,9 +88,6 @@ const ProductUpload = () => {
 
   return (
     <St.ProductUploadWrapper>
-      <button type="button" onClick={useResetRecoilState(productDataState)}>
-        저장하기 테스트
-      </button>
       <St.ProductName>{title}</St.ProductName>
       <St.Address>
         {address ? (
@@ -104,8 +99,6 @@ const ProductUpload = () => {
           <St.DefaultAddress>{address ? address : '주소를 등록해주세요'}</St.DefaultAddress>
         )}
       </St.Address>
-      <St.ProductName>{title}</St.ProductName>
-      <St.Address>주소를 등록해주세요</St.Address>
       <St.EditBtn type="button" onClick={toggle}>
         <IcEdit />
       </St.EditBtn>
