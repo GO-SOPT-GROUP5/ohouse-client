@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import { IcCamera, IcEdit, IcStar, IcStarFilled } from '../../assets/icon';
 import useModal from '../../hooks/useModal';
 import { patchProductData } from '../../lib/category';
+import ErrorPage from '../../pages/ErrorPage';
 import { productDataState } from '../../recoil/atom';
 import ProductEditModal from './ProductEditModal';
 
@@ -36,6 +38,8 @@ const ProductUpload = () => {
 
   const product = useRecoilValue(productDataState);
   const [isSaved, setIsSaved] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log(product);
@@ -104,9 +108,11 @@ const ProductUpload = () => {
   };
 
   const patchProductInfo = async () => {
-    const data = await patchProductData(REQ_DATA);
-    console.log(data);
-    console.log('성공');
+    const { data, isError } = await patchProductData(REQ_DATA);
+    console.log(isError, '\n', data);
+    if (isError) {
+      setIsError(true);
+    }
   };
 
   const handleSave = () => {
@@ -125,6 +131,9 @@ const ProductUpload = () => {
     patchProductInfo();
   }, [isSaved]);
 
+  if (isError) {
+    navigate('/error');
+  }
   return (
     <St.ProductUploadWrapper>
       <button type="button" onClick={() => setIsSaved(true)}>

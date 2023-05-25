@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
@@ -13,6 +14,7 @@ import ErrorPage from './ErrorPage';
 const CheckListPage = () => {
   const setProduct = useSetRecoilState(productDataState);
   const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const postCheckList = async () => {
@@ -29,7 +31,9 @@ const CheckListPage = () => {
     postCheckList();
   }, []);
 
-  if (isError) return <ErrorPage />;
+  if (isError) {
+    navigate('/error');
+  }
   return (
     <St.CheckListPageWrapper>
       <ProductUpload />
