@@ -13,7 +13,7 @@ const Category = () => {
   const [selectedSubcategories, setSelectedSubcategories] = useRecoilState(
     selectedSubcategoriesState,
   );
-  const [isSelectAll, setIsSelectAll] = useState(false);
+  const [isSelectAll, setIsSelectAll] = useState(true);
   const [showIndex, setShowIndex] = useRecoilState(showIndexState);
 
   const handleExpand = (category: string) => {
