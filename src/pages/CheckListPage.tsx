@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
@@ -8,22 +8,28 @@ import ProductUpload from '../components/CheckList/ProductUpload';
 import { SKELETON_CHECKLIST } from '../constants/skeletonCheckList';
 import { postCheckListData } from '../lib/category';
 import { productDataState } from '../recoil/atom';
+import ErrorPage from './ErrorPage';
 
 const CheckListPage = () => {
   const setProduct = useSetRecoilState(productDataState);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const postCheckList = async () => {
-      const data = await postCheckListData(SKELETON_CHECKLIST);
+      const { data, isError } = await postCheckListData(SKELETON_CHECKLIST);
       setProduct(prevValue => ({
         ...prevValue,
         id: data.id,
         title: data.title,
       }));
+      if (isError) {
+        setIsError(true);
+      }
     };
     postCheckList();
   }, []);
 
+  if (isError) return <ErrorPage />;
   return (
     <St.CheckListPageWrapper>
       <ProductUpload />
