@@ -2,12 +2,13 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 interface CheckListItemProms {
+  checklistId: number;
   subcategory: string;
   checklist: string;
   options: string[];
 }
 
-const CheckListItem = ({ subcategory, checklist, options }: CheckListItemProms) => {
+const CheckListItem = ({ checklistId, subcategory, checklist, options }: CheckListItemProms) => {
   const [selectedOption, setSelectedOption] = useState<string>();
 
   const handleSelectedOption = (select: string) => {
@@ -15,6 +16,7 @@ const CheckListItem = ({ subcategory, checklist, options }: CheckListItemProms) 
       setSelectedOption(select);
     }
   };
+  console.log('ddd', checklistId, subcategory, checklist, options);
 
   return (
     <St.CheckListItemWrapper>

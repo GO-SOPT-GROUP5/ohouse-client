@@ -64,6 +64,7 @@ const CheckListIndex = () => {
             return (
               <CheckListItem
                 key={id}
+                checklistId={id}
                 subcategory={subcategory}
                 checklist={checklist}
                 options={options}
