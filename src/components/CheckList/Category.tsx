@@ -26,6 +26,7 @@ const Category = () => {
 
   console.log(selectedSubcategories);
   console.log(expandedCategories);
+
   const handleClickSubcategory = (e: React.MouseEvent, subcategory: subCategoryInfo) => {
     let copiedSubcategories: number[];
 
@@ -42,6 +43,7 @@ const Category = () => {
       copiedSubcategories = [...selectedSubcategories, subcategory.id];
     }
     copiedSubcategories.sort((a, b) => a - b);
+    setSelectedSubcategories(copiedSubcategories);
 
     e.stopPropagation();
   };
