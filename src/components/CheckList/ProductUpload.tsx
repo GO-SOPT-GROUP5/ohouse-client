@@ -1,11 +1,13 @@
-import { useEffect, useRef, useState } from "react";
-import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
-import styled from "styled-components";
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router';
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
+import styled from 'styled-components';
 
-import { IcCamera, IcEdit, IcStar, IcStarFilled } from "../../assets/icon";
-import useModal from "../../hooks/useModal";
-import { productDataState } from "../../recoil/atom";
-import ProductEditModal from "./ProductEditModal";
+import { IcCamera, IcEdit, IcStar, IcStarFilled } from '../../assets/icon';
+import useModal from '../../hooks/useModal';
+import { patchProductData } from '../../lib/category';
+import { productDataState } from '../../recoil/atom';
+import ProductEditModal from './ProductEditModal';
 
 const ProductUpload = () => {
   const { isShowing, toggle } = useModal();
@@ -16,7 +18,7 @@ const ProductUpload = () => {
   // const [ho, setHo] = useState<string>();
 
   const setProduct = useSetRecoilState(productDataState);
-  const { title, address, dong, ho, state, price, size, description } =
+  const { title, address, dong, ho, state, price, size, description, id, image } =
     useRecoilValue(productDataState);
 
   // 별점
@@ -34,6 +36,9 @@ const ProductUpload = () => {
   // const [tags, setTags] = useState<string[]>(['월세', '1000/60', '30평']);
 
   const product = useRecoilValue(productDataState);
+  const [isSaved, setIsSaved] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log(product);
@@ -70,14 +75,49 @@ const ProductUpload = () => {
     setComment(e.target.value);
   };
 
+  // 매물 정보 PATCH 연결 시 필요한 변수들
+  let editedState;
+  switch (state) {
+    case '전세':
+      editedState = 'JEONSE';
+      break;
+    case '월세':
+      editedState = 'MONTHLY';
+      break;
+    case '매매':
+      editedState = 'SALE';
+      break;
+    default:
+      editedState = 'EMPTY';
+      break;
+  }
+
+  const REQ_DATA = {
+    address: address,
+    description: description,
+    dong: dong,
+    grade: grade,
+    ho: ho,
+    id: id,
+    image: image,
+    price: price,
+    size: 0,
+    state: editedState,
+    title: title,
+  };
+
+  const patchProductInfo = async () => {
+    const { data, isError } = await patchProductData(REQ_DATA);
+    console.log(isError, '\n', data);
+    if (isError) {
+      setIsError(true);
+    }
+  };
+
   const handleSave = () => {
     if (comment) {
       setShowCommentInput(false);
     }
-  };
-
-  const handleConfirm = () => {
-    // 완료 버튼 클릭 시 실행되는 함수
     setProduct(prev => ({
       ...prev,
       grade: grade,
@@ -86,8 +126,18 @@ const ProductUpload = () => {
     }));
   };
 
+  useEffect(() => {
+    patchProductInfo();
+  }, [isSaved]);
+
+  if (isError) {
+    navigate('/error');
+  }
   return (
     <St.ProductUploadWrapper>
+      <button type="button" onClick={() => setIsSaved(true)}>
+        임시 수정 테스트용 버튼
+      </button>
       <St.ProductName>{title}</St.ProductName>
       <St.Address>
         {address ? (

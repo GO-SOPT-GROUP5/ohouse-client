@@ -3,7 +3,6 @@ import 'swiper/css/pagination';
 
 import { useRef } from 'react';
 import { useNavigate } from 'react-router';
-import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -16,27 +15,13 @@ import {
   ImgExplanation4,
   ImgExplanation5,
 } from '../../assets/image/index';
-import { SKELETON_CHECKLIST } from '../../constants/skeletonCheckList';
-import { postCheckListData } from '../../lib/category';
-import { productDataState } from '../../recoil/atom';
 
 const Help = () => {
   const swiperRef = useRef();
   const navigate = useNavigate();
 
-  const setProduct = useSetRecoilState(productDataState);
-
   const handleClickProductBtn = () => {
     navigate('/checklist');
-    const postCheckList = async () => {
-      const data = await postCheckListData(SKELETON_CHECKLIST);
-      setProduct(prevValue => ({
-        ...prevValue,
-        id: data.id,
-        title: data.title,
-      }));
-    };
-    postCheckList();
   };
 
   return (
