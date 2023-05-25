@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { IcSmallLine } from "../assets/icon/index";
@@ -50,12 +50,11 @@ const ListPage = () => {
     setProductInfo(productList);
   }
 
-  // 여기 타입스크립트로 다 하고 싶은데 대체 이런 e 요런애들 정확한 타입 어케 아나요....... 마우스 올려도 any만 떠요... 
-  const handleCategory = (e) => {
+  const handleCategory = (e: React.MouseEvent<HTMLElement>) => {
     setFlag(e.currentTarget.id);
   }
 
-  const handleFilter = (e) => {
+  const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSort(e.currentTarget.value);
   }
 
