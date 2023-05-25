@@ -44,23 +44,24 @@ const CheckListPage = () => {
     if (productData.checkListData) {
       const { indoor, kitchen, livingRoom, bathroom } = productData.checkListData;
 
-      setSubCategoryId([
-        {
-          SUNLIGHT: indoor[0].id,
-          LEAK: indoor[1].id,
-          HEATING: indoor[2].id,
-          SINK_DRAIN: kitchen[0].id,
-          SINK_PRESSURE: kitchen[1].id,
-          WALLPAPER: livingRoom[0].id,
-          FLOOR: livingRoom[1].id,
-          BALCONY: livingRoom[2].id,
-          WASHSTAND_STATUS: bathroom[0].id,
-          WASHSTAND_DRAIN: bathroom[1].id,
-          WASHSTAND_PRESSURE: bathroom[2].id,
-          MOLD: bathroom[3].id,
-          TOILET: bathroom[4].id,
-        },
-      ]);
+      const updatedSubCategoryId = {
+        SUNLIGHT: indoor[0].id,
+        LEAK: indoor[1].id,
+        HEATING: indoor[2].id,
+        SINK_DRAIN: kitchen[0].id,
+        SINK_PRESSURE: kitchen[1].id,
+        WALLPAPER: livingRoom[0].id,
+        FLOOR: livingRoom[1].id,
+        BALCONY: livingRoom[2].id,
+        WASHSTAND_STATUS: bathroom[0].id,
+        WASHSTAND_DRAIN: bathroom[1].id,
+        WASHSTAND_PRESSURE: bathroom[2].id,
+        MOLD: bathroom[3].id,
+        TOILET: bathroom[4].id,
+      };
+
+      setSubCategoryId([updatedSubCategoryId]);
+      console.log(subCategoryId);
     }
   }, [checklistId, setSubCategoryId]);
 
