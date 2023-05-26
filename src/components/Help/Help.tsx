@@ -21,7 +21,7 @@ import { postCheckListData } from '../../lib/category';
 import { productDataState } from '../../recoil/atom';
 
 const Help = () => {
-  const swiperRef = useRef();
+  const swiperRef = useRef(null);
   const navigate = useNavigate();
 
   const setProduct = useSetRecoilState(productDataState);
@@ -43,8 +43,8 @@ const Help = () => {
     <St.HelpWrapper>
       <St.HelpCard>
         <St.HelpIcon>
-          <IcLeft onClick={() => swiperRef?.current?.slidePrev()} />
-          <IcRight onClick={() => swiperRef?.current?.slideNext()} />
+          <IcLeft onClick={() => swiperRef.current?.slidePrev()} />
+          <IcRight onClick={() => swiperRef.current?.slideNext()} />
         </St.HelpIcon>
         <St.HelpContent>
           <Swiper
@@ -54,7 +54,7 @@ const Help = () => {
             slidesPerView={1}
             spaceBetween={20}
             onSwiper={swiper => {
-              swiperRef?.current = swiper;
+              swiperRef.current = swiper;
             }}
           >
             <SwiperSlide>
