@@ -21,53 +21,67 @@ const CheckListEditPage = () => {
     const { indoor, kitchen, livingRoom, bathroom } = productData.checkListData;
 
     const updatedState = clientSubCategoryId.map(item => {
-      let fetchedId;
+      let fetchedId, state;
 
       switch (item.name) {
         case 'SUNLIGHT':
           fetchedId = indoor[0].id;
+          state = indoor[0].state;
           break;
         case 'LEAK':
           fetchedId = indoor[1].id;
+          state = indoor[1].state;
           break;
         case 'HEATING':
           fetchedId = indoor[2].id;
+          state = indoor[2].state;
           break;
         case 'SINK_DRAIN':
           fetchedId = kitchen[0].id;
+          state = kitchen[0].state;
           break;
         case 'SINK_PRESSURE':
           fetchedId = kitchen[1].id;
+          state = kitchen[1].state;
           break;
         case 'WALLPAPER':
           fetchedId = livingRoom[0].id;
+          state = livingRoom[0].state;
           break;
         case 'FLOOR':
           fetchedId = livingRoom[1].id;
+          state = livingRoom[1].state;
           break;
         case 'BALCONY':
           fetchedId = livingRoom[2].id;
+          state = livingRoom[2].state;
           break;
         case 'WASHSTAND_STATUS':
           fetchedId = bathroom[0].id;
+          state = bathroom[0].state;
           break;
         case 'WASHSTAND_DRAIN':
           fetchedId = bathroom[1].id;
+          state = bathroom[1].state;
           break;
         case 'WASHSTAND_PRESSURE':
           fetchedId = bathroom[2].id;
+          state = bathroom[2].state;
           break;
         case 'MOLD':
           fetchedId = bathroom[3].id;
+          state = bathroom[3].state;
           break;
         case 'TOILET':
           fetchedId = bathroom[4].id;
+          state = bathroom[4].state;
           break;
         default:
           fetchedId = null;
+          state = null;
       }
 
-      return { ...item, fetchedId };
+      return { ...item, fetchedId, state };
     });
 
     setClientSubCategoryId(updatedState);

@@ -55,39 +55,6 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
   );
 
   const handleCompleteEdit = async () => {
-    // const updatedCategoryList = selectedCategoryOption.categoryList.map(category => {
-    //   switch (category.id) {
-    //     case 1:
-    //       return { ...category, id: subCategoryId[0].SUNLIGHT };
-    //     case 2:
-    //       return { ...category, id: subCategoryId[0].LEAK };
-    //     case 5:
-    //       return { ...category, id: subCategoryId[0].HEATING };
-    //     case 10:
-    //       return { ...category, id: subCategoryId[0].SINK_DRAIN };
-    //     case 11:
-    //       return { ...category, id: subCategoryId[0].SINK_PRESSURE };
-    //     case 15:
-    //       return { ...category, id: subCategoryId[0].WALLPAPER };
-    //     case 16:
-    //       return { ...category, id: subCategoryId[0].FLOOR };
-    //     case 17:
-    //       return { ...category, id: subCategoryId[0].BALCONY };
-    //     case 21:
-    //       return { ...category, id: subCategoryId[0].WASHSTAND_STATUS };
-    //     case 22:
-    //       return { ...category, id: subCategoryId[0].WASHSTAND_DRAIN };
-    //     case 23:
-    //       return { ...category, id: subCategoryId[0].WASHSTAND_PRESSURE };
-    //     case 24:
-    //       return { ...category, id: subCategoryId[0].MOLD };
-    //     case 25:
-    //       return { ...category, id: subCategoryId[0].TOILET };
-    //     default:
-    //       return category;
-    //   }
-    // });
-
     const updatedCategoryList = clientSubCategoryId.map(({ fetchedId: id, state }) => ({
       id,
       state,

@@ -25,27 +25,6 @@ const CheckListItem = ({ categoryId, subcategory, checklist, options }: CheckLis
     if (categoryId && index !== selectedOptionIndex) {
       setSelectedOptionIndex(index);
 
-      // setSelectedCategoryOption(prevOptions => {
-      //   const categoryExists = prevOptions.categoryList.find(
-      //     category => category.id === categoryId,
-      //   );
-      //   console.log(categoryExists);
-
-      //   if (categoryExists) {
-      //     const updatedCategoryList = prevOptions.categoryList.map(category => {
-      //       if (category.id === categoryId) {
-      //         return { ...category, state: index + 1 };
-      //       }
-      //       return category;
-      //     });
-      //     return { ...prevOptions, categoryList: updatedCategoryList };
-      //   } else {
-      //     const newCategory = { id: categoryId, state: index + 1 };
-      //     return { ...prevOptions, categoryList: [...prevOptions.categoryList, newCategory] };
-      //   }
-      // });
-      // console.log(selectedCategoryOption);
-
       setClientSubCategoryId(prevClientSubCategoryId => {
         const updatedClientSubCategoryId = prevClientSubCategoryId.map(item => {
           if (item.id === categoryId) {
@@ -79,9 +58,12 @@ const CheckListItem = ({ categoryId, subcategory, checklist, options }: CheckLis
             disabled={index === selectedOptionIndex}
             active={
               index === selectedOptionIndex ||
-              selectedCategoryOption.categoryList.some(
+              clientSubCategoryId.some(
                 category => category.id === categoryId && category.state === index + 1,
               )
+              // selectedCategoryOption.categoryList.some(
+              //   category => category.id === categoryId && category.state === index + 1,
+              // )
             }
           >
             {option}
