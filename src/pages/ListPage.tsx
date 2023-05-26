@@ -29,13 +29,12 @@ const ListPage = () => {
   const [sort, setSort] = useState('NEWEST');
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(5);
-  // 이친구들은 나중에 무한 스크롤 구현 시 만져줄 예정!
 
   const [update, setUpdate] = useState(false);  
   
   useEffect(() => {
     handleGetInfo();
-  }, [flag,sort, update])
+  }, [flag, sort, update])
 
   const handleGetInfo = async () => {
     const productList = await getProductData({flag:flag,sort:sort,page:page,size:size});
@@ -56,7 +55,6 @@ const ListPage = () => {
   const [products, setProducts] = useState([]);
 
    // 무한 스크롤
-  // 지정한 타겟 div가 화면에 보일 때 마다 서버에 요청을 보냄
   const productFetch = () => {
     const query = flag === ''?
     `/checklist/list?page=${page}&size=${size}&sort=${sort}` :
@@ -64,16 +62,17 @@ const ListPage = () => {
 
     client.get(query)
     .then((res : any) => {
-      // 리스트 뒤로 붙여주기
       setProducts([...products, ...res.data.data])
-      // 요청 성공 시에 페이지에 1 카운트 해주기
-      setPage((page : number) => page + 1)
+      page===0 ?
+        setPage((page : number) => page + 5) :
+        setPage((page : number) => page + 6)
+      if(size===5) {setSize(6)}
+
     })
     .catch((err : any) => {console.log(err)});
   };
 
   useEffect(() => {
-    // inView가 true 일때만 실행한다.
     if (inView) {
       console.log(inView, '무한 스크롤 요청 🎃')
       console.log(page,size)
@@ -105,7 +104,7 @@ const ListPage = () => {
           )}
         </St.ListBoxes>
       </section>
-      <div ref={ref}>안녕</div>
+      <div ref={ref}></div>
     </St.ListWrapper>
   );
 };
@@ -120,6 +119,7 @@ const St = {
     align-items: center;
     
     width: 100%;
+    min-height: 100vh;
 
     background-color: ${({ theme }) => theme.colors.Grey200};
   `,
