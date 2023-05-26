@@ -1,4 +1,4 @@
-const iconSrc = 'dist/assets/';
+const iconSrc = 'dist/src/assets/icon/';
 
 export const HOME_MAIN_MENU = [
   {

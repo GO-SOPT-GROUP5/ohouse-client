@@ -1,4 +1,4 @@
-const imgSrc = 'dist/assets/';
+const imgSrc = 'dist/src/assets/icon/';
 
 export const HOME_BANNER_LIST = [
   { id: 1, src: imgSrc + 'img_banner1.svg', alt: '홈 배너 이미지1' },
