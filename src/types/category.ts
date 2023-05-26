@@ -20,6 +20,9 @@ export interface productData {
   ho: number;
   image: string;
   description: string;
+  price: string;
+  size: number;
+  state: string;
   grade: number;
   state: string;
   price: string;
@@ -91,6 +94,7 @@ export interface subCategoryIdInfo {
 
 export interface categoryIdList {
   id: number;
-  name: string;
   fetchedId: number;
+  name: string;
+  state: number;
 }

@@ -86,7 +86,7 @@ const St = {
     align-items: center;
 
     height: 8.6rem;
-    padding: 2.3rem 10rem 2rem 10rem;
+    padding: 2.3rem 11rem 2rem 11rem;
 
     border-bottom: 0.2rem solid ${({ theme }) => theme.colors.Grey200};
     background-color: ${({ theme }) => theme.colors.White};
@@ -123,7 +123,7 @@ const St = {
     margin-right: 2.6rem;
 
     & > input {
-      width: 38rem;
+      width: 37rem;
       height: 4.2rem;
       padding-left: 5rem;
 
@@ -190,7 +190,7 @@ const St = {
 
     width: 100%;
     height: 5.4rem;
-    padding: 1.6rem 10rem;
+    padding: 1.6rem 11rem;
 
     background-color: ${({ theme }) => theme.colors.White};
   `,
