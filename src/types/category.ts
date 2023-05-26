@@ -30,6 +30,12 @@ export interface productData {
   checkListData: checkListDataInfo;
 }
 
+export interface productDataAtom extends productData {
+  area: string;
+  showPrice: string;
+  monthly: string;
+}
+
 // 매물 정보 태그 내용 object
 // export interface tagObject {
 //   state: string;

@@ -3,7 +3,7 @@ import { atom } from 'recoil';
 import {
   categoryIdList,
   editCategoryRequest,
-  productData,
+  productDataAtom,
   subCategoryIdInfo,
 } from '../types/category';
 
@@ -11,9 +11,12 @@ import {
 // const { persistAtom } = recoilPersist();
 
 // unique ID 를 가지고 초기 값을 지정해주어야 합니다! (예시)
-export const productDataState = atom<productData>({
+export const productDataState = atom<productDataAtom>({
   key: 'productInfo',
   default: {
+    area: '',
+    showPrice: '',
+    monthly: '',
     id: 0,
     title: '',
     address: '',

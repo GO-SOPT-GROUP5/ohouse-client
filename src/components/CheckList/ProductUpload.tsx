@@ -27,6 +27,7 @@ const ProductUpload = () => {
   const ref = useRef<HTMLInputElement>(null);
   const [URLThumbnail, setURLThumbnail] = useState<string>('');
 
+  const product = useRecoilValue(productDataState);
   const [isSaved, setIsSaved] = useState(false);
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
@@ -100,6 +101,10 @@ const ProductUpload = () => {
     }
   };
 
+  const handlePatch = () => {
+    patchProductInfo();
+  };
+
   const handleSave = () => {
     if (comment) {
       setShowCommentInput(false);
@@ -112,9 +117,9 @@ const ProductUpload = () => {
     }));
   };
 
-  useEffect(() => {
-    patchProductInfo();
-  }, [isSaved]);
+  // useEffect(() => {
+  //   patchProductInfo();
+  // }, [isSaved]);
 
   if (isError) {
     navigate('/error');

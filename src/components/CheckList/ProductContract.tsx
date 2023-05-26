@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import { IcTranslate } from '../../assets/icon';
@@ -8,11 +8,13 @@ import { productDataState } from '../../recoil/atom';
 const CONTRACT_OPTIONS = ['전세', '월세', '매매'];
 
 const ProductContract = () => {
-  const [contract, setContract] = useState<string>(''); // 계약형태
-  const [price, setPrice] = useState<string>(''); // 전세금 or 보증금 or 매매가
-  const [monthlyRent, setMonthlyRent] = useState<string>(''); // 월세
-  const [area, setArea] = useState<string>(''); // 제곱미터
-  const [size, setSize] = useState<string>(''); // 평수
+  const product = useRecoilValue(productDataState);
+
+  const [contract, setContract] = useState<string>(product.state); // 계약형태
+  const [price, setPrice] = useState<string>(product.showPrice); // 전세금 or 보증금 or 매매가
+  const [monthlyRent, setMonthlyRent] = useState<string>(product.monthly); // 월세
+  const [area, setArea] = useState<string>(product.area); // 제곱미터
+  const [size, setSize] = useState<string>(product.size.toString()); // 평수
 
   const setProduct = useSetRecoilState(productDataState);
 
@@ -61,9 +63,12 @@ const ProductContract = () => {
     }
     setProduct(prev => ({
       ...prev,
+      area: area,
       state: contract,
       price: priceTag,
+      showPrice: price,
       size: size,
+      monthly: monthlyRent,
     }));
   };
 

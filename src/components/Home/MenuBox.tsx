@@ -1,19 +1,18 @@
-import { Component } from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 interface MenuBoxContent {
-  id: number;
   title: string;
-  isNew: Component;
+  isNew: React.ReactNode;
   content: string;
   icon: string;
   alt: string;
 }
 
-const MenuBox = ({ id, title, isNew, content, icon, alt }: MenuBoxContent) => {
+const MenuBox = ({ title, isNew, content, icon, alt }: MenuBoxContent) => {
   return (
     <St.MenuBoxWrapper>
-      <St.MenuBoxContainer id={id}>
+      <St.MenuBoxContainer title={title}>
         <St.MenuBoxHeader>
           <St.MenuBoxTitle>
             <h3>{title}</h3>
