@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { useInView } from "react-intersection-observer";
-import styled from "styled-components";
+import React, { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+import styled from 'styled-components';
 
-import { IcSmallLine } from "../assets/icon/index";
-import AddBox from "../components/List/AddBox";
-import ProductBox from "../components/List/ProductBox";
-import { client } from "../lib/axios";
-import { getProductData } from "../lib/product";
-import { productResponse } from "../types/product";
+import { IcSmallLine } from '../assets/icon/index';
+import AddBox from '../components/List/AddBox';
+import ProductBox from '../components/List/ProductBox';
+import { getProductData } from '../lib/product';
+import { productResponse } from '../types/product';
 
 const ListPage = () => {
   const CATEGORY = {
-    '전체':'',
-    '월세':'MONTHLY', 
-    '전세':'JEONSE', 
-    '매매':'SALE'
+    전체: '',
+    월세: 'MONTHLY',
+    전세: 'JEONSE',
+    매매: 'SALE',
   };
   const FILTER = {
-    '필터':'NEWEST', 
-    '별점순':'GRADE', 
-    '좋아요순':'LIKE'
+    필터: 'NEWEST',
+    별점순: 'GRADE',
+    좋아요순: 'LIKE',
   };
 
   const [flag, setFlag] = useState('');
@@ -29,32 +28,30 @@ const ListPage = () => {
   
   useEffect(() => {
     handleGetInfo();
-  }, [])
+  }, []);
 
   useEffect(() => {
     handleGetInfo();
     setPage(5);
     setSize(6);
-  }, [flag, sort])
+  }, [flag, sort]);
 
   const handleGetInfo = async () => {
-    const productList = await getProductData({flag:flag,sort:sort,page:0,size:5});
+    const productList = await getProductData({ flag: flag, sort: sort, page: page, size: size });
     setProducts(productList);
-  }
+  };
 
   const handleCategory = (e: React.MouseEvent<HTMLElement>) => {
     setFlag(e.currentTarget.id);
     setPage(0);
     setSize(5);
-  }
+  };
 
   const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSort(e.currentTarget.value);
     setPage(0);
     setSize(5);
-  }
-
-
+  };
 
   const [ref, inView] = useInView();
   const [products, setProducts] = useState([]);
@@ -85,19 +82,26 @@ const ListPage = () => {
       <section>
         <St.ListSetting>
           <St.ListCategory>
-            {Object.keys(CATEGORY).map((el)=><><span id={CATEGORY[el]} onClick={handleCategory}>{el}</span><IcSmallLine/></>)}
+            {Object.keys(CATEGORY).map(el => (
+              <>
+                <span id={CATEGORY[el]} onClick={handleCategory}>
+                  {el}
+                </span>
+                <IcSmallLine />
+              </>
+            ))}
           </St.ListCategory>
           <St.ListCombobox onChange={handleFilter}>
-            {Object.keys(FILTER).map((el)=><option value={FILTER[el]}>{el}</option>)}
+            {Object.keys(FILTER).map(el => (
+              <option value={FILTER[el]}>{el}</option>
+            ))}
           </St.ListCombobox>
         </St.ListSetting>
         <St.ListBoxes>
-          <AddBox/>
-          {products.map((info : productResponse)=>
-            <ProductBox
-              productResponse={info}
-            />
-          )}
+          <AddBox />
+          {productInfo.map((info: productResponse) => (
+            <ProductBox productResponse={info} />
+          ))}
         </St.ListBoxes>
       </section>
       <div ref={ref}>##</div>
@@ -107,9 +111,8 @@ const ListPage = () => {
 
 export default ListPage;
 
-
 const St = {
-  ListWrapper : styled.section`
+  ListWrapper: styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -128,14 +131,14 @@ const St = {
       color: ${({ theme }) => theme.colors.Grey200};
     }
   `,
-  ListSetting : styled.section`
+  ListSetting: styled.section`
     display: flex;
     justify-content: space-between;
 
     width: 100%;
     margin-top: 8.8rem;
   `,
-  ListCategory : styled.article`
+  ListCategory: styled.article`
     display: flex;
     align-items: center;
     gap: 2rem;
@@ -152,7 +155,7 @@ const St = {
       display: none;
     }
   `,
-  ListCombobox : styled.select`
+  ListCombobox: styled.select`
     width: 11.7rem;
     height: 3.4rem;
 
@@ -161,8 +164,8 @@ const St = {
 
     text-align: center;
   `,
-  ListBoxes : styled.section`
-    display:grid;
+  ListBoxes: styled.section`
+    display: grid;
     grid-template-columns: repeat(3, 39.3rem);
     grid-gap: 2rem;
     justify-content: center;
@@ -174,5 +177,5 @@ const St = {
     & > article:first-child > svg {
       cursor: pointer;
     }
-  `
-}
+  `,
+};

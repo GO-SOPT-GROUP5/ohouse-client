@@ -29,7 +29,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["@types/axios", "npm:0.14.0"],\
-            ["@types/node", "npm:20.2.3"],\
+            ["@types/node", "npm:20.2.4"],\
             ["@types/prettier", "npm:2.7.2"],\
             ["@types/react", "npm:18.2.7"],\
             ["@types/react-daum-postcode", "npm:1.6.1"],\
@@ -3456,19 +3456,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@types/json-schema", [\
-        ["npm:7.0.11", {\
-          "packageLocation": "./.yarn/cache/@types-json-schema-npm-7.0.11-79462ae5ca-527bddfe62.zip/node_modules/@types/json-schema/",\
+        ["npm:7.0.12", {\
+          "packageLocation": "./.yarn/cache/@types-json-schema-npm-7.0.12-f05cfc0e99-00239e9723.zip/node_modules/@types/json-schema/",\
           "packageDependencies": [\
-            ["@types/json-schema", "npm:7.0.11"]\
+            ["@types/json-schema", "npm:7.0.12"]\
           ],\
           "linkType": "HARD"\
         }]\
       ]],\
       ["@types/node", [\
-        ["npm:20.2.3", {\
-          "packageLocation": "./.yarn/cache/@types-node-npm-20.2.3-0289426dd1-576065e8fc.zip/node_modules/@types/node/",\
+        ["npm:20.2.4", {\
+          "packageLocation": "./.yarn/cache/@types-node-npm-20.2.4-e04513a79f-6bc45fdc1c.zip/node_modules/@types/node/",\
           "packageDependencies": [\
-            ["@types/node", "npm:20.2.3"]\
+            ["@types/node", "npm:20.2.4"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3769,7 +3769,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/utils", "virtual:c2c8342b645c1bf4b08124fe990d6b3ddd67a137d7b321b4a7139cf620c8a944ba1cd50faa57178984c54e83fcc8756740590e7f50344585523795d7aa098e2b#npm:5.59.7"],\
             ["@eslint-community/eslint-utils", "virtual:0e83e90d273f68a1bd1543dde3480eaf525801444ba81cbede9215242f0a1bd9563c2ba1980136297cb6880745c63575691537145c6b548460570102de527f4e#npm:4.4.0"],\
             ["@types/eslint", null],\
-            ["@types/json-schema", "npm:7.0.11"],\
+            ["@types/json-schema", "npm:7.0.12"],\
             ["@types/semver", "npm:7.5.0"],\
             ["@typescript-eslint/scope-manager", "npm:5.59.7"],\
             ["@typescript-eslint/types", "npm:5.59.7"],\
@@ -4173,10 +4173,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["axe-core", [\
-        ["npm:4.7.1", {\
-          "packageLocation": "./.yarn/cache/axe-core-npm-4.7.1-867c7a510b-ff6fb92d6c.zip/node_modules/axe-core/",\
+        ["npm:4.7.2", {\
+          "packageLocation": "./.yarn/cache/axe-core-npm-4.7.2-678c3cf6c4-5d86fa0f45.zip/node_modules/axe-core/",\
           "packageDependencies": [\
-            ["axe-core", "npm:4.7.1"]\
+            ["axe-core", "npm:4.7.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4349,7 +4349,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["browserslist", "npm:4.21.5"],\
             ["caniuse-lite", "npm:1.0.30001489"],\
-            ["electron-to-chromium", "npm:1.4.407"],\
+            ["electron-to-chromium", "npm:1.4.408"],\
             ["node-releases", "npm:2.0.12"],\
             ["update-browserslist-db", "virtual:e3b9e9d029ed690d72cbb29196ba0a23f15b398eeb926347678187be937db870a04cbf984eecc8e0ec9c290158a9cd8607d12f0188665abe039fa4a9051a22ac#npm:1.0.11"]\
           ],\
@@ -4807,10 +4807,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["electron-to-chromium", [\
-        ["npm:1.4.407", {\
-          "packageLocation": "./.yarn/cache/electron-to-chromium-npm-1.4.407-4113250511-44619c189c.zip/node_modules/electron-to-chromium/",\
+        ["npm:1.4.408", {\
+          "packageLocation": "./.yarn/cache/electron-to-chromium-npm-1.4.408-a3c3bdfc2b-043da2c1d2.zip/node_modules/electron-to-chromium/",\
           "packageDependencies": [\
-            ["electron-to-chromium", "npm:1.4.407"]\
+            ["electron-to-chromium", "npm:1.4.408"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -5127,7 +5127,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["array-includes", "npm:3.1.6"],\
             ["array.prototype.flatmap", "npm:1.3.1"],\
             ["ast-types-flow", "npm:0.0.7"],\
-            ["axe-core", "npm:4.7.1"],\
+            ["axe-core", "npm:4.7.2"],\
             ["axobject-query", "npm:3.1.1"],\
             ["damerau-levenshtein", "npm:1.0.8"],\
             ["emoji-regex", "npm:9.2.2"],\
@@ -6903,7 +6903,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["ohouse-client", "workspace:."],\
             ["@types/axios", "npm:0.14.0"],\
-            ["@types/node", "npm:20.2.3"],\
+            ["@types/node", "npm:20.2.4"],\
             ["@types/prettier", "npm:2.7.2"],\
             ["@types/react", "npm:18.2.7"],\
             ["@types/react-daum-postcode", "npm:1.6.1"],\
@@ -8313,7 +8313,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["vite", "virtual:18c685e00ac12d283f7540a8204fa6d2a3b0791879576b255be2f22111c73051c9129523ac3489ce6bef85b5b713f23599d9257da6ecf58dd9b4eeaf8f0d2017#npm:4.3.8"],\
             ["@types/less", null],\
-            ["@types/node", "npm:20.2.3"],\
+            ["@types/node", "npm:20.2.4"],\
             ["@types/sass", null],\
             ["@types/stylus", null],\
             ["@types/sugarss", null],\

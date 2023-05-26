@@ -17,7 +17,7 @@ import {
 } from "../../assets/image/index";
 
 const Help = () => {
-  const swiperRef = useRef();
+  const swiperRef = useRef(null);
   const navigate = useNavigate();
 
   const handleClickProductBtn = () => {
@@ -28,8 +28,8 @@ const Help = () => {
     <St.HelpWrapper>
       <St.HelpCard>
         <St.HelpIcon>
-          <IcLeft onClick={() => swiperRef.current.slidePrev()} />
-          <IcRight onClick={() => swiperRef.current.slideNext()} />
+          <IcLeft onClick={() => swiperRef.current?.slidePrev()} />
+          <IcRight onClick={() => swiperRef.current?.slideNext()} />
         </St.HelpIcon>
         <St.HelpContent>
           <Swiper

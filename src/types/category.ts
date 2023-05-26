@@ -20,17 +20,22 @@ export interface productData {
   ho: number;
   image: string;
   description: string;
+  price: string;
+  size: number;
+  state: string;
   grade: number;
-  tags: tagObject;
+  state: string;
+  price: string;
+  size: number;
   checkListData: checkListDataInfo;
 }
 
 // 매물 정보 태그 내용 object
-export interface tagObject {
-  state: string;
-  price: string;
-  size: number;
-}
+// export interface tagObject {
+//   state: string;
+//   price: string;
+//   size: number;
+// }
 
 //체크리스트 생성 API Type
 export interface checkListData {
@@ -89,6 +94,7 @@ export interface subCategoryIdInfo {
 
 export interface categoryIdList {
   id: number;
-  name: string;
   fetchedId: number;
+  name: string;
+  state: number;
 }

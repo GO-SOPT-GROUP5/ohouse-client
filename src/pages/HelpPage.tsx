@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import Help from "../components/Help/Help";
+import Help from '../components/Help/Help';
 
 const HelpPage = () => {
   return (
@@ -14,5 +14,4 @@ export default HelpPage;
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.Grey200};
-
-`
+`;
