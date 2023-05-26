@@ -5,20 +5,18 @@ import { deleteProduct } from '../../lib/product';
 
 export interface DeleteModalProps {
   selectedId: number;
-  setUpdate: any;
   isDeleteShowing: boolean;
   handleToggle: React.MouseEventHandler;
 }
 
 const DeleteModal = ({
   selectedId,
-  setUpdate,
   isDeleteShowing,
   handleToggle,
 }: DeleteModalProps) => {
   const handleDelete = async () => {
     await deleteProduct(selectedId);
-    setUpdate(prev => !prev);
+    window.location.reload();
   };
 
   return (

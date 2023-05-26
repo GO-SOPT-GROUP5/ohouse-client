@@ -1,20 +1,20 @@
-import 'swiper/css';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/pagination";
 
-import { useRef } from 'react';
-import { useNavigate } from 'react-router';
-import styled from 'styled-components';
-import { Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { useRef } from "react";
+import { useNavigate } from "react-router";
+import styled from "styled-components";
+import { Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import { IcLeft, IcRight } from '../../assets/icon';
+import { IcLeft, IcRight } from "../../assets/icon";
 import {
   ImgExplanation1,
   ImgExplanation2,
   ImgExplanation3,
   ImgExplanation4,
-  ImgExplanation5,
-} from '../../assets/image/index';
+  ImgExplanation5
+} from "../../assets/image/index";
 
 const Help = () => {
   const swiperRef = useRef(null);
