@@ -26,8 +26,6 @@ const ListPage = () => {
   const [sort, setSort] = useState('NEWEST');
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(5);
-
-  const [update, setUpdate] = useState(false);  
   
   useEffect(() => {
     handleGetInfo();
@@ -39,7 +37,6 @@ const ListPage = () => {
     setSize(6);
   }, [flag, sort])
 
-  // 리렌더링 시에만 (새로고침, 삭제)
   const handleGetInfo = async () => {
     const productList = await getProductData({flag:flag,sort:sort,page:0,size:5});
     setProducts(productList);
@@ -98,7 +95,6 @@ const ListPage = () => {
           <AddBox/>
           {products.map((info : productResponse)=>
             <ProductBox
-              setUpdate={setUpdate}
               productResponse={info}
             />
           )}
