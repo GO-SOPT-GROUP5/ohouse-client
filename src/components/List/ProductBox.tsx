@@ -26,7 +26,7 @@ const ProductBox = ({ setUpdate, productResponse }: ProductBoxProps) => {
         isDeleteShowing={isDeleteShowing}
         handleToggle={deleteToggle}
       />
-      <MoreModal isShowing={isShowing} handleClose={toggle} handleDelete={deleteToggle} />
+      <MoreModal selectedId={id} isShowing={isShowing} handleClose={toggle} handleDelete={deleteToggle} />
       {image === '' || image === null || image === 'string' ? (
         <St.Empty>No Image</St.Empty>
       ) : (

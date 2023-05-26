@@ -1,8 +1,8 @@
-import React from 'react';
-import { useNavigate } from 'react-router';
-import styled from 'styled-components';
+import React from "react";
+import { useNavigate } from "react-router";
+import styled from "styled-components";
 
-import { IcBack } from '../../assets/icon';
+import { IcBack } from "../../assets/icon";
 
 export interface ModalProps {
   selectedId: number;
