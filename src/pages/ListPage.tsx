@@ -104,7 +104,7 @@ const ListPage = () => {
           )}
         </St.ListBoxes>
       </section>
-      <div ref={ref}>################</div>
+      <div ref={ref}>##</div>
     </St.ListWrapper>
   );
 };
@@ -129,7 +129,7 @@ const St = {
       position: absolute;
       bottom: 0;
 
-      background-color: black;
+      color: ${({ theme }) => theme.colors.Grey200};
     }
   `,
   ListSetting : styled.section`
