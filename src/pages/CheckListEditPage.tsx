@@ -16,52 +16,62 @@ const CheckListEditPage = () => {
   const [productData, setProductData] = useRecoilState<productData>(productDataState);
   const [clientSubCategoryId, setClientSubCategoryId] =
     useRecoilState<categoryIdList[]>(clientSubCategoryIdState);
-  console.log(productData.checkListData);
 
-  //   const matchingItem = Object.values(productData.checkListData)
-  //     .flatMap(items => items)
-  //     .find(item => item.subCategoryStatus === stateItem.name);
+  const fetchSubCategoryId = () => {
+    const { indoor, kitchen, livingRoom, bathroom } = productData.checkListData;
 
-  //   if (matchingItem) {
-  //     return { ...stateItem, fetchedId: matchingItem.id };
-  //   }
-  useEffect(() => {
     const updatedState = clientSubCategoryId.map(item => {
-      const { indoor, kitchen, livingRoom, bathroom } = productData.checkListData;
-      if (item.name === 'SUNLIGHT') {
-        return { ...item, fetchedId: indoor[0].id };
-      } else if (item.name === 'LEAK') {
-        return { ...item, fetchedId: indoor[1].id };
-      } else if (item.name === 'HEATING') {
-        return { ...item, fetchedId: indoor[2].id };
-      } else if (item.name === 'SINK_DRAIN') {
-        return { ...item, fetchedId: kitchen[0].id };
-      } else if (item.name === 'SINK_PRESSURE') {
-        return { ...item, fetchedId: kitchen[1].id };
-      } else if (item.name === 'WALLPAPER') {
-        return { ...item, fetchedId: livingRoom[0].id };
-      } else if (item.name === 'FLOOR') {
-        return { ...item, fetchedId: livingRoom[1].id };
-      } else if (item.name === 'BALCONY') {
-        return { ...item, fetchedId: livingRoom[2].id };
-      } else if (item.name === 'WASHSTAND_STATUS') {
-        return { ...item, fetchedId: bathroom[0].id };
-      } else if (item.name === 'WASHSTAND_DRAIN') {
-        return { ...item, fetchedId: bathroom[1].id };
-      } else if (item.name === 'WASHSTAND_PRESSURE') {
-        return { ...item, fetchedId: bathroom[2].id };
-      } else if (item.name === 'MOLD') {
-        return { ...item, fetchedId: bathroom[3].id };
-      } else if (item.name === 'TOILET') {
-        return { ...item, fetchedId: bathroom[4].id };
+      let fetchedId;
+
+      switch (item.name) {
+        case 'SUNLIGHT':
+          fetchedId = indoor[0].id;
+          break;
+        case 'LEAK':
+          fetchedId = indoor[1].id;
+          break;
+        case 'HEATING':
+          fetchedId = indoor[2].id;
+          break;
+        case 'SINK_DRAIN':
+          fetchedId = kitchen[0].id;
+          break;
+        case 'SINK_PRESSURE':
+          fetchedId = kitchen[1].id;
+          break;
+        case 'WALLPAPER':
+          fetchedId = livingRoom[0].id;
+          break;
+        case 'FLOOR':
+          fetchedId = livingRoom[1].id;
+          break;
+        case 'BALCONY':
+          fetchedId = livingRoom[2].id;
+          break;
+        case 'WASHSTAND_STATUS':
+          fetchedId = bathroom[0].id;
+          break;
+        case 'WASHSTAND_DRAIN':
+          fetchedId = bathroom[1].id;
+          break;
+        case 'WASHSTAND_PRESSURE':
+          fetchedId = bathroom[2].id;
+          break;
+        case 'MOLD':
+          fetchedId = bathroom[3].id;
+          break;
+        case 'TOILET':
+          fetchedId = bathroom[4].id;
+          break;
+        default:
+          fetchedId = null;
       }
-      return item;
+
+      return { ...item, fetchedId };
     });
 
     setClientSubCategoryId(updatedState);
-    console.log(clientSubCategoryId);
-  }, []);
-
+  };
   const getChecklist = async () => {
     try {
       if (checklistId) {
@@ -104,9 +114,10 @@ const CheckListEditPage = () => {
 
   useEffect(() => {
     if (productData.checkListData) {
-      updateSubCategoryId();
+      fetchSubCategoryId();
+      console.log(clientSubCategoryId);
     }
-  }, [productData.checkListData, setSubCategoryId]);
+  }, [productData.checkListData, setClientSubCategoryId]);
 
   useEffect(() => {
     if (checklistId && productData.id !== Number(checklistId)) {

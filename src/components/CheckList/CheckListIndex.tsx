@@ -6,13 +6,19 @@ import { ImgEmpty } from '../../assets/image';
 import { CATEGORY_LIST } from '../../constants/category';
 import { editChecklistData } from '../../lib/checklist';
 import {
+  clientSubCategoryIdState,
   editCategoryState,
   productDataState,
   selectedSubcategoriesState,
   showIndexState,
   subCategoryIdState,
 } from '../../recoil/atom';
-import { categoryListInfo, editCategoryRequest, productData } from '../../types/category';
+import {
+  categoryIdList,
+  categoryListInfo,
+  editCategoryRequest,
+  productData,
+} from '../../types/category';
 import CheckListItem from './CheckListItem';
 
 interface CheckListIndexProps {
@@ -28,6 +34,10 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
   const [selectedCategoryOption, setSelectedCategoryOption] =
     useRecoilState<editCategoryRequest>(editCategoryState);
   const [productData, setProductData] = useRecoilState<productData>(productDataState);
+  const [clientSubCategoryId, setClientSubCategoryId] =
+    useRecoilState<categoryIdList[]>(clientSubCategoryIdState);
+
+  console.log('index페이지', clientSubCategoryId);
 
   const getCategoryInfo = (id: number) => {
     for (const category of CATEGORY_LIST) {
