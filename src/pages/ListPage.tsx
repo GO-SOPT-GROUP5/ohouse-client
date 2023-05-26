@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
-import styled from 'styled-components';
+import React, { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import styled from "styled-components";
 
-import { IcSmallLine } from '../assets/icon/index';
-import AddBox from '../components/List/AddBox';
-import ProductBox from '../components/List/ProductBox';
-import { getProductData } from '../lib/product';
-import { productResponse } from '../types/product';
+import { IcSmallLine } from "../assets/icon/index";
+import AddBox from "../components/List/AddBox";
+import ProductBox from "../components/List/ProductBox";
+import { getProductData } from "../lib/product";
+import { productResponse } from "../types/product";
 
 const ListPage = () => {
   const CATEGORY = {
@@ -99,7 +99,7 @@ const ListPage = () => {
         </St.ListSetting>
         <St.ListBoxes>
           <AddBox />
-          {productInfo.map((info: productResponse) => (
+          {products.map((info: productResponse) => (
             <ProductBox productResponse={info} />
           ))}
         </St.ListBoxes>
