@@ -1,11 +1,14 @@
+import { useNavigate } from "react-router";
 import styled from "styled-components";
 
 import { IcPlus } from "../../assets/icon";
 
 const AddBox = () => {
+  const navigate = useNavigate();
+
   return (
     <St.AddBoxWrapper>
-      <IcPlus/>
+      <IcPlus onClick={()=>{navigate('/help')}}/>
     </St.AddBoxWrapper>
   )
 }

@@ -12,9 +12,9 @@ export interface OHouseResponse<T> {
 export const postCheckListData = async (reqData: reqCheckListData) => {
   try {
     const { data } = await client.post<OHouseResponse<reqCheckListData>>('/checklist', reqData);
-    return data.data;
+    return { data: data.data, isError: false };
   } catch (err) {
-    return err;
+    return { isError: true };
   }
 };
 
@@ -22,8 +22,8 @@ export const postCheckListData = async (reqData: reqCheckListData) => {
 export const patchProductData = async (reqData: productData) => {
   try {
     const { data } = await client.patch<OHouseResponse<productData>>(`/checklist`, reqData);
-    return data.data;
+    return { data: data.data, isError: false };
   } catch (err) {
-    console.log(err);
+    return { isError: true };
   }
 };

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import { IcCamera, IcEdit, IcStar, IcStarFilled } from '../../assets/icon';
@@ -27,7 +27,7 @@ const ProductUpload = () => {
   const ref = useRef<HTMLInputElement>(null);
   const [URLThumbnail, setURLThumbnail] = useState<string>('');
 
-  // const product = useRecoilValue(productDataState);
+  const product = useRecoilValue(productDataState);
   const [isSaved, setIsSaved] = useState(false);
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
