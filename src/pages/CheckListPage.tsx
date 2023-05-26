@@ -17,6 +17,7 @@ const CheckListPage = () => {
   const setProduct = useSetRecoilState(productDataState);
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const postCheckList = async () => {
@@ -26,6 +27,7 @@ const CheckListPage = () => {
         id: data.id,
         title: data.title,
       }));
+      setIsLoading(false);
       if (isError) {
         setIsError(true);
       }
@@ -94,6 +96,10 @@ const CheckListPage = () => {
       getChecklist();
     }
   }, [checklistId, productData.id]);
+
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <St.CheckListPageWrapper>

@@ -4,6 +4,7 @@ import { RecoilRoot } from 'recoil';
 
 import CheckListEditPage from './pages/CheckListEditPage';
 import CheckListPage from './pages/CheckListPage';
+import CheckListShowPage from './pages/CheckListShowPage';
 import ErrorPage from './pages/ErrorPage';
 import HelpPage from './pages/HelpPage';
 import HomePage from './pages/HomePage';
