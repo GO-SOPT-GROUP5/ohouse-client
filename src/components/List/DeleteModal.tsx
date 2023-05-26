@@ -14,7 +14,7 @@ const DeleteModal = ({ selectedId, setUpdate, isDeleteShowing, handleToggle }: D
     
     const handleDelete = async () => {
         await deleteProduct(selectedId);
-        setUpdate((prev) => !prev); 
+        window.location.reload();
     }
 
 

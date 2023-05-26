@@ -31,7 +31,7 @@ const ListPage = () => {
   
   useEffect(() => {
     handleGetInfo();
-  }, [update])
+  }, [])
 
   useEffect(() => {
     handleGetInfo();
