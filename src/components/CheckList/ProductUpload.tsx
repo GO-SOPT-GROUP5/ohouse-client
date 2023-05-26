@@ -1,13 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import styled from 'styled-components';
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import styled from "styled-components";
 
-import { IcCamera, IcEdit, IcStar, IcStarFilled } from '../../assets/icon';
-import useModal from '../../hooks/useModal';
-import { patchProductData } from '../../lib/category';
-import { productDataState } from '../../recoil/atom';
-import ProductEditModal from './ProductEditModal';
+import { IcCamera, IcEdit, IcStar, IcStarFilled } from "../../assets/icon";
+import useModal from "../../hooks/useModal";
+import { patchProductData } from "../../lib/category";
+import { productDataState } from "../../recoil/atom";
+import ProductEditModal from "./ProductEditModal";
 
 const ProductUpload = () => {
   const { isShowing, toggle } = useModal();
@@ -100,7 +100,6 @@ const ProductUpload = () => {
 
   const patchProductInfo = async () => {
     const { data, isError } = await patchProductData(REQ_DATA);
-    console.log(isError, '\n', data);
     if (isError) {
       setIsError(true);
     }
@@ -127,9 +126,6 @@ const ProductUpload = () => {
   }
   return (
     <St.ProductUploadWrapper>
-      <button type="button" onClick={() => setIsSaved(true)}>
-        임시 수정 테스트용 버튼
-      </button>
       <St.ProductName>{title}</St.ProductName>
       <St.Address>
         {address ? (
@@ -189,7 +185,7 @@ const ProductUpload = () => {
             )}
           </St.DescriptionWrapper>
           <St.SaveBtnWrapper>
-            <button type="button" onClick={handleSave}>
+            <button type="button" onClick={() => setIsSaved(true)}>
               저장
             </button>
           </St.SaveBtnWrapper>
