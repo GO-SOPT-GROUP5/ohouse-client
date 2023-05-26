@@ -33,14 +33,14 @@
         </td>
       <td style="min-width: 200px;">
             <a href="">
-              <img src="https://avatars.githubusercontent.com/u/81505421?v=4" width="200" alt="깃허브계정-프로필사진">
+              <img src="https://user-images.githubusercontent.com/81505421/231646330-7721ecc9-6624-410c-a640-5ba7cb2431fa.JPG" width="200" alt="깃허브계정-프로필사진">
               <br />
               <b>@lydiacho</b>
             </a>
         </td>
       <td style="min-width: 200px;">
             <a href="">
-              <img src="" width="200" alt="깃허브계정-프로필사진">
+              <img src="https://user-images.githubusercontent.com/77691829/231671852-ba297bcf-74f2-48a4-aaa1-d79083536b0f.jpg" width="200" alt="깃허브계정-프로필사진">
               <br />
               <b>@Yeonseo-Jo</b>
             </a>
