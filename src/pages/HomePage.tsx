@@ -10,8 +10,8 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   const handleNavigate = (e: React.MouseEvent<HTMLElement>) => {
-    const target = (e.target as HTMLElement).id;
-    if (target === '4') {
+    const target = (e.target as HTMLElement).title;
+    if (target === '등록매물 확인하기') {
       navigate('/list');
     }
   };
@@ -20,14 +20,14 @@ const HomePage = () => {
     <St.HomeWrapper>
       <St.MenuWrapper>
         <St.TopSection onClick={handleNavigate}>
-          {HOME_MAIN_MENU.map(({ id, title, isNew, content, icon }) => (
+          {HOME_MAIN_MENU.map(({ title, isNew, content, icon, alt }) => (
             <MenuBox
-              key={id}
-              id={id}
+              key={title}
               title={title}
               isNew={isNew ? <IcNew /> : <></>}
               content={content}
               icon={icon}
+              alt={alt}
             />
           ))}
         </St.TopSection>
