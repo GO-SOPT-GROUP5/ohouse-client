@@ -1,22 +1,23 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
-import { useParams } from 'react-router-dom';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import styled from 'styled-components';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { useParams } from "react-router-dom";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import styled from "styled-components";
 
-import Category from '../components/CheckList/Category';
-import CheckListIndex from '../components/CheckList/CheckListIndex';
-import ProductUpload from '../components/CheckList/ProductUpload';
-import { SKELETON_CHECKLIST } from '../constants/skeletonCheckList';
-import { postCheckListData } from '../lib/category';
-import { getChecklistData } from '../lib/checklist';
-import { productDataState, subCategoryIdState } from '../recoil/atom';
-import { productData, subCategoryIdInfo } from '../types/category';
+import Category from "../components/CheckList/Category";
+import CheckListIndex from "../components/CheckList/CheckListIndex";
+import ProductUpload from "../components/CheckList/ProductUpload";
+import { SKELETON_CHECKLIST } from "../constants/skeletonCheckList";
+import { postCheckListData } from "../lib/category";
+import { getChecklistData } from "../lib/checklist";
+import { productDataState, subCategoryIdState } from "../recoil/atom";
+import { productData, subCategoryIdInfo } from "../types/category";
 
 const CheckListPage = () => {
   const setProduct = useSetRecoilState(productDataState);
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const postCheckList = async () => {
@@ -26,6 +27,7 @@ const CheckListPage = () => {
         id: data.id,
         title: data.title,
       }));
+      setIsLoading(false);
       if (isError) {
         setIsError(true);
       }
@@ -48,7 +50,7 @@ const CheckListPage = () => {
         if (result) {
           setProductData(result);
         }
-        console.log(result);
+        // console.log(result);
         return result?.checkListData;
       }
     } catch (error) {
@@ -60,7 +62,7 @@ const CheckListPage = () => {
     if (productData.checkListData) {
       const { indoor, kitchen, livingRoom, bathroom } = productData.checkListData;
 
-      console.log(productData.checkListData);
+      // console.log(productData.checkListData);
 
       const updatedSubCategoryId = {
         SUNLIGHT: indoor[0].id,
@@ -79,7 +81,7 @@ const CheckListPage = () => {
       };
 
       setSubCategoryId([updatedSubCategoryId]);
-      console.log(subCategoryId);
+      // console.log(subCategoryId);
     }
   };
 
@@ -94,6 +96,10 @@ const CheckListPage = () => {
       getChecklist();
     }
   }, [checklistId, productData.id]);
+
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <St.CheckListPageWrapper>
