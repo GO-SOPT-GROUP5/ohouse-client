@@ -10,13 +10,26 @@
 
 <h2> (서비스)의 핵심 기능 </h2>
 
-<h3> 1️⃣ (기능) </h3>
-<img src=""  alt="기능1-대표이미지" />
+<h3> 1️⃣ Home - 홈 </h3>
+<img width="650" alt="Untitled-8" src="https://github.com/GO-SOPT-GROUP5/ohouse-client/assets/81505421/5cfd007e-d6f1-4567-bfef-9420dc1b7808">
+
 <div ><strong> (강조단어) </strong> (기능설명)  <br/></div>
 
 
-<h3> 2️⃣ (기능) </h3>
-<img src=""  alt="기능1-대표이미지" />
+<h3> 2️⃣ List - 등록 매물 확인하기 </h3>
+<img width="650" alt="Untitled-9" src="https://github.com/GO-SOPT-GROUP5/ohouse-client/assets/81505421/eb1878e2-5e64-4502-bc0f-4bfa53746f93">
+
+<div ><strong> (강조단어) </strong> (기능설명)  <br/></div>
+
+<h3> 3️⃣ Help - 서비스 설명 </h3>
+<img width="650" alt="Untitled-10" src="https://github.com/GO-SOPT-GROUP5/ohouse-client/assets/81505421/81eb7bc8-b66e-40a1-b8ef-65489efabac0">
+
+<div ><strong> (강조단어) </strong> (기능설명)  <br/></div>
+
+<h3> 4️⃣ Checklist - 집보기 체크리스트 </h3>
+<img width="650" alt="스크린샷 2023-05-26 오후 6 38 23" src="https://github.com/GO-SOPT-GROUP5/ohouse-client/assets/81505421/078fdad0-24d3-43fd-a738-517310b0a5a0">
+<img width="650" alt="Untitled-14" src="https://github.com/GO-SOPT-GROUP5/ohouse-client/assets/81505421/a25bc141-9a91-473f-a7c6-ca228b4d0479">
+
 <div ><strong> (강조단어) </strong> (기능설명)  <br/></div>
 
 
