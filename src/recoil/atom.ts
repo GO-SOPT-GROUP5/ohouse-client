@@ -107,7 +107,22 @@ export const productDataState = atom<productData>({
 
 export const selectedSubcategoriesState = atom<number[]>({
   key: 'selectedSubcategories',
-  default: [],
+  default: [
+    1,
+    2,
+    5,
+    10,
+    11,
+    15,
+    16,
+    17,
+    21,
+    22,
+    23,
+    24,
+    25,
+    ...Array.from({ length: 48 - 13 }, (_, index) => index + 50),
+  ],
 });
 
 export const showIndexState = atom<number[]>({
@@ -122,66 +137,79 @@ export const clientSubCategoryIdState = atom<categoryIdList[]>({
       id: 1,
       name: 'SUNLIGHT',
       fetchedId: 0,
+      state: 0,
     },
     {
       id: 2,
       name: 'LEAK',
       fetchedId: 0,
+      state: 0,
     },
     {
       id: 5,
       name: 'HEATING',
       fetchedId: 0,
+      state: 0,
     },
     {
       id: 10,
       name: 'SINK_DRAIN',
       fetchedId: 0,
+      state: 0,
     },
     {
       id: 11,
       name: 'SINK_PRESSURE',
       fetchedId: 0,
+      state: 0,
     },
     {
       id: 15,
       name: 'WALLPAPER',
       fetchedId: 0,
+      state: 0,
     },
     {
       id: 16,
       name: 'FLOOR',
       fetchedId: 0,
+      state: 0,
     },
     {
       id: 17,
       name: 'BALCONY',
       fetchedId: 0,
+      state: 0,
     },
     {
       id: 21,
       name: 'WASHSTAND_STATUS',
       fetchedId: 0,
+      state: 0,
     },
     {
       id: 22,
       name: 'WASHSTAND_DRAIN',
       fetchedId: 0,
+      state: 0,
     },
     {
       id: 23,
       name: 'WASHSTAND_PRESSURE',
       fetchedId: 0,
+      state: 0,
     },
     {
       id: 24,
       name: 'MOLD',
       fetchedId: 0,
+      state: 0,
     },
     {
       id: 25,
       name: 'TOILET',
       fetchedId: 0,
+      state: 0,
     },
   ],
 });

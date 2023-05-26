@@ -2,7 +2,9 @@ import { Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 
+import CheckListEditPage from './pages/CheckListEditPage';
 import CheckListPage from './pages/CheckListPage';
+import CheckListShowPage from './pages/CheckListShowPage';
 import ErrorPage from './pages/ErrorPage';
 import HelpPage from './pages/HelpPage';
 import HomePage from './pages/HomePage';
@@ -21,6 +23,7 @@ const Router = () => {
               <Route path="/list" element={<ListPage />} />
               <Route path="/checklist" element={<CheckListPage />} />
               <Route path="/checklist/:checklistId" element={<CheckListPage />} />
+              <Route path="/checklist/:checklistId/edit" element={<CheckListEditPage />} />
             </Route>
             <Route path="*" element={<ErrorPage />} />
           </Routes>
