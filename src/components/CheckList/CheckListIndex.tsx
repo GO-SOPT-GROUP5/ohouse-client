@@ -44,14 +44,10 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
     subcategory => subcategory >= showIndex[0] && subcategory <= showIndex[1],
   );
 
-  console.log('subCategoryId', subCategoryId);
-
   const handleCompleteEdit = async () => {
     const updatedCategoryList = selectedCategoryOption.categoryList.map(category => {
-      console.log(category.id);
       switch (category.id) {
         case 1:
-          console.log(subCategoryId[0].SUNLIGHT);
           return { ...category, id: subCategoryId[0].SUNLIGHT };
         case 2:
           return { ...category, id: subCategoryId[0].LEAK };
