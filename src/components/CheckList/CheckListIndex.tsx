@@ -29,7 +29,7 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
   const [selectedSubcategories, setSelectedSubcategories] = useRecoilState(
     selectedSubcategoriesState,
   );
-  const [showIndex] = useRecoilState(showIndexState);
+  const [showIndex, setShowIndex] = useRecoilState(showIndexState);
   const [subCategoryId, setSubCategoryId] = useRecoilState(subCategoryIdState);
   const [selectedCategoryOption, setSelectedCategoryOption] =
     useRecoilState<editCategoryRequest>(editCategoryState);
@@ -49,6 +49,8 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
     }
     return null;
   };
+
+  Array.from({ length: 48 }, (_, index) => index + 1);
 
   const showSubcategories = selectedSubcategories.filter(
     subcategory => subcategory >= showIndex[0] && subcategory <= showIndex[1],
@@ -88,6 +90,7 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
     }
   };
 
+  console.log(showSubcategories);
   return (
     <St.CheckList>
       {showSubcategories.length ? (

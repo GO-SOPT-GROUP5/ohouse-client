@@ -4,8 +4,12 @@ import styled, { css } from 'styled-components';
 
 import { IcCheckboxAfter, IcCheckboxBefore, IcToggle } from '../../assets/icon';
 import { CATEGORY_LIST } from '../../constants/category';
-import { selectedSubcategoriesState, showIndexState } from '../../recoil/atom';
-import { subCategoryInfo } from '../../types/category';
+import {
+  clientSubCategoryIdState,
+  selectedSubcategoriesState,
+  showIndexState,
+} from '../../recoil/atom';
+import { categoryIdList, subCategoryInfo } from '../../types/category';
 
 const Category = () => {
   const [activeCategory, setActiveCategory] = useState<string>('');
@@ -15,6 +19,8 @@ const Category = () => {
   );
   const [isSelectAll, setIsSelectAll] = useState(true);
   const [showIndex, setShowIndex] = useRecoilState(showIndexState);
+  const [clientSubCategoryId, setClientSubCategoryId] =
+    useRecoilState<categoryIdList[]>(clientSubCategoryIdState);
 
   const handleExpand = (category: string) => {
     if (expandedCategories.includes(category)) {

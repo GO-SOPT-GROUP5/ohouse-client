@@ -107,7 +107,7 @@ export const productDataState = atom<productData>({
 
 export const selectedSubcategoriesState = atom<number[]>({
   key: 'selectedSubcategories',
-  default: [],
+  default: Array.from({ length: 48 }, (_, index) => index + 1),
 });
 
 export const showIndexState = atom<number[]>({
