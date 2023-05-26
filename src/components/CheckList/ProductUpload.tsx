@@ -106,6 +106,10 @@ const ProductUpload = () => {
     }
   };
 
+  const handlePatch = () => {
+    patchProductInfo();
+  };
+
   const handleSave = () => {
     if (comment) {
       setShowCommentInput(false);
@@ -121,10 +125,6 @@ const ProductUpload = () => {
   // useEffect(() => {
   //   patchProductInfo();
   // }, [isSaved]);
-
-  const handlePatch = () => {
-    patchProductInfo();
-  };
 
   if (isError) {
     navigate('/error');
