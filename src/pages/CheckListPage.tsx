@@ -102,6 +102,3 @@ const St = {
     margin-top: 1.5rem;
   `,
 };
-function setEditCategory(arg0: (prevEditCategory: any) => any) {
-  throw new Error('Function not implemented.');
-}
