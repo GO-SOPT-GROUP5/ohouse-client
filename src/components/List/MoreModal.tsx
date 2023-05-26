@@ -14,7 +14,7 @@ export interface ModalProps {
 const MoreModal = ({ selectedId, isShowing, handleClose, handleDelete }: ModalProps) => {
   const navigate = useNavigate();
 
-  return (
+    return (
     <>
       {isShowing && (
         <St.ListModalWrapper>

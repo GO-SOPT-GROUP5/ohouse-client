@@ -12,7 +12,7 @@ export interface ProductBoxProps {
   productResponse: productResponse;
 }
 
-const ProductBox = ({ setUpdate, productResponse }: ProductBoxProps) => {
+const ProductBox = ({ productResponse }: ProductBoxProps) => {
   const navigate = useNavigate();
 
   const { id, grade, good, average, bad, title, image } = productResponse;
@@ -22,7 +22,6 @@ const ProductBox = ({ setUpdate, productResponse }: ProductBoxProps) => {
     <St.ProductBoxWrapper>
       <DeleteModal
         selectedId={id}
-        setUpdate={setUpdate}
         isDeleteShowing={isDeleteShowing}
         handleToggle={deleteToggle}
       />
