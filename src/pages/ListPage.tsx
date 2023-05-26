@@ -22,9 +22,6 @@ const ListPage = () => {
     '좋아요순':'LIKE'
   };
 
-  
-  const [productInfo, setProductInfo] = useState([]);
-
   const [flag, setFlag] = useState('');
   const [sort, setSort] = useState('NEWEST');
   const [page, setPage] = useState(0);
@@ -34,19 +31,30 @@ const ListPage = () => {
   
   useEffect(() => {
     handleGetInfo();
-  }, [flag, sort, update])
+  }, [update])
 
+  useEffect(() => {
+    handleGetInfo();
+    setPage(5);
+    setSize(6);
+  }, [flag, sort])
+
+  // 리렌더링 시에만 (새로고침, 삭제)
   const handleGetInfo = async () => {
-    const productList = await getProductData({flag:flag,sort:sort,page:page,size:size});
+    const productList = await getProductData({flag:flag,sort:sort,page:0,size:5});
     setProducts(productList);
   }
 
   const handleCategory = (e: React.MouseEvent<HTMLElement>) => {
     setFlag(e.currentTarget.id);
+    setPage(0);
+    setSize(5);
   }
 
   const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSort(e.currentTarget.value);
+    setPage(0);
+    setSize(5);
   }
 
 
@@ -55,29 +63,21 @@ const ListPage = () => {
   const [products, setProducts] = useState([]);
 
    // 무한 스크롤
-  const productFetch = () => {
+  const productFetch = async() => {
     const query = flag === ''?
     `/checklist/list?page=${page}&size=${size}&sort=${sort}` :
     `/checklist/list?flag=${flag}&sort=${sort}&page=${page}&size=${size}`;
 
-    client.get(query)
+    await client.get(query)
     .then((res : any) => {
       setProducts([...products, ...res.data.data])
-      page===0 ?
-        setPage((page : number) => page + 5) :
-        setPage((page : number) => page + 6)
-      if(size===5) {setSize(6)}
-
+      setPage((page : number) => page + 6)
     })
     .catch((err : any) => {console.log(err)});
   };
 
   useEffect(() => {
     if (inView) {
-      console.log(inView, '무한 스크롤 요청 🎃')
-      console.log(page,size)
-
-	  // 실행할 함수
       productFetch();
     }
     
@@ -104,7 +104,7 @@ const ListPage = () => {
           )}
         </St.ListBoxes>
       </section>
-      <div ref={ref}></div>
+      <div ref={ref}>################</div>
     </St.ListWrapper>
   );
 };
@@ -117,11 +117,20 @@ const St = {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    position: relative;
     
     width: 100%;
     min-height: 100vh;
 
     background-color: ${({ theme }) => theme.colors.Grey200};
+
+    & > div {
+      position: absolute;
+      bottom: 0;
+
+      background-color: black;
+    }
   `,
   ListSetting : styled.section`
     display: flex;
