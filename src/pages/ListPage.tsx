@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { IcSmallLine } from "../assets/icon/index";
 import AddBox from "../components/List/AddBox";
 import ProductBox from "../components/List/ProductBox";
+import { client } from "../lib/axios";
 import { getProductData } from "../lib/product";
 import { productResponse } from "../types/product";
 
@@ -61,13 +62,15 @@ const ListPage = () => {
     const query = flag === ''?
     `/checklist/list?page=${page}&size=${size}&sort=${sort}` :
     `/checklist/list?flag=${flag}&sort=${sort}&page=${page}&size=${size}`;
-
+    
     await client.get(query)
     .then((res : any) => {
       setProducts([...products, ...res.data.data])
       setPage((page : number) => page + 6)
     })
     .catch((err : any) => {console.log(err)});
+
+    console.log(products);
   };
 
   useEffect(() => {
