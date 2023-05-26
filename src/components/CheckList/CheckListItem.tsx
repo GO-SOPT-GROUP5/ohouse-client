@@ -3,8 +3,8 @@ import { useParams } from 'react-router';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
-import { editCategoryState } from '../../recoil/atom';
-import { editCategoryRequest } from '../../types/category';
+import { clientSubCategoryIdState, editCategoryState } from '../../recoil/atom';
+import { categoryIdList, editCategoryRequest } from '../../types/category';
 
 interface CheckListItemProms {
   categoryId: number;
@@ -18,29 +18,44 @@ const CheckListItem = ({ categoryId, subcategory, checklist, options }: CheckLis
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(null);
   const [selectedCategoryOption, setSelectedCategoryOption] =
     useRecoilState<editCategoryRequest>(editCategoryState);
+  const [clientSubCategoryId, setClientSubCategoryId] =
+    useRecoilState<categoryIdList[]>(clientSubCategoryIdState);
 
   const handleSelectedOption = (index: number) => {
     if (categoryId && index !== selectedOptionIndex) {
       setSelectedOptionIndex(index);
 
-      setSelectedCategoryOption(prevOptions => {
-        const categoryExists = prevOptions.categoryList.find(
-          category => category.id === categoryId,
-        );
+      // setSelectedCategoryOption(prevOptions => {
+      //   const categoryExists = prevOptions.categoryList.find(
+      //     category => category.id === categoryId,
+      //   );
+      //   console.log(categoryExists);
 
-        if (categoryExists) {
-          const updatedCategoryList = prevOptions.categoryList.map(category => {
-            if (category.id === categoryId) {
-              return { ...category, state: index + 1 };
-            }
-            return category;
-          });
-          return { ...prevOptions, categoryList: updatedCategoryList };
-        } else {
-          const newCategory = { id: categoryId, state: index + 1 };
-          return { ...prevOptions, categoryList: [...prevOptions.categoryList, newCategory] };
-        }
+      //   if (categoryExists) {
+      //     const updatedCategoryList = prevOptions.categoryList.map(category => {
+      //       if (category.id === categoryId) {
+      //         return { ...category, state: index + 1 };
+      //       }
+      //       return category;
+      //     });
+      //     return { ...prevOptions, categoryList: updatedCategoryList };
+      //   } else {
+      //     const newCategory = { id: categoryId, state: index + 1 };
+      //     return { ...prevOptions, categoryList: [...prevOptions.categoryList, newCategory] };
+      //   }
+      // });
+      // console.log(selectedCategoryOption);
+
+      setClientSubCategoryId(prevClientSubCategoryId => {
+        const updatedClientSubCategoryId = prevClientSubCategoryId.map(item => {
+          if (item.id === categoryId) {
+            return { ...item, state: index + 1 };
+          }
+          return item;
+        });
+        return updatedClientSubCategoryId;
       });
+      console.log(clientSubCategoryId);
     }
   };
 
