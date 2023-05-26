@@ -1,5 +1,5 @@
-import { Component } from 'react';
-import styled from 'styled-components';
+import { Component } from "react";
+import styled from "styled-components";
 
 interface MenuBoxContent {
   id: number;
@@ -23,7 +23,7 @@ const MenuBox = ({ id, title, isNew, content, icon, alt }: MenuBoxContent) => {
         </St.MenuBoxHeader>
         <St.MenuBoxBottom>
           <St.MenuBoxIcon>
-            <img src={icon} alt={alt} />
+            <img src={require(icon)} alt={alt} />
           </St.MenuBoxIcon>
         </St.MenuBoxBottom>
       </St.MenuBoxContainer>
