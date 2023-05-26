@@ -118,16 +118,20 @@ const ProductUpload = () => {
     }));
   };
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   patchProductInfo();
+  // }, [isSaved]);
+
+  const handlePatch = () => {
     patchProductInfo();
-  }, [isSaved]);
+  };
 
   if (isError) {
     navigate('/error');
   }
   return (
     <St.ProductUploadWrapper>
-      <button type="button" onClick={() => setIsSaved(true)}>
+      <button type="button" onClick={handlePatch}>
         임시 수정 테스트용 버튼
       </button>
       <St.ProductName>{title}</St.ProductName>
