@@ -6,13 +6,19 @@ import { ImgEmpty } from '../../assets/image';
 import { CATEGORY_LIST } from '../../constants/category';
 import { editChecklistData } from '../../lib/checklist';
 import {
+  clientSubCategoryIdState,
   editCategoryState,
   productDataState,
   selectedSubcategoriesState,
   showIndexState,
   subCategoryIdState,
 } from '../../recoil/atom';
-import { categoryListInfo, editCategoryRequest, productData } from '../../types/category';
+import {
+  categoryIdList,
+  categoryListInfo,
+  editCategoryRequest,
+  productData,
+} from '../../types/category';
 import CheckListItem from './CheckListItem';
 
 interface CheckListIndexProps {
@@ -23,11 +29,15 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
   const [selectedSubcategories, setSelectedSubcategories] = useRecoilState(
     selectedSubcategoriesState,
   );
-  const [showIndex] = useRecoilState(showIndexState);
+  const [showIndex, setShowIndex] = useRecoilState(showIndexState);
   const [subCategoryId, setSubCategoryId] = useRecoilState(subCategoryIdState);
   const [selectedCategoryOption, setSelectedCategoryOption] =
     useRecoilState<editCategoryRequest>(editCategoryState);
   const [productData, setProductData] = useRecoilState<productData>(productDataState);
+  const [clientSubCategoryId, setClientSubCategoryId] =
+    useRecoilState<categoryIdList[]>(clientSubCategoryIdState);
+
+  console.log('index페이지', clientSubCategoryId);
 
   const getCategoryInfo = (id: number) => {
     for (const category of CATEGORY_LIST) {
@@ -40,52 +50,23 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
     return null;
   };
 
+  Array.from({ length: 48 }, (_, index) => index + 1);
+
   const showSubcategories = selectedSubcategories.filter(
     subcategory => subcategory >= showIndex[0] && subcategory <= showIndex[1],
   );
 
-  console.log('subCategoryId', subCategoryId);
-
   const handleCompleteEdit = async () => {
-    const updatedCategoryList = selectedCategoryOption.categoryList.map(category => {
-      console.log(category.id);
-      switch (category.id) {
-        case 1:
-          console.log(subCategoryId[0].SUNLIGHT);
-          return { ...category, id: subCategoryId[0].SUNLIGHT };
-        case 2:
-          return { ...category, id: subCategoryId[0].LEAK };
-        case 5:
-          return { ...category, id: subCategoryId[0].HEATING };
-        case 10:
-          return { ...category, id: subCategoryId[0].SINK_DRAIN };
-        case 11:
-          return { ...category, id: subCategoryId[0].SINK_PRESSURE };
-        case 15:
-          return { ...category, id: subCategoryId[0].WALLPAPER };
-        case 16:
-          return { ...category, id: subCategoryId[0].FLOOR };
-        case 17:
-          return { ...category, id: subCategoryId[0].BALCONY };
-        case 21:
-          return { ...category, id: subCategoryId[0].WASHSTAND_STATUS };
-        case 22:
-          return { ...category, id: subCategoryId[0].WASHSTAND_DRAIN };
-        case 23:
-          return { ...category, id: subCategoryId[0].WASHSTAND_PRESSURE };
-        case 24:
-          return { ...category, id: subCategoryId[0].MOLD };
-        case 25:
-          return { ...category, id: subCategoryId[0].TOILET };
-        default:
-          return category;
-      }
-    });
+    const updatedCategoryList = clientSubCategoryId.map(({ fetchedId: id, state }) => ({
+      id,
+      state,
+    }));
 
     const editRequest: editCategoryRequest = {
       checkListId: checklistId,
       categoryList: updatedCategoryList,
     };
+    console.log(updatedCategoryList, editRequest);
 
     editChecklist(editRequest);
 
@@ -109,6 +90,7 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
     }
   };
 
+  console.log(showSubcategories);
   return (
     <St.CheckList>
       {showSubcategories.length ? (
