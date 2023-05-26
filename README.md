@@ -1,8 +1,10 @@
 <div align="center">
 
-<h2> (서비스소개,한줄) </h2>
+<h2> 🏠 오늘의집 🏠 </h2>
+<h4>" 오늘의집은 버킷플레이스가 운영하는 원스톱 인테리어 플랫폼입니다. "</h4>
 
-<img src=""  alt="서비스대표-이미지" />
+<img width="500px" src="https://github.com/GO-SOPT-GROUP5/ohouse-client/assets/81505421/2f77947c-6260-41f1-8ae2-dcd941105879"  alt="서비스대표-이미지"/>
+
 
 </div>
 
@@ -18,65 +20,52 @@
 <div ><strong> (강조단어) </strong> (기능설명)  <br/></div>
 
 
-<h2> (개발자들) </h2>
+<h2> 공공 공주👸🏻 </h2>
 
 <table align="center">
     <tr align="center">
-        <td style="min-width: 150px;">
+        <td style="min-width: 200px;">
             <a href="">
-              <img src="" width="200" alt="깃허브계정-프로필사진">
+              <img src="https://avatars.githubusercontent.com/u/73213437?v=4" width="200" alt="깃허브계정-프로필사진">
               <br />
-              <b>(깃허브계정명)</b>
+              <b>@iamphj3</b>
             </a>
         </td>
-      <td style="min-width: 150px;">
+      <td style="min-width: 200px;">
             <a href="">
-              <img src="" width="200" alt="깃허브계정-프로필사진">
+              <img src="https://avatars.githubusercontent.com/u/81505421?v=4" width="200" alt="깃허브계정-프로필사진">
               <br />
-              <b>(깃허브계정명)</b>
+              <b>@lydiacho</b>
             </a>
         </td>
-      <td style="min-width: 150px;">
+      <td style="min-width: 200px;">
             <a href="">
               <img src="" width="200" alt="깃허브계정-프로필사진">
               <br />
-              <b>(깃허브계정명)</b>
-            </a>
-        </td>
-      <td style="min-width: 150px;">
-            <a href="">
-              <img src="" width="200" alt="깃허브계정-프로필사진">
-              <br />
-              <b>(깃허브계정명)</b>
+              <b>@Yeonseo-Jo</b>
             </a>
         </td>
     </tr>
     <tr align="center">
         <td>
-            (이름) <br/>
+            박현지 <br/>
       </td>
        <td>
-            (이름) <br/>
+            조승희 <br/>
       </td>
        <td>
-            (이름) <br/>
-      </td>
-       <td>
-            (이름) <br/>
+            조연서 <br/>
       </td>
     </tr>
   	<tr align="center">
         <td>
-            (서버연결) <br/>
+            체크리스트 조회 API<br/>체크리스트 카테고리 수정 API 
       </td>
        <td>
-            (서버연결) <br/>
+            매물 목록 조회 API<br/>체크리스트 삭제 API
       </td>
        <td>
-            (서버연결) <br/>
-      </td>
-       <td>
-            (서버연결) <br/>
+            매물 정보 수정 API<br/>체크리스트 생성 API
       </td>
     </tr>
 </table>
