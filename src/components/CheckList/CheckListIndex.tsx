@@ -1,19 +1,23 @@
-import { useEffect, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import styled from 'styled-components';
+import { useEffect, useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import styled from "styled-components";
 
-import { ImgEmpty } from '../../assets/image';
-import { CATEGORY_LIST } from '../../constants/category';
-import { editChecklistData } from '../../lib/checklist';
+import { ImgEmpty } from "../../assets/image";
+import { CATEGORY_LIST } from "../../constants/category";
+import { editChecklistData } from "../../lib/checklist";
 import {
   editCategoryState,
   productDataState,
   selectedSubcategoriesState,
   showIndexState,
-  subCategoryIdState,
-} from '../../recoil/atom';
-import { categoryListInfo, editCategoryRequest, productData } from '../../types/category';
-import CheckListItem from './CheckListItem';
+  subCategoryIdState
+} from "../../recoil/atom";
+import {
+  categoryListInfo,
+  editCategoryRequest,
+  productData
+} from "../../types/category";
+import CheckListItem from "./CheckListItem";
 
 interface CheckListIndexProps {
   checklistId: number;

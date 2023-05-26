@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import styled from 'styled-components';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import styled from "styled-components";
 
-import Category from '../components/CheckList/Category';
-import CheckListIndex from '../components/CheckList/CheckListIndex';
-import ProductUpload from '../components/CheckList/ProductUpload';
-import { getChecklistData } from '../lib/checklist';
-import { productDataState, subCategoryIdState } from '../recoil/atom';
-import { productData, subCategoryIdInfo } from '../types/category';
+import Category from "../components/CheckList/Category";
+import CheckListIndex from "../components/CheckList/CheckListIndex";
+import ProductUpload from "../components/CheckList/ProductUpload";
+import { getChecklistData } from "../lib/checklist";
+import { productDataState, subCategoryIdState } from "../recoil/atom";
+import { productData, subCategoryIdInfo } from "../types/category";
 
 const CheckListPage = () => {
   const { checklistId } = useParams();
@@ -18,6 +18,8 @@ const CheckListPage = () => {
   const getChecklist = async () => {
     try {
       if (checklistId) {
+
+        
         const result = await getChecklistData(Number(checklistId));
         if (result) {
           setProductData(result);
