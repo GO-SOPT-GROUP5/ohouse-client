@@ -43,7 +43,7 @@ const ProductContract = () => {
 
   const makeTags = () => {
     // 계약형태, 가격, 평수 태그 만들기
-    let priceTag;
+    let priceTag: string;
     if (contract === CONTRACT_OPTIONS[1]) {
       priceTag = `${price}/${monthlyRent}`;
     } else {

@@ -1,11 +1,11 @@
-import { useNavigate } from 'react-router';
-import styled from 'styled-components';
+import { useNavigate } from "react-router";
+import styled from "styled-components";
 
-import { IcListStar, IcMore } from '../../assets/icon';
-import useModal from '../../hooks/useModal';
-import { productResponse } from '../../types/product';
-import DeleteModal from './DeleteModal';
-import MoreModal from './MoreModal';
+import { IcListStar, IcMore } from "../../assets/icon";
+import useModal from "../../hooks/useModal";
+import { productResponse } from "../../types/product";
+import DeleteModal from "./DeleteModal";
+import MoreModal from "./MoreModal";
 
 export interface ProductBoxProps {
   setUpdate: any;
@@ -25,7 +25,7 @@ const ProductBox = ({ productResponse }: ProductBoxProps) => {
         isDeleteShowing={isDeleteShowing}
         handleToggle={deleteToggle}
       />
-      <MoreModal isShowing={isShowing} handleClose={toggle} handleDelete={deleteToggle} />
+      <MoreModal selectedId={id} isShowing={isShowing} handleClose={toggle} handleDelete={deleteToggle} />
       {image === '' || image === null || image === 'string' ? (
         <St.Empty>No Image</St.Empty>
       ) : (
@@ -51,7 +51,7 @@ const ProductBox = ({ productResponse }: ProductBoxProps) => {
         <button
           type="button"
           onClick={() => {
-            navigate(`/checklist/${id}`);
+            navigate(`/checklist/${id}/edit`);
           }}
         >
           체크리스트 내역 보기
