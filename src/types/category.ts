@@ -14,6 +14,7 @@ export interface subCategoryInfo {
 //매물 정보 수정 API type
 export interface productData {
   id: number;
+  title: string;
   address: string;
   dong: number;
   ho: number;
@@ -91,6 +92,7 @@ export interface subCategoryIdInfo {
 
 export interface categoryIdList {
   id: number;
-  name: string;
   fetchedId: number;
+  name: string;
+  state: number;
 }
