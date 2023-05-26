@@ -14,12 +14,14 @@ export interface subCategoryInfo {
 //매물 정보 수정 API type
 export interface productData {
   id: number;
-  title: string;
   address: string;
   dong: number;
   ho: number;
   image: string;
   description: string;
+  price: string;
+  size: number;
+  state: string;
   grade: number;
   tags: tagObject;
   checkListData: checkListDataInfo;

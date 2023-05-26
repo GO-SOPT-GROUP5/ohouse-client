@@ -43,8 +43,8 @@ const Help = () => {
     <St.HelpWrapper>
       <St.HelpCard>
         <St.HelpIcon>
-          <IcLeft onClick={() => swiperRef.current.slidePrev()} />
-          <IcRight onClick={() => swiperRef.current.slideNext()} />
+          <IcLeft onClick={() => swiperRef?.current?.slidePrev()} />
+          <IcRight onClick={() => swiperRef?.current?.slideNext()} />
         </St.HelpIcon>
         <St.HelpContent>
           <Swiper
@@ -54,7 +54,7 @@ const Help = () => {
             slidesPerView={1}
             spaceBetween={20}
             onSwiper={swiper => {
-              swiperRef.current = swiper;
+              swiperRef?.current = swiper;
             }}
           >
             <SwiperSlide>
