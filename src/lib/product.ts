@@ -1,5 +1,10 @@
-import { deleteResponse, OHouseResponse, productListInfo, productRequest } from '../types/product';
-import { client } from './axios';
+import {
+  deleteResponse,
+  OHouseResponse,
+  productListInfo,
+  productRequest
+} from "../types/product";
+import { client } from "./axios";
 
 export const getProductData = async ({ flag, sort, page, size }: productRequest) => {
   try {
@@ -23,6 +28,6 @@ export const deleteProduct = async (id: number) => {
     const { data } = await client.delete<deleteResponse>(`/checklist/${id}`);
     return data;
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };

@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
-import { useRecoilState } from 'recoil';
-import styled from 'styled-components';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { useRecoilState } from "recoil";
+import styled from "styled-components";
 
-import { clientSubCategoryIdState, editCategoryState } from '../../recoil/atom';
-import { categoryIdList, editCategoryRequest } from '../../types/category';
+import { clientSubCategoryIdState, editCategoryState } from "../../recoil/atom";
+import { categoryIdList, editCategoryRequest } from "../../types/category";
 
 interface CheckListItemProms {
   categoryId: number;
@@ -34,7 +34,6 @@ const CheckListItem = ({ categoryId, checklist, options }: CheckListItemProms) =
         });
         return updatedClientSubCategoryId;
       });
-      console.log(clientSubCategoryId);
     }
   };
 

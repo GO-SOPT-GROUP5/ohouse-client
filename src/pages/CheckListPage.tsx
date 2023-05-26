@@ -50,7 +50,6 @@ const CheckListPage = () => {
         if (result) {
           setProductData(result);
         }
-        // console.log(result);
         return result?.checkListData;
       }
     } catch (error) {
@@ -61,8 +60,6 @@ const CheckListPage = () => {
   const updateSubCategoryId = () => {
     if (productData.checkListData) {
       const { indoor, kitchen, livingRoom, bathroom } = productData.checkListData;
-
-      // console.log(productData.checkListData);
 
       const updatedSubCategoryId = {
         SUNLIGHT: indoor[0].id,
@@ -81,7 +78,6 @@ const CheckListPage = () => {
       };
 
       setSubCategoryId([updatedSubCategoryId]);
-      // console.log(subCategoryId);
     }
   };
 

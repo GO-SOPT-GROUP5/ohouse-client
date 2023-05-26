@@ -36,8 +36,6 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
   const [clientSubCategoryId, setClientSubCategoryId] =
     useRecoilState<categoryIdList[]>(clientSubCategoryIdState);
 
-  console.log('index페이지', clientSubCategoryId);
-
   const getCategoryInfo = (id: number) => {
     for (const category of CATEGORY_LIST) {
       const subcategory = category.subcategories.find(subcategory => subcategory.id === id);
@@ -65,13 +63,10 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
       checkListId: checklistId,
       categoryList: updatedCategoryList,
     };
-    console.log(updatedCategoryList, editRequest);
-
     editChecklist(editRequest);
 
     try {
       const result = await editChecklistData(editRequest);
-      console.log(result);
     } catch (error) {
       console.error(error);
     }
@@ -83,13 +78,11 @@ const CheckListIndex = ({ checklistId }: CheckListIndexProps) => {
         checkListId: checkListId,
         categoryList: categoryList,
       });
-      console.log(result);
     } catch (error) {
       console.error(error);
     }
   };
 
-  console.log(showSubcategories);
   return (
     <St.CheckList>
       {showSubcategories.length ? (

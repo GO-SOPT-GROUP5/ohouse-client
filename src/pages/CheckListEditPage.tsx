@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router';
-import { useRecoilState } from 'recoil';
-import styled from 'styled-components';
+import React, { useEffect } from "react";
+import { useParams } from "react-router";
+import { useRecoilState } from "recoil";
+import styled from "styled-components";
 
-import Category from '../components/CheckList/Category';
-import CheckListIndex from '../components/CheckList/CheckListIndex';
-import ProductUpload from '../components/CheckList/ProductUpload';
-import { getChecklistData } from '../lib/checklist';
-import { clientSubCategoryIdState, productDataState, subCategoryIdState } from '../recoil/atom';
-import { productData, subCategoryIdInfo } from '../types/category';
+import Category from "../components/CheckList/Category";
+import CheckListIndex from "../components/CheckList/CheckListIndex";
+import ProductUpload from "../components/CheckList/ProductUpload";
+import { getChecklistData } from "../lib/checklist";
+import {
+  clientSubCategoryIdState,
+  productDataState,
+  subCategoryIdState
+} from "../recoil/atom";
+import { productData, subCategoryIdInfo } from "../types/category";
 
 const CheckListEditPage = () => {
   const { checklistId } = useParams();
@@ -93,7 +97,6 @@ const CheckListEditPage = () => {
         if (result) {
           setProductData(result);
         }
-        console.log('result', result);
         return result?.checkListData;
       }
     } catch (error) {
@@ -129,7 +132,6 @@ const CheckListEditPage = () => {
   useEffect(() => {
     if (productData.checkListData) {
       fetchSubCategoryId();
-      console.log(clientSubCategoryId);
     }
   }, [productData.checkListData, setClientSubCategoryId]);
 

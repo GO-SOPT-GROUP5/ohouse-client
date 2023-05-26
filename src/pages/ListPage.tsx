@@ -69,8 +69,6 @@ const ListPage = () => {
       setPage((page : number) => page + 6)
     })
     .catch((err : any) => {console.log(err)});
-
-    console.log(products);
   };
 
   useEffect(() => {
