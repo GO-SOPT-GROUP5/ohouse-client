@@ -23,7 +23,7 @@ const MenuBox = ({ id, title, isNew, content, icon, alt }: MenuBoxContent) => {
         </St.MenuBoxHeader>
         <St.MenuBoxBottom>
           <St.MenuBoxIcon>
-            <img src={require(icon)} alt={alt} />
+            <img src={icon} alt={alt} />
           </St.MenuBoxIcon>
         </St.MenuBoxBottom>
       </St.MenuBoxContainer>
