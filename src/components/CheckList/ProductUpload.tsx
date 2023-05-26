@@ -27,14 +27,14 @@ const ProductUpload = () => {
   const ref = useRef<HTMLInputElement>(null);
   const [URLThumbnail, setURLThumbnail] = useState<string>('');
 
-  // const product = useRecoilValue(productDataState);
+  const product = useRecoilValue(productDataState);
   const [isSaved, setIsSaved] = useState(false);
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   console.log(product);
-  // });
+  useEffect(() => {
+    console.log('!!!recoil-product!!!', product);
+  });
 
   const createImageURL = (fileBlob: Blob | MediaSource) => {
     if (URLThumbnail) URL.revokeObjectURL(URLThumbnail);
