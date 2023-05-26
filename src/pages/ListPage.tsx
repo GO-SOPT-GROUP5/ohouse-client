@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import styled from "styled-components";
 
-import { IcSmallLine } from '../assets/icon/index';
-import AddBox from '../components/List/AddBox';
-import ProductBox from '../components/List/ProductBox';
-import { getProductData } from '../lib/product';
-import { productResponse } from '../types/product';
+import { IcSmallLine } from "../assets/icon/index";
+import AddBox from "../components/List/AddBox";
+import ProductBox from "../components/List/ProductBox";
+import { client } from "../lib/axios";
+import { getProductData } from "../lib/product";
+import { productResponse } from "../types/product";
 
 const ListPage = () => {
   const CATEGORY = {
@@ -20,32 +22,61 @@ const ListPage = () => {
     좋아요순: 'LIKE',
   };
 
-  const [productInfo, setProductInfo] = useState([]);
-
   const [flag, setFlag] = useState('');
   const [sort, setSort] = useState('NEWEST');
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(5);
-  // 이친구들은 나중에 무한 스크롤 구현 시 만져줄 예정!
-
-  const [update, setUpdate] = useState(false);
+  
+  useEffect(() => {
+    handleGetInfo();
+  }, []);
 
   useEffect(() => {
     handleGetInfo();
-  }, [flag, sort, update]);
+    setPage(5);
+    setSize(6);
+  }, [flag, sort]);
 
   const handleGetInfo = async () => {
     const productList = await getProductData({ flag: flag, sort: sort, page: page, size: size });
-    setProductInfo(productList);
+    setProducts(productList);
   };
 
   const handleCategory = (e: React.MouseEvent<HTMLElement>) => {
     setFlag(e.currentTarget.id);
+    setPage(0);
+    setSize(5);
   };
 
   const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSort(e.currentTarget.value);
+    setPage(0);
+    setSize(5);
   };
+
+  const [ref, inView] = useInView();
+  const [products, setProducts] = useState([]);
+
+   // 무한 스크롤
+  const productFetch = async() => {
+    const query = flag === ''?
+    `/checklist/list?page=${page}&size=${size}&sort=${sort}` :
+    `/checklist/list?flag=${flag}&sort=${sort}&page=${page}&size=${size}`;
+    
+    await client.get(query)
+    .then((res : any) => {
+      setProducts([...products, ...res.data.data])
+      setPage((page : number) => page + 6)
+    })
+    .catch((err : any) => {console.log(err)});
+  };
+
+  useEffect(() => {
+    if (inView) {
+      productFetch();
+    }
+    
+  }, [inView]);
 
   return (
     <St.ListWrapper>
@@ -69,11 +100,12 @@ const ListPage = () => {
         </St.ListSetting>
         <St.ListBoxes>
           <AddBox />
-          {productInfo.map((info: productResponse) => (
-            <ProductBox setUpdate={setUpdate} productResponse={info} />
+          {products.map((info: productResponse) => (
+            <ProductBox productResponse={info} />
           ))}
         </St.ListBoxes>
       </section>
+      <div ref={ref}>##</div>
     </St.ListWrapper>
   );
 };
@@ -86,9 +118,19 @@ const St = {
     flex-direction: column;
     align-items: center;
 
+    position: relative;
+    
     width: 100%;
+    min-height: 100vh;
 
     background-color: ${({ theme }) => theme.colors.Grey200};
+
+    & > div {
+      position: absolute;
+      bottom: 0;
+
+      color: ${({ theme }) => theme.colors.Grey200};
+    }
   `,
   ListSetting: styled.section`
     display: flex;
