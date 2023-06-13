@@ -32,6 +32,10 @@ const ProductUpload = () => {
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    console.log('!!!recoil-product!!!', product);
+  });
+
   const createImageURL = (fileBlob: Blob | MediaSource) => {
     if (URLThumbnail) URL.revokeObjectURL(URLThumbnail);
     const url = URL.createObjectURL(fileBlob); // Blob -> url로 변환
