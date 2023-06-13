@@ -85,7 +85,7 @@ const ListPage = () => {
           <St.ListCategory>
             {Object.keys(CATEGORY).map(el => (
               <>
-                <span id={CATEGORY[el]} onClick={handleCategory}>
+                <span key={CATEGORY[el]} id={CATEGORY[el]} onClick={handleCategory}>
                   {el}
                 </span>
                 <IcSmallLine />
