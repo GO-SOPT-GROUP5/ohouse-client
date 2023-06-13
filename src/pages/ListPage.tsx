@@ -100,13 +100,8 @@ const ListPage = () => {
         </St.ListSetting>
         <St.ListBoxes>
           <AddBox />
-<<<<<<< HEAD
           {products.map((info: productResponse) => (
             <ProductBox productResponse={info} />
-=======
-          {productInfo.map((info: productResponse) => (
-            <ProductBox key={info.id} productResponse={info} />
->>>>>>> 2a8494b (fix : ProductBox에 Key 부여)
           ))}
         </St.ListBoxes>
       </section>
